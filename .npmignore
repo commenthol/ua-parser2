@@ -1,0 +1,5 @@
+.jshintrc
+.gitignore
+.npmignore
+node_modules/
+test_resources/

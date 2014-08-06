@@ -1,0 +1,62 @@
+{
+  "name": "ua-parser2",
+  "description": "A port of Browserscope's user agent parser.",
+  "main": "./js/index",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "maintainers": [
+    {
+      "name": "commenthol",
+      "email": "commenthol@gmail.com"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Tobie Langel",
+      "email": "tobie.langel@gmail.com",
+      "web": "http://tobielangel.com"
+    },
+    {
+      "name": "Lindsey Simon",
+      "email": "lsimon@commoner.com",
+      "web": "http://www.idreamofuni.com"
+    },
+    {
+      "name": "Philip Tellis",
+      "email": "philip@bluesmoon.info",
+      "web": "http://bluesmoon.info"
+    },
+    {
+      "name": "Dave Olsen",
+      "email": "dmolsen@gmail.com",
+      "web": "http://dmolsen.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/commenthol/ua-parser2.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://raw.github.com/commenthol/ua-parser2/master/js/LICENSE"
+    },
+    {
+      "type": "Apache-2.0",
+      "url": "https://raw.github.com/commenthol/ua-parser2/master/js/LICENSE"
+    }
+  ],
+  "dependencies": {
+    "yamlparser": ">=0.0.2"
+  },
+  "devDependencies": {
+    "commander": "^2.3.0",
+    "mocha": "*",
+    "shelljs": "^0.3.0"
+  },
+  "scripts": {
+    "test": "cd js && mocha && mocha test/load/*.mocha.js"
+  }
+}
