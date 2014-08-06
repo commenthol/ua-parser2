@@ -1,30 +1,95 @@
-version: 0.0.1
+version: 0.0.2
 update_url: https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml
 
 #### Browser ####
 user_agent_parsers:
+
+  #### Bots ####
+
+  # Pingdom
+  - regex: '(Pingdom.com_bot_version_)(\d+)\.(\d+)'
+    family: 'PingdomBot'
+    type: 'bot'
+  # Facebook
+  - regex: '(facebookexternalhit)/(\d+)\.(\d+)'
+    family: 'FacebookBot'
+    type: 'bot'
+  # Google Plus
+  - regex: 'Google.*/\+/web/snippet'
+    family: 'GooglePlusBot'
+    type: 'bot'
+
+  # sort this regex by length !
+  - regex: '(Yahoo! Slurp|Yahoo[a-z]*Seeker|Willow Internet Crawler|Googlebot(?:-[^/]*)?|Rackspace Monitoring|semanticdiscovery|baidu[a-z]*(?:spider|Mobaider)|Google SketchUp|fast-webcrawler|Catchpoint bot|ConveraCrawler|Checklinks|ZyBorg|dataparksearch|AdsBot-Google(?:-[a-z]*)?|ThumbShotsBot|MSIECrawler|YottaaMonitor|http%20client|Read%20Later|BingPreview|HttpMonitor|LinkedInBot|google(^tv)|netresearch|searchsight|PagePeeker|TwitterBot|YandexBot|altavista|charlotte|findlinks|WebThumb|Netvibes|archiver|blitzbot|mogimogi|URL2PNG|ZooShot|bingbot|openbot|scooter|gigabot|furlbot|polybot|scrubby|seekbot|[a-z_\-]*crawler|GomezA|msnbot|m65bot|msrbot|ichiro(?:/mobile)?|larbin|pompos|snappy|speedy|[a-z_\-]*spider|^vortex|^voyager|Slurp|lycos|teoma(?!bar)?|htdig|voila|^zao|\b(?:(?!CU)[a-z])+bot\b|\bYeti(?:-[a-z]*))(?:[ /](\d+)(?:\.(\d+))+)?'
+    regex_flag: 'i'
+    type: 'bot'
+
+  #### Feedreader, Mail/Pim, Mediaplayer ####
+
+  # iOS / OSX Applications
+  - regex: '^([^/]+)/(\d+)(?:\.(\d+))+ \((?:iPhone|iPad|iPod); iOS [0-9\.]+; Scale/[0-9\.]+\)'
+    type: 'app'
+  - regex: '^([^/]+)/(\d+)(?:\.(\d+))+ iOS/[0-9\.]+ model/(?:iPhone|iPad|iPod)'
+    type: 'app'
+  - regex: '^((?:(?! CFNetwork|/).)+)(?:/(\d+)(?:\.([a-z\d]+))*|.*)? CFNetwork/.*'
+    type: 'app'
+  - regex: '(CFNetwork)(?:/(\d+)(?:\.(\d+))+)?'
+    family: 'CFNetwork'
+    type: 'app'
+
+  # Lightning
+  - regex: '\b(Lightning)/(\d+)(?:\.(\d+)(?:\.?([ab]?\d+[a-z]*))?)?'
+    type: 'mail'
+  # Outlook 2007
+  - regex: 'MSOffice 12'
+    family: 'Outlook'
+    v1: '2007'
+    type: 'mail'
+  # Outlook 2010
+  - regex: 'MSOffice 14'
+    family: 'Outlook'
+    v1: '2010'
+    type: 'mail'
+  # Outlook 2013
+  - regex: 'Microsoft Outlook 15\.\d+\.\d+'
+    family: 'Outlook'
+    v1: '2013'
+    type: 'mail'
+  # Other Main Agents
+  - regex: '(Lotus-Notes|Microsoft Outlook|Outlook-Express|Barca(?:Pro)?|Postbox|The Bat!(?: Voyager)?)(?:[/ ](\d+)(?:\.(\d+))?)?'
+    type: 'mail'
+  # Apple Air Mail
+  - regex: '(Airmail) (\d+)\.(\d+)(?:\.(\d+))?'
+    type: 'mail'
+  # Thunderbird
+  - regex: '(Thunderbird|Icedove)/(\d+)\.(\d+)\.(\d+(?:pre)?)'
+    family: 'Thunderbird'
+    type: 'mail'
+
+  - regex: '\b(AideRSS|Akregator|Apple-PubSub|FeedDa?emon|Feeddler|Feedreader|JetBrains Omea Reader|Liferea|NetNewsWire|NewsBlur|newsbeuter|Pulp|ReadKit|Reeder|(?:RSS|Rss)Bandit|RssBar|RSS Junkie|RSS Menu|RSSOwl|SimplePie|SimpleRSS|Tiny Tiny RSS|UniversalFeedParser|Wizz RSS News Reader|Windows-RSS-Platform)(?:[ /](\d+)(?:\.(\d+))?(?:\.(\d+))?)?'
+    type: 'feedreader'
+
+  # mediaplayers
+  - regex: '\b(Banshee|Clementine|MediaMonkey)(?:[ /](\d+)(?:\.(\d+)(?:\.(\d)+)?)?)?'
+    type: 'mediaplayer'
+
+  - regex: '\b(Instacast|iTunes(?:-iP\w+(?:-\w+)?)?|FlyCast|Nightingale|Songbird|SubStream|vlc|Windows-Media-Player(?:-\w+)?|XBMC)\b(?:[ /]?(\d+)(?:\.(\d+)(?:\.(\d)+)?)?)?'
+    type: 'mediaplayer'
+
+  - regex: '(QuickTime)(?:(?:(?:.+qtver=)|(?:(?: E-)?[\./]))(\d+)(?:\.(\d+)(?:\.(\d)+)?)?)?'
+    type: 'mediaplayer'
+
   #### SPECIAL CASES TOP ####
 
-  # HbbTV standard defines what features the browser should understand.
-  # but it's like targeting "HTML5 browsers", effective browser support depends on the model
-  # See os_parsers if you want to target a specific TV
-  - regex: '(HbbTV)/(\d+)\.(\d+)\.(\d+) \('
-
-  # must go before Firefox to catch SeaMonkey/Camino/Chimera
-  - regex: '(SeaMonkey|Camino|Chimera)/(\d+)\.(\d+)\.?([ab]?\d+[a-z]*)?'
+  # Browsers using Gecko; must go before Firefox
+  - regex: 'Mozilla.*\b(Beonex|Camino|Chimera|CometBird|Firebird(?: Browser)?|Fireweb Navigator|Flock|IceDragon|SailfishBrowser|SeaMonkey)/(\d+)(?:\.(\d+)(?:\.?([ab]?\d+[a-z]*))?)?'
 
   # Firefox
-  - regex: '(Pale[Mm]oon)/(\d+)\.(\d+)\.?(\d+)?'
-    family: 'Pale Moon (Firefox Variant)'
-  - regex: '(Fennec)/(\d+)\.(\d+)\.?([ab]?\d+[a-z]*)'
-    family: 'Firefox Mobile'
-  - regex: '(Fennec)/(\d+)\.(\d+)(pre)'
-    family: 'Firefox Mobile'
-  - regex: '(Fennec)/(\d+)\.(\d+)'
+  - regex: '(Fennec)/(\d+)\.(\d+)\.?(pre|[ab]?\d+[a-z]*)'
     family: 'Firefox Mobile'
   - regex: 'Mobile.*(Firefox)/(\d+)\.(\d+)'
     family: 'Firefox Mobile'
-  - regex: '(Namoroka|Shiretoko|Minefield)/(\d+)\.(\d+)\.(\d+(?:pre)?)'
+  - regex: '\b(BonEcho|GranParadiso|Lorentz|Minefield|Namoroka|Pale[Mm]oon|Shiretoko)/(\d+)(?:\.(\d+)(?:\.?([ab]?\d+[a-z]*))?)?'
     family: 'Firefox ($1)'
   - regex: '(Firefox)/(\d+)\.(\d+)(a\d+[a-z]*)'
     family: 'Firefox Alpha'
@@ -34,27 +99,9 @@ user_agent_parsers:
     family: 'Firefox Alpha'
   - regex: '(Firefox)-(?:\d+\.\d+)?/(\d+)\.(\d+)(b\d+[a-z]*)'
     family: 'Firefox Beta'
-  - regex: '(Namoroka|Shiretoko|Minefield)/(\d+)\.(\d+)([ab]\d+[a-z]*)?'
-    family: 'Firefox ($1)'
   - regex: '(Firefox).*Tablet browser (\d+)\.(\d+)\.(\d+)'
     family: 'MicroB'
   - regex: '(MozillaDeveloperPreview)/(\d+)\.(\d+)([ab]\d+[a-z]*)?'
-
-  # e.g.: Flock/2.0b2
-  - regex: '(Flock)/(\d+)\.(\d+)(b\d+?)'
-
-  # RockMelt
-  - regex: '(RockMelt)/(\d+)\.(\d+)\.(\d+)'
-
-  # e.g.: Fennec/0.9pre
-  - regex: '(Navigator)/(\d+)\.(\d+)\.(\d+)'
-    family: 'Netscape'
-
-  - regex: '(Navigator)/(\d+)\.(\d+)([ab]\d+)'
-    family: 'Netscape'
-
-  - regex: '(Netscape6)/(\d+)\.(\d+)\.?([ab]?\d+)?'
-    family: 'Netscape'
 
   - regex: '(MyIBrow)/(\d+)\.(\d+)'
     family: 'My Internet Browser'
@@ -86,16 +133,9 @@ user_agent_parsers:
     family: 'webOS Browser'
 
   # LuaKit has no version info.
-  # http://luakit.org/projects/luakit/
+  # ref: http://luakit.org/projects/luakit/
   - regex: '(luakit)'
     family: 'LuaKit'
-
-  # Snowshoe
-  - regex: '(Snowshoe)/(\d+)\.(\d+).(\d+)'
-
-  # Lightning (for Thunderbird)
-  # http://www.mozilla.org/projects/calendar/lightning/
-  - regex: '(Lightning)/(\d+)\.(\d+)\.?((?:[ab]?\d+[a-z]*)|(?:\d*))'
 
   # Swiftfox
   - regex: '(Firefox)/(\d+)\.(\d+)\.(\d+(?:pre)?) \(Swiftfox\)'
@@ -104,38 +144,37 @@ user_agent_parsers:
     family: 'Swiftfox'
 
   # Rekonq
-  - regex: '(rekonq)/(\d+)\.(\d+)\.?(\d+)? Safari'
-    family: 'Rekonq'
-  - regex: 'rekonq'
+  - regex: '(rekonq)(?:/(\d+)\.(\d+)\.?(\d+)? Safari)?'
     family: 'Rekonq'
 
   # Conkeror lowercase/uppercase
-  # http://conkeror.org/
-  - regex: '(conkeror|Conkeror)/(\d+)\.(\d+)\.?(\d+)?'
+  # ref: http://conkeror.org/
+  - regex: '([Cc]onkeror)/(\d+)\.(\d+)\.?(\d+)?'
     family: 'Conkeror'
 
   # catches lower case konqueror
-  - regex: '(konqueror)/(\d+)\.(\d+)\.(\d+)'
+  - regex: '([Kk]onqueror)/(\d+)\.(\d+)\.?(\d+)?'
     family: 'Konqueror'
 
   - regex: '(WeTab)-Browser'
 
-  - regex: '(Comodo_Dragon)/(\d+)\.(\d+)\.(\d+)'
+  - regex: '(Comodo[ _]Dragon)/(\d+)\.(\d+)\.(\d+)'
     family: 'Comodo Dragon'
-
-  # Bots
-  - regex: '(YottaaMonitor|BrowserMob|HttpMonitor|YandexBot|Slurp|BingPreview|PagePeeker|ThumbShotsBot|WebThumb|URL2PNG|ZooShot|GomezA|Catchpoint bot|Willow Internet Crawler|Google SketchUp|Read%20Later)'
 
   - regex: '(Symphony) (\d+).(\d+)'
 
   - regex: '(Minimo)'
+
+  # Yandex Browser
+  - regex: '(YaBrowser)/(\d+)(?:\.(\d+)(?:\.(\d+))?)?'
+    family: 'Yandex Browser'
 
   # Chrome Mobile
   - regex: '(CrMo)/(\d+)\.(\d+)\.(\d+)\.(\d+)'
     family: 'Chrome Mobile'
   - regex: '(CriOS)/(\d+)\.(\d+)\.(\d+)\.(\d+)'
     family: 'Chrome Mobile iOS'
-  - regex: '(Chrome)/(\d+)\.(\d+)\.(\d+)\.(\d+) Mobile'
+  - regex: '(Chrome)/(\d+)\.(\d+)\.(\d+)\.(\d+) .*\bMobile\b'
     family: 'Chrome Mobile'
 
   # Chrome Frame must come before MSIE.
@@ -143,14 +182,11 @@ user_agent_parsers:
     family: 'Chrome Frame'
 
   # UC Browser
-  - regex: '(UCBrowser)[ /](\d+)\.(\d+)\.(\d+)'
-    family: 'UC Browser'
-  - regex: '(UC Browser)[ /](\d+)\.(\d+)\.(\d+)'
-  - regex: '(UC Browser|UCBrowser|UCWEB)(\d+)\.(\d+)\.(\d+)'
+  - regex: '(UC ?Browser|UCBrowser|UCWEB)[ /]?(\d+)\.(\d+)\.(\d+)'
     family: 'UC Browser'
 
   # Tizen Browser (second case included in browser/major.minor regex)
-  - regex: '(SLP Browser)/(\d+)\.(\d+)'
+  - regex: '(Tizen|SLP) Browser/(\d+)\.(\d+)'
     family: 'Tizen Browser'
 
   # Sogou Explorer 2.X
@@ -163,6 +199,10 @@ user_agent_parsers:
   - regex: '(FlyFlow)/(\d+)\.(\d+)'
     family: 'Baidu Explorer'
 
+  #Baidu Spark
+  - regex: '((?:BD)?Spark|BIDUBrowser)[ /](\d+)(?:\.(\d+))?'
+    family: 'Baidu Spark'
+
   # QQ Browsers
   - regex: '(MQQBrowser/Mini)(?:(\d+)(?:\.(\d+)(?:\.(\d+))?)?)?'
     family: 'QQ Browser Mini'
@@ -171,37 +211,6 @@ user_agent_parsers:
   - regex: '(QQBrowser)(?:/(\d+)(?:\.(\d+)\.(\d+)(?:\.(\d+))?)?)?'
     family: 'QQ Browser'
 
-  # Pingdom
-  - regex: '(Pingdom.com_bot_version_)(\d+)\.(\d+)'
-    family: 'PingdomBot'
-
-  # Facebook
-  - regex: '(facebookexternalhit)/(\d+)\.(\d+)'
-    family: 'FacebookBot'
-
-  # LinkedIn
-  - regex: '(LinkedInBot)/(\d+)\.(\d+)'
-    family: 'LinkedInBot'
-
-  # Twitterbot
-  - regex: '(Twitterbot)/(\d+)\.(\d+)'
-    family: 'TwitterBot'
-
-  # Google Plus
-  - regex: 'Google.*/\+/web/snippet'
-    family: 'GooglePlusBot'
-
-  # Rackspace Monitoring
-  - regex: '(Rackspace Monitoring)/(\d+)\.(\d+)'
-    family: 'RackspaceBot'
-
-  # PyAMF
-  - regex: '(PyAMF)/(\d+)\.(\d+)\.(\d+)'
-
-  # Yandex Browser
-  - regex: '(YaBrowser)/(\d+)\.(\d+)\.(\d+)'
-    family: 'Yandex Browser'
-
   # Mail.ru Amigo/Internet Browser (Chromium-based)
   - regex: '(Chrome)/(\d+)\.(\d+)\.(\d+).* MRCHROME'
     family: 'Mail.ru Chromium Browser'
@@ -209,75 +218,38 @@ user_agent_parsers:
   # AOL Browser (IE-based)
   - regex: '(AOL) (\d+)\.(\d+); AOLBuild (\d+)'
 
+  # OmniWeb 
+  - regex: '(OmniWeb)/v?(\d+)(?:\.(\d+)(?:\.(\d+))?)?'
+
+  # Netscape
+  - regex: '\b(Navigator|Netscape6)/(\d+)(?:\.(\d+)(?:\.?([ab]?\d+[a-z]*))?)?'
+    family: 'Netscape'
+
   #### END SPECIAL CASES TOP ####
 
   #### MAIN CASES - this catches > 50% of all browsers ####
 
-  # Browser/major_version.minor_version.beta_version
-  - regex: '(AdobeAIR|FireWeb|Jasmine|ANTGalio|Midori|Fresco|Lobo|PaleMoon|Maxthon|Lynx|OmniWeb|Dillo|Camino|Demeter|Fluid|Fennec|Epiphany|Shiira|Sunrise|Flock|Netscape|Lunascape|WebPilot|NetFront|Netfront|Konqueror|SeaMonkey|Kazehakase|Vienna|Iceape|Iceweasel|IceWeasel|Iron|K-Meleon|Sleipnir|Galeon|GranParadiso|Opera Mini|iCab|NetNewsWire|ThunderBrowse|Iris|UP\.Browser|Bunjalloo|Google Earth|Raven for Mac|Openwave)/(\d+)\.(\d+)\.(\d+)'
+  # iOS Versions of Browsers
+  - regex: '(Mercury|Puffin)/(\d{3,5})'
 
-  # Outlook 2007
-  - regex: 'MSOffice 12'
-    family: 'Outlook'
-    v1: '2007'
+  # Must come before Chrome
+  - regex: '(Chromium|ChromePlus|CoolNovo|Puffin|Sleipnir|HbbTV)[/ ](\d+)(?:\.(\d+)(?:\.(\d+))?)?'
 
-  # Outlook 2010
-  - regex: 'MSOffice 14'
-    family: 'Outlook'
-    v1: '2010'
+  # Browser/major_version.minor_version(.beta_version)
+  - regex: '(Abrowser|AdobeAIR|amaya|Amiga-AWeb|AmigaVoyager|ANTFresco|ANTGalio|Arora|bingbot|Bolt|BOLT|Bunjalloo|Crazy Browser|Chrome|Demeter|Dillo|Dolfin|Dolphin http client|Epiphany|EspialTVBrowser|Espial|Fennec|FireWeb|Fluid|Fresco|Galeon|Googlebot|Google Earth(?: EC)?|HotJava|IBrowse|iCab|Iceape|ICE Browser|IceCat|Iceweasel|IceWeasel|iRider|OneBrowser|Iris|Iron|Jasmine|Kapiko|Kazehakase|Kindle|K-Meleon|Lobo|Lunascape|Lynx|Maemo Browser|Maxthon|mDolphin|Mercury|Midori|MiniBrowserMobile|Minimo|Net[Ff]ront|NetFrontLifeBrowser|NetPositive|Netscape|NetSurf|OmniWeb|Opera|Opera Mini|Orca|PaleMoon|Phoenix|Planetweb|Polaris|PyAMF|Raven for Mac|RockMelt|SailfishBrowser|SeaMonkey|Shiira|SkipStone|Skyfire|Snowshoe|Space Bison|Stainless|Sunrise|ThunderBrowse|UP\.Browser|Vienna|WebPilot|WebPositive|Xiino)[/ ](\d+)(?:\.(\d+)(?:\.(\d+))?)?'
 
-  # Outlook 2013
-  - regex: 'Microsoft Outlook 15\.\d+\.\d+'
-    family: 'Outlook'
-    v1: '2013'
-
-  # Apple Air Mail
-  - regex: '(Airmail) (\d+)\.(\d+)(?:\.(\d+))?'
-
-  # Thunderbird
-  - regex: '(Thunderbird)/(\d+)\.(\d+)\.(\d+(?:pre)?)'
-    family: 'Thunderbird'
-
-  # Chrome/Chromium/major_version.minor_version.beta_version
-  - regex: '(Chromium|Chrome)/(\d+)\.(\d+)\.(\d+)'
+  - regex: '(Galeon|UP\.Browser)(?:[ /](\d+)(?:\.(\d+)(?:\.(\d+))?)?)?'
+ 
+  - regex: '(Openwave)(?:/(\d+)(?:\.(\d+)(?:\.(\d+))?)?)?'
+    family: 'UP.Browser'
 
   # Dolphin Browser
   # @ref: http://www.dolphin.com
-  - regex: '\b(Dolphin)(?: |HDCN/|/INT\-)(\d+)\.(\d+)\.?(\d+)?'
+  - regex: '\b(Dolphin)(?: |/|HDCN/|/INT\-)(\d+)\.(\d+)\.?(\d+)?'
 
-  # Browser/major_version.minor_version
-  - regex: '(bingbot|Bolt|Jasmine|IceCat|Skyfire|Midori|Maxthon|Lynx|Arora|IBrowse|Dillo|Camino|Shiira|Fennec|Phoenix|Chrome|Flock|Netscape|Lunascape|Epiphany|WebPilot|Opera Mini|Opera|OpenWave|NetFront|Netfront|Konqueror|Googlebot|SeaMonkey|Kazehakase|Vienna|Iceape|Iceweasel|IceWeasel|Iron|K-Meleon|Sleipnir|Galeon|GranParadiso|iCab|NetNewsWire|Space Bison|Stainless|Orca|Dolfin|BOLT|Minimo|Tizen Browser|Polaris|Abrowser|Planetweb|ICE Browser|mDolphin)/(\d+)\.(\d+)\.?(\d+)?'
-
-  # Chrome/Chromium/major_version.minor_version
-  - regex: '(Chromium|Chrome)/(\d+)\.(\d+)'
-
-  # Browser major_version.minor_version.beta_version (space instead of slash)
-  - regex: '(iRider|Crazy Browser|SkipStone|iCab|Lunascape|Sleipnir|Maemo Browser) (\d+)\.(\d+)\.(\d+)'
-  # Browser major_version.minor_version (space instead of slash)
-  - regex: '(iCab|Lunascape|Opera|Android|Jasmine|Polaris) (\d+)\.(\d+)\.?(\d+)?'
-
-  # Kindle WebKit
-  - regex: '(Kindle)/(\d+)\.(\d+)'
-
-  # weird android UAs
-  - regex: '(Android) Donut'
-    v1: '1'
-    v2: '2'
-
-  - regex: '(Android) Eclair'
-    v1: '2'
-    v2: '1'
-
-  - regex: '(Android) Froyo'
-    v1: '2'
-    v2: '2'
-
-  - regex: '(Android) Gingerbread'
-    v1: '2'
-    v2: '3'
-
-  - regex: '(Android) Honeycomb'
-    v1: '3'
+  # @note: needs to come after "Dolfin" as part of Samsung Bada UAs
+  - regex: '\b(NexPlayer)\b(?:[ /]?(\d+)(?:\.(\d+)(?:\.(\d)+)?)?)?'
+    type: 'mediaplayer'
 
   # IE Xbox
   # @ref: http://msdn.microsoft.com/en-us/library/ie/jj883727%28v=vs.85%29.aspx
@@ -294,9 +266,7 @@ user_agent_parsers:
   #### END MAIN CASES ####
 
   #### SPECIAL CASES ####
-  - regex: '(Obigo)InternetBrowser'
-  - regex: '(Obigo)\-Browser'
-  - regex: '(Obigo|OBIGO)[^\d]*(\d+)(?:.(\d+))?'
+  - regex: '(Obigo|OBIGO|Teleca)(?:InternetBrowser|\-?Browser)?(?:[^\d]*0*(\d+)(?:.(\d+))?)?'
     family: 'Obigo'
 
   - regex: '(MAXTHON|Maxthon) (\d+)\.(\d+)'
@@ -304,61 +274,25 @@ user_agent_parsers:
   - regex: '(Maxthon|MyIE2|Uzbl|Shiira)'
     v1: '0'
 
-  - regex: 'PLAYSTATION 3.+WebKit'
+  - regex: '(PLAYSTATION 3.+WebKit|Nintendo 3DS|PlayStation Vita|AppleWebKit.+ NX)(?:/(\d+)\.(\d+)\.(\d+))?'
     family: 'NetFront NX'
-  - regex: 'PLAYSTATION 3'
+  - regex: '(PLAYSTATION 3|PlayStation Portable)'
     family: 'NetFront'
-  - regex: '(PlayStation Portable)'
-    family: 'NetFront'
-  - regex: '(PlayStation Vita)'
-    family: 'NetFront NX'
 
   - regex: '(XBMC)/(\d+)\.(\d+)[-\w\s]+(r\d+)'
 
-  - regex: 'AppleWebKit.+ (NX)/(\d+)\.(\d+)\.(\d+)'
-    family: 'NetFront NX'
-  - regex: '(Nintendo 3DS)'
-    family: 'NetFront NX'
+  - regex: '(ABrowse) (\d+)(?:\.(\d+))?'
 
   - regex: '(BrowseX) \((\d+)\.(\d+)\.(\d+)'
 
-  - regex: '(NCSA_Mosaic)/(\d+)\.(\d+)'
+  - regex: '(NCSA[ _]Mosaic)(?:/(\d+)[\.-](\d+)(?:[\.-]?([a-z]?\d+))?)?'
     family: 'NCSA Mosaic'
 
   # Polaris/d.d is above
-  - regex: '(POLARIS)/(\d+)\.(\d+)'
+  - regex: '(POLARIS|Embider)/(\d+)\.(\d+)'
     family: 'Polaris'
-  - regex: '(Embider)/(\d+)\.(\d+)'
-    family: 'Polaris'
-
-  - regex: '(BonEcho)/(\d+)\.(\d+)\.?([ab]?\d+)?'
-    family: 'Bon Echo'
-
-  # @note: iOS / OSX Applications
-  - regex: '(CFNetwork)(?:/(\d+)\.(\d+)\.?(\d+)?)?'
-    family: 'CFNetwork'
-
-  - regex: '(iPod).+Version/(\d+)\.(\d+)\.(\d+)'
-    family: 'Mobile Safari'
-  - regex: '(iPod).*Version/(\d+)\.(\d+)'
-    family: 'Mobile Safari'
-  - regex: '(iPhone).*Version/(\d+)\.(\d+)\.(\d+)'
-    family: 'Mobile Safari'
-  - regex: '(iPhone).*Version/(\d+)\.(\d+)'
-    family: 'Mobile Safari'
-  - regex: '(iPad).*Version/(\d+)\.(\d+)\.(\d+)'
-    family: 'Mobile Safari'
-  - regex: '(iPad).*Version/(\d+)\.(\d+)'
-    family: 'Mobile Safari'
-  - regex: '(iPod|iPhone|iPad);.*CPU.*OS (\d+)(?:_\d+)?_(\d+).*Mobile'
-    family: 'Mobile Safari'
-  - regex: '(iPod|iPhone|iPad)'
-    family: 'Mobile Safari'
 
   - regex: '(AvantGo) (\d+).(\d+)'
-
-  - regex: '(OneBrowser)/(\d+).(\d+)'
-    family: 'ONE Browser'
 
   - regex: '(Avant)'
     v1: '1'
@@ -367,15 +301,15 @@ user_agent_parsers:
   - regex: '(QtCarBrowser)'
     v1: '1'
 
-  - regex: '^(iBrowser/Mini)(\d+).(\d+)'
+  - regex: '^(iBrowser/Mini)(\d+)\.(\d+)'
     family: 'iBrowser Mini'
-  - regex: '^(iBrowser|iRAPP)/(\d+).(\d+)'
+  - regex: '^(iBrowser|iRAPP)/(\d+)\.(\d+)'
+
+  - regex: '\b(IBrowse)(?:[ /](\d+)\.(\d+))?'
 
   # nokia browsers
   # based on: http://www.developer.nokia.com/Community/Wiki/User-Agent_headers_for_Nokia_devices
-  - regex: '(NokiaBrowser)/(\d+)\.(\d+)(?:\.(\d+))?(?:\.(\d+))?'
-    family: 'Nokia Browser'
-  - regex: '(BrowserNG)/(\d+)\.(\d+).(\d+)'
+  - regex: '(NokiaBrowser|BrowserNG)/(\d+)\.(\d+)(?:\.(\d+)(?:\.(\d+))?)?'
     family: 'Nokia Browser'
   - regex: 'Symbian.*(Series60)/5\.0'
     family: 'Nokia Browser'
@@ -402,23 +336,14 @@ user_agent_parsers:
   - regex: '(Black[bB]erry)\s?(\d+)'
     family: 'BlackBerry'
 
-  - regex: '(OmniWeb)/v(\d+)\.(\d+)'
+  # Palm
+  - regex: 'Palm.*\b(Pre|Blazer|WebPro)\b(?:[ /](\d+)(?:\.(\d+)(?:\.(\d+[a-z]*))?)?)?'
+    family: 'Palm $1'
 
-  - regex: '(Blazer)/(\d+)\.(\d+)'
-    family: 'Palm Blazer'
-
-  - regex: '(Pre)/(\d+)\.(\d+)'
-    family: 'Palm Pre'
-
-  # fork of Links
-  - regex: '(ELinks)/(\d+)\.(\d+)'
-  - regex: '(ELinks) \((\d+)\.(\d+)'
-  - regex: '(Links) \((\d+)\.(\d+)'
+  # Links/ Elinks
+  - regex: '\b(E?[Ll]inks)(?: \(|\/)(\d+)\.(\d+)\.?(\d+)?'
 
   - regex: '(QtWeb) Internet Browser/(\d+)\.(\d+)'
-
-  #- regex: '\(iPad;.+(Version)/(\d+)\.(\d+)(?:\.(\d+))?.*Safari/'
-  #  family: 'iPad'
 
   # Amazon Silk, should go before Safari
   - regex: '(Silk)/(\d+)\.(\d+)(?:\.([0-9\-]+))?'
@@ -426,10 +351,22 @@ user_agent_parsers:
 
   # Phantomjs, should go before Safari
   - regex: '(PhantomJS)/(\d+)\.(\d+)\.(\d+)'
+    type: 'headless'
 
-  # WebKit Nightly
+  # AppleWebKit / WebKit Nightly
   - regex: '(AppleWebKit)/(\d+)\.?(\d+)?\+ .* Safari'
-    family: 'WebKit Nightly'
+    family: 'AppleWebKit'
+
+  # Browser major_version.minor_version (space instead of slash)
+  - regex: '(Android) (\d+)\.(\d+)\.?(\d+)?'
+
+  # iOS
+  - regex: '(iPod|iPhone|iPad).+Version/(\d+)\.(\d+)(?:\.(\d+))?'
+    family: 'Mobile Safari'
+  - regex: '(iPod|iPhone|iPad);.*CPU.*OS (\d+)(?:_\d+)?_(\d+).*Mobile'
+    family: 'Mobile Safari'
+  - regex: '(iPod|iPhone|iPad)'
+    family: 'Mobile Safari'
 
   # Safari
   - regex: '(Version)/(\d+)\.(\d+)(?:\.(\d+))?.*Safari/'
@@ -438,38 +375,34 @@ user_agent_parsers:
   - regex: '(Safari)/\d+'
 
   - regex: '(OLPC)/Update(\d+)\.(\d+)'
-
   - regex: '(OLPC)/Update()\.(\d+)'
     v1: '0'
 
   - regex: '(SEMC\-Browser)/(\d+)\.(\d+)'
 
-  - regex: '(Teleca)'
-    family: 'Teleca Browser'
-
   - regex: '(Phantom)/V(\d+)\.(\d+)'
     family: 'Phantom Browser'
+    type: 'headless'
 
   - regex: 'Trident(.*)rv.(\d+)\.(\d+)'
     family: 'IE'
 
- # Apple Mail
-
-  # apple mail - not directly detectable, have it after Safari stuff
-  - regex: '(AppleWebKit)/(\d+)\.(\d+)\.(\d+)'
-    family: 'AppleMail'
-
   # AFTER THE EDGE CASES ABOVE!
   # AFTER IE11
   # BEFORE all other IE
-  - regex: '(Firefox)/(\d+)\.(\d+)\.(\d+)'
-  - regex: '(Firefox)/(\d+)\.(\d+)(pre|[ab]\d+[a-z]*)?'
+  - regex: '(Firefox)/(\d+)(?:\.(\d+)(?:\.?(pre|[ab]?\d+[a-z]*))?)?'
 
-  - regex: '([MS]?IE) (\d+)\.(\d+)'
+  # Internet Explorer
+  - regex: '([MS]?IE)[ /](\d+)\.(\d+)'
     family: 'IE'
 
-  - regex: '(python-requests)/(\d+)\.(\d+)'
-    family: 'Python Requests'
+  - regex: '(python-requests|(?:lib)?curl)(?:/(\d+)\.(\d+)(?:\.(\d+))?)?'
+    type: 'headless'
+
+  - regex: '(?:^|[ ;])(Java)[ /]?(\d+)(?:\.(\d+)(?:\.(\d+))?)?'
+    type: 'headless'
+
+
 
 #### Engine ####
 engine_parsers:
@@ -505,62 +438,6 @@ engine_parsers:
 
 #### OS ####
 os_parsers:
-  ##########
-  # HbbTV vendors
-  ##########
-
-  # starts with the easy one : Panasonic seems consistent across years, hope it will continue
-  #HbbTV/1.1.1 (;Panasonic;VIERA 2011;f.532;0071-0802 2000-0000;)
-  #HbbTV/1.1.1 (;Panasonic;VIERA 2012;1.261;0071-3103 2000-0000;)
-  #HbbTV/1.2.1 (;Panasonic;VIERA 2013;3.672;4101-0003 0002-0000;)
-  #- regex: 'HbbTV/\d+\.\d+\.\d+ \(;(Panasonic);VIERA ([0-9]{4});'
-
-  # Sony is consistent too but do not place year like the other
-  # Opera/9.80 (Linux armv7l; HbbTV/1.1.1 (; Sony; KDL32W650A; PKG3.211EUA; 2013;); ) Presto/2.12.362 Version/12.11
-  # Opera/9.80 (Linux mips; U;  HbbTV/1.1.1 (; Sony; KDL40HX751; PKG1.902EUA; 2012;);; en) Presto/2.10.250 Version/11.60
-  # Opera/9.80 (Linux mips; U;  HbbTV/1.1.1 (; Sony; KDL22EX320; PKG4.017EUA; 2011;);; en) Presto/2.7.61 Version/11.00
-  #- regex: 'HbbTV/\d+\.\d+\.\d+ \(; (Sony);.*;.*; ([0-9]{4});\)'
-
-  # LG is consistent too, but we need to add manually the year model
-  #Mozilla/5.0 (Unknown; Linux armv7l) AppleWebKit/537.1+ (KHTML, like Gecko) Safari/537.1+ HbbTV/1.1.1 ( ;LGE ;NetCast 4.0 ;03.20.30 ;1.0M ;)
-  #Mozilla/5.0 (DirectFB; Linux armv7l) AppleWebKit/534.26+ (KHTML, like Gecko) Version/5.0 Safari/534.26+ HbbTV/1.1.1 ( ;LGE ;NetCast 3.0 ;1.0 ;1.0M ;)
-  - regex: 'HbbTV/\d+\.\d+\.\d+ \( ;(LG)E ;NetCast 4.0'
-    v1: '2013'
-  - regex: 'HbbTV/\d+\.\d+\.\d+ \( ;(LG)E ;NetCast 3.0'
-    v1: '2012'
-
-  # Samsung is on its way of normalizing their user-agent
-  # HbbTV/1.1.1 (;Samsung;SmartTV2013;T-FXPDEUC-1102.2;;) WebKit
-  # HbbTV/1.1.1 (;Samsung;SmartTV2013;T-MST12DEUC-1102.1;;) WebKit
-  # HbbTV/1.1.1 (;Samsung;SmartTV2012;;;) WebKit
-  # HbbTV/1.1.1 (;;;;;) Maple_2011
-  - regex: 'HbbTV/1.1.1 \(;;;;;\) Maple_2011'
-    family: 'Samsung'
-    v1: '2011'
-  # manage the two models of 2013
-  - regex: 'HbbTV/\d+\.\d+\.\d+ \(;(Samsung);SmartTV([0-9]{4});.*FXPDEUC'
-    v2: 'UE40F7000'
-  - regex: 'HbbTV/\d+\.\d+\.\d+ \(;(Samsung);SmartTV([0-9]{4});.*MST12DEUC'
-    v2: 'UE32F4500'
-  # generic Samsung (works starting in 2012)
-  #- regex: 'HbbTV/\d+\.\d+\.\d+ \(;(Samsung);SmartTV([0-9]{4});'
-
-  # Philips : not found any other way than a manual mapping
-  # Opera/9.80 (Linux mips; U; HbbTV/1.1.1 (; Philips; ; ; ; ) CE-HTML/1.0 NETTV/4.1.3 PHILIPSTV/1.1.1; en) Presto/2.10.250 Version/11.60
-  # Opera/9.80 (Linux mips ; U; HbbTV/1.1.1 (; Philips; ; ; ; ) CE-HTML/1.0 NETTV/3.2.1; en) Presto/2.6.33 Version/10.70
-  - regex: 'HbbTV/1.1.1 \(; (Philips);.*NETTV/4'
-    v1: '2013'
-  - regex: 'HbbTV/1.1.1 \(; (Philips);.*NETTV/3'
-    v1: '2012'
-  - regex: 'HbbTV/1.1.1 \(; (Philips);.*NETTV/2'
-    v1: '2011'
-
-  # the HbbTV emulator developers use HbbTV/1.1.1 (;;;;;) firetv-firefox-plugin 1.1.20
-  - regex: 'HbbTV/\d+\.\d+\.\d+.*(firetv)-firefox-plugin (\d+).(\d+).(\d+)'
-    family: 'FireHbbTV'
-
-  # generic HbbTV, hoping to catch manufacturer name (always after 2nd comma) and the first string that looks like a 2011-2019 year
-  - regex: 'HbbTV/\d+\.\d+\.\d+ \(.*; ?([a-zA-Z]+) ?;.*(201[1-9]).*\)'
 
   ##########
   # Android
@@ -845,6 +722,32 @@ os_parsers:
 
   # Opera Mini Bada
   - regex: '\((Bada);'
+
+  ##########
+  # HbbTV vendors
+  ##########
+  - regex: 'HbbTV/\d+\.\d+\.\d+ \( ;(LG)E ;NetCast 4.0'
+    v1: '2013'
+  - regex: 'HbbTV/\d+\.\d+\.\d+ \( ;(LG)E ;NetCast 3.0'
+    v1: '2012'
+  - regex: 'HbbTV/1.1.1 \(;;;;;\) Maple_2011'
+    family: 'Samsung'
+    v1: '2011'
+  - regex: 'HbbTV/\d+\.\d+\.\d+ \(;(Samsung);SmartTV([0-9]{4});.*FXPDEUC'
+    v2: 'UE40F7000'
+  - regex: 'HbbTV/\d+\.\d+\.\d+ \(;(Samsung);SmartTV([0-9]{4});.*MST12DEUC'
+    v2: 'UE32F4500'
+  - regex: 'HbbTV/1.1.1 \(; (Philips);.*NETTV/4'
+    v1: '2013'
+  - regex: 'HbbTV/1.1.1 \(; (Philips);.*NETTV/3'
+    v1: '2012'
+  - regex: 'HbbTV/1.1.1 \(; (Philips);.*NETTV/2'
+    v1: '2011'
+  # the HbbTV emulator developers use HbbTV/1.1.1 (;;;;;) firetv-firefox-plugin 1.1.20
+  - regex: 'HbbTV/\d+\.\d+\.\d+.*(firetv)-firefox-plugin (\d+).(\d+).(\d+)'
+    family: 'FireHbbTV'
+  # generic HbbTV, hoping to catch manufacturer name (always after 2nd comma) and the first string that looks like a 2011-2019 year
+  - regex: 'HbbTV/\d+\.\d+\.\d+ \(.*; ?([a-zA-Z]+) ?;.*(201[1-9]).*\)'
 
   ##########
   # Generic patterns

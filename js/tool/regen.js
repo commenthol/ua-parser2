@@ -36,6 +36,7 @@ cmd
 	.option('-i, --in <file>',       'input tests file <file>')
 	.option('-b, --badtests <file>', 'output failing tests to <file>')
 	.option('-c, --console',         'output details to console')
+	.option('-d, --debug',           'add debug info if present')
 	.parse(process.argv);
 
 console.log();
@@ -86,10 +87,12 @@ function parse(obj, encoding, done) {
 	res = parser.parse(obj.string);
 	res = helper.compact.strip(res);
 
-	for (i in res) {
-		if (res[i].debug) {
-			dbg[i] = res[i].debug;
-			delete(res[i].debug);
+	if (! cmd.debug ) {
+		for (i in res) {
+			if (res[i].debug) {
+				dbg[i] = res[i].debug;
+				delete(res[i].debug);
+			}
 		}
 	}
 

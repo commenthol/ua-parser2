@@ -1,6 +1,6 @@
 "use strict";
 
-/* global suite, test */
+/* global describe, it */
 
 // Note: These tests here cannot be executed together with the other tests as mocha does not have a defined execution order
 
@@ -20,7 +20,7 @@ var
 function run(testcases) {
 	testcases = testcases || testcasesM.testcases;
 	testcases.forEach(function(tc){
-		test('- ' + tc.string, function(){
+		it('- ' + tc.string, function(){
 			var uaParsed = uaParser.parse(tc.string);
 			assert.deepEqual(uaParsed, tc);
 			//~ console.log(JSON.stringify(uaParsed));
