@@ -1,3 +1,7 @@
+version: 0.0.1
+update_url: https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml
+
+#### Browser ####
 user_agent_parsers:
   #### SPECIAL CASES TOP ####
 
@@ -467,6 +471,39 @@ user_agent_parsers:
   - regex: '(python-requests)/(\d+)\.(\d+)'
     family: 'Python Requests'
 
+#### Engine ####
+engine_parsers:
+
+  - regex: '(Trident|Presto)[ /](\d+)\.(\d+)\.?(\d+)?'
+
+  - regex: '(Chrome)[/](\d+)\.(\d+)\.?(\d+)?\.?(\d+)?.*OPR/\d+'
+    family: 'Chrome-Opera'
+  
+  - regex: '(Chrome)[/](\d+)\.(\d+)\.?(\d+)?\.?(\d+)?'
+
+  - regex: '(Silk)/(\d+)\.(\d+)'
+
+  - regex: '(NokiaBrowser|BrowserNG)/(\d+)\.(\d+)\.(\d+)\.?(\d+)?'
+    family: 'NokiaBrowser'
+
+  - regex: 'Android\b.*(AppleWeb[Kk]it)/?(\d+)\.?(\d+)?'
+    family: 'AndroidWebkit'
+
+  - regex: '(rv:)(\d+)\.(\d+[ab]?)\.?([ab]?\d+[a-z]*)?\.?(\d+[a-z]*)?[;\)].* Gecko(?:[ /]|$)'
+    family: 'Gecko'
+
+  - regex: '(AppleWeb[Kk]it)(?:/(\d+)\.?(\d+)?\.?(\d+)?|[ ,]|$)'
+    family: 'AppleWebkit'
+
+  - regex: '(Web[Kk]it)(?:/(\d+)\.?(\d+)?\.?(\d+)?|[ ,]|$)'
+    family: 'Webkit'
+
+  - regex: '(Net[Ff]ront)[ /]?(\d+)\.(\d+)'
+    family: 'Netfront'
+
+  - regex: '(Gecko)/20\d{6}'
+
+#### OS ####
 os_parsers:
   ##########
   # HbbTV vendors
@@ -827,6 +864,7 @@ os_parsers:
   - regex: 'SunOS'
     family: 'Solaris'
 
+#### Device ####
 device_parsers:
 
   #########

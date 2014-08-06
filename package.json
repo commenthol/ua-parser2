@@ -2,7 +2,7 @@
   "name": "ua-parser2",
   "description": "A port of Browserscope's user agent parser.",
   "main": "./js/index",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "node": ">=0.10.0"
   },

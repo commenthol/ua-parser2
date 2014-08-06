@@ -1,5 +1,7 @@
 .jshintrc
 .gitignore
 .npmignore
+npm-debug.log
 node_modules/
 test_resources/
+js/tool/
