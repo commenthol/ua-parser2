@@ -384,7 +384,7 @@ user_agent_parsers:
     family: 'Phantom Browser'
     type: 'headless'
 
-  - regex: 'Trident(.*)rv.(\d+)\.(\d+)'
+  - regex: 'Trident(.*)rv:(\d+)\.(\d+)'
     family: 'IE'
 
   # AFTER THE EDGE CASES ABOVE!
@@ -393,7 +393,7 @@ user_agent_parsers:
   - regex: '(Firefox)/(\d+)(?:\.(\d+)(?:\.?(pre|[ab]?\d+[a-z]*))?)?'
 
   # Internet Explorer
-  - regex: '([MS]?IE)[ /](\d+)\.(\d+)'
+  - regex: '(?:MS)?(IE)[ /](\d+)\.(\d+)'
     family: 'IE'
 
   - regex: '(python-requests|(?:lib)?curl)(?:/(\d+)\.(\d+)(?:\.(\d+))?)?'
@@ -406,6 +406,36 @@ user_agent_parsers:
 
 #### Engine ####
 engine_parsers:
+
+  # MSIE compatibility modes
+  # MSIE 8 !== Trident/4
+  - regex: 'MSIE ([^8])\.\d.* (Trident)[ /](4)\.(\d+)\.?(\d+)?'
+    family: '$2'
+    v1: '$3'
+    v2: '$4'
+    v4: '$5'
+    type: 'mode::MSIE $1'
+  # MSIE 9 !== Trident/5
+  - regex: 'MSIE ([^9])\.\d.* (Trident)[ /](5)\.(\d+)\.?(\d+)?'
+    family: '$2'
+    v1: '$3'
+    v2: '$4'
+    v4: '$5'
+    type: 'mode::MSIE $1'
+  # MSIE 10 !== Trident/6
+  - regex: 'MSIE ((?:(?!10)\d)+)\.\d.* (Trident)[ /](6)\.(\d+)\.?(\d+)?'
+    family: '$2'
+    v1: '$3'
+    v2: '$4'
+    v4: '$5'
+    type: 'mode::MSIE $1'
+  # MSIE 11 !== Trident/7
+  - regex: 'MSIE ((?:(?!11)\d)+)\.\d.* (Trident)[ /](7)\.(\d+)\.?(\d+)?'
+    family: '$2'
+    v1: '$3'
+    v2: '$4'
+    v4: '$5'
+    type: 'mode::MSIE $1'
 
   - regex: '(Trident|Presto)[ /](\d+)\.(\d+)\.?(\d+)?'
 

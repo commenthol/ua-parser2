@@ -2,6 +2,7 @@
 .gitignore
 .npmignore
 npm-debug.log
+*.tgz
 node_modules/
 test_resources/
 js/tool/
