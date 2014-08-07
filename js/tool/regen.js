@@ -21,6 +21,8 @@ var
 	badAgents = [],
 	agents = {},
 	basedir = __dirname + '/../../test_resources', // params to print on console
+	start = Date.now(),
+	count = 0,
 	config = {
 		version: '0.0.1',
 		params: [ 'ua', 'engine', 'os', 'device' ],
@@ -62,11 +64,18 @@ else if (! cmd.console) {
 	console.log('    writing failing tests to:  ' + path.relative(pwd, config.badFile) );
 }
 
-console.log();
-
 /*
+ * paring finished
  */
 function parseDone() {
+
+	var time = (Date.now() - start);
+	console.error(
+		'    Processing took ' + (time/1000|0) + ' s\n' +
+		'    Number of devices ' + count + '\n' +
+		'    avg: ' + (time/count) + ' ms per User-Agent\n' 
+	);
+	
 	if (badAgents.length > 0) {
 		console.error('    Failing tests: ' + badAgents.length + '\n');
 		fs.writeFileSync(config.badFile, badAgents.join('\n'), 'utf8');
@@ -83,7 +92,9 @@ function parse(obj, encoding, done) {
 		dbg = {},
     exp, act,
 		res, resStr;
-		
+
+	count += 1;
+	
 	res = parser.parse(obj.string);
 	res = helper.compact.strip(res);
 

@@ -3,6 +3,8 @@
  * @copyright (c) 2014 commenthol
  * @license MIT
  */
+
+/* jshint loopfunc:true */
  
 'use strict';
 
@@ -59,7 +61,7 @@ function merge() {
     }
   } 
   return target;
-};
+}
 
 /**
  * Compacts a UA parser object to keep information for test-cases small

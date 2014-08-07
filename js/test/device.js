@@ -1,6 +1,10 @@
-var assert = require('assert'),
-    Device = require('../lib/device'),
-    makeParser = require('../lib/parserdevice');
+var
+	assert = require('assert'),
+	path = require('path'),
+	fs = require('fs'),
+	yaml = require('yamlparser'),
+	Device = require('../lib/device'),
+	makeParser = require('../lib/parserdevice');
 
 describe('Device object', function() {
   it('Device constructor with no arguments', function() {
@@ -65,3 +69,35 @@ describe('Device parser', function() {
   });
 });
 
+describe('Device parser groups', function() {
+
+	var
+		contents = fs.readFileSync(path.join(__dirname, 'groupdevice.yaml'), 'utf8'),
+		regexes = yaml.eval(contents), // jshint ignore:line
+		parse = makeParser(regexes.rules).parse;
+
+	it('Parser correctly processes groups matching "gumsang"', function() {
+		var device = parse('gumsang tststs');
+		assert.deepEqual(device, { family: 'gumsang tsts', brand: 'GumSanG', model: 'tsts' });
+	});
+
+	it('Parser correctly processes groups matching "THC" and "Bandroid"', function() {
+		var device = parse('Bandroid THC TWO1212');
+		assert.deepEqual(device, {"family":"THC TWO","brand":"THC","model":"TWO 1212"});
+	});
+
+	it('Parser correctly processes groups matching "CHC"', function() {
+		var device = parse('CHC POOL4 Bandroid');
+		assert.deepEqual(device, {"family":"CHC","brand":"CHC by THC","model":"LOOP 4"});
+	});
+
+	it('Parser correctly processes groups matching no group', function() {
+		var device = parse('price YBoY');
+		assert.deepEqual(device, {"family":"YBoY ice","brand":"YBoY","model":"ice"});
+	});
+
+	it('Parser correctly processes groups without a match', function() {
+		var device = parse('price ZBoZ');
+		assert.deepEqual(device, {"family":"Other","brand":null,"model":null});
+	});
+});

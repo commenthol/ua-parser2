@@ -4,6 +4,9 @@
 
 var
 	assert = require('assert'),
+	path = require('path'),
+	fs = require('fs'),
+	yaml = require('yamlparser'),
 	UA = require('../lib/ua'),
 	makeParser = require('../lib/parser');
 
@@ -107,3 +110,74 @@ describe('UA parser', function() {
 	});
 });
 
+describe('UA parser groups', function() {
+
+	var
+		contents = fs.readFileSync(path.join(__dirname, 'group.yaml'), 'utf8'),
+		regexes = yaml.eval(contents), // jshint ignore:line
+		parse = makeParser(regexes.rules).parse;
+
+	it('Parser correctly processes groups matching "foo"', function() {
+		var ua = parse('foo 1.2.3');
+		assert.strictEqual(ua.family, 'foobar');
+		assert.strictEqual(ua.major, 'a');
+		assert.strictEqual(ua.minor, 'b');
+		assert.strictEqual(ua.patch, 'c');
+	});
+
+	it('Parser correctly processes groups matching "FOO"', function() {
+		var ua = parse('FOO 1.2.3');
+		assert.strictEqual(ua.family, 'FOObar');
+		assert.strictEqual(ua.major, 'a');
+		assert.strictEqual(ua.minor, 'b');
+		assert.strictEqual(ua.patch, 'c');
+	});
+
+	it('Parser correctly processes groups matching "Fooooo"', function() {
+		var ua = parse('Fooooo 1.2.3');
+		assert.strictEqual(ua.family, 'Fooooobar');
+		assert.strictEqual(ua.major, 'a3');
+		assert.strictEqual(ua.minor, 'b2');
+		assert.strictEqual(ua.patch, 'c1');
+	});
+
+	it('Parser correctly processes groups not matching "foo browser" within group "foo"', function() {
+		var ua = parse('foo browser 1.2.3');
+		assert.strictEqual(ua.family, 'browser');
+		assert.strictEqual(ua.major, 'foo 1');
+		assert.strictEqual(ua.minor, 'foo 2');
+		assert.strictEqual(ua.patch, 'foo 3');
+	});
+
+	it('Parser correctly processes groups matching "bbar" within group "bar"', function() {
+		var ua = parse('bbar 1.2.3');
+		assert.strictEqual(ua.family, 'foobar');
+		assert.strictEqual(ua.major, 'bar12a');
+		assert.strictEqual(ua.minor, 'bar12b');
+		assert.strictEqual(ua.patch, 'bar12c');
+	});
+
+	it('Parser correctly processes groups matching "bbar" within group "bar"', function() {
+		var ua = parse('bbar 1.2.3');
+		assert.strictEqual(ua.family, 'foobar');
+		assert.strictEqual(ua.major, 'bar12a');
+		assert.strictEqual(ua.minor, 'bar12b');
+		assert.strictEqual(ua.patch, 'bar12c');
+	});
+
+	it('Parser correctly processes groups not matching "Bar"', function() {
+		var ua = parse('Bar 1.2.3');
+		assert.strictEqual(ua.family, 'Other');
+		assert.strictEqual(ua.major, null);
+		assert.strictEqual(ua.minor, null);
+		assert.strictEqual(ua.patch, null);
+	});
+
+	it('Parser correctly processes groups matching "other browser" outside groups', function() {
+		var ua = parse('other browser 1.2.3');
+		assert.strictEqual(ua.family, 'browser');
+		assert.strictEqual(ua.major, 'a other 1');
+		assert.strictEqual(ua.minor, 'b other 2');
+		assert.strictEqual(ua.patch, 'c other 3');
+	});
+});

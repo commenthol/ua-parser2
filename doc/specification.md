@@ -1,5 +1,7 @@
 Version 0.1 Draft
 
+<h1 style="color:red; border: 4px solid red; padding: 0.5em">Note: This spec needs update and currently documents the state of ua-parser not ua-parser2</h1>
+
 # ua-parser Specification
 
 This document describes the specification on how a parser should implement the `regexes.yaml` file for correctly parsing user-agent strings on basis of that file. 

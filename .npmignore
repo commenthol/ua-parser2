@@ -3,6 +3,7 @@
 .npmignore
 npm-debug.log
 *.tgz
+*.bak
 node_modules/
 test_resources/
 js/tool/

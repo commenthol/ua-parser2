@@ -46,7 +46,7 @@ SplitStream.prototype.emitLines = function(chunk) {
 			this.push(lines[i]);
 		}
 	}
-}
+};
 
 SplitStream.prototype._transform = function(chunk, encoding, done) {
 	this.emitLines(chunk);

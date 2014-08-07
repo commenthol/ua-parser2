@@ -19,7 +19,7 @@ function parser (regexes, options) {
 			typeRep       = obj.type,
 			debug         = obj.debug;
 
-		return function (str) {
+		function parse (str) {
 			var m = str.match(regexp);
 			if (!m) { return null; }
 
@@ -35,7 +35,36 @@ function parser (regexes, options) {
 				patchMinor = (patchMinorRep ? replaceMatches(patchMinorRep, m) : m[5]) || null;
 			}
 			return new UA(family, major, minor, patch, patchMinor, type, debug);
-		};
+		}
+
+		if (obj.group) {
+			return _makeGroup(obj);
+		}
+		else {
+			return parse;
+		}
+	}
+
+	function _makeGroup(obj) {
+		var
+			regexp = (obj.regex_flag ? new RegExp(obj.regex, obj.regex_flag) : new RegExp(obj.regex)),
+			parsers = (obj.group||[]).map(_make);
+
+		function parseGroup (str) {
+			var m = str.match(regexp);
+			if (!m) { return null; }
+
+			var
+				i, length, obj;
+
+			if (typeof str === 'string') {
+				for (i = 0, length = parsers.length; i < length; i++) {
+					obj = parsers[i](str);
+					if (obj) { return obj; }
+				}
+			}
+		}
+		return parseGroup;
 	}
 
 	self.parsers = (regexes||[]).map(_make);

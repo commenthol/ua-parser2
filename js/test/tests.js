@@ -18,8 +18,9 @@ var
 
 function msg(name, actual, expected, string) {
 	string = (string ? string + '\n' : '' );
-	return string + name + "\n     is: " + JSON.stringify(actual)
-	                     + "\n should: " + JSON.stringify(expected);
+	return string + name + 
+		"\n     is: " + JSON.stringify(actual) +
+		"\n should: " + JSON.stringify(expected);
 }
 
 function test(obj, encoding, done) {
@@ -45,7 +46,7 @@ function test(obj, encoding, done) {
 	});
 
 	done();
-};
+}
 
 
 describe('tests', function(){

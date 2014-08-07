@@ -1,11 +1,12 @@
 ua-parser
 
 
-_Source: [js/index.js](../index.js)_
+_Source: [index.js](../index.js)_
 
 <a name="tableofcontents"></a>
 
 - <a name="toc_uaparserparseuastr"></a><a name="toc_uaparser"></a>[uaParser.parseUA](#uaparserparseuastr)
+- <a name="toc_uaparserparseenginestr"></a>[uaParser.parseEngine](#uaparserparseenginestr)
 - <a name="toc_uaparserparseosstr"></a>[uaParser.parseOS](#uaparserparseosstr)
 - <a name="toc_uaparserparsedevicestr"></a>[uaParser.parseDevice](#uaparserparsedevicestr)
 - <a name="toc_uaparserparsestr"></a>[uaParser.parse](#uaparserparsestr)
@@ -18,6 +19,20 @@ _Source: [js/index.js](../index.js)_
 # uaParser.parseUA(str)
 
 > Parse the User-Agent string `str` for User-Agent
+
+**Parameters:**
+
+- `{string} str` - Browsers User-Agent string
+
+**Return:**
+
+`{Object}` - { family:, major:, minor:, patch: }
+
+<sub>Go: [TOC](#tableofcontents) | [uaParser](#toc_uaparser)</sub>
+
+# uaParser.parseEngine(str)
+
+> Parse the User-Agent string `str` for Engine
 
 **Parameters:**
 
@@ -77,10 +92,10 @@ _Source: [js/index.js](../index.js)_
 
 **Parameters:**
 
-- `{Object | string} options` - (optional) if "undefined" than default file is choosen. If string than file is used following.
+- `{Object | string} options` - (optional) if "undefined" than default file is choosen. If string is given than that file is used.
 
-{string} options.file - filename used as regexes file.
-{Boolean} options.backwardsCompatible - set "true" if backwardsCompatible interface is desired
+
+
 
 **Return:**
 
@@ -94,10 +109,10 @@ _Source: [js/index.js](../index.js)_
 
 **Parameters:**
 
-- `{Object | string} options` - (optional) if "undefined" than default file is choosen. If string than file is used following.
+- `{Object | string} options` - (optional) if "undefined" than default file is choosen. If string is given than that file is used.
 
-{string} options.file - filename used as regexes file.
-{Boolean} options.backwardsCompatible - set "true" if backwardsCompatible interface is desired
+
+
 
 - `{Function} callback` - callback(error)
 
@@ -109,10 +124,10 @@ _Source: [js/index.js](../index.js)_
 
 **Parameters:**
 
-- `{Object | string} options` - (optional) if "undefined" than default file is choosen. If string than file is used following.
+- `{Object | string} options` - (optional) if "undefined" than default file is choosen. If string is given than that file is used.
 
-{string} options.file - filename used as regexes file.
-{Boolean} options.backwardsCompatible - set "true" if backwardsCompatible interface is desired
+
+
 
 - `{Function} callback` - callback(error)
 

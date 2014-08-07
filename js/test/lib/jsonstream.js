@@ -50,7 +50,7 @@ JsonStream.prototype.emitLines = function(chunk) {
 			this.parse(lines[i]);
 		}
 	}
-}
+};
 
 JsonStream.prototype.parse = function (line) {
 	var res;
