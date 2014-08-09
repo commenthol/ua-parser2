@@ -1,10 +1,12 @@
-.jshintrc
-.gitignore
 .npmignore
+.gitignore
+.jshintrc
+.travis.yml
 npm-debug.log
 *.tgz
 *.bak
-node_modules/
-test_resources/
+*.sh
 js/tool/
-.travis.yml
+test_resources/tests.json
+test_resources/new-tests.json
+test_resources/bad-tests.json

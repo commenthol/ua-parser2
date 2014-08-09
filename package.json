@@ -1,6 +1,6 @@
 {
   "name": "ua-parser2",
-  "description": "A port of Browserscope's user agent parser.",
+  "description": "An improved user agent parser.",
   "main": "./js/index",
   "version": "0.1.1",
   "engines": {
@@ -48,6 +48,11 @@
       "url": "https://raw.github.com/commenthol/ua-parser2/master/js/LICENSE"
     }
   ],
+  "keywords": [
+    "User-Agent",
+    "Parser",
+    "ua-parser"
+  ],
   "dependencies": {
     "yamlparser": ">=0.0.2"
   },
@@ -57,6 +62,7 @@
     "shelljs": "^0.3.0"
   },
   "scripts": {
+    "prepublish": "js/tool/quick.sh",
     "test": "cd js && mocha && mocha test/load/*.mocha.js"
   }
 }

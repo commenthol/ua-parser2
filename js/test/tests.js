@@ -12,8 +12,8 @@ var
 
 var
 	config = {
-		tests: __dirname + '/../../test_resources/tests.json'
-		//~ tests: __dirname + '/../../test_resources/x.json'
+		tests: __dirname + '/../../test_resources/tests.json',
+		fasttests: __dirname + '/../../test_resources/quick-tests.json'
 	};
 
 function msg(name, actual, expected, string) {
@@ -48,6 +48,9 @@ function test(obj, encoding, done) {
 	done();
 }
 
+if (! fs.existsSync(config.tests) ){
+	config.tests = config.fasttests;
+}
 
 describe('tests', function(){
 	this.timeout(500000);

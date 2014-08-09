@@ -70,10 +70,10 @@ function main(add) {
     data = data.replace(/(^[ \t]*)(- regex:\s*'[^']*'[ \t]*)/mg, function(m, m1, m2) {
       return m1 + m2 + "\n" + m1 + "  debug: '#" + addZeros(++cnt, 4) + "'";
     });
-    console.log('debug info added to regexes.yaml');
+    console.log('\n    debug info added to regexes.yaml\n');
   }
   else {
-    console.log('debug info removed from regexes.yaml');
+    console.log('\n    debug info removed from regexes.yaml\n');
   }
   
   fs.writeFileSync(regexes, data, 'utf8');
