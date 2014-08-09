@@ -12,7 +12,7 @@ Contributing to the project, especially `regexes.yaml`, is both welcomed and enc
 
 5. Run
 
-       ./js/tool/add.js -u ua.txt -t check.json
+        ./js/tool/add.js -u ua.txt -t check.json
        
    Check the results in `check.json`
 
@@ -37,29 +37,29 @@ If you encounter that parsing results are too coarse or even wrong you will enco
 
 1. To easily change the test-set contained in `./test_resources/tests.json` do the following.
 
-       ./js/tool/regen.js -c
+        ./js/tool/regen.js -c
 
 2. At this stage really check that you did not miss out something. 
 
-       diff test_resources/tests.js test_resources/new-tests.json
+        diff test_resources/tests.js test_resources/new-tests.json
 
 3. If you need to rerun tests and do not want to perform the full test-set, the previous tests for the bad-matching tests are stored in `./test_resources/bad-tests.json`. 
 
-       cp test_resources/bad-tests.json .
-       ./js/tool/regen.js -i bad-tests.json -c
+        cp test_resources/bad-tests.json .
+        ./js/tool/regen.js -i bad-tests.json -c
 
    When all is as you expect re-run Step 1. and Step 2.
 
-       ./js/tool/regen.js -c
-       diff test_resources/tests.js test_resources/new-tests.json
+        ./js/tool/regen.js -c
+        diff test_resources/tests.js test_resources/new-tests.json
         
 4. All is ok now, then replace the test-set
 
-       cp  test_resources/new-tests.js test_resources/tests.json
+        cp  test_resources/new-tests.js test_resources/tests.json
 
    And rerun all tests
        
-       npm test
+        npm test
 
 ## Find the right Regex-Matcher
 
