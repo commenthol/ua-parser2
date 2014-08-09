@@ -55,6 +55,6 @@ describe('tests', function(){
 	it('exec', function(done){
 		fs.createReadStream(config.tests)
 			.pipe(new JsonStream())
-			.pipe(new MapStream({ onend: done, map: test }));
+			.pipe(new MapStream({ map: test, onfinish: done }));
 	});
 });

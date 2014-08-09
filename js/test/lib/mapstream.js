@@ -13,7 +13,7 @@ var
 
 /**
  * @param {Object} options
- * @param {Function} options.onend : function to execute on `end` stream event
+ * @param {Function} options.onfinish : function to execute on `finish` stream event
  * @param {Function} options.map (obj, encoding, done) : function to execute on each `_transform` event;
  * - {Object} obj : the object from the stream.
  * - done : needs to be called as callback within the `map` function.
@@ -47,13 +47,14 @@ function MapStream(options) {
 		src.on('error', function(err) {
 			self.emit('error', err);
 		});
-		src.on('end', function() {
-			if (self.options.onend) {
-				self.options.onend();
-			}
-		});
 	});
 
+	this.on('finish', function() {
+		if (self.options.onfinish) {
+			self.options.onfinish();
+		}
+	});
+	
 	return this;
 }
 

@@ -71,9 +71,10 @@ function parseDone() {
 
 	var time = (Date.now() - start);
 	console.error(
-		'    Processing took ' + (time/1000|0) + ' s\n' +
-		'    Number of devices ' + count + '\n' +
-		'    avg: ' + (time/count) + ' ms per User-Agent\n' 
+		'\n' +
+		'    Processing took: ' + (time/1000|0) + ' s\n' +
+		'    Number of User-Agents: ' + count + '\n' +
+		'    Avg: ' + (((time*1000/count)|0)/1000) + ' ms per User-Agent\n' 
 	);
 	
 	if (badAgents.length > 0) {
@@ -145,6 +146,5 @@ function parse(obj, encoding, done) {
  */
 fs.createReadStream(config.testsFile)
 	.pipe(new JsonStream())
-	.pipe(new MapStream({ map: parse }))
-	.pipe(new MapStream({ onend: parseDone }))
+	.pipe(new MapStream({ map: parse, onfinish: parseDone }))
 	.pipe(fs.createWriteStream(config.outFile, { flags: 'w', encoding: 'utf8'}));

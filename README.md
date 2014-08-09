@@ -1,7 +1,7 @@
 ua-parser2
 ==========
 
-<!--[![Build Status](https://secure.travis-ci.org/commenthol/ua-parser2.png?branch=master)](https://travis-ci.org/commenthol/ua-parser2)-->
+[![Build Status](https://secure.travis-ci.org/commenthol/ua-parser2.png?branch=master)](https://travis-ci.org/commenthol/ua-parser2)
 
 This is an improved fork from [ua-parser][ua-parser] which contains the following changes documented in the [Changelog][chan].
 

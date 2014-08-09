@@ -1,30 +1,26 @@
-Version 1.0 Final
+Version 1.1 Final
 
 # ua-parser2 Specification
 
-This document describes the specification on how a parser should implement the `regexes.yaml` file for correctly parsing user-agent strings on basis of that file. 
+This document describes the specification on how a parser should implement the `regexes.yaml` file for correctly parsing User-Agent strings on basis of that file. 
 
-This specification shall help maintainers and contributors to correctly use the provided information within the `regexes,yaml` file for obtaining information from the different user-agent strings. Furthermore this specification shall be the basis for discussions on evolving the projects and the needed parsing algorithms.
+This specification shall help maintainers and contributors to correctly use the provided information within the `regexes.yaml` file for obtaining information from the different User-Agent strings. Furthermore this specification shall be the basis for discussions on evolving the projects and the needed parsing algorithms.
 
-This document will not provide any information on how to implement the ua-parser2 project on your server and how to retrieve the user-agent string for further processing. 
+This document will not provide any information on how to implement the ua-parser2 project on your server and how to retrieve the User-Agent string for further processing. 
 
 ## Table of Contents
 
-<!-- toc -->
-
 * [regexes.yaml](#regexes-yaml)
+  * [Grouping regex'es](#grouping-regex-es)
   * [user_agent_parsers](#user_agent_parsers)
-    * [Grouping regex'es](#grouping-regex-es)
   * [engine_parsers](#engine_parsers)
   * [os_parsers](#os_parsers)
   * [device_parsers](#device_parsers)
-
-<!-- toc stop -->
-
+  * [Output format](#output-format)
 
 # regexes.yaml
 
-Any information which can be obtained from a user-agent string may contain information on:
+Any information which can be obtained from a User-Agent string may contain information on:
 
 * User-Agent aka "the browser"
 * Engine the Rendering Engine used by the User-Agent
@@ -38,7 +34,7 @@ This information is provided within the `regexes.yaml` file. Each kind of inform
 * os_parsers
 * device_parsers
 
-Each parser contains a list of regular-expressions which are named `regex`. For each `regex` replacements specific to the parser can be named to attribute or change information. A replacement may require a match from the regular-expression which is extracted by an expression enclosed in normal brackets "()". Each match can be addressed with `$1` to `$999` and used in a parser specific replacement.
+Each parser contains a list of regular-expressions which are named `regex`. For each `regex` replacements specific to the parser can be named to attribute or change information. A replacement may require a match from the regular-expression which is extracted by an expression enclosed in normal brackets `(.*)`. Each match can be addressed with `$1` to `$999` and used in a parser specific replacement.
 
 **General Rules for writing/changing Regular Expressions**
 
@@ -47,8 +43,59 @@ Escape the following characters
 * `.` => `\.`
 * `(` => `\(` ; `)` => `\)` ; otherwise a regex group will be opened
 * `/` does not need to be escaped but can be escaped using `\/`
+* `-` used within Bracketed Character classes needs to be escaped. E.g. `[ _\-]+`
 
 For further details on Regular Expressions check [perldoc](http://perldoc.perl.org/perlre.html#Regular-Expressions).
+
+**Rules for Replacements**
+
+To use matches within replacements use either the form of `$\d+`, e.g. `$1` ... `$999`.<br>
+In special cases where you want to use match `$1` followed by a `0` and not `$10`, use the form `${1}0` 
+
+**Example**
+
+```yaml
+- regex: '(Minefield)/(\d+)\.(\d+)\.(\d+(?:pre)?)'
+  family: 'Firefox ($1)'
+  v1: '$3'
+  v2: '$4'
+  patch:
+  type: 'browser::Firefox::$1'
+```
+
+A User-Agent String `Minefield/2.1.0pre` using the `regex` above would be evaluated to:
+
+```
+family: 'Firefox (Minefield)'
+major: '1'
+minor: '0pre'
+patch: 
+type: 'browser::Firefox::Minefield'
+```
+
+## Grouping regex'es
+
+To speed up parsing as well as to build isolated groups of regular expressions, the `group` parameter is used.
+It shall contain a `regex` any may use `regex_flag: 'i'` for case-insensitive matching.
+The group is only entered, if the associated `regex` matches. Otherwise evaluation continues with the next following `regex` or `group`.
+
+**Example**
+
+```yaml
+#>> group matching '/gecko/i' starts
+- group:
+  regex: 'gecko'
+  regex_flag: 'i'
+  # can only be reached if '/gecko/i' did initially match
+  - regex: '(Firefox)/(\d+)\.(\d+)\.(\d+(?:pre)?)'
+  #<< group matching '/gecko/i' ends
+
+- regex: '(Chrome)/(\d+)\.(\d+)'
+```    
+
+In this case the group `gecko` is only entered if the User-Agent-String contains `/gecko/i`.
+`regex: Firefox` matches only if the User-Agent-String contains `/gecko/i` as well.
+
 
 <a name="user_agent_parsers"/>
 ## user_agent_parsers
@@ -78,7 +125,7 @@ If `regex_flag: 'i'` is present then `regex` shall be evaluated as case-insensit
 
 **Parser Implementation:**
 
-The list of regular-expressions `regex` shall be evaluated for a given user-agent string beginning with the first `regex`-item in the list to the last item. The first matching `regex` stops processing the list. Regex-matching shall be case sensitive.
+The list of regular-expressions `regex` shall be evaluated for a given User-Agent string beginning with the first `regex`-item in the list to the last item. The first matching `regex` stops processing the list. Regex-matching shall be case sensitive.
 
 In case that no replacement for a match is specified for a `regex`-item, the first match defines the `family`, the second `major`, the third `minor`and the forth `patch` information. 
 
@@ -91,40 +138,19 @@ If no matching `regex` is found the value for `family` shall be "Other". The ver
 For the User-Agent: `Mozilla/5.0 (Windows; Windows NT 5.1; rv:2.0b3pre) Gecko/20100727 Minefield/4.0.1pre`
 the matching `regex`:
 
-```python
+```yaml
 - regex: '(Namoroka|Shiretoko|Minefield)/(\d+)\.(\d+)\.(\d+(?:pre)?)'
   family: 'Firefox ($1)'
 ```
 
 shall be resolved to:
 
-    family: Firefox (Minefield)
-    major : 4
-    minor : 0
-    patch : 1pre
-
-### Grouping regex'es
-
-To speed up parsing as well as to build isolated groups of regular expressions the `group` parameter is used.
-It shall contain a `regex` any may use `regex_flag: 'i'` for case-insensitive matching.
-The group is only entered if the associated `regex` matches. Otherwise evaluation continues with the next following `regex` or `group.regex`.
-
-**Example**
-
-```python
-#>> group matching '/gecko/i' starts
-- group:
-  regex: 'gecko'
-  regex_flag: 'i'
-  # can only be reached if '/gecko/i' did initially match
-  - regex: '(Firefox)/(\d+)\.(\d+)\.(\d+(?:pre)?)'
-  #<< group matching '/gecko/i' ends
-
-- regex: '(Chrome)/(\d+)\.(\d+)\.(\d+(?:pre)?)'
-```    
-
-In this case the group `gecko` is only entered if the User-Agent-String contains `/gecko/i`.
-`regex: Firefox` matches only if the User-Agent-String contains `/gecko/i` as well.
+```
+family: Firefox (Minefield)
+major : 4
+minor : 0
+patch : 1pre
+```
 
 ## engine_parsers
 
@@ -164,7 +190,7 @@ Aditionally the `patchMinor` value shall always be added to the resulting object
 
 The `device_parsers` shall return information of the device `family` the User-Agent runs.
 Furthermore `brand` and `model` of the device can be specified.
-`brand` shall name the manufacturer of the device, where model shall specify the model of the device.
+`brand` shall name the manufacturer or brand of the device, where model shall specify the model of the device.
 
 | match in regex | default replacement | note              |
 | ---- | -------| ---------------------------------------- |
@@ -185,7 +211,7 @@ If `regex_flag: 'i'` is present then `regex` shall be evaluated as case-insensit
 
 **Parser Implementation:**
  
-The list of regular-expressions `regex` shall be evaluated for a given user-agent string beginning with the first `regex`-item in the list to the last item. The first matching `regex` stops processing the list. Regex-matching shall be case sensitive.
+The list of regular-expressions `regex` shall be evaluated for a given User-Agent string beginning with the first `regex`-item in the list to the last item. The first matching `regex` stops processing the list. Regex-matching shall be case sensitive.
 
 In case that no replacement for a match is given, the first match defines the `family` and the `model`. 
 
@@ -198,7 +224,7 @@ In case that no matching `regex` is found the value for `family` shall be "Other
 For the User-Agent: `Mozilla/5.0 (Linux; U; Android 4.2.2; de-de; PEDI_PLUS_W Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30`
 the matching `regex`:
 
-```python
+```yaml
 - regex: '; (PEDI)_(PLUS)_(W) Build/'
   device: '$1_$2_$3'
   brand: 'Odys'
@@ -207,6 +233,49 @@ the matching `regex`:
 
 shall be resolved to:
 
-    family: 'PEDI_PLUS_W' 
-    brand: 'Odys'
-    model: 'PEDI PLUS W'
+```
+family: 'PEDI_PLUS_W' 
+brand: 'Odys'
+model: 'PEDI PLUS W'
+```
+
+## Output format
+
+The current output format returns an object with the following structure:
+
+```javascript
+{
+  ua: { // result of the user_agent_parsers
+    family: 
+    major:
+    minor:
+    patch:
+    type: // optional
+  },
+  engine: { // result of the engine_parsers
+    family: 
+    major:
+    minor:
+    patch:
+    type: // optional
+  }
+  os: { // result of the os_parsers
+    family: 
+    major:
+    minor:
+    patch:
+    patchMinor:
+    type: // optional
+  }
+  device: { // result of the device_parsers
+    family: 
+    brand:
+    model:
+    type: // optional
+  }
+}
+```
+
+
+---
+End of Document

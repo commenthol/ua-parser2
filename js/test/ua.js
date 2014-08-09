@@ -108,6 +108,22 @@ describe('UA parser', function() {
 		assert.strictEqual(ua.minor, 'b');
 		assert.strictEqual(ua.patch, 'c');
 	});
+
+	it('Parser correctly processes replacements with curly brackets', function() {
+		var parse = makeParser([{
+			regex: '(foo) (\\d)\\.(\\d).(\\d) (?:(a)|(b)|(c)|(d)|(e)|(f)|(g)|(h)|(i)|(j)|(k)|(l)|(m)|(n)|(o)|(p)|(q)|(r)|(s)|(t)|(u)|(v)|(w)|(x)|(y)|(z))',
+			family: '$1bar',
+			v1: '$1$2$3$4$5$6$7$8$9$10$11$12$13$14$15$16$17$18$19$20$21$22$23$24$25$26$27$28$29$30',
+			v2: '$100a', // this matches $100 which is not present
+			v3: '${1}00' // match $1
+		}]).parse;
+	
+		var ua = parse('foo 1.2.3 z');
+		assert.strictEqual(ua.family, 'foobar');
+		assert.strictEqual(ua.major, 'foo123z');
+		assert.strictEqual(ua.minor, 'a');
+		assert.strictEqual(ua.patch, 'foo00');
+	});
 });
 
 describe('UA parser groups', function() {
