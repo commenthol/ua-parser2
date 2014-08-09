@@ -1,10 +1,15 @@
+'use strict';
+
 var
 	assert = require('assert'),
 	path = require('path'),
 	fs = require('fs'),
 	yaml = require('yamlparser'),
 	Device = require('../lib/device'),
-	makeParser = require('../lib/parserdevice');
+	makeParser = require('../lib/parser');
+
+var
+	options = { device: true };
 
 describe('Device object', function() {
   it('Device constructor with no arguments', function() {
@@ -34,7 +39,7 @@ describe('Device parser', function() {
   });
 
   it('Unexpected args don\'t throw', function() {
-    var parse = makeParser([]).parse;
+    var parse = makeParser([], options).parse;
     assert.doesNotThrow(function() { parse('Foo'); });
     assert.doesNotThrow(function() { parse(''); });
     assert.doesNotThrow(function() { parse(); });
@@ -44,17 +49,17 @@ describe('Device parser', function() {
   });
 
   it('Parser returns an instance of Device when unsuccessful at parsing', function() {
-    var parse = makeParser([{regex: 'foo'}]).parse;
+    var parse = makeParser([{regex: 'foo'}], options).parse;
     assert.ok(parse('bar') instanceof Device);
   });
 
   it('Parser returns an instance of Device when sucessful', function() {
-    var parse = makeParser([{regex: 'foo'}]).parse;
+    var parse = makeParser([{regex: 'foo'}], options).parse;
     assert.ok(parse('foo') instanceof Device);
   });
 
   it('Parser correctly identifies Device name', function() {
-    var parse = makeParser([{regex: '(foo)'}]).parse;
+    var parse = makeParser([{regex: '(foo)'}], options).parse;
     assert.strictEqual(parse('foo').family, 'foo');
   });
 
@@ -62,7 +67,7 @@ describe('Device parser', function() {
     var parse = makeParser([{
       regex: '(foo)',
       device: '$1bar'
-    }]).parse;
+    }], options).parse;
   
     var device = parse('foo');
     assert.strictEqual(device.family, 'foobar');
@@ -74,7 +79,7 @@ describe('Device parser groups', function() {
 	var
 		contents = fs.readFileSync(path.join(__dirname, 'groupdevice.yaml'), 'utf8'),
 		regexes = yaml.eval(contents), // jshint ignore:line
-		parse = makeParser(regexes.rules).parse;
+		parse = makeParser(regexes.rules, options).parse;
 
 	it('Parser correctly processes groups matching "gumsang"', function() {
 		var device = parse('gumsang tststs');

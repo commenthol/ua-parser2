@@ -7,3 +7,4 @@
 - Travis Build added
 - Quick tests (quick-tests.json) for npm package added.
   The big test file gets excluded.
+- parserdevice.js simplified in parser.js

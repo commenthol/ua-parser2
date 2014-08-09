@@ -2,7 +2,7 @@
   "name": "ua-parser2",
   "description": "An improved user agent parser.",
   "main": "./js/index",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "engines": {
     "node": ">=0.10.0"
   },

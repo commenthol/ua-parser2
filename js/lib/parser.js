@@ -2,46 +2,64 @@
 
 var
 	UA = require('./ua'),
-	replaceMatches = require('./replacematches');
+	Device = require('./device');
+
+function replaceMatches(str, m) {
+  return str.replace(/\${(\d+)}|\$(\d+)/g, function(tmp, i, j) {
+    return m[(i||j)] || '';
+  }).trim();
+};
 
 function parser (regexes, options) {
-	var self = {};
+	var
+		parsers,
+		self = {};
+
 	self.options = options || {};
 
 	function _make(obj) {
 		var
-			regexp        = (obj.regex_flag ? new RegExp(obj.regex, obj.regex_flag) : new RegExp(obj.regex)),
-			famRep        = obj.family,
-			majorRep      = obj.v1,
-			minorRep      = obj.v2,
-			patchRep      = obj.v3,
-			patchMinorRep = obj.v4,
-			typeRep       = obj.type,
-			debug         = obj.debug;
+			regexp = (obj.regex_flag ? new RegExp(obj.regex, obj.regex_flag) : new RegExp(obj.regex));
+
+		if (obj.group) {
+			return _makeGroup(obj);
+		}
+		else if (! self.options.device) {
+			return parse;
+		}
+		else {
+			return parseDevice;
+		}
 
 		function parse (str) {
 			var m = str.match(regexp);
 			if (!m) { return null; }
 
 			var
-				family = famRep  ? replaceMatches(famRep, m)   : m[1],
-				major = majorRep ? replaceMatches(majorRep, m) : m[2],
-				minor = minorRep ? replaceMatches(minorRep, m) : m[3],
-				patch = patchRep ? replaceMatches(patchRep, m) : m[4],
-				type  = typeRep  ? replaceMatches(typeRep, m)  : undefined,
+				family = obj.family ? replaceMatches(obj.family, m) : m[1],
+				major  = obj.v1     ? replaceMatches(obj.v1    , m) : m[2],
+				minor  = obj.v2     ? replaceMatches(obj.v2    , m) : m[3],
+				patch  = obj.v3     ? replaceMatches(obj.v3    , m) : m[4],
+				type   = obj.type   ? replaceMatches(obj.type  , m) : undefined,
 				patchMinor;
 
 			if (self.options.usePatchMinor) {
-				patchMinor = (patchMinorRep ? replaceMatches(patchMinorRep, m) : m[5]) || null;
+				patchMinor = (obj.v4 ? replaceMatches(obj.v4, m) : m[5]) || null;
 			}
-			return new UA(family, major, minor, patch, patchMinor, type, debug);
+			return new UA(family, major, minor, patch, patchMinor, type, obj.debug);
 		}
 
-		if (obj.group) {
-			return _makeGroup(obj);
-		}
-		else {
-			return parse;
+		function parseDevice (str) {
+			var m = str.match(regexp);
+			if (!m) { return null; }
+
+			var
+				family = obj.device ? replaceMatches(obj.device, m) : m[1],
+				brand  = obj.brand  ? replaceMatches(obj.brand , m) : null,
+				model  = obj.model  ? replaceMatches(obj.model , m) : m[1],
+				type   = obj.type   ? replaceMatches(obj.type  , m) : undefined;
+
+			return new Device(family, brand, model, type, obj.debug);
 		}
 	}
 
@@ -67,19 +85,23 @@ function parser (regexes, options) {
 		return parseGroup;
 	}
 
-	self.parsers = (regexes||[]).map(_make);
+	parsers = (regexes||[]).map(_make);
 
 	self.parse = function (str) {
 		var obj, length, i;
 
 		if (typeof str === 'string') {
-			for (i = 0, length = self.parsers.length; i < length; i++) {
-				obj = self.parsers[i](str);
+			for (i = 0, length = parsers.length; i < length; i++) {
+				obj = parsers[i](str);
 				if (obj) { return obj; }
 			}
 		}
-
-		return obj || new UA();
+		if (! self.options.device) {
+			return obj || new UA();
+		}
+		else {
+			return obj || new Device();
+		}
 	};
 
 	return self;

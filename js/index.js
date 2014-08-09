@@ -99,7 +99,7 @@ module.exports = function(options) {
 			parseUA      = require('./lib/parser')(regexes.user_agent_parsers).parse || dummy;
 			parseEngine  = require('./lib/parser')(regexes.engine_parsers).parse || dummy;
 			parseOS      = require('./lib/parser')(regexes.os_parsers, { usePatchMinor: true }).parse || dummy;
-			parseDevice  = require('./lib/parserdevice')(regexes.device_parsers).parse || dummy;
+			parseDevice  = require('./lib/parser')(regexes.device_parsers, { device: true }).parse || dummy;
 		}
 		else {
 			error = new Error('bad regexes');
@@ -152,8 +152,13 @@ module.exports = function(options) {
 			contents = fs.readFileSync(options.file, 'utf8');
 
 			if (contents) {
-				regexes = yaml.eval(contents); // jshint ignore:line
-				error = createParsers(regexes);
+				try {
+					regexes = yaml.eval(contents); // jshint ignore:line
+					error = createParsers(regexes);
+				}
+				catch (e) {
+					error = e;
+				}
 			}
 			else {
 				error = new Error('no content found in ' + options.file);
@@ -189,8 +194,13 @@ module.exports = function(options) {
 		fs.readFile(options.file, 'utf8', function (error, contents){
 
 			if (!error && contents) {
-				var regexes = yaml.eval(contents); // jshint ignore:line
-				error = createParsers(regexes);
+				try {
+					var regexes = yaml.eval(contents); // jshint ignore:line
+					error = createParsers(regexes);
+				}
+				catch (e) {
+					error = e;
+				}
 			}
 
 			if (callback) callback(error);
