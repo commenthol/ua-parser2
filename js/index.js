@@ -238,7 +238,10 @@ module.exports = function(options) {
 
 	options = setOptions(options);
 	if (!config.async) {
-		uaParser.loadSync(options);
+		var err = uaParser.loadSync(options);
+		if (err) {
+			console.error(err);
+		}
 	}
 	
 	return uaParser;

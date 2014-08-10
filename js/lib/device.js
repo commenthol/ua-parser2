@@ -4,6 +4,7 @@ function Device(family, brand, model, type, debug) {
   this.family = family || 'Other';
   this.brand = brand || null;
   this.model = model || null;
+  if (typeof type !== 'undefined') { this.type = type || null; }
   if (typeof debug !== 'undefined') { this.debug = debug || null; }
 }
 
