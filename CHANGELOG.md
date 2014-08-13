@@ -1,5 +1,14 @@
 # Changelog
 
+**2014-08-14**
+
+- regexes
+  - Sony Android Rule updated for D6603
+  - engine_parsers:
+    - Webkit::Nokia renamed for webkit based NokiaBrowser
+    - Webkit:LG and Webkit::Samsung for tv sets
+  - device_parsers: type=tv added
+
 **2014-08-10**
 
 - regexes
