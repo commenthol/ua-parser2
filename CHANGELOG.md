@@ -1,5 +1,13 @@
 # Changelog
 
+**2014-09-02**
+
+- regexes
+  - Sony Playstation, os + device
+  - CFNetwork, os
+  - Better detection of bots
+  - Fix in ua bot detection - major version not recognized as hidden by "google(^tv)"
+
 **2014-08-14**
 
 - regexes
