@@ -4,9 +4,9 @@
 {"device":{"family":"Motorola V525M","brand":"Motorola","model":"V525M"},"string":"MOT-V525M/0B.09.38R MIB/2.2 Profile/MIDP-2.0 Configuration/CLDC-1.0"}
 {"device":{"family":"Samsung SGH-A886","brand":"Samsung","model":"SGH-A886"},"string":"SAMSUNG-SGH-A886"}
 {"device":{"family":"Samsung SPHA820","brand":"Samsung","model":"SPHA820"},"string":"SAMSUNG-SPHA820"}
-{"ua":{"family":"Clushbot","minor":"3","patch":"47","type":"bot"},"device":{"family":"Spider","brand":"Spider","model":"Desktop"},"string":"Clushbot/3.47-BinaryFury ( http://www.clush.com/bot.html)"}
+{"ua":{"family":"Clushbot","major":"3","minor":"47","type":"bot"},"device":{"family":"Spider","brand":"Spider","model":"Desktop"},"string":"Clushbot/3.47-BinaryFury ( http://www.clush.com/bot.html)"}
 {"ua":{"family":"Googlebot","type":"bot"},"device":{"family":"Spider","brand":"Spider","model":"Desktop"},"string":"Googlebot"}
-{"ua":{"family":"MetaTagRobot","minor":"1","patch":"6","type":"bot"},"device":{"family":"Spider","brand":"Spider","model":"Desktop"},"string":"MetaTagRobot/1.6 (http://www.widexl.com/remote/search-engines/metatag-analyzer.html),gzip(gfe),gzip(gfe)"}
+{"ua":{"family":"MetaTagRobot","major":"1","minor":"6","type":"bot"},"device":{"family":"Spider","brand":"Spider","model":"Desktop"},"string":"MetaTagRobot/1.6 (http://www.widexl.com/remote/search-engines/metatag-analyzer.html),gzip(gfe),gzip(gfe)"}
 {"ua":{"family":"KaloogaBot","type":"bot"},"device":{"family":"Spider","brand":"Spider","model":"Desktop"},"string":"Mozilla/5.0 (compatible; KaloogaBot; http://kalooga.com/crawler)"}
 {"ua":{"family":"Crawler","type":"bot"},"device":{"family":"Spider","brand":"Spider","model":"Desktop"},"string":"netEstate Trend Crawler (+http://www.trendmonitor.org/)"}
 {"ua":{"family":"searchbot","type":"bot"},"device":{"family":"Spider","brand":"Spider","model":"Desktop"},"string":"searchbot (admin@google.com)"}
