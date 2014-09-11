@@ -1,5 +1,10 @@
 # Changelog
 
+**2014-09-11**
+
+- regexes
+  - Riddler bot, Sony Xperia Z3 added
+
 **2014-09-02**
 
 - regexes

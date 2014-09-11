@@ -23,7 +23,7 @@ user_agent_parsers:
       type: 'bot'
 
     # sort this regex by length !
-    - regex: '(Yahoo! Slurp|Yahoo[a-z]*Seeker|Willow Internet Crawler|Googlebot(?:-[^/]*)?|Rackspace Monitoring|semanticdiscovery|A6-Indexer|baidu[a-z]*(?:spider|Mobaider)|Google SketchUp|Sogou Pic Spider|Innovazion Crawler|fast-webcrawler|Catchpoint bot|ConveraCrawler|Checklinks|ZyBorg|dataparksearch|AdsBot-Google(?:-[a-z]*)?|ThumbShotsBot|MSIECrawler|YottaaMonitor|http%20client|Read%20Later|BingPreview|HttpMonitor|LinkedInBot|Daumoa(?:-feedfetcher)?|netresearch|searchsight|PagePeeker|TwitterBot|YandexBot|altavista|charlotte|findlinks|WebThumb|Netvibes|archiver|blitzbot|mogimogi|URL2PNG|ZooShot|bingbot|openbot|scooter|gigabot|furlbot|polybot|scrubby|seekbot|[a-z_\-]*crawler|GomezA|msnbot(?:-media *)?|m65bot|msrbot|ichiro(?:/mobile)?|larbin|pompos|snappy|speedy|[a-z_\-]*spider|^vortex|^voyager|Slurp|lycos|teoma(?!bar)?|htdig|voila|^zao|\b(?:(?!CU)[a-z])+bot\b|\bYeti(?:-[a-z]*)|^NING)(?:[ /](\d+)(?:\.(\d+))+)?'
+    - regex: '(Yahoo! Slurp|Yahoo[a-z]*Seeker|Willow Internet Crawler|Googlebot(?:-[^/]*)?|Rackspace Monitoring|semanticdiscovery|A6-Indexer|baidu[a-z]*(?:spider|Mobaider)|Google SketchUp|Sogou Pic Spider|Innovazion Crawler|fast-webcrawler|Catchpoint bot|ConveraCrawler|Checklinks|ZyBorg|dataparksearch|AdsBot-Google(?:-[a-z]*)?|ThumbShotsBot|MSIECrawler|YottaaMonitor|http%20client|Read%20Later|BingPreview|HttpMonitor|LinkedInBot|Daumoa(?:-feedfetcher)?|netresearch|searchsight|PagePeeker|TwitterBot|YandexBot|altavista|charlotte|findlinks|WebThumb|Netvibes|archiver|blitzbot|mogimogi|URL2PNG|ZooShot|bingbot|openbot|scooter|gigabot|furlbot|polybot|scrubby|seekbot|[a-z_\-]*crawler|GomezA|msnbot(?:-media *)?|m65bot|msrbot|ichiro(?:/mobile)?|larbin|pompos|snappy|speedy|[a-z_\-]*spider|^vortex|^voyager|Slurp|lycos|teoma(?!bar)?|htdig|voila|^zao|\b(?:(?!CU)[a-z])+bot\b|\bYeti(?:-[a-z]*)|^NING|Riddler)(?:[ /](\d+)(?:\.(\d+))+)?'
       regex_flag: 'i'
       type: 'bot'
 
@@ -4774,7 +4774,7 @@ device_parsers:
   ##########
   # Spiders (this is hack...)
   ##########
-  - regex: '(bingbot|bot|borg|yahoo|slurp|^NING|MsnBot-Media|msnbot|msrbot|openbot|archiver|netresearch|lycos|scooter|altavista|teoma|Google.*/\+/web/snippet|gigabot|baiduspider|blitzbot|oegp|charlotte|furlbot|http%20client|polybot|htdig|ichiro|mogimogi|larbin|pompos|scrubby|searchsight|seekbot|semanticdiscovery|silk|snappy|speedy|spider|voila|^vortex|^voyager|zao|zeal|fast\-webcrawler|converacrawler|dataparksearch|findlinks|crawler|Netvibes|Sogou Pic Spider|ICC\-Crawler|Innovazion Crawler|Daumoa|EtaoSpider|A6\-Indexer|YisouSpider)'
+  - regex: '(bingbot|bot|borg|yahoo|slurp|^NING|MsnBot-Media|msnbot|msrbot|openbot|archiver|netresearch|lycos|scooter|altavista|teoma|Google.*/\+/web/snippet|gigabot|baiduspider|blitzbot|oegp|charlotte|furlbot|http%20client|polybot|htdig|ichiro|mogimogi|larbin|pompos|scrubby|searchsight|seekbot|semanticdiscovery|silk|snappy|speedy|spider|voila|^vortex|^voyager|zao|zeal|fast\-webcrawler|converacrawler|dataparksearch|findlinks|crawler|Netvibes|Sogou Pic Spider|ICC\-Crawler|Innovazion Crawler|Daumoa|EtaoSpider|A6\-Indexer|YisouSpider|Riddler)'
     regex_flag: 'i'
     device: 'Spider'
     brand: 'Spider'
