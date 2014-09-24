@@ -1334,7 +1334,7 @@ device_parsers:
     - regex: '; *(A28|A32|A43|A70(?:BHT|CHT|HB|S|X)|A101(?:B|C|IT)|A7EB|A7EB-WK|101G9|80G9) Build'
       device: 'Archos $1'
       brand: 'Archos'
-      model: '$1'    
+      model: '$1'
 
     #########
     # A-rival
@@ -4042,32 +4042,6 @@ device_parsers:
       brand: 'Cellular'
       model: '$1'
 
-    #########
-    # Android General Device Matching (far from perfect)
-    #########
-    - regex: 'Android[\- ][\d]+\.[\d]+; [A-Za-z]{2}\-[A-Za-z]{0,2}; WOWMobile (.+) Build'
-      brand: 'Generic_Android'
-      model: '$1'
-    - regex: 'Android[\- ][\d]+\.[\d]+\-update1; [A-Za-z]{2}\-[A-Za-z]{0,2} *; *((?:(?!Build).)+) Build'
-      brand: 'Generic_Android'
-      model: '$1'
-    - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[A-Za-z]{2}[_\-][A-Za-z]{0,2}\-? *; *((?:(?!Build).)+) Build'
-      brand: 'Generic_Android'
-      model: '$1'
-    - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[A-Za-z]{0,2}\- *; *((?:(?!Build).)+) Build'
-      brand: 'Generic_Android'
-      model: '$1'
-    # No build info at all - "Build" follows locale immediately
-    - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[a-z]{0,2}[_\-]?[A-Za-z]{0,2};? Build'
-      brand: 'Generic'
-      model: 'Smartphone'
-    - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *\-?[A-Za-z]{2}; *((?:(?!Build).)+) Build'
-      brand: 'Generic_Android'
-      model: '$1'
-    - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}(?:;.*)?; *((?:(?! Build).)+) Build'
-      brand: 'Generic_Android'
-      model: '$1'
-
   ######################################################################
   # Windows Phone Parsers
   ######################################################################
@@ -4723,6 +4697,14 @@ device_parsers:
     type: 'console'
 
   ##########
+  # Sony
+  ##########
+  - regex: 'Sony([^ ]+) '
+    device: 'Sony $1'
+    brand: 'Sony'
+    model: '$1'
+
+  ##########
   # Amazon
   ##########
   - regex: ' (Kindle)/(\d+\.\d+)'
@@ -4741,6 +4723,32 @@ device_parsers:
   - regex: '(WeTab)-Browser'
     device: '$1'
     brand: 'WeTab'
+    model: '$1'
+
+  #########
+  # Android General Device Matching (far from perfect)
+  #########
+  - regex: 'Android[\- ][\d]+\.[\d]+; [A-Za-z]{2}\-[A-Za-z]{0,2}; WOWMobile (.+) Build'
+    brand: 'Generic_Android'
+    model: '$1'
+  - regex: 'Android[\- ][\d]+\.[\d]+\-update1; [A-Za-z]{2}\-[A-Za-z]{0,2} *; *((?:(?!Build).)+) Build'
+    brand: 'Generic_Android'
+    model: '$1'
+  - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[A-Za-z]{2}[_\-][A-Za-z]{0,2}\-? *; *((?:(?!Build).)+) Build'
+    brand: 'Generic_Android'
+    model: '$1'
+  - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[A-Za-z]{0,2}\- *; *((?:(?!Build).)+) Build'
+    brand: 'Generic_Android'
+    model: '$1'
+  # No build info at all - "Build" follows locale immediately
+  - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[a-z]{0,2}[_\-]?[A-Za-z]{0,2};? Build'
+    brand: 'Generic'
+    model: 'Smartphone'
+  - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *\-?[A-Za-z]{2}; *((?:(?!Build).)+) Build'
+    brand: 'Generic_Android'
+    model: '$1'
+  - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}(?:;.*)?; *((?:(?! Build).)+) Build'
+    brand: 'Generic_Android'
     model: '$1'
 
   ##########
