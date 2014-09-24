@@ -1,5 +1,12 @@
 # Changelog
 
+**2014-09-24**
+
+- regexes
+  - Oppo Find 7a added
+  - ZTE OpenC
+  - Fix for Archos/ Arnova Tablets
+
 **2014-09-11**
 
 - regexes

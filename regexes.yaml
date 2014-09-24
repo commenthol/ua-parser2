@@ -1,4 +1,4 @@
-version: '0.1.3'
+version: '0.1.5'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 #### Browser ####
@@ -1270,6 +1270,10 @@ device_parsers:
       device: 'Amoi $1'
       brand: 'Amoi'
       model: '$1'
+    - regex: '; *(A\d{3}W) Build'
+      device: 'Amoi $1'
+      brand: 'Amoi'
+      model: '$1'
 
     #########
     # Aoc
@@ -1323,14 +1327,14 @@ device_parsers:
       device: 'Archos $1'
       brand: 'Archos'
       model: '$1'
-    - regex: '; *(A28|A32|A43) Build'
+    - regex: '; *(AN(?:7|8|9|10|13)[A-Z0-9]{1,4}) Build'
       device: 'Archos $1'
       brand: 'Archos'
       model: '$1'
-    - regex: '; *(A70(?:BHT|CHT|HB|S)|A7EB|A7EB-WK|101G9|80G9|A101IT) Build'
+    - regex: '; *(A28|A32|A43|A70(?:BHT|CHT|HB|S|X)|A101(?:B|C|IT)|A7EB|A7EB-WK|101G9|80G9) Build'
       device: 'Archos $1'
       brand: 'Archos'
-      model: '$1'
+      model: '$1'    
 
     #########
     # A-rival
@@ -1371,7 +1375,7 @@ device_parsers:
     # Asus
     # @ref: http://www.asus.com/uk/Tablets_Mobile/
     #########
-    - regex: '; *(ME17\d[^;/]*|ME3\d{2}[^;/]+|K00[A-Z]|Nexus 10|Nexus 7(?: 2013)?|PadFone[^;/]*|Transformer[^;/]*|TF\d{3}[^;/]*|eeepc) Build'
+    - regex: '; *(ME(?:[13]\d{2})[^;/]+|K0[01][A-Z]|Nexus 10|Nexus 7(?: 2013)?|PadFone[^;/]*|Transformer[^;/]*|TF\d{3}[^;/]*|eeepc) Build'
       device: 'Asus $1'
       brand: 'Asus'
       model: '$1'
@@ -1431,7 +1435,7 @@ device_parsers:
     # Axioo
     # @ref: http://www.axiooworld.com/ww/index.php
     #########
-    - regex: '; *(?:Axioo[ _\-]([^;/]+)|(picopad)[ _\-]([^;/]+)) Build'
+    - regex: ' (?:Axioo[ _\-]([^;/]+)|(pico(?:pad|phone))[ _\-]([^;/]+)) ?(?:Build|;|\))'
       regex_flag: 'i'
       device: 'Axioo $1$2 $3'
       brand: 'Axioo'
@@ -2953,7 +2957,7 @@ device_parsers:
     # Oppo
     # @ref: http://en.oppo.com/products/
     #########
-    - regex: '; *(Find ?5|R8[012]\d{1,2}|T703\d{0,1}|U70\d{1,2}T?|X90\d{1,2}) Build'
+    - regex: '; *(Find ?(?:5|7a)|R8[012]\d{1,2}|T703\d{0,1}|U70\d{1,2}T?|X90\d{1,2}) Build'
       device: 'Oppo $1'
       brand: 'Oppo'
       model: '$1'
@@ -3977,6 +3981,10 @@ device_parsers:
       device: 'Kindle Fire HDX 8.9" 4G'
       brand: 'Amazon'
       model: 'Kindle Fire HDX 8.9" 4G'
+    - regex: '; ?(SD4930UR) Build\b'
+      device: 'Fire Phone'
+      brand: 'Amazon'
+      model: 'Fire Phone'
     - regex: '; ?Amazon ([^;/]+) Build\b'
       device: '$1'
       brand: 'Amazon'
@@ -4181,10 +4189,10 @@ device_parsers:
     device: 'Alcatel $1 $2 $3'
     brand: 'Alcatel'
     model: 'One Touch $3'
-  - regex: '\(Mobile; ZTE([^;]+); rv:[^\)]+\) Gecko/[^\/]+ Firefox/'
-    device: 'ZTE $1'
+  - regex: '\(Mobile; (?:ZTE([^;]+)|(OpenC)); rv:[^\)]+\) Gecko/[^\/]+ Firefox/'
+    device: 'ZTE $1$2'
     brand: 'ZTE'
-    model: '$1'
+    model: '$1$2'
 
   ##########
   # NOKIA
