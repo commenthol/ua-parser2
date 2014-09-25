@@ -3861,10 +3861,10 @@ device_parsers:
     # Zopo
     # @ref: http://www.zopomobiles.com/products.html
     #########
-    - regex: '; *(?:ZOPO )?(ZP\d{2}[^;/]+) Build'
-      device: '$1'
+    - regex: '; *(?:(?:ZOPO|Zopo)[ _]([^;/]+)|(ZP ?\d{2}[^;/]+)) Build'
+      device: '$1$2'
       brand: 'Zopo'
-      model: '$1'
+      model: '$1$2'
 
     #########
     # ZiiLabs
