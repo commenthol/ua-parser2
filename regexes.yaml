@@ -1,4 +1,4 @@
-version: '0.1.5'
+version: '0.1.6'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 #### Browser ####
@@ -3861,10 +3861,10 @@ device_parsers:
     # Zopo
     # @ref: http://www.zopomobiles.com/products.html
     #########
-    - regex: '; *(?:(?:ZOPO|Zopo)[ _]([^;/]+)|(ZP ?\d{2}[^;/]+)) Build'
-      device: '$1$2'
+    - regex: '; *(?:(?:ZOPO|Zopo)[ _]([^;/]+)|(ZP ?(?:\d{2}[^;/]+|C2))|(C[2379])) Build'
+      device: '$1$2$3'
       brand: 'Zopo'
-      model: '$1$2'
+      model: '$1$2$3'
 
     #########
     # ZiiLabs
@@ -4367,7 +4367,11 @@ device_parsers:
   ##########
   # Asus
   ##########
-  - regex: '(?:asus ASUS|Asus|ASUS|asus)[\- ;]*((?:Transformer |Transformer Pad |Padfone |Nexus[ _])?[A-Za-z0-9]+)'
+  - regex: '(?:; |\/|^)((?:Transformer (?:Pad|Prime) |Transformer |PadFone[ _]?)[A-Za-z0-9]*)'
+    device: 'Asus $1'
+    brand: 'Asus'
+    model: '$1'
+  - regex: '(?:asus.*?ASUS|Asus|ASUS|asus)[\- ;]*((?:Transformer (?:Pad|Prime) |Transformer |Padfone |Nexus[ _])?[A-Za-z0-9]+)'
     device: 'Asus $1'
     brand: 'Asus'
     model: '$1'

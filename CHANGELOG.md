@@ -4,6 +4,7 @@
 
 - regexes
   - Zopo Devices
+  - Asus Transformer, PadFone
 
 **2014-09-24**
 
