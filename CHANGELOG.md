@@ -1,5 +1,11 @@
 # Changelog
 
+**2014-10-08**
+- regexes
+  - Xenu and other Bots added
+  - Fix: Version detection of Bots
+  - Motorola now contains brand name in device replacement
+
 **2014-09-25**
 
 - regexes

@@ -6,7 +6,8 @@ npm-debug.log
 *.tgz
 *.bak
 *.sh
-js/tool/
-test_resources/tests.json
-test_resources/new-tests.json
-test_resources/bad-tests.json
+/js/tool/
+/test_resources/tests.json
+/test_resources/new-tests.json
+/test_resources/bad-tests.json
+/tmp/

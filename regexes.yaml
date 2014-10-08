@@ -1,4 +1,4 @@
-version: '0.1.6'
+version: '0.1.7'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 #### Browser ####
@@ -6,7 +6,7 @@ user_agent_parsers:
 
   #### Bots ####
   - group:
-    regex: '(bot|spider|crawl|http://|slurp|seek|google|search|dig|@|archiver|larbin|zyborg|teoma|voyager|lycos|monitor|snappy|pompos|charlotte|vortex|indexer|NING)'
+    regex: '(bot|spider|crawl|http://|slurp|seek|google|search|dig|@|archiver|larbin|zyborg|teoma|voyager|lycos|monitor|snappy|pompos|charlotte|vortex|indexer|NING|Scrapy|Xenu)'
     regex_flag: 'i'
 
     # Pingdom
@@ -23,7 +23,7 @@ user_agent_parsers:
       type: 'bot'
 
     # sort this regex by length !
-    - regex: '(Yahoo! Slurp|Yahoo[a-z]*Seeker|Willow Internet Crawler|Googlebot(?:-[^/]*)?|Rackspace Monitoring|semanticdiscovery|A6-Indexer|baidu[a-z]*(?:spider|Mobaider)|Google SketchUp|Sogou Pic Spider|Innovazion Crawler|fast-webcrawler|Catchpoint bot|ConveraCrawler|Checklinks|ZyBorg|dataparksearch|AdsBot-Google(?:-[a-z]*)?|ThumbShotsBot|MSIECrawler|YottaaMonitor|http%20client|Read%20Later|BingPreview|HttpMonitor|LinkedInBot|Daumoa(?:-feedfetcher)?|netresearch|searchsight|PagePeeker|TwitterBot|YandexBot|altavista|charlotte|findlinks|WebThumb|Netvibes|archiver|blitzbot|mogimogi|URL2PNG|ZooShot|bingbot|openbot|scooter|gigabot|furlbot|polybot|scrubby|seekbot|[a-z_\-]*crawler|GomezA|msnbot(?:-media *)?|m65bot|msrbot|ichiro(?:/mobile)?|larbin|pompos|snappy|speedy|[a-z_\-]*spider|^vortex|^voyager|Slurp|lycos|teoma(?!bar)?|htdig|voila|^zao|\b(?:(?!CU)[a-z])+bot\b|\bYeti(?:-[a-z]*)|^NING|Riddler)(?:[ /](\d+)(?:\.(\d+))+)?'
+    - regex: '(Yahoo! Slurp|Yahoo[a-z]*Seeker|Willow Internet Crawler|Googlebot(?:-[^/]*)?|Rackspace Monitoring|semanticdiscovery|A6-Indexer|baidu[a-z]*(?:spider|Mobaider)|Google SketchUp|Sogou Pic Spider|Innovazion Crawler|fast-webcrawler|Xenu(?:.s)? Link Sleuth|Catchpoint bot|ConveraCrawler|Checklinks|ZyBorg|dataparksearch|AdsBot-Google(?:-[a-z]*)?|ThumbShotsBot|MSIECrawler|YottaaMonitor|http%20client|Read%20Later|BingPreview|HttpMonitor|LinkedInBot|Daumoa(?:-feedfetcher)?|netresearch|searchsight|PagePeeker|TwitterBot|YandexBot|altavista|charlotte|findlinks|WebThumb|Netvibes|archiver|blitzbot|mogimogi|URL2PNG|ZooShot|bingbot|openbot|scooter|gigabot|furlbot|polybot|scrubby|seekbot|[a-z_\-]*crawler|GomezA|msnbot(?:-media *)?|m65bot|msrbot|ichiro(?:/mobile)?|larbin|pompos|snappy|speedy|[a-z_\-]*spider|^vortex|^voyager|Slurp|lycos|teoma(?!bar)?|htdig|voila|^zao|\b(?:(?!CU)[a-z])+bot\b|\bYeti(?:-[a-z]*)|^NING|Riddler|Scrapy)(?:[ /](\d+)(?:\.(\d+))?(?:\.(\d+))?)?'
       regex_flag: 'i'
       type: 'bot'
 
@@ -2764,32 +2764,32 @@ device_parsers:
     # @ref: http://www.motorola.com/us/shop-all-mobile-phones/
     #########
     - regex: '; *(MZ\d{3}\+?|MZ\d{3} 4G|Xoom|XOOM[^;/]*) Build'
-      device: '$1'
+      device: 'Motorola $1'
       brand: 'Motorola'
       model: '$1'
     - regex: '; *(Milestone )(XT[^;/]*) Build'
-      device: '$1$2'
+      device: 'Motorola $1$2'
       brand: 'Motorola'
       model: '$2'
     - regex: '; *(Motoroi ?x|Droid X|DROIDX) Build'
       regex_flag: 'i'
-      device: '$1'
+      device: 'Motorola $1'
       brand: 'Motorola'
       model: 'DROID X'
     - regex: '; *(Droid[^;/]*|DROID[^;/]*|Milestone[^;/]*|Photon|Triumph|Devour|Titanium) Build'
-      device: '$1'
+      device: 'Motorola $1'
       brand: 'Motorola'
       model: '$1'
     - regex: '; *(A555|A85[34][^;/]*|A95[356]|ME[58]\d{2}\+?|ME600|ME632|ME722|MB\d{3}\+?|MT680|MT710|MT870|MT887|MT917|WX435|WX453|WX44[25]|XT\d{3,4}[A-Z\+]*|CL[iI]Q|CL[iI]Q XT) Build'
-      device: '$1'
+      device: 'Motorola $1'
       brand: 'Motorola'
       model: '$1'
     - regex: '; *(Motorola MOT-|Motorola[ _\-]|MOT\-?)([^;/]+) Build'
-      device: '$1$2'
+      device: 'Motorola $1$2'
       brand: 'Motorola'
       model: '$2'
     - regex: '; *(Moto[_ ]?|MOT\-)([^;/]+) Build'
-      device: '$1$2'
+      device: 'Motorola $1$2'
       brand: 'Motorola'
       model: '$2'
 
@@ -4794,7 +4794,7 @@ device_parsers:
   ##########
   # Spiders (this is hack...)
   ##########
-  - regex: '(bingbot|bot|borg|yahoo|slurp|^NING|MsnBot-Media|msnbot|msrbot|openbot|archiver|netresearch|lycos|scooter|altavista|teoma|Google.*/\+/web/snippet|gigabot|baiduspider|blitzbot|oegp|charlotte|furlbot|http%20client|polybot|htdig|ichiro|mogimogi|larbin|pompos|scrubby|searchsight|seekbot|semanticdiscovery|silk|snappy|speedy|spider|voila|^vortex|^voyager|zao|zeal|fast\-webcrawler|converacrawler|dataparksearch|findlinks|crawler|Netvibes|Sogou Pic Spider|ICC\-Crawler|Innovazion Crawler|Daumoa|EtaoSpider|A6\-Indexer|YisouSpider|Riddler)'
+  - regex: '(bingbot|borg|yahoo|slurp|^NING|MsnBot-Media|msnbot|msrbot|openbot|archiver|netresearch|lycos|scooter|altavista|teoma|Google.*/\+/web/snippet|gigabot|baiduspider|blitzbot|oegp|charlotte|furlbot|http%20client|polybot|htdig|ichiro|mogimogi|larbin|pompos|scrubby|searchsight|seekbot|semanticdiscovery|silk|snappy|speedy|spider|voila|^vortex|^voyager|zao|zeal|fast\-webcrawler|converacrawler|dataparksearch|findlinks|crawler|Netvibes|Sogou Pic Spider|ICC\-Crawler|Innovazion Crawler|Daumoa|EtaoSpider|A6\-Indexer|YisouSpider|Riddler|DBot|wsr\-agent|Xenu|SeznamBot|PaperLiBot|SputnikBot|CCBot|ProoXiBot|Scrapy|bot)'
     regex_flag: 'i'
     device: 'Spider'
     brand: 'Spider'
