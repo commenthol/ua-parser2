@@ -4,6 +4,7 @@
 - regexes
   - Puffin Browser added
   - Amazon Silk hidden by Chrome
+  - Better detection of bots
 
 **2014-10-08**
 - regexes

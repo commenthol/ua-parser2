@@ -1,4 +1,4 @@
-version: '0.1.7'
+version: '0.1.9'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 #### Browser ####
@@ -6,27 +6,23 @@ user_agent_parsers:
 
   #### Bots ####
   - group:
-    regex: '(bot|spider|crawl|http://|slurp|seek|google|search|dig|@|archiver|larbin|zyborg|teoma|voyager|lycos|monitor|snappy|pompos|charlotte|vortex|indexer|NING|Scrapy|Xenu)'
+    regex: '(@|bot|dig|JNLP|NING|seek|Xenu|crawl|lycos|slurp|teoma|Reaper|faviconGenieo|google|larbin|pompos|scrap|snappy|spider|vortex|zyborg|indexer|monitor|voyager|WhatWeb|WinHTTP|archiver|charlotte|http[^:]*?://|Retreiver|TLSProber|WordPress|BlogBridge|Squrl Java|Python-urllib|Apache-HttpClient|facebookexternalhit)'
     regex_flag: 'i'
 
     # Pingdom
     - regex: '(Pingdom.com_bot_version_)(\d+)\.(\d+)'
       family: 'PingdomBot'
       type: 'bot'
-    # Facebook
-    - regex: '(facebookexternalhit)/(\d+)\.(\d+)'
-      family: 'FacebookBot'
-      type: 'bot'
     # Google Plus
     - regex: 'Google.*/\+/web/snippet'
       family: 'GooglePlusBot'
       type: 'bot'
 
-    # sort this regex by length !
-    - regex: '(Yahoo! Slurp|Yahoo[a-z]*Seeker|Willow Internet Crawler|Googlebot(?:-[^/]*)?|Rackspace Monitoring|semanticdiscovery|A6-Indexer|baidu[a-z]*(?:spider|Mobaider)|Google SketchUp|Sogou Pic Spider|Innovazion Crawler|fast-webcrawler|Xenu(?:.s)? Link Sleuth|Catchpoint bot|ConveraCrawler|Checklinks|ZyBorg|dataparksearch|AdsBot-Google(?:-[a-z]*)?|ThumbShotsBot|MSIECrawler|YottaaMonitor|http%20client|Read%20Later|BingPreview|HttpMonitor|LinkedInBot|Daumoa(?:-feedfetcher)?|netresearch|searchsight|PagePeeker|TwitterBot|YandexBot|altavista|charlotte|findlinks|WebThumb|Netvibes|archiver|blitzbot|mogimogi|URL2PNG|ZooShot|bingbot|openbot|scooter|gigabot|furlbot|polybot|scrubby|seekbot|[a-z_\-]*crawler|GomezA|msnbot(?:-media *)?|m65bot|msrbot|ichiro(?:/mobile)?|larbin|pompos|snappy|speedy|[a-z_\-]*spider|^vortex|^voyager|Slurp|lycos|teoma(?!bar)?|htdig|voila|^zao|\b(?:(?!CU)[a-z])+bot\b|\bYeti(?:-[a-z]*)|^NING|Riddler|Scrapy)(?:[ /](\d+)(?:\.(\d+))?(?:\.(\d+))?)?'
+    # sort by length
+    - regex: "(BoardReader Favicon Fetcher *|Flamingo_SearchEngine|Google-HTTP-Java-Client|Peeplo Screenshot Bot|IlTrovatore(?:-Setaccio)?|Rackspace Monitoring|facebookexternalhit|Mediapartners-Google|PlantyNet_WebRobot|Daumoa(?:-feedfetcher)?|Innovazion Crawler|semanticdiscovery|Apache-HttpClient|Xenu(?:.s)? Link Sleuth|AppEngine-Google|InternetArchive|PagesInventory|archive.*?\.org_bot|1470\.net crawler|AdsBot-Google(?:-[a-z]+)?|fast-webcrawler|Google SketchUp|ConveraCrawler|dataparksearch|PaxleFramework|ObjectsSearch|8bo Crawler Bot|ZeBot_www.ze.bz|Yahoo[a-z]*Seeker|Catchpoint bot|FollowSite Bot|ThumbShotsBot|YottaaMonitor|Feed Seeker Bot|(?:[a-z]+-)?Googlebot(?:-[a-z]+)?|masidani_bot|Sogou \w+ Spider|ichiro(?:/mobile)?|http%20client|Python-urllib|Microsoft .*? Bot|Thumbshots\.ru|TheUsefulbot|Sogou \w+ Robot|robotgenius|BoardReader|msnbot(?:-media *)?|\b\w*favicon\w*\b|boitho.com-dc|Read%20Later|WASALive.Bot|BingPreview|HttpMonitor|LinkedInBot|MSIECrawler|netresearch|searchsight|Yahoo! Slurp|BlogBridge|Checklinks|PagePeeker|TwitterBot|Linguee Bot|Mail\.RU_Bot|RedCarpet|A6-Indexer|Squrl Java|altavista|Altresium|charlotte|findlinks|Retreiver|TLSProber|WordPress|NewsGator[^/]*|LesnikBot|archiver|Votay bot|teoma(?!bar)?|archiver|blitzbot|clumboot|heritrix|Icarus6j|IconSurf|InfuzApp|mogimogi|Netvibes|WebThumb|IP2[a-z]+Bot|voila(?:bot)?|Lite Bot|Riddler|Orbiter|\bYeti(?:-[a-z]+)?|Yandex\w+|^voyager|bingbot|furlbot|gigabot|openbot|polybot|Riddler|scooter|scrubby|seekbot|URL2PNG|WhatWeb|WinHTTP|ZooShot|BotSeer|mozDex|Reaper|^vortex|Genieo|GomezA|holmes|Kraken|Kurzor|larbin|m65bot|msrbot|pompos|Scrapy|snappy|speedy|ZyBorg|Wotbox|^Nutch[^/]*|Argus|htdig|Llaut|lycos|Slurp|jbot\b|50\.nu|WIRE|^NING|JNLP|^zao|baidu[a-z]*(?:spider|Mobaider)|(?:[a-z\.']+[ _-]){0,3}[a-z_]*(?:crawler|crawl|scraper|spider|indexer|webbot|robot\b|(?:(?!cubot)[\w-]{2})bot\b| bot(?=@)\b)|[^ \/]\bbot\b)(?:[ /](\d+)(?:\.(\d+))?(?:\.(\d+))?)?(?:(?!CFNetwork).)*$"
       regex_flag: 'i'
-      type: 'bot'
-
+      type: 'bot'        
+        
   ### iOS / OSX Applications
   - group:
     regex: '\b(iPhone|iPad|iPod|CFNetwork)'
@@ -420,9 +416,9 @@ user_agent_parsers:
   - regex: '(python-requests|(?:lib)?curl)(?:/(\d+)\.(\d+)(?:\.(\d+))?)?'
     type: 'headless'
 
-  - regex: '(?:^|[ ;])(Java)[ /]?(\d+)(?:\.(\d+)(?:\.(\d+))?)?'
+  - regex: '(?:^|^Mozilla/\d+\.\d+ (?:\([^\)]+\) )?)(Java)[ /]?(\d+)(?:\.(\d+)(?:\.(\d+))?)?'
     type: 'headless'
-
+    
 
 #### Engine ####
 engine_parsers:
@@ -4820,8 +4816,9 @@ device_parsers:
 
   ##########
   # Spiders (this is hack...)
+  # Sort by length
   ##########
-  - regex: '(bingbot|borg|yahoo|slurp|^NING|MsnBot-Media|msnbot|msrbot|openbot|archiver|netresearch|lycos|scooter|altavista|teoma|Google.*/\+/web/snippet|gigabot|baiduspider|blitzbot|oegp|charlotte|furlbot|http%20client|polybot|htdig|ichiro|mogimogi|larbin|pompos|scrubby|searchsight|seekbot|semanticdiscovery|silk|snappy|speedy|spider|voila|^vortex|^voyager|zao|zeal|fast\-webcrawler|converacrawler|dataparksearch|findlinks|crawler|Netvibes|Sogou Pic Spider|ICC\-Crawler|Innovazion Crawler|Daumoa|EtaoSpider|A6\-Indexer|YisouSpider|Riddler|DBot|wsr\-agent|Xenu|SeznamBot|PaperLiBot|SputnikBot|CCBot|ProoXiBot|Scrapy|bot)'
+  - regex: '(bot|zao|borg|DBot|oegp|silk|Xenu|zeal|^NING|CCBot|crawl|htdig|lycos|slurp|teoma|voila|yahoo|^Java/|^JNLP/|Daumoa|Genieo|ichiro|larbin|msnbot|msrbot|pompos|Scrapy|snappy|speedy|spider|^vortex|bingbot|crawler|favicon|furlbot|gigabot|indexer|openbot|polybot|Riddler|scooter|scraper|scrubby|seekbot|WhatWeb|WinHTTP|^voyager|archiver|blitzbot|Icarus6j|mogimogi|Netvibes|altavista|charlotte|findlinks|ProoXiBot|Retreiver|SeznamBot|TLSProber|WordPress|EtaoSpider|PaperLiBot|SputnikBot|Squrl Java|wsr\-agent|A6\-Indexer|baiduspider|netresearch|searchsight|YisouSpider|ICC\-Crawler|MsnBot-Media|http%20client|Python-urllib|converacrawler|dataparksearch|AppEngine-Google|fast\-webcrawler|Sogou Pic Spider|semanticdiscovery|Innovazion Crawler|facebookexternalhit|Google-HTTP-Java-Client|Google.*/\+/web/snippet)'
     regex_flag: 'i'
     device: 'Spider'
     brand: 'Spider'
