@@ -183,6 +183,17 @@ user_agent_parsers:
   - regex: '(YaBrowser)/(\d+)(?:\.(\d+)(?:\.(\d+))?)?'
     family: 'Yandex Browser'
 
+
+  # PlayStation Vita should go before Amazon Silk
+  - regex: '(PLAYSTATION 3.+WebKit|Nintendo 3DS|PlayStation Vita|AppleWebKit.+ NX)(?:/(\d+)\.(\d+)\.(\d+))?'
+    family: 'NetFront NX'
+  # Amazon Silk, should go before Chrome Mobile and Safari
+  - regex: '(Silk)/(\d+)\.(\d+)(?:\.([0-9\-]+))?'
+    family: 'Amazon Silk'
+
+  # @ref: http://www.puffinbrowser.com
+  - regex: '(Puffin)/(\d+)\.(\d+)(?:\.(\d+))?'
+
   # Chrome Mobile
   - regex: '(CrMo)/(\d+)\.(\d+)\.(\d+)\.(\d+)'
     family: 'Chrome Mobile'
@@ -290,8 +301,6 @@ user_agent_parsers:
   - regex: '(Maxthon|MyIE2|Uzbl|Shiira)'
     v1: '0'
 
-  - regex: '(PLAYSTATION 3.+WebKit|Nintendo 3DS|PlayStation Vita|AppleWebKit.+ NX)(?:/(\d+)\.(\d+)\.(\d+))?'
-    family: 'NetFront NX'
   - regex: '(PLAYSTATION 3|PlayStation Portable)'
     family: 'NetFront'
 
@@ -360,10 +369,6 @@ user_agent_parsers:
   - regex: '\b(E?[Ll]inks)(?: \(|\/)(\d+)\.(\d+)\.?(\d+)?'
 
   - regex: '(QtWeb) Internet Browser/(\d+)\.(\d+)'
-
-  # Amazon Silk, should go before Safari
-  - regex: '(Silk)/(\d+)\.(\d+)(?:\.([0-9\-]+))?'
-    family: 'Amazon Silk'
 
   # Phantomjs, should go before Safari
   - regex: '(PhantomJS|CocoonJS)/(\d+)(?:\.(\d+)(?:\.(\d+))?)?'
@@ -4728,6 +4733,28 @@ device_parsers:
     device: '$1'
     brand: 'WeTab'
     model: '$1'
+
+  #########
+  # Puffin Browser Device detect
+  # A=Android, I=iOS, P=Phone, T=Tablet
+  # AT=Android+Tablet
+  #########
+  - regex: 'Puffin/[\d\.]+IT'
+    device: 'iPad'
+    brand: 'Apple'
+    model: 'iPad'
+  - regex: 'Puffin/[\d\.]+IP'
+    device: 'iPhone'
+    brand: 'Apple'
+    model: 'iPhone'
+  - regex: 'Puffin/[\d\.]+AT'
+    device: 'Generic Tablet'
+    brand: 'Generic'
+    model: 'Tablet'
+  - regex: 'Puffin/[\d\.]+AP'
+    device: 'Generic Smartphone'
+    brand: 'Generic'
+    model: 'Smartphone'
 
   #########
   # Android General Device Matching (far from perfect)

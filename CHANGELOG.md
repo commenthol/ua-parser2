@@ -1,5 +1,10 @@
 # Changelog
 
+**2014-10-30**
+- regexes
+  - Puffin Browser added
+  - Amazon Silk hidden by Chrome
+
 **2014-10-08**
 - regexes
   - Xenu and other Bots added
