@@ -1,5 +1,9 @@
 # Changelog
 
+**2014-11-05**
+- regexes
+  - type bot::healthcheck introduced for Monitors/Loadbalancers
+
 **2014-10-30**
 - regexes
   - Puffin Browser added
