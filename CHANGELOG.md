@@ -1,5 +1,11 @@
 # Changelog
 
+**2014-11-13**
+- regexes
+  - Better detection of ThL, Cubot, HTC One M*
+  - New: Gigaset
+  - New: IE Tech-Preview on Windows10
+
 **2014-11-05**
 - regexes
   - type bot::healthcheck introduced for Monitors/Loadbalancers

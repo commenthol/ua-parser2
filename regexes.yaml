@@ -1,4 +1,4 @@
-version: '0.1.10'
+version: '0.1.11'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 #### Browser ####
@@ -257,6 +257,10 @@ user_agent_parsers:
 
   #### MAIN CASES - this catches > 50% of all browsers ####
 
+  # Windows 10 IE version uses "Edge" and "Chrome"
+  - regex: '\b(Edge)/(\d+)\.(\d+)'
+    family: 'IE'
+
   # iOS Versions of Browsers
   - regex: '(Mercury|Puffin)/(\d{3,5})'
 
@@ -423,7 +427,7 @@ user_agent_parsers:
 
   - regex: '(?:^|^Mozilla/\d+\.\d+ (?:\([^\)]+\) )?)(Java)[ /]?(\d+)(?:\.(\d+)(?:\.(\d+))?)?'
     type: 'headless'
-    
+
 
 #### Engine ####
 engine_parsers:
@@ -462,6 +466,12 @@ engine_parsers:
       type: 'mode::MSIE $1'
 
   - regex: '(Trident|Presto)[ /](\d+)\.(\d+)\.?(\d+)?'
+
+  # Windows 10 IE version uses "Edge" and "Chrome"
+  - regex: '\b(Edge)/(\d+)\.(\d+)'
+    family: 'Trident'
+    v1: '7'
+    v2: '0'
 
   - regex: '(Chrome)[/](\d+)\.(\d+)\.?(\d+)?\.?(\d+)?.*OPR/\d+'
     family: 'Chrome::Opera'
@@ -1722,7 +1732,7 @@ device_parsers:
     # Cubot
     # @ref: http://www.cubotmall.com/
     #########
-    - regex: '; *CUBOT ([^;/]+) Build'
+    - regex: '; *CUBOT[ _]([^;/]+) Build'
       regex_flag: 'i'
       device: '$1'
       brand: 'Cubot'
@@ -2001,6 +2011,19 @@ device_parsers:
       model: '$1 $2'
 
     #########
+    # Gigaset
+    # @ref: http://www.gigaset.com/
+    #########
+    - regex: '; *(Gigaset)[ ]([^/]+) Build'
+      device: '$1 $2'
+      brand: '$1'
+      model: '$2'
+    - regex: '; *(SL930[^/]*) Build'
+      device: 'Gigaset $1'
+      brand: 'Gigaset'
+      model: '$1'
+
+    #########
     # Freescale development boards
     # @ref: http://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=IMX53QSB
     #########
@@ -2141,7 +2164,7 @@ device_parsers:
       brand: 'HTC'
       model: '$1'
     # Android matchers without HTC
-    - regex: '; *(A6277|ADR6200|ADR6300|ADR6350|ADR6400[A-Z]*|ADR6425[A-Z]*|APX515CKT|ARIA|Desire[^_ ]*|Dream|EndeavorU|Eris|Evo|Flyer|HD2|Hero|HERO200|Hero CDMA|HTL21|Incredible|Inspire[A-Z0-9]*|Legend|Liberty|Nexus ?(?:One|HD2)|One|One S C2|One[ _]?(?:S|V|X\+?)\w*|PC36100|PG06100|PG86100|S31HT|Sensation|Wildfire)(?: Build|[/;\(\)])'
+    - regex: '; *(A6277|ADR6200|ADR6300|ADR6350|ADR6400[A-Z]*|ADR6425[A-Z]*|APX515CKT|ARIA|Desire[^_ ]*|Dream|EndeavorU|Eris|Evo|Flyer|HD2|Hero|HERO200|Hero CDMA|HTL21|Incredible|Inspire[A-Z0-9]*|Legend|Liberty|Nexus ?(?:One|HD2)|One|One S C2|One[ _]?(?:M|S|V|X\+?)\w*|PC36100|PG06100|PG86100|S31HT|Sensation|Wildfire)(?: Build|[/;\(\)])'
       regex_flag: 'i'
       device: 'HTC $1'
       brand: 'HTC'
@@ -3540,7 +3563,7 @@ device_parsers:
     # @ref: http://en.thl.com.cn/Mobile
     # @ref: http://thlmobilestore.com
     #########
-    - regex: '; *(?:CJ[ -])?(ThL|THL)[ -]([^;/]+) Build/'
+    - regex: '; *(?:CJ[ -])?(ThL|THL|thl)[ -]([^;/]+) Build/'
       device: '$1 $2'
       brand: 'Thl'
       model: '$2'
