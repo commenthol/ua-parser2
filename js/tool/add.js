@@ -15,15 +15,15 @@ var
 	path = require('path'),
 	cmd = require('commander'),
 	sh = require("shelljs"),
-	SplitStream = require('../test/lib/splitstream'),
-	MapStream = require('../test/lib/mapstream'),
+	splitLine = require('streamss').SplitLine,
+	through = require('streamss').Through,
 	helper = require('../test/lib/helper'),
 	parser = require('../')();
 
 var
 	pwd = sh.pwd(),
 	config = {
-		version: '0.0.1',
+		version: '0.0.2',
 		params: [ 'ua', 'engine', 'os', 'device' ], /// params to print on console
 		testsFile: __dirname + '/../../test_resources/tests.json', /// default tests file
 	};
@@ -63,7 +63,7 @@ function parse(txt, encoding, done) {
 		i,
 		out = [],
 		res;
-		
+
 	res = parser.parse(txt.toString());
 	res = helper.compact.strip(res);
 
@@ -74,7 +74,7 @@ function parse(txt, encoding, done) {
 		});
 		console.log(out.join('\n') + '\n');
 	}
-	
+
 	config.params.forEach(function(p){
 		if (res[p] && res[p].debug) { delete(res[p].debug); }
 	});
@@ -86,7 +86,7 @@ function parse(txt, encoding, done) {
 /*
  * the pipe - appending new parse results to the tests output
  */
-fs.createReadStream(config.uaFile)
-	.pipe(new SplitStream())
-	.pipe(new MapStream({ map: parse }))
+fs.createReadStream(config.uaFile, { encoding: 'utf8' })
+	.pipe(splitLine({chomp: true}))
+	.pipe(through(parse))
 	.pipe(fs.createWriteStream(config.testsFile, { flags: 'a', encoding: 'utf8'}));

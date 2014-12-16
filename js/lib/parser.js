@@ -8,7 +8,7 @@ function replaceMatches(str, m) {
   return str.replace(/\${(\d+)}|\$(\d+)/g, function(tmp, i, j) {
     return m[(i||j)] || '';
   }).trim();
-};
+}
 
 function parser (regexes, options) {
 	var

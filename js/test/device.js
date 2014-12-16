@@ -1,5 +1,7 @@
 'use strict';
 
+/* global describe, it */
+
 var
 	assert = require('assert'),
 	path = require('path'),
@@ -68,7 +70,7 @@ describe('Device parser', function() {
       regex: '(foo)',
       device: '$1bar'
     }], options).parse;
-  
+
     var device = parse('foo');
     assert.strictEqual(device.family, 'foobar');
   });

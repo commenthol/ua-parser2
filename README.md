@@ -5,7 +5,7 @@ ua-parser2
 
 This is an improved fork from [ua-parser][ua-parser] which contains the following changes documented in the [Changelog][chan].
 
-The crux of the original parser--the data collected by [Steve Souders][stev] over the years--has been extracted into a separate [YAML file][yaml] so as to be reusable _as is_ by implementations in other programming languages.
+The crux of the original parser --the data collected by [Steve Souders][stev] over the years-- has been extracted into a separate [YAML file][yaml] so as to be reusable _as is_ by implementations in other programming languages.
 
 The main differences to [ua-parser][ua-parser] are:
 
@@ -113,6 +113,12 @@ console.log(p.parseOS(userAgent).toString());
 console.log(p.parseDevice(userAgent).toString());
 //> "Apple iPhone"
 ```
+
+## Contribution and License Agreement
+
+If you contribute code to this project, you are implicitly allowing your code to be distributed under the MIT license.
+For contribution to the `regexes.yaml` you are implicitly allowing your code to be distributed under the Apache License license
+You are also implicitly verifying that all code is your original work.
 
 ## License
 

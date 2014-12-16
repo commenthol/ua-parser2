@@ -11,8 +11,9 @@ var
 	path = require('path'),
 	cmd = require('commander'),
 	sh = require("shelljs"),
-	JsonStream = require('../test/lib/jsonstream'),
-	MapStream = require('../test/lib/mapstream'),
+	splitLine = require('streamss').SplitLine,
+	jsonArray = require('streamss').JsonArray,
+	through = require('streamss').Through,
 	helper = require('../test/lib/helper'),
 	parser = require('../')();
 
@@ -24,10 +25,10 @@ var
 	start = Date.now(),
 	count = 0,
 	config = {
-		version: '0.0.1',
+		version: '0.0.2',
 		params: [ 'ua', 'engine', 'os', 'device' ],
 		testsFile: basedir + '/tests.json',      // default tests file
-		outFile:   basedir + '/new-tests.json',  // new generated tests file 
+		outFile:   basedir + '/new-tests.json',  // new generated tests file
 		badFile:   basedir + '/bad-tests.json'   // file containing bad matches
 	};
 
@@ -74,9 +75,9 @@ function parseDone() {
 		'\n' +
 		'    Processing took: ' + (time/1000|0) + ' s\n' +
 		'    Number of User-Agents: ' + count + '\n' +
-		'    Avg: ' + (((time*1000/count)|0)/1000) + ' ms per User-Agent\n' 
+		'    Avg: ' + (((time*1000/count)|0)/1000) + ' ms per User-Agent\n'
 	);
-	
+
 	if (badAgents.length > 0) {
 		console.error('    Failing tests: ' + badAgents.length + '\n');
 		fs.writeFileSync(config.badFile, badAgents.join('\n'), 'utf8');
@@ -95,7 +96,7 @@ function parse(obj, encoding, done) {
 		res, resStr;
 
 	count += 1;
-	
+
 	res = parser.parse(obj.string);
 	res = helper.compact.strip(res);
 
@@ -144,7 +145,8 @@ function parse(obj, encoding, done) {
 /*
  * the pipe - appending new parse results to the tests output
  */
-fs.createReadStream(config.testsFile)
-	.pipe(new JsonStream())
-	.pipe(new MapStream({ map: parse, onfinish: parseDone }))
+fs.createReadStream(config.testsFile, { encoding: 'utf8' })
+	.pipe(splitLine({chomp: true}))
+	.pipe(jsonArray.parse())
+	.pipe(through.obj(parse, parseDone))
 	.pipe(fs.createWriteStream(config.outFile, { flags: 'w', encoding: 'utf8'}));

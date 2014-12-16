@@ -5,8 +5,9 @@
 var
 	assert = require('assert'),
 	fs = require('fs'),
-	JsonStream = require('./lib/jsonstream'),
-	MapStream = require('./lib/mapstream'),
+	splitLine = require('streamss').SplitLine,
+	jsonArray = require('streamss').JsonArray,
+	through = require('streamss').Through,
 	helper = require('./lib/helper'),
 	parser = require('../')();
 
@@ -18,7 +19,7 @@ var
 
 function msg(name, actual, expected, string) {
 	string = (string ? string + '\n' : '' );
-	return string + name + 
+	return string + name +
 		"\n     is: " + JSON.stringify(actual) +
 		"\n should: " + JSON.stringify(expected);
 }
@@ -53,11 +54,15 @@ if (! fs.existsSync(config.tests) ){
 }
 
 describe('tests', function(){
-	this.timeout(500000);
-	
-	it('exec', function(done){
+	this.timeout(50000);
+
+	it('exec', function(testDone){
 		fs.createReadStream(config.tests)
-			.pipe(new JsonStream())
-			.pipe(new MapStream({ map: test, onfinish: done }));
+			.pipe(splitLine({chomp: true}))
+			.pipe(jsonArray.parse())
+			.pipe(through.obj(test, function(){
+					testDone();
+				})
+			);
 	});
 });

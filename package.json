@@ -2,9 +2,9 @@
   "name": "ua-parser2",
   "description": "An improved user agent parser.",
   "main": "./js/index",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=0.8.0"
   },
   "maintainers": [
     {
@@ -61,12 +61,14 @@
     "yamlparser": ">=0.0.2"
   },
   "devDependencies": {
-    "commander": "^2.3.0",
+    "commander": ">=2.3.0",
     "mocha": "*",
-    "shelljs": "^0.3.0"
+    "shelljs": ">=0.3.0",
+    "streamss": ">=0.1.0"
   },
   "scripts": {
     "prepublish": "js/tool/quick.sh",
-    "test": "cd js && mocha && mocha test/load/*.mocha.js"
+    "test": "cd js && mocha && mocha test/load/*.mocha.js",
+    "lint": "jshint js/*.js js/*/*.js"
   }
 }

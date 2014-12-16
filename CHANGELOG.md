@@ -1,5 +1,10 @@
 # Changelog
 
+**2014-12-16**
+- tests
+  - Change to [streamss](http://github.com/commenthol/streamss) for all test cases.
+  - Tests now also run on Node v0.8.x
+
 **2014-11-13**
 - regexes
   - Better detection of ThL, Cubot, HTC One M*
