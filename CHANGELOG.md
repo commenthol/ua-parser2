@@ -1,5 +1,9 @@
 # Changelog
 
+**2014-12-17
+- regexes
+  - ua: Opera Coast and Opera Mini
+
 **2014-12-16**
 - tests
   - Change to [streamss](http://github.com/commenthol/streamss) for all test cases.

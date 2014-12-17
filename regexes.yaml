@@ -125,7 +125,7 @@ user_agent_parsers:
     family: 'My Internet Browser'
 
   - group:
-    regex: 'Opera|OPR'
+    regex: 'Opera|OPR|OPiOS|Coast'
 
     # Opera will stop at 9.80 and hide the real version in the Version string.
     # see: http://dev.opera.com/articles/view/opera-ua-string-changes/
@@ -148,6 +148,14 @@ user_agent_parsers:
     # Opera 15 for Desktop is similar to Chrome but includes an "OPR" Version string.
     - regex: '(?:Chrome).*(OPR)/(\d+)\.(\d+)\.(\d+)'
       family: 'Opera'
+
+    # Opera Coast
+    - regex: '(Coast)/(\d+).(\d+).(\d+)'
+      family: 'Opera Coast'
+
+    # Opera Mini for iOS (from version 8.0.0)
+    - regex: '(OPiOS)/(\d+).(\d+).(\d+)'
+      family: 'Opera Mini'
 
   # Palm WebOS looks a lot like Safari.
   - regex: '(hpw|web)OS/(\d+)\.(\d+)(?:\.(\d+))?'
