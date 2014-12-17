@@ -17,9 +17,12 @@ function parser (regexes, options) {
 
 	self.options = options || {};
 
+	function _regexp(obj) {
+		return (obj.regex && obj.regex_flag ? new RegExp(obj.regex, obj.regex_flag) : new RegExp(obj.regex));
+	}
+
 	function _make(obj) {
-		var
-			regexp = (obj.regex_flag ? new RegExp(obj.regex, obj.regex_flag) : new RegExp(obj.regex));
+		var regexp = _regexp(obj);
 
 		if (obj.group) {
 			return _makeGroup(obj);
@@ -65,7 +68,7 @@ function parser (regexes, options) {
 
 	function _makeGroup(obj) {
 		var
-			regexp = (obj.regex_flag ? new RegExp(obj.regex, obj.regex_flag) : new RegExp(obj.regex)),
+			regexp = _regexp(obj),
 			parsers = (obj.group||[]).map(_make);
 
 		function parseGroup (str) {

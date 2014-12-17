@@ -3,6 +3,9 @@
 **2014-12-17
 - regexes
   - ua: Opera Coast and Opera Mini
+  - ua: escaped ' in bot regex solved
+- parser
+  - simplification with regex gen
 
 **2014-12-16**
 - tests

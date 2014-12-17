@@ -3,13 +3,13 @@
 var path = require('path'),
 		fs = require('fs'),
 		yaml = require('yamlparser');
-		
+
 /**
  * ua-parser
- * 
+ *
  * @param {Object|string} options - (optional) if "undefined" than default file is choosen. If string is given than that file is used.
  * @property {string} options.file - filename used as regexes file.
- */ 
+ */
 module.exports = function(options) {
 
 	var
@@ -114,8 +114,8 @@ module.exports = function(options) {
 	 * @param {Object} options
 	 */
 	var setOptions = function (options) {
-		var i; 
-		
+		var i;
+
 		options = options || config;
 		options.file = options.file || config.file;
 
@@ -243,6 +243,6 @@ module.exports = function(options) {
 			console.error(err);
 		}
 	}
-	
+
 	return uaParser;
 };
