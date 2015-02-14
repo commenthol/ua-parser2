@@ -1,3 +1,6 @@
 /node_modules
 /tmp
 /*.tgz
+/*.bak
+/test_resources/bad-tests.json
+/test_resources/new-tests.json

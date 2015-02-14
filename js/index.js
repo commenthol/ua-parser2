@@ -1,8 +1,9 @@
 "use strict";
 
 var path = require('path'),
-		fs = require('fs'),
-		yaml = require('yamlparser');
+	fs = require('fs'),
+	yaml = require('yamlparser'),
+	extend = require('util')._extend;
 
 /**
  * ua-parser
@@ -116,8 +117,7 @@ module.exports = function(options) {
 	var setOptions = function (options) {
 		var i;
 
-		options = options || config;
-		options.file = options.file || config.file;
+		options = extend(config, options);
 
 		for (i in config) {
 			if (i !== "file" && options[i]) {

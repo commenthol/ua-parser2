@@ -1,5 +1,58 @@
 # Changelog
 
+**2015-02-14**
+- parser
+  - fix problem with node v0.12
+- regexes
+  - device_parsers
+    - Huawei: Honor, H60-L*, OrangeLuno, OrangeYumo
+    - Samsung: GT-Xperia S
+    - Acer: A1-000FHD, A3-A00FHD, B1-000FHD, b1-000, E39, E320, E380, E400, S55, S56, S500, S510, S520, Z140, Z150, Z160, Z200, Z410, Z500
+    - Alcatel: 4032X, 5038D, 5050X, 5050Y, 6016D, 6016X, 6036Y, 6037Y, 6043D, 6050Y,     Vodafone_Smart_II, Orange Infinity 8008X, Orange Hiro, Orange Yomi, Telenor Smart, Telenor Smart, Telenor_One_Touch_S, move 2, BS471, I213, Mobile Sosh, MTC975, smart_a17
+    - Asus: K007, K010, K011, K013, K014, K015, K016, K017, K018, K019, TX201LA
+    - Avus: New brand
+    - Blackview: New brand
+    - bq: Aquaris
+    - CAT: B15, B15Q
+    - Coolpad: Improvement
+    - Cubot: GT89, GT90, GT91, P6, P7, P9, P10, S108, S168, S200, S208, S222, S308, s350, T9, X6, X9
+    - Doogee: New brand
+    - Doro: New brand
+    - Elephone: New brand
+    - Enot: Fix regexes
+    - Fairphone: New brand
+    - Gionee: E7
+    - GoClever: ARIES
+    - Haier: HW-W718, HW-W910, W867
+    - Hannspree: HSG1279, HSG1281, HSG1291, HSG1297
+    - HTC: A320a, Z520m, HTL22, 801a, Nexus 9, PJ83100, ADR6410
+    - InFocus: New brand
+    - Jaytech: TPC-PA10.1M, TPC-PA1070, TPC-PA762, TPC-PA777, TPC-PA7815, TPC-PA9702, TPC-PX753, TPC-81203G
+    - Kazam: New brand
+    - Kiano: New brand
+    - Landvo: New brand
+    - Lenovo: YOGA pad
+    - Mobiwire: New brand
+    - Motorola: Refactor Xoom, RAZR HD, Nexus 6
+    - Neken: New brand
+    - Newman: New brand
+    - Nook: BNTV250A
+    - Oneplus: New Brand
+    - Odys: ARIA, AVIATOR, CONNECT7PRO, CONNECT8PLUS, GATE, INTELLITAB7, JUNIORTAB, MIRON, Motion, PRO_Q8, SKYPLUS3G, UNO_X10, VISIO, XelioPT2Pro
+    - Phicomm: i600, i813w
+    - Prestigio: PSP, PMT
+    - Trekstor: VT10416, Surftab, breeze, xiron
+    - Smartbook: New brand
+    - SonyEricsson: R800a
+    - Sony: S39h
+    - Switel: New brand
+    - Thl: W200S, T100S
+    - Umi: New brand
+    - Wiko: BIRDY, GETAWAY, GOA, HIGHWAY SIGNS, IGGY, JIMMY, KITE, LENNY, RIDGE, RIDGE FAB, SLIDE, SUNSET
+    - Xiaomi: HM devices
+    - Xoro: New devices
+    - Amazon: 4th Gen Devices
+
 **2014-12-17
 - regexes
   - ua: Opera Coast and Opera Mini
