@@ -1,18 +1,37 @@
 # Changelog
 
-**2015-02-15**
+**2015-03-11** v0.1.15
 - regexes
   - user_agent_parsers
+    - Firefox: Better version detection using rv:
     - fix Phoenix: Fly Phoenix 2
+  - os_parsers
+    - Android: Better version detection
+    - X11, Macintosh: Detection
+    - fix Android Donut to version 1.6
+  - device_parsers
+    - ionik: TU-1201A, TU-1489A, TU-7851A
+    - Jaytech: TPC_PX753, TPC-PA10.1M
+    - Denver: PO#xxxx
+    - MyPhone: Better detection
+    - Medion: 4001, 4004
+    - Ramos: New brand
+    - Runbo: New brand
+    - xiaomi: New devices mipad
+    - mysaga: New brand
+    - Leagoo: New brand
     - fix SonyEricsson X\d{2,3} devices (move to Generic_Android)
+    - fix SonyEricsson E\d{4} devices
     - Brondi: New brand
     - NGM: New brand
     - Odys: NERON
     - ZTE: OpenC
     - Xtouch: New brand
     - Xianghe: inproved regex
+    - Windows Phones: improved parsers
+- update to contributing
 
-**2015-02-14**
+**2015-02-14** v0.1.14
 - parser
   - fix problem with node v0.12
 - regexes

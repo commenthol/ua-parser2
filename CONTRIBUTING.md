@@ -9,17 +9,18 @@ Contributing to the project, especially `regexes.yaml`, is both welcomed and enc
 3. Modify `regexes.yaml` as appropriate
 
 4. Create a text-file (e.g. ua.txt) which contains the User-Agent Strings (seperated by newline) you want to add to the testset in `./test_resources/tests.json`
+   Please consider only real user-agents catched from your server logs for this file.
 
 5. Run
 
         ./js/tool/add.js -u ua.txt -t check.json
-       
+
    Check the results in `check.json`
 
 6. If you are sure that all is ok, run
    `./js/tool/add.js -u ua.txt`
 
-7. Run all tests with `npm test` 
+7. Run all tests with `npm test`
 
 8. Push your branch to GitHub and submit a pull request
 
@@ -39,11 +40,11 @@ If you encounter that parsing results are too coarse or even wrong you will enco
 
         ./js/tool/regen.js -c
 
-2. At this stage really check that you did not miss out something. 
+2. At this stage really check that you did not miss out something.
 
         diff test_resources/tests.js test_resources/new-tests.json
 
-3. If you need to rerun tests and do not want to perform the full test-set, the previous tests for the bad-matching tests are stored in `./test_resources/bad-tests.json`. 
+3. If you need to rerun tests and do not want to perform the full test-set, the previous tests for the bad-matching tests are stored in `./test_resources/bad-tests.json`.
 
         cp test_resources/bad-tests.json .
         ./js/tool/regen.js -i bad-tests.json -c
@@ -52,18 +53,18 @@ If you encounter that parsing results are too coarse or even wrong you will enco
 
         ./js/tool/regen.js -c
         diff test_resources/tests.js test_resources/new-tests.json
-        
+
 4. All is ok now, then replace the test-set
 
         cp  test_resources/new-tests.js test_resources/tests.json
 
    And rerun all tests
-       
+
         npm test
 
 ## Find the right Regex-Matcher
 
 The tool `./js/tool/debuginfo.js` adds for each regex in `regexes.yaml` a debug information which makes it easier together with `regen.js -c` to identify the matching regular-expression for a failed test.
 
-Rerunning the tool removes the debuginfo again. 
+Rerunning the tool removes the debuginfo again.
 
