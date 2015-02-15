@@ -1,5 +1,17 @@
 # Changelog
 
+**2015-02-15**
+- regexes
+  - user_agent_parsers
+    - fix Phoenix: Fly Phoenix 2
+    - fix SonyEricsson X\d{2,3} devices (move to Generic_Android)
+    - Brondi: New brand
+    - NGM: New brand
+    - Odys: NERON
+    - ZTE: OpenC
+    - Xtouch: New brand
+    - Xianghe: inproved regex
+
 **2015-02-14**
 - parser
   - fix problem with node v0.12
