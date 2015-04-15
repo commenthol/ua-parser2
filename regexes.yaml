@@ -569,6 +569,11 @@ os_parsers:
     - regex: '(Windows ?CE)'
       family: 'Windows CE'
 
+    - regex: '(Windows NT 6\.4)'
+      family: 'Windows 10'
+    - regex: '(Windows NT 10\.0|Windows 10\.0)'
+      family: 'Windows 10'
+
     - regex: '(Windows NT 6\.3; ARM;)'
       family: 'Windows RT 8.1'
     - regex: '(Windows NT 6\.3|CYGWIN_NT-6\.3|Windows 8.1)'
@@ -1438,7 +1443,7 @@ device_parsers:
       device: '$1$2'
       brand: 'Allview'
       model: '$2'
-    - regex: '; *(ALLVIEW[ _]?|Allview[ _]?)?(AX1_Shine|AX2_Frenzy|X\d_Soul|X\d_mini_Soul|X2_Twin|V\d_Viper[^;/]|E2_Living|A5Smiley|P5|P5_Quad|P6_Quad|P6Life) Build'
+    - regex: '; *(ALLVIEW[ _]?|Allview[ _]?)?(AX1_Shine|AX2_Frenzy|AX4Nano|X\d_Soul|X\d_mini_Soul|X2_Twin|V\d_Viper[^;/]|E2_Living|A5Smiley|P5|P5_Quad|P6_Quad|P6Life) Build'
       device: '$1$2'
       brand: 'Allview'
       model: '$2'
@@ -2288,6 +2293,16 @@ device_parsers:
       model: '$1'
 
     #########
+    # G-Tide
+    # @ref: http://www.g-tidemobile.com
+    #########
+    - regex: '; *(G-TiDE)[ ]([^/]+) Build'
+      regex_flag: i
+      device: 'G-Tide $2'
+      brand: 'G-Tide'
+      model: '$2'
+
+    #########
     # Freescale development boards
     # @ref: http://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=IMX53QSB
     #########
@@ -2640,7 +2655,7 @@ device_parsers:
     #########
     - regex: '; *(JY-[^;/]+|G[234]S?) Build'
       device: '$1'
-      brand: 'Jiayu'
+      brand: 'JiaYu'
       model: '$1'
 
     #########
@@ -2665,7 +2680,7 @@ device_parsers:
       device: '$1'
       brand: 'Karbonn'
       model: '$1'
-    - regex: '; *(A11|A39|A37|A34|ST8|ST10|ST7|Smart Tab3|Smart Tab2|Titanium S\d) +Build'
+    - regex: '; *(A1\d|A34|A37|A39|ST8|ST10|ST7|Smart Tab3|Smart Tab2|Titanium S\d) +Build'
       device: '$1'
       brand: 'Karbonn'
       model: '$1'
@@ -3071,7 +3086,7 @@ device_parsers:
       model: '$1'
       device: 'smartphone'
     # be carefull here with Acer e.g. A500
-    - regex: '; *(A\d{2}|A[12]\d{2}|A90S|A110Q|X505) Build'
+    - regex: '; *(A[02-9]\d|A[12]\d{2}|A90S|A110Q|X505) Build(?:(?!QMobile).)*$'
       regex_flag: 'i'
       device: 'Micromax $1'
       brand: 'Micromax'
@@ -3213,7 +3228,7 @@ device_parsers:
     # Mytab
     # @ref: http://www.mytab.eu/en/category/mytab-products/
     #########
-    - regex: '; *(myTab[^;/]*) Build'
+    - regex: '; *(my(?:Tab|TAB)[^;/]*) Build'
       device: '$1'
       brand: 'Mytab'
       model: '$1'
@@ -3617,11 +3632,15 @@ device_parsers:
       device: '$1 $2'
       brand: 'Qmobile'
       model: '$1 $2'
-    - regex: '; *(Q[Mm]obile)_([^_]+)_([^_]+) Build'
+    - regex: '; *(A\d+) Build.*QMobile'
+      device: '$1'
+      brand: 'Qmobile'
+      model: '$1 $2'
+    - regex: '; *(Q[Mm]obile)_([^_]+)_([^_;/\)]+)(?: Build|\)|;)'
       device: 'Qmobile $2 $3'
       brand: 'Qmobile'
       model: '$2 $3'
-    - regex: '; *(Q\-?[Mm]obile)[_ ](A[^;/]+) Build'
+    - regex: '; *(Q[Mm]obile)[_ ]([^;/\)]+)(?: Build|\)|;)'
       device: 'Qmobile $2'
       brand: 'Qmobile'
       model: '$2'
@@ -5026,6 +5045,11 @@ device_parsers:
   - group:
     regex: 'HbbTV'
     - regex: '(HbbTV)/[0-9]+\.[0-9]+\.[0-9]+ \([^;]*; *(LG)E *; *([^;]*) *;[^;]*;[^;]*;\)'
+      device: '$1'
+      brand: '$2'
+      model: '$3'
+      type: 'tv'
+    - regex: '(HbbTV)/1\.1\.1.*CE-HTML/1\.\d;Vendor/([^;]+);(?:.*SW-Version/.*(LF[^;]+);)?'
       device: '$1'
       brand: '$2'
       model: '$3'

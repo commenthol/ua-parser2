@@ -1,5 +1,15 @@
 # Changelog
 
+**2015-04-15** v0.1.16
+- regexes
+  - os_parsers:
+    - Windows 10
+  - device_parsers:
+    - Karbonn: A10, A12, A15 ... are not Micromax
+    - QMobile: improved regex
+    - Allview AX4Nano
+    - HbbTV Thomson
+
 **2015-03-11** v0.1.15
 - regexes
   - user_agent_parsers
@@ -27,7 +37,7 @@
     - Odys: NERON
     - ZTE: OpenC
     - Xtouch: New brand
-    - Xianghe: inproved regex
+    - Xianghe: improved regex
     - Windows Phones: improved parsers
 - update to contributing
 
