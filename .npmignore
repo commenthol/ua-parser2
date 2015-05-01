@@ -3,6 +3,7 @@
 .jshintrc
 .travis.yml
 npm-debug.log
+Makefile
 *.tgz
 *.bak
 *.sh

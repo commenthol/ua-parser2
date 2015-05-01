@@ -1,7 +1,8 @@
 ua-parser2
 ==========
 
-[![Build Status](https://secure.travis-ci.org/commenthol/ua-parser2.png?branch=master)](https://travis-ci.org/commenthol/ua-parser2)
+[![NPM version](https://badge.fury.io/js/ua-parser2.svg)](https://www.npmjs.com/package/ua-parser2/)
+[![Build Status](https://secure.travis-ci.org/commenthol/ua-parser2.svg?branch=master)](https://travis-ci.org/commenthol/ua-parser2)
 
 This is an improved fork from [ua-parser][ua-parser] which contains the following changes documented in the [Changelog][chan].
 
