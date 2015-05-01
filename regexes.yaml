@@ -1,4 +1,4 @@
-version: '0.1.15'
+version: '0.1.17'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 #### Browser ####
@@ -274,7 +274,7 @@ user_agent_parsers:
 
   # Browser/major_version.minor_version(.beta_version)
   - regex: '(Phoenix)/(\d+)(?:\.(\d+)(?:\.(\d+))?)?'
-  - regex: '(Abrowser|AdobeAIR|amaya|Amiga-AWeb|AmigaVoyager|ANTFresco|ANTGalio|Arora|Bolt|BOLT|Bunjalloo|Crazy Browser|Chromium|ChromePlus|CoolNovo|Demeter|Dillo|Dolfin|Dolphin http client|Epiphany|EspialTVBrowser|Espial|Fennec|FireWeb|Fluid|Fresco|Galeon|Googlebot|Google Earth(?: EC)?|HbbTV|HotJava|IBrowse|iCab|Iceape|ICE Browser|IceCat|Iceweasel|IceWeasel|iRider|OneBrowser|Iris|Iron|Jasmine|Kapiko|Kazehakase|Kindle|K-Meleon|Lobo|Lunascape|Lynx|Maemo Browser|Maxthon|mDolphin|Mercury|MiniBrowserMobile|Midori|Minimo|Net[Ff]ront|NetFrontLifeBrowser|NetPositive|Netscape|NetSurf|OmniWeb|Opera|Opera Mini|Orca|PaleMoon|Planetweb|Polaris|Puffin|PyAMF|Raven for Mac|RockMelt|SailfishBrowser|SeaMonkey|Shiira|SkipStone|Skyfire|Sleipnir|Snowshoe|Space Bison|Stainless|Sunrise|ThunderBrowse|UP\.Browser|Vienna|WebPilot|WebPositive|Xiino)[/ ](\d+)(?:\.(\d+)(?:\.(\d+))?)?'
+  - regex: '(Abrowser|AdobeAIR|amaya|Amiga-AWeb|AmigaVoyager|ANTFresco|ANTGalio|Arora|Bolt|BOLT|Bunjalloo|Crazy Browser|Chromium|ChromePlus|CoolNovo|Demeter|Dillo|Dolfin|Dolphin http client|Epiphany|EspialTVBrowser|Espial|Fennec|FireWeb|Fluid|Fresco|Galeon|Googlebot|Google Earth(?: EC)?|HbbTV|HotJava|IBrowse|iCab|Iceape|ICE Browser|IceCat|Iceweasel|IceWeasel|iRider|OneBrowser|Iris|Iron|Jasmine|Kapiko|Kazehakase|Kindle|K-Meleon|Lobo|Lunascape|Lynx|Maemo Browser|Maxthon|mDolphin|Mercury|MiniBrowserMobile|Midori|Minimo|Net[Ff]ront|NetFrontLifeBrowser|NetPositive|Netscape|NetSurf|OmniWeb|Opera|Opera Mini|Orca|PaleMoon|Planetweb|Polaris|Puffin|PyAMF|Raven for Mac|RockMelt|SailfishBrowser|SeaMonkey|Shiira|SkipStone|Skyfire|Sleipnir|Snowshoe|Space Bison|Stainless|Sunrise|ThunderBrowse|UP\.Browser|Vienna|Vivaldi|WebPilot|WebPositive|Xiino)[/ ](\d+)(?:\.(\d+)(?:\.(\d+))?)?'
 
   # Chrome needs to come after as it hides a lot of browsers from previous regex
   - regex: '(Chrome)[/ ](\d+)(?:\.(\d+)(?:\.(\d+))?)?'

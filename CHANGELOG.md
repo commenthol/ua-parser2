@@ -1,5 +1,10 @@
 # Changelog
 
+**2015-05-01** v0.1.17
+- regexes
+  - ua_parsers
+    - Vivaldi (http://vivaldi.com/)
+
 **2015-04-15** v0.1.16
 - regexes
   - os_parsers:
