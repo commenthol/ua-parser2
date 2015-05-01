@@ -1,8 +1,17 @@
 # Changelog
 
+**2015-05-01** v0.1.18
+- regexes
+  - user_agent_parsers
+    - MacAppStore
+    - bot: websitepulse checker
+  - os_parsers
+    - "MacOS X" and "Mac OS X Mach-0"
+    - iTunes User-Agents
+
 **2015-05-01** v0.1.17
 - regexes
-  - ua_parsers
+  - user_agent_parsers
     - Vivaldi (http://vivaldi.com/)
 
 **2015-04-15** v0.1.16
