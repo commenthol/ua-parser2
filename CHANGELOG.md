@@ -1,5 +1,11 @@
 # Changelog
 
+**2015-05-17** v0.1.21
+- regexes
+  - device_parsers
+    - Karbonn, EverCoss, Toshiba, Blu, Alcatel, Gionee, Sharp, Aoc, Asus, Hisense, Lenovo, LG, ZTE, Amazon devices
+    - new brand ADVAN, TWM, Yezz, Symphony, Vonino, NYX, Bangho
+
 **2015-05-14** v0.1.20
 - regexes
   - os_parsers

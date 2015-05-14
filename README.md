@@ -27,7 +27,7 @@ Please read the [contributors' guide][guid]
 A [Specification][spec], e.g. for porting into other computer languages of the parsing rules for the `regexes.yaml` file is available.
 
 
-## Usage [node.js][node]
+## Usage
 
 [API Documentation][api]
 

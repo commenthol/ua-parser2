@@ -13,12 +13,12 @@ Contributing to the project, especially `regexes.yaml`, is both welcomed and enc
 
 5. Run
 
-        ./js/tool/add.js -u ua.txt -t check.json
+        ./js/bin/add.js -u ua.txt -t check.json
 
    Check the results in `check.json`
 
 6. If you are sure that all is ok, run
-   `./js/tool/add.js -u ua.txt`
+   `./js/bin/add.js -u ua.txt`
 
 7. Run all tests with `npm test`
 
@@ -38,7 +38,7 @@ If you encounter that parsing results are too coarse or even wrong you will enco
 
 1. To easily change the test-set contained in `./test_resources/tests.json` do the following.
 
-        ./js/tool/regen.js -c
+        ./js/bin/regen.js -c
 
 2. At this stage really check that you did not miss out something.
 
@@ -47,11 +47,11 @@ If you encounter that parsing results are too coarse or even wrong you will enco
 3. If you need to rerun tests and do not want to perform the full test-set, the previous tests for the bad-matching tests are stored in `./test_resources/bad-tests.json`.
 
         cp test_resources/bad-tests.json .
-        ./js/tool/regen.js -i bad-tests.json -c
+        ./js/bin/regen.js -i bad-tests.json -c
 
    When all is as you expect re-run Step 1. and Step 2.
 
-        ./js/tool/regen.js -c
+        ./js/bin/regen.js -c
         diff test_resources/tests.js test_resources/new-tests.json
 
 4. All is ok now, then replace the test-set
@@ -64,7 +64,7 @@ If you encounter that parsing results are too coarse or even wrong you will enco
 
 ## Find the right Regex-Matcher
 
-The tool `./js/tool/debuginfo.js` adds for each regex in `regexes.yaml` a debug information which makes it easier together with `regen.js -c` to identify the matching regular-expression for a failed test.
+The tool `./js/bin/debuginfo.js` adds for each regex in `regexes.yaml` a debug information which makes it easier together with `regen.js -c` to identify the matching regular-expression for a failed test.
 
 Rerunning the tool removes the debuginfo again.
 
