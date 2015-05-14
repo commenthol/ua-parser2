@@ -1,4 +1,4 @@
-version: '0.1.19'
+version: '0.1.20'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 #### Browser ####
@@ -616,7 +616,7 @@ os_parsers:
     - regex: '(Win16|Win ?3.\1|Windows 3\.1)'
       family: 'Windows 3.1'
 
-    - regex: '(Windows)'
+    - regex: '(Windows)(?:(?!CFNetwork).)*$'
 
   - group:
     regex: '(?:Ali)?(YunOS)'
@@ -844,29 +844,21 @@ os_parsers:
   # @ref: http://user-agents.me/cfnetwork-version-list
   ##########
   - group:
-    regex: 'Mac|Darwin'
-    - regex: '((?:Mac ?|; )OS X) (?:(\d+)[_.](\d+)(?:[_.](\d+))?|Mach-O)'
+    regex: 'Mac|Darwin|CFNetwork'
+
+    - regex: '((?:Mac ?|; )OS X)[\s/](?:(\d+)[_.](\d+)(?:[_.](\d+))?|Mach-O)'
       family: 'Mac OS X'
-    # Leopard
-    - regex: ' (Dar)(win)/(9).(\d+).*\((?:i386|x86_64|Power Macintosh)\)'
-      family: 'Mac OS X'
-      v1: '10'
-      v2: '5'
-    # Snow Leopard
-    - regex: ' (Dar)(win)/(10).(\d+).*\((?:i386|x86_64)\)'
+
+    # Yosemite
+    - regex: 'CFNetwork/720\.(\d).* Darwin/14\.\d+'
       family: 'Mac OS X'
       v1: '10'
-      v2: '6'
-    # Lion
-    - regex: ' (Dar)(win)/(11).(\d+).*\((?:i386|x86_64)\)'
+      v2: '10'
+      v3: '$1'
+    - regex: ' (Dar)(win)/(14)\.0\.0.*\((?:i386|x86_64)\)'
       family: 'Mac OS X'
       v1: '10'
-      v2: '7'
-    # Mountain Lion
-    - regex: ' (Dar)(win)/(12).(\d+).*\((?:i386|x86_64)\)'
-      family: 'Mac OS X'
-      v1: '10'
-      v2: '8'
+      v2: '10'
     # Mavericks
     - regex: ' (Dar)(win)/(13)\.0\.2.*\((?:i386|x86_64)\)'
       family: 'Mac OS X'
@@ -892,7 +884,36 @@ os_parsers:
       family: 'Mac OS X'
       v1: '10'
       v2: '9'
-
+    # Mountain Lion
+    - regex: 'CFNetwork/596\.(\d).* Darwin/12'
+      family: 'Mac OS X'
+      v1: '10'
+      v2: '8'
+      v3: '$1'
+    - regex: ' (Dar)(win)/(12).(\d+).*\((?:i386|x86_64)\)'
+      family: 'Mac OS X'
+      v1: '10'
+      v2: '8'
+    # Lion
+    - regex: 'CFNetwork/520\.(\d).* Darwin/11'
+      family: 'Mac OS X'
+      v1: '10'
+      v2: '7'
+      v3: '$1'
+    - regex: ' (Dar)(win)/(11).(\d+).*\((?:i386|x86_64)\)'
+      family: 'Mac OS X'
+      v1: '10'
+      v2: '7'
+    # Snow Leopard
+    - regex: ' (Dar)(win)/(10).(\d+).*\((?:i386|x86_64)\)'
+      family: 'Mac OS X'
+      v1: '10'
+      v2: '6'
+    # Leopard
+    - regex: ' (Dar)(win)/(9).(\d+).*\((?:i386|x86_64|Power Macintosh)\)'
+      family: 'Mac OS X'
+      v1: '10'
+      v2: '5'
     # builds before tiger don't seem to specify version?
 
     # ios devices spoof (mac os x), so including intel/ppc prefixes
@@ -910,7 +931,15 @@ os_parsers:
   # http://en.wikipedia.org/wiki/IOS_version_history
   ##########
   - group:
-    regex: 'CPU OS|iPhone|iPad|iPod|iOS|AppleTV|CFNetwork'
+    regex: 'CPU OS|iPhone|iPad|iPod|iOS|Apple\s?TV|CFNetwork'
+
+    # Apple TV
+    - regex: '(Apple\s?TV).* CPU OS (\d+)[_\.](\d+)(?:[_\.](\d+))?'
+      family: 'ATV OS X'
+    - regex: '(Apple\s?TV)[\d,]*(?:/(\d+)\.(\d+)(?:\.(\d+))?)?'
+      family: 'ATV OS X'
+
+    # General iOS
     - regex: '(CPU OS|iPhone OS|CPU iPhone) +(\d+)[_\.](\d+)(?:[_\.](\d+))?'
       family: 'iOS'
 
@@ -922,59 +951,61 @@ os_parsers:
     - regex: '(iPhone|iPad|iPod).*Mac OS X.*Version/(\d+)\.(\d+)'
       family: 'iOS'
 
-    - regex: '(AppleTV)/(\d+)\.(\d+)'
-      family: 'ATV OS X'
 
     ##########
     # CFNetwork/Darwin - The specific CFNetwork or Darwin version determines whether the os maps to Mac OS, or iOS, or just Darwin.
     # @ref: https://en.wikipedia.org/wiki/Darwin_(operating_system)#Release_history
     # @ref: http://user-agents.me/cfnetwork-version-list
     ##########
-    - regex: '(CFNetwork)/(4)85\.1(3)\.9'
+    - regex: 'CFNetwork/711\.(\d).* Darwin/(14)\.\d+'
       family: 'iOS'
-    - regex: '(CFNetwork)/(5)48\.0\.3.* Darwin/11\.0\.0'
+      v1: '8'
+      v2: '$1'
+    - regex: '(CFNetwork)/709\.1'
       family: 'iOS'
-    - regex: '(CFNetwork)/(5)48\.(0)\.4.* Darwin/(1)1\.0\.0'
-      family: 'iOS'
-    - regex: '(CFNetwork)/(5)48\.(1)\.4'
-      family: 'iOS'
-    - regex: '(CFNetwork)/(6)09\.(1)\.4'
-      family: 'iOS'
-    - regex: '(CFNetwork)/(6)(0)9'
-      family: 'iOS'
-    - regex: '(CFNetwork)/6(7)2\.(1)\.13'
-      family: 'iOS'
-    - regex: '(CFNetwork)/6(7)2\.(1)\.(1)4'
+      v1: '8'
+      v2: '0.b5'
+    - regex: '(CFNetwork)/6(7)2\.(0)\.(?:2|8)'
       family: 'iOS'
     - regex: '(CF)(Network)/6(7)(2)\.1\.15'
       family: 'iOS'
       v1: '7'
       v2: '1'
-    - regex: '(CFNetwork)/6(7)2\.(0)\.(?:2|8)'
+    - regex: '(CFNetwork)/6(7)2\.(1)\.(1)4'
       family: 'iOS'
-    - regex: '(CFNetwork)/709\.1'
+    - regex: '(CFNetwork)/6(7)2\.(1)\.13'
       family: 'iOS'
-      v1: '8'
-      v2: '0.b5'
-    - regex: 'CFNetwork/.* Darwin/(9)\.\d+'
+    - regex: '(CFNetwork)/(6)09\.(1)\.4'
       family: 'iOS'
-      v1: '1'
-    - regex: 'CFNetwork/.* Darwin/(10)\.\d+'
+    - regex: '(CFNetwork)/(6)(0)9'
       family: 'iOS'
-      v1: '4'
-    - regex: 'CFNetwork/.* Darwin/(11)\.\d+'
+    - regex: '(CFNetwork)/(5)48\.(0)\.4'
       family: 'iOS'
-      v1: '5'
-    - regex: 'CFNetwork/.* Darwin/(13)\.\d+'
+      v3: '1'
+    - regex: '(CFNetwork)/(5)48\.(\d)'
       family: 'iOS'
-      v1: '6'
-    - regex: 'CFNetwork/6.* Darwin/(14)\.\d+'
+    - regex: '(CFNetwork)/(4)85\.1(3)\.9'
       family: 'iOS'
-      v1: '7'
+
     - regex: 'CFNetwork/7.* Darwin/(14)\.\d+'
       family: 'iOS'
       v1: '8'
-      v2: '0'
+    - regex: 'CFNetwork/6.* Darwin/(14)\.\d+'
+      family: 'iOS'
+      v1: '7'
+    - regex: 'CFNetwork/.* Darwin/(13)\.\d+'
+      family: 'iOS'
+      v1: '6'
+    - regex: 'CFNetwork/.* Darwin/(11)\.\d+'
+      family: 'iOS'
+      v1: '5'
+    - regex: 'CFNetwork/.* Darwin/(10)\.\d+'
+      family: 'iOS'
+      v1: '4'
+    - regex: 'CFNetwork/.* Darwin/(9)\.\d+'
+      family: 'iOS'
+      v1: '1'
+
     # iOS Apps
     - regex: '\b(iOS[ /]|iPhone(?:/| v|[ _]OS[/,]|; | OS : |\d,\d/|\d,\d; )|iPad/)(\d{1,2})[_\.](\d{1,2})(?:[_\.](\d+))?'
       family: 'iOS'
@@ -4853,10 +4884,10 @@ device_parsers:
   # No built in browser that I can tell
   # Stack Overflow indicated iTunes-AppleTV/4.1 as a known UA for app available and I'm seeing it in live traffic
   ##########
-  - regex: '(AppleTV)'
+  - regex: 'Apple\s?TV(\d,\d)?(?:.* \((\d)[;\)])?'
     device: 'AppleTV'
     brand: 'Apple'
-    model: '$1'
+    model: 'AppleTV$1$2'
 
   #########
   # Tesla Model S

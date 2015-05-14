@@ -1,5 +1,18 @@
 # Changelog
 
+**2015-05-14** v0.1.20
+- regexes
+  - os_parsers
+    - Mac OS X 10.10 Yosemite
+    - detect "Mac OS X/" with slash
+    - iOS 8.1 - 8.3
+    - Apple TV
+  - device_parsers
+    - Apple TV with Hardware Version
+
+**2015-05-08** v0.1.19
+- fix failing Mac OS X test
+
 **2015-05-01** v0.1.18
 - regexes
   - user_agent_parsers
