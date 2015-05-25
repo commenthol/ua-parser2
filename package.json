@@ -2,7 +2,7 @@
   "name": "ua-parser2",
   "description": "An improved user agent parser.",
   "main": "./js/index",
-  "version": "0.1.21",
+  "version": "0.1.22-0",
   "engines": {
     "node": ">=0.8.0"
   },
@@ -69,6 +69,7 @@
   "scripts": {
     "prepublish": "js/bin/quick.js",
     "test": "cd js && mocha && mocha test/load/*.mocha.js",
-    "lint": "jshint js/*.js js/*/*.js"
+    "lint": "jshint js/*.js js/*/*.js",
+    "benchmark": "cd benchmark && npm i && node run.js"
   }
 }

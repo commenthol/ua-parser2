@@ -22,6 +22,7 @@ The main differences to [ua-parser][ua-parser] are:
 
 Please read the [contributors' guide][guid]
 
+
 ## Specification
 
 A [Specification][spec], e.g. for porting into other computer languages of the parsing rules for the `regexes.yaml` file is available.
@@ -115,11 +116,35 @@ console.log(p.parseDevice(userAgent).toString());
 //> "Apple iPhone"
 ```
 
+
+## Benchmarks
+
+In folder `benchmarks` you'll find a benchmark test which compares [useragent][], [node-uap][] with `ua-parser2`.
+
+Results on my laptop:
+
+```
+Starting the benchmark, parsing 63 useragent strings per run
+
+Executed benchmark against node module: "useragent"
+Count (2), Cycles (2), Elapsed (5.659), Hz (36.15879308222243)
+
+Executed benchmark against node module: "node-uap"
+Count (2), Cycles (2), Elapsed (5.59), Hz (34.612143954637716)
+
+Executed benchmark against node module: "ua-parser2"
+Count (4), Cycles (3), Elapsed (5.548), Hz (76.46759480868256)
+
+Module: "ua-parser2" is the user agent fastest parser.
+```
+
+
 ## Contribution and License Agreement
 
 If you contribute code to this project, you are implicitly allowing your code to be distributed under the MIT license.
 For contribution to the `regexes.yaml` you are implicitly allowing your code to be distributed under the Apache License license
 You are also implicitly verifying that all code is your original work.
+
 
 ## License
 
@@ -137,3 +162,5 @@ The JS port is Copyright 2014 commenthol, 2010 Tobie Langel and is available und
 [chan]: CHANGELOG.md
 [yaml]: https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml
 [ua-parser]: http://github.com/tobie/ua-parser
+[useragent]: https://github.com/3rd-Eden/useragent
+[node-uap]: https://github.com/fedot/node-uap

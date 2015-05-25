@@ -7,6 +7,7 @@ Makefile
 *.tgz
 *.bak
 *.sh
+/benchmark
 /js/tool/
 /test_resources/tests.json
 /test_resources/new-tests.json

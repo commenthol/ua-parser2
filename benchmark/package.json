@@ -1,0 +1,11 @@
+{
+  "name": "ua-parser2-benchmark",
+  "description": "benchmark different user agent parsers",
+  "version": "0.0.1",
+  "dependencies": {
+    "benchmark": "",
+    "node-uap": "",
+    "ua-parser2": "^0.1.21",
+    "useragent": ""
+  }
+}

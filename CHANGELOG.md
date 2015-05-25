@@ -1,5 +1,8 @@
 # Changelog
 
+**2015-05-25** v0.1.22
+- benchmark comparison
+
 **2015-05-17** v0.1.21
 - regexes
   - device_parsers
