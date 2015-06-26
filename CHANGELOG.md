@@ -1,7 +1,11 @@
 # Changelog
 
-**2015-05-25** v0.1.22
+**2015-06-26** v0.1.22
 - benchmark comparison
+- reducing regexes with neg lookahead
+- regexes
+  - user_agent_parsers
+    - Edge detected as Edge instead of IE
 
 **2015-05-17** v0.1.21
 - regexes
