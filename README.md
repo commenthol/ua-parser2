@@ -1,5 +1,6 @@
-ua-parser2
-==========
+# ua-parser2
+
+> An improved user agent parser.
 
 [![NPM version](https://badge.fury.io/js/ua-parser2.svg)](https://www.npmjs.com/package/ua-parser2/)
 [![Build Status](https://secure.travis-ci.org/commenthol/ua-parser2.svg?branch=master)](https://travis-ci.org/commenthol/ua-parser2)
@@ -124,16 +125,16 @@ In folder `benchmarks` you'll find a benchmark test which compares [useragent][]
 Results on my laptop:
 
 ```
-Starting the benchmark, parsing 63 useragent strings per run
+Starting the benchmark, parsing 80 useragent strings per run
 
 Executed benchmark against node module: "useragent"
-Count (2), Cycles (2), Elapsed (5.659), Hz (36.15879308222243)
+Count (2), Cycles (2), Elapsed (5.883), Hz (27.15815761471473)
 
 Executed benchmark against node module: "node-uap"
-Count (2), Cycles (2), Elapsed (5.59), Hz (34.612143954637716)
+Count (2), Cycles (2), Elapsed (5.689), Hz (24.613661770137742)
 
 Executed benchmark against node module: "ua-parser2"
-Count (4), Cycles (3), Elapsed (5.548), Hz (76.46759480868256)
+Count (6), Cycles (3), Elapsed (5.52), Hz (108.50095229644924)
 
 Module: "ua-parser2" is the user agent fastest parser.
 ```

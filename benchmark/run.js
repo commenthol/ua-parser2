@@ -1,5 +1,7 @@
 'use strict';
 
+/* jshint laxcomma:true */
+
 /**
  * Benchmark dependencies.
  */
@@ -11,7 +13,7 @@ var benchmark = require('benchmark'),
  */
 var useragent = require('useragent'),
     uaparser = require('node-uap'),
-    uaparser2 = require('ua-parser2')();
+    uaparser2 = require('../index')();
 
 /**
  * Setup the test-files.

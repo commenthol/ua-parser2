@@ -1,0 +1,19 @@
+user_agent_parsers:
+
+  - regex: '_'
+    regex_flag: g
+    replace: ' '
+
+  - regex: 'a'
+    regex_flag: 'ig'
+    replace: ''
+
+  - regex: ' [13]'
+    regex_flag: 'g'
+    replace: ''
+
+  - regex: ' 2'
+    regex_flag: 'g'
+    replace: 'bar'
+
+  - regex: '(foobar)'

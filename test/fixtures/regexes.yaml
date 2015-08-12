@@ -1,0 +1,17 @@
+# this is a test file to check loading of custom regexes files
+
+user_agent_parsers:
+
+  - regex: '(.*)'
+    family: 'NORMAL'
+
+os_parsers:
+
+  - regex: '(.*)'
+    family: 'NORMAL'
+
+device_parsers:
+
+  - regex: '(.*)'
+    family: 'NORMAL'
+

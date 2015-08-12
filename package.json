@@ -1,8 +1,8 @@
 {
   "name": "ua-parser2",
   "description": "An improved user agent parser.",
-  "main": "./js/index",
-  "version": "0.1.25",
+  "main": "index.js",
+  "version": "1.0.0-3",
   "engines": {
     "node": ">=0.8.0"
   },
@@ -58,18 +58,18 @@
     "ua-parser"
   ],
   "dependencies": {
-    "js-yaml": ">=3.4.2"
+    "js-yaml": ">=3.3.1",
+    "ua-parser2-rules": ">=1.0.0"
   },
   "devDependencies": {
-    "commander": ">=2.3.0",
-    "mocha": "*",
-    "shelljs": ">=0.3.0",
-    "streamss": ">=0.1.0"
+    "mocha": "latest",
+    "jshint": "latest",
+    "istanbul": "latest"
   },
   "scripts": {
-    "prepublish": "js/bin/quick.js",
-    "test": "cd js && mocha && mocha test/load/*.mocha.js",
-    "lint": "jshint js/*.js js/*/*.js",
+    "test": "mocha test/*.mocha.js",
+    "cover": "istanbul cover _mocha --report lcov --report text -- -R dot --check-leaks test/*.mocha.js",
+    "lint": "jshint *.js */*.js",
     "benchmark": "cd benchmark && npm i && node run.js"
   }
 }

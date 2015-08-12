@@ -1,6 +1,6 @@
-node_modules/
+node_modules
+/coverage
 /tmp
 /*.tgz
-/*.bak
-/test_resources/bad-tests.json
-/test_resources/new-tests.json
+/npm-debug.log
+test/fixtures/watch-regexes.yaml

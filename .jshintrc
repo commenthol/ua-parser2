@@ -1,5 +1,4 @@
 {
-  "node": true,
-  "laxcomma": true,
-  "-W030": true
+	"node": true,
+	"-W030": true
 }

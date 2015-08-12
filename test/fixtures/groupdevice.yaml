@@ -1,0 +1,45 @@
+device_parsers:
+
+  - regex: 'OSa (.+)'
+    family: 'OSa'
+    brand: 'Generic_OSa'
+
+  - regex: 'OSw (.+)'
+    family: 'OSw'
+    brand: 'Generic_OSw'
+
+  - regex: 'gumsang'
+    regex_flag: 'i'
+    group:
+      - regex: '(gumsang) (tsts)'
+        regex_flag: 'i'
+        family: '$1 $2'
+        brand: 'GumSanG'
+        model: '$2'
+
+  - regex: 'THC|CHC'
+    group:
+      - regex: 'Bandroid'
+        group:
+          - regex: '(THC) (TWO)(\d+)'
+            family: '$1 $2'
+            brand: '$1'
+            model: '$2 $3'
+
+      - regex: '(CHC) (P)(O)(O)(L)(\d+)'
+        family: '$1'
+        brand: '$1 by THC'
+        model: '$5$4$3$2 $6'
+
+  - regex: '(cool|ice|frozen) (YBoY)'
+    family: '$2 $1'
+    brand: '$2'
+    model: '$1'
+
+device_model_parsers:
+
+  - regex: '^Gumsang(.*)'
+    brand: 'GumSanG'
+
+  - regex: '^THC (.*)'
+    brand: 'THC'

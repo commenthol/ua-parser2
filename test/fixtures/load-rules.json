@@ -1,0 +1,86 @@
+{
+	"user_agent_parsers": [
+		{
+			"regex": "(.*)",
+			"family": "TEST"
+		}
+	],
+	"os_parsers": [
+		{
+			"regex": "(.*)",
+			"family": "TEST"
+		}
+	],
+	"device_parsers": [
+		{
+			"regex": "(.*)",
+			"family": "TEST"
+		}
+	],
+	"device_Models": {
+		"device_models": {
+			"Generic_OSa": {
+				"Model1": {
+					"brand": "SengGin",
+					"model": "Model1"
+				},
+				"Root": {
+					"brand": "THC",
+					"model": "Mash"
+				},
+				"Root2": {
+					"brand": "THC",
+					"model": "Smasher",
+					"type": "smartphone"
+				}
+			},
+			"Generic_OSw": {
+				"Model Two": {
+					"brand": "SengGin",
+					"model": "ModelTwo"
+				},
+				"Trash": {
+					"brand": "THC"
+				}
+			},
+			"GumSanG": {
+				"Tsts": {
+					"name": "Gumsang Test",
+					"type": "phone"
+				}
+			},
+			"SengGin": {
+				"Model1": {
+					"name": "SengGin One"
+				},
+				"ModelTwo": {
+					"name": "SengGin Two",
+					"type": "phone"
+				}
+			},
+			"THC": {
+				"Cash": {
+					"name": "THC Cash $$",
+					"type": "smartphone"
+				},
+				"Root": {
+					"model": "Mash"
+				},
+				"Mash": {
+					"name": "THC Smash",
+					"type": "tablet"
+				},
+				"Trash": {
+					"name": "THC Trash",
+					"type": "phone"
+				}
+			},
+			"YBoY": {
+				"frozen": {
+					"name": "YBoY top frozen",
+					"type": "smartphone"
+				}
+			}
+		}
+	}
+}
