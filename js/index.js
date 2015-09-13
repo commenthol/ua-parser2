@@ -2,7 +2,7 @@
 
 var path = require('path'),
 	fs = require('fs'),
-	yaml = require('yamlparser'),
+	yaml = require('js-yaml'),
 	extend = require('util')._extend;
 
 /**
@@ -153,7 +153,7 @@ module.exports = function(options) {
 
 			if (contents) {
 				try {
-					regexes = yaml.eval(contents); // jshint ignore:line
+					regexes = yaml.safeLoad(contents);
 					error = createParsers(regexes);
 				}
 				catch (e) {
@@ -195,7 +195,7 @@ module.exports = function(options) {
 
 			if (!error && contents) {
 				try {
-					var regexes = yaml.eval(contents); // jshint ignore:line
+					var regexes = yaml.safeLoad(contents);
 					error = createParsers(regexes);
 				}
 				catch (e) {

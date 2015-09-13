@@ -2,7 +2,7 @@
   "name": "ua-parser2",
   "description": "An improved user agent parser.",
   "main": "./js/index",
-  "version": "0.1.23",
+  "version": "0.1.24",
   "engines": {
     "node": ">=0.8.0"
   },
@@ -58,7 +58,7 @@
     "ua-parser"
   ],
   "dependencies": {
-    "yamlparser": ">=0.0.2"
+    "js-yaml": ">=3.4.2"
   },
   "devDependencies": {
     "commander": ">=2.3.0",

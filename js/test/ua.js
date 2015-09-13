@@ -6,7 +6,7 @@ var
 	assert = require('assert'),
 	path = require('path'),
 	fs = require('fs'),
-	yaml = require('yamlparser'),
+	yaml = require('js-yaml'),
 	UA = require('../lib/ua'),
 	makeParser = require('../lib/parser');
 
@@ -24,7 +24,7 @@ describe('UA object', function() {
 		assert.strictEqual(ua.family, 'Firefox');
 		assert.strictEqual(ua.major, '16');
 		assert.strictEqual(ua.minor, '3');
-		assert.strictEqual(ua.patch, 'beta');    
+		assert.strictEqual(ua.patch, 'beta');
 		assert.ok(!('patchMinor' in ua));
 		assert.ok(!('type' in ua));
 	});
@@ -101,7 +101,7 @@ describe('UA parser', function() {
 			v2: 'b',
 			v3: 'c'
 		}]).parse;
-	
+
 		var ua = parse('foo 1.2.3');
 		assert.strictEqual(ua.family, 'foobar');
 		assert.strictEqual(ua.major, 'a');
@@ -117,7 +117,7 @@ describe('UA parser', function() {
 			v2: '$100a', // this matches $100 which is not present
 			v3: '${1}00' // match $1
 		}]).parse;
-	
+
 		var ua = parse('foo 1.2.3 z');
 		assert.strictEqual(ua.family, 'foobar');
 		assert.strictEqual(ua.major, 'foo123z');
@@ -130,7 +130,7 @@ describe('UA parser groups', function() {
 
 	var
 		contents = fs.readFileSync(path.join(__dirname, 'group.yaml'), 'utf8'),
-		regexes = yaml.eval(contents), // jshint ignore:line
+		regexes = yaml.safeLoad(contents),
 		parse = makeParser(regexes.rules).parse;
 
 	it('Parser correctly processes groups matching "foo"', function() {
