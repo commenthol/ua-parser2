@@ -1,5 +1,12 @@
 # Changelog
 
+**2015-09-13** v0.1.23
+- regexes
+  - user_agent_parsers
+    - Firefox on iOS
+  - os_parsers
+    - Firefox OS Versions
+
 **2015-06-26** v0.1.22
 - benchmark comparison
 - reducing regexes with neg lookahead

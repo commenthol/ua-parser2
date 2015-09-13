@@ -1,4 +1,4 @@
-version: '0.1.21'
+version: '0.1.23'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 #### Browser ####
@@ -96,7 +96,7 @@ user_agent_parsers:
 
   # Gecko group
   - group:
-    regex: 'Gecko|Treco'
+    regex: 'Gecko|Treco|FxiOS'
 
     # Browsers using Gecko; must go before Firefox
     - regex: 'Mozilla.*\b(Beonex|Camino|Chimera|CometBird|Firebird(?: Browser)?|Fireweb Navigator|Flock|IceDragon|SailfishBrowser|SeaMonkey)/(\d+)(?:\.(\d+)(?:\.?([ab]?\d+[a-z]*))?)?'
@@ -119,6 +119,8 @@ user_agent_parsers:
     - regex: '(Firefox).*Tablet browser (\d+)\.(\d+)\.(\d+)'
       family: 'MicroB'
     - regex: '(MozillaDeveloperPreview)/(\d+)\.(\d+)([ab]\d+[a-z]*)?'
+    - regex: '(FxiOS)/(\d+)\.(\d+)(\.(\d+))?(\.(\d+))?'
+      family: 'Firefox iOS'
 
     # Swiftfox
     - regex: '(Firefox)/(\d+)\.(\d+)\.(\d+(?:pre)?) \(Swiftfox\)'
@@ -1069,9 +1071,44 @@ os_parsers:
 
   ##########
   # Firefox OS
+  # https://developer.mozilla.org/en-US/docs/Web/HTTP/Gecko_user_agent_string_reference
   ##########
-  - regex: '\((Mobile|Tablet);.+Firefox/\d+\.\d+'
-    family: 'Firefox OS'
+
+  - group:
+    regex: '\((?:Mobile|Tablet);.*Firefox'
+
+    - regex: '\((?:Mobile|Tablet);.+Gecko/18.0 Firefox/\d+\.\d+'
+      family: 'Firefox OS'
+      v1: '1'
+      v2: '0'
+      v3: '1'
+    - regex: '\((?:Mobile|Tablet);.+Gecko/18.1 Firefox/\d+\.\d+'
+      family: 'Firefox OS'
+      v1: '1'
+      v2: '1'
+    - regex: '\((?:Mobile|Tablet);.+Gecko/26.0 Firefox/\d+\.\d+'
+      family: 'Firefox OS'
+      v1: '1'
+      v2: '2'
+    - regex: '\((?:Mobile|Tablet);.+Gecko/28.0 Firefox/\d+\.\d+'
+      family: 'Firefox OS'
+      v1: '1'
+      v2: '3'
+    - regex: '\((?:Mobile|Tablet);.+Gecko/30.0 Firefox/\d+\.\d+'
+      family: 'Firefox OS'
+      v1: '1'
+      v2: '4'
+    - regex: '\((?:Mobile|Tablet);.+Gecko/32.0 Firefox/\d+\.\d+'
+      family: 'Firefox OS'
+      v1: '2'
+      v2: '0'
+    - regex: '\((?:Mobile|Tablet);.+Gecko/34.0 Firefox/\d+\.\d+'
+      family: 'Firefox OS'
+      v1: '2'
+      v2: '1'
+    # general matcher
+    - regex: '\((Mobile|Tablet);.+Firefox/\d+\.\d+'
+      family: 'Firefox OS'
 
   ##########
   # BREW
