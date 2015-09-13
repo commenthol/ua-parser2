@@ -1,12 +1,12 @@
-Version 1.1 Final
+Version 2.0 Final
 
 # ua-parser2 Specification
 
-This document describes the specification on how a parser should implement the `regexes.yaml` file for correctly parsing User-Agent strings on basis of that file. 
+This document describes the specification on how a parser should implement the `regexes.yaml` file for correctly parsing User-Agent strings on basis of that file.
 
 This specification shall help maintainers and contributors to correctly use the provided information within the `regexes.yaml` file for obtaining information from the different User-Agent strings. Furthermore this specification shall be the basis for discussions on evolving the projects and the needed parsing algorithms.
 
-This document will not provide any information on how to implement the ua-parser2 project on your server and how to retrieve the User-Agent string for further processing. 
+This document will not provide any information on how to implement the ua-parser2 project on your server and how to retrieve the User-Agent string for further processing.
 
 ## Table of Contents
 
@@ -50,7 +50,7 @@ For further details on Regular Expressions check [perldoc](http://perldoc.perl.o
 **Rules for Replacements**
 
 To use matches within replacements use either the form of `$\d+`, e.g. `$1` ... `$999`.<br>
-In special cases where you want to use match `$1` followed by a `0` and not `$10`, use the form `${1}0` 
+In special cases where you want to use match `$1` followed by a `0` and not `$10`, use the form `${1}0`
 
 **Example**
 
@@ -69,7 +69,7 @@ A User-Agent String `Minefield/2.1.0pre` using the `regex` above would be evalua
 family: 'Firefox (Minefield)'
 major: '1'
 minor: '0pre'
-patch: 
+patch:
 type: 'browser::Firefox::Minefield'
 ```
 
@@ -91,7 +91,7 @@ The group is only entered, if the associated `regex` matches. Otherwise evaluati
   #<< group matching '/gecko/i' ends
 
 - regex: '(Chrome)/(\d+)\.(\d+)'
-```    
+```
 
 In this case the group `gecko` is only entered if the User-Agent-String contains `/gecko/i`.
 `regex: Firefox` matches only if the User-Agent-String contains `/gecko/i` as well.
@@ -108,8 +108,8 @@ A match is a regex-group enclosed in normal brackets.
 | match in regex | default replacement | note              |
 | ---- | --------| --------------------------------------- |
 | 1    | family  | specifies the User-Agents family        |
-| 2    | v1      | major version number/info of the family | 
-| 3    | v2      | minor version number/info of the family | 
+| 2    | v1      | major version number/info of the family |
+| 3    | v2      | minor version number/info of the family |
 | 4    | v3      | patch version number/info of the family |
 | -    | type    | may further describe the type of User-Agent, e.g. 'bot', 'app' |
 
@@ -127,7 +127,7 @@ If `regex_flag: 'i'` is present then `regex` shall be evaluated as case-insensit
 
 The list of regular-expressions `regex` shall be evaluated for a given User-Agent string beginning with the first `regex`-item in the list to the last item. The first matching `regex` stops processing the list. Regex-matching shall be case sensitive.
 
-In case that no replacement for a match is specified for a `regex`-item, the first match defines the `family`, the second `major`, the third `minor`and the forth `patch` information. 
+In case that no replacement for a match is specified for a `regex`-item, the first match defines the `family`, the second `major`, the third `minor`and the forth `patch` information.
 
 As placeholder for inserting matched characters `$1` to `$999` can be used to insert the matched characters from the regex into the replacement string.
 
@@ -161,8 +161,8 @@ Here major, minor and patch version information can be addressed or overwritten.
 | match in regex | default replacement | note              |
 | ---- | ------- | --------------------------------------- |
 | 1    | family  | specifies the User-Agents Engine family |
-| 2    | v1      | major version number/info of the family | 
-| 3    | v2      | minor version number/info of the family | 
+| 2    | v1      | major version number/info of the family |
+| 3    | v2      | minor version number/info of the family |
 | 4    | v3      | patch version number/info of the family |
 | -    | type    | may further describe the type of Engine e.g. 'mode::MSIE 9' |
 
@@ -177,8 +177,8 @@ Here major, minor, patch and patchMinor version information can be addressed or 
 | match in regex | default replacement | note              |
 | ---- | -------| ---------------------------------------- |
 | 1    | family | specifies the OS                         |
-| 2    | v1     | major version number/info of OS          | 
-| 3    | v2     | minor version number/info of the OS      | 
+| 2    | v1     | major version number/info of OS          |
+| 3    | v2     | minor version number/info of the OS      |
 | 4    | v3     | patch version number/info of the OS      |
 | 5    | v4     | patchMinor version number/info of the OS |
 | -    | type   | may further describe the type of OS      |
@@ -186,7 +186,7 @@ Here major, minor, patch and patchMinor version information can be addressed or 
 The parser implemention shall be identical to the one described in [user_agent_parsers](#user_agent_parsers).
 Aditionally the `patchMinor` value shall always be added to the resulting object.
 
-## device_parsers 
+## device_parsers
 
 The `device_parsers` shall return information of the device `family` the User-Agent runs.
 Furthermore `brand` and `model` of the device can be specified.
@@ -195,11 +195,11 @@ Furthermore `brand` and `model` of the device can be specified.
 | match in regex | default replacement | note              |
 | ---- | -------| ---------------------------------------- |
 | 1    | family | specifies the device family              |
-| -    | brand  | major version number/info of OS          | 
-| 1    | model  | minor version number/info of the OS      | 
+| -    | brand  | major version number/info of OS          |
+| 1    | model  | minor version number/info of the OS      |
 | -    | type   | may further describe the type of Device  |
 
-In case that no replacement is specified the association is given by order of the match. 
+In case that no replacement is specified the association is given by order of the match.
 If in the `regex` no first match (within normal brackets) is given the `family` together with the `model` shall be specified!
 To overwrite the respective value the replacement value needs to be named for a given `regex`.
 
@@ -210,10 +210,10 @@ An infinite number of regex-groups shall be possible for each `regex`.
 If `regex_flag: 'i'` is present then `regex` shall be evaluated as case-insensitive.
 
 **Parser Implementation:**
- 
+
 The list of regular-expressions `regex` shall be evaluated for a given User-Agent string beginning with the first `regex`-item in the list to the last item. The first matching `regex` stops processing the list. Regex-matching shall be case sensitive.
 
-In case that no replacement for a match is given, the first match defines the `family` and the `model`. 
+In case that no replacement for a match is given, the first match defines the `family` and the `model`.
 
 As placeholder for inserting matched characters `$1` to `$999` can be used to insert the matched characters from the regex into the replacement string.
 
@@ -234,7 +234,7 @@ the matching `regex`:
 shall be resolved to:
 
 ```
-family: 'PEDI_PLUS_W' 
+family: 'PEDI_PLUS_W'
 brand: 'Odys'
 model: 'PEDI PLUS W'
 ```
@@ -246,21 +246,21 @@ The current output format returns an object with the following structure:
 ```javascript
 {
   ua: { // result of the user_agent_parsers
-    family: 
+    family:
     major:
     minor:
     patch:
     type: // optional
   },
   engine: { // result of the engine_parsers
-    family: 
+    family:
     major:
     minor:
     patch:
     type: // optional
   }
   os: { // result of the os_parsers
-    family: 
+    family:
     major:
     minor:
     patch:
@@ -268,7 +268,7 @@ The current output format returns an object with the following structure:
     type: // optional
   }
   device: { // result of the device_parsers
-    family: 
+    family:
     brand:
     model:
     type: // optional
