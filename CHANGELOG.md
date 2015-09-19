@@ -1,5 +1,10 @@
 # Changelog
 
+**2015-09-19**
+- regexes
+  - user_agent_parsers
+    - SiteCon Bot
+
 **2015-09-13** v0.1.23
 - regexes
   - user_agent_parsers
