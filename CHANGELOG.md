@@ -5,6 +5,7 @@
   - user_agent_parsers
     - SiteCon Bot
     - Firefox Browser for Android Tablets
+    - Spotify Desktop App
 
 **2015-09-13** v0.1.23
 - regexes

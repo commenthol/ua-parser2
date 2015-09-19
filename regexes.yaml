@@ -84,7 +84,7 @@ user_agent_parsers:
   - regex: '\b(Banshee|Clementine|MediaMonkey)(?:[ /](\d+)(?:\.(\d+)(?:\.(\d)+)?)?)?'
     type: 'mediaplayer'
 
-  - regex: '\b(Instacast|iTunes(?:-iP\w+(?:-\w+)?)?|FlyCast|Nightingale|Songbird|SubStream|vlc|Windows-Media-Player(?:-\w+)?|XBMC)\b(?:[ /]?(\d+)(?:\.(\d+)(?:\.(\d)+)?)?)?'
+  - regex: '\b(Instacast|iTunes(?:-iP\w+(?:-\w+)?)?|FlyCast|Nightingale|Songbird|Spotify|SubStream|vlc|Windows-Media-Player(?:-\w+)?|XBMC)\b(?:[ /]?(\d+)(?:\.(\d+)(?:\.(\d)+)?)?)?'
     type: 'mediaplayer'
 
   - regex: '(QuickTime)(?:(?:(?:.+qtver=)|(?:(?: E-)?[\./]))(\d+)(?:\.(\d+)(?:\.(\d)+)?)?)?'
