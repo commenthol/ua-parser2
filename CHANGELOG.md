@@ -1,10 +1,14 @@
 # Changelog
 
-**2015-09-19**
+**2015-09-19** v0.1.25
 - regexes
   - user_agent_parsers
     - SiteCon Bot
     - Firefox Browser for Android Tablets
+    - Spotify Desktop App
+
+**2015-09-13** v0.1.24
+- replacing yamlparser with js-yaml
 
 **2015-09-13** v0.1.23
 - regexes
