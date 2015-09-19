@@ -101,7 +101,7 @@ user_agent_parsers:
       # Firefox
       - regex: '(Fennec)/(\d+)\.(\d+)\.?(pre|[ab]?\d+[a-z]*)'
         family: 'Firefox Mobile'
-      - regex: 'Mobile.*(Firefox)/(\d+)\.(\d+)'
+      - regex: '(?:Mobile[:;]|Tablet;).*(Firefox)/(\d+)\.(\d+)'
         family: 'Firefox Mobile'
       - regex: '\b(BonEcho|GranParadiso|Lorentz|Minefield|Namoroka|Pale[Mm]oon|Shiretoko)/(\d+)(?:\.(\d+)(?:\.?([ab]?\d+[a-z]*))?)?'
         family: 'Firefox ($1)'

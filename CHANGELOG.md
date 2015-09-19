@@ -4,6 +4,7 @@
 - regexes
   - user_agent_parsers
     - SiteCon Bot
+    - Firefox Browser for Android Tablets
 
 **2015-09-13** v0.1.23
 - regexes
