@@ -1,6 +1,11 @@
 # Changelog
 
-**2015-09-19** v0.1.26
+**2015-09-21** v0.1.27
+- regexes
+  - device_parsers
+    - Mac OS X-Devices
+
+**2015-09-21** v0.1.26
 - regexes
   - os_parsers
     - CFNetwork Mac OS X 10.11 El Capitan

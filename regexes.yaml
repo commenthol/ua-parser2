@@ -1,4 +1,4 @@
-version: '0.1.26'
+version: '0.1.27-0'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 #### Browser ####
@@ -853,7 +853,7 @@ os_parsers:
         family: 'Mac OS X'
 
       # El Capitan
-      - regex: ' (Dar)(win)/(15)\.0\.0.*\((?:i386|x86_64)\)'
+      - regex: ' Darwin/15\.0\.0.*\((?:i386|x86_64)\)'
         family: 'Mac OS X'
         v1: '10'
         v2: '11'
@@ -863,10 +863,20 @@ os_parsers:
         v1: '10'
         v2: '10'
         v3: '$1'
-      - regex: ' (Dar)(win)/(14)\.0\.0.*\((?:i386|x86_64)\)'
+      - regex: ' Darwin/14\.0\.0.*\((?:i386|x86_64)\)'
         family: 'Mac OS X'
         v1: '10'
         v2: '10'
+      - regex: ' Darwin/14\.1\.0.*\((?:i386|x86_64)\)'
+        family: 'Mac OS X'
+        v1: '10'
+        v2: '10'
+        v3: '2'
+      - regex: ' Darwin/14\.(\d)\.0.*\((?:i386|x86_64)\)'
+        family: 'Mac OS X'
+        v1: '10'
+        v2: '10'
+        v3: '$1'
       # Mavericks
       - regex: ' (Dar)(win)/(13)\.0\.2.*\((?:i386|x86_64)\)'
         family: 'Mac OS X'
@@ -5094,6 +5104,11 @@ device_parsers:
         device: '$1$2,$3'
         brand: 'Apple'
         model: '$1$2,$3'
+      # @note: OSx applications do not show device info
+      - regex: 'CFNetwork/.* Darwin/\d.*\((?:i386|x86_64)\)'
+        device: 'iOS-Device'
+        brand: 'Apple'
+        model: 'Mac OS X-Device'
       # @note: iOS applications do not show device info
       - regex: 'CFNetwork/.* Darwin/\d'
         device: 'iOS-Device'
