@@ -1,5 +1,11 @@
 # Changelog
 
+**2015-09-19** v0.1.26
+- regexes
+  - os_parsers
+    - CFNetwork Mac OS X 10.11 El Capitan
+    - CFNetwork iOS 9.0
+
 **2015-09-19** v0.1.25
 - regexes
   - user_agent_parsers

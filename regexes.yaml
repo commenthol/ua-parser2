@@ -1,4 +1,4 @@
-version: '0.1.25'
+version: '0.1.26'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 #### Browser ####
@@ -852,6 +852,11 @@ os_parsers:
       - regex: '((?:Mac ?|; )OS X)[\s/](?:(\d+)[_.](\d+)(?:[_.](\d+))?|Mach-O)'
         family: 'Mac OS X'
 
+      # El Capitan
+      - regex: ' (Dar)(win)/(15)\.0\.0.*\((?:i386|x86_64)\)'
+        family: 'Mac OS X'
+        v1: '10'
+        v2: '11'
       # Yosemite
       - regex: 'CFNetwork/720\.(\d).* Darwin/14\.\d+'
         family: 'Mac OS X'
@@ -958,6 +963,10 @@ os_parsers:
       # @ref: https://en.wikipedia.org/wiki/Darwin_(operating_system)#Release_history
       # @ref: http://user-agents.me/cfnetwork-version-list
       ##########
+      - regex: 'CFNetwork/758\.(\d)'
+        family: 'iOS'
+        v1: '9'
+        v2: '$1'
       - regex: 'CFNetwork/711\.(\d).* Darwin/(14)\.\d+'
         family: 'iOS'
         v1: '8'
@@ -988,6 +997,9 @@ os_parsers:
       - regex: '(CFNetwork)/(4)85\.1(3)\.9'
         family: 'iOS'
 
+      - regex: 'CFNetwork/7.* Darwin/(15)\.\d+'
+        family: 'iOS'
+        vi: '9'
       - regex: 'CFNetwork/7.* Darwin/(14)\.\d+'
         family: 'iOS'
         v1: '8'
