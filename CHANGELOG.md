@@ -1,10 +1,11 @@
 # Changelog
 
-**2015-09-21** v0.1.27
+**2015-10-01** v0.1.27
 - regexes
   - device_parsers
     - Mac OS X-Devices
     - Fix generic Android devices
+    - More Wiko, Sony, Brondi, Kyocera devices
   - user_agent_parsers
     - social networks: Pinterest, Facebook
   - os_parsers
