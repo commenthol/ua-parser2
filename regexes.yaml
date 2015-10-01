@@ -1,4 +1,4 @@
-version: '0.1.27-1'
+version: '0.1.27-2'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 #### Browser ####
@@ -863,7 +863,7 @@ os_parsers:
   - regex: 'Mac|Darwin|CFNetwork'
 
     group:
-      - regex: '((?:Mac ?|; )OS X)[\s/](?:(\d+)[_.](\d+)(?:[_.](\d+))?|Mach-O)'
+      - regex: '((?:Mac ?|; )OS X)[\s/](?:Version\s)?(?:(\d+)[_.](\d+)(?:[_.](\d+))?|Mach-O)'
         family: 'Mac OS X'
 
       # El Capitan
@@ -5589,9 +5589,14 @@ device_parsers:
     brand: 'Generic_Android'
     model: '$1'
   # No build info at all - "Build" follows locale immediately
-  - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[a-z]{0,2}[_\-]?[A-Za-z]{0,2};? Build'
+  - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[a-z]{0,2}[_\-]?[A-Za-z]{0,2};? Build.* Mobile Safari'
+    device: 'Generic Smartphone'
     brand: 'Generic'
     model: 'Smartphone'
+  - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[a-z]{0,2}[_\-]?[A-Za-z]{0,2};? Build'
+    device: 'Generic Tablet'
+    brand: 'Generic'
+    model: 'Tablet'
   - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *\-?[A-Za-z]{2}; *(.+?) Build'
     brand: 'Generic_Android'
     model: '$1'

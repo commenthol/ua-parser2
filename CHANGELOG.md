@@ -4,8 +4,11 @@
 - regexes
   - device_parsers
     - Mac OS X-Devices
+    - Fix generic Android devices
   - user_agent_parsers
     - social networks: Pinterest, Facebook
+  - os_parsers
+    - Mac OS X Version
 
 **2015-09-21** v0.1.26
 - regexes
