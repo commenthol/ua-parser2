@@ -4,6 +4,8 @@
 - regexes
   - device_parsers
     - Mac OS X-Devices
+  - user_agent_parsers
+    - social networks: Pinterest, Facebook
 
 **2015-09-21** v0.1.26
 - regexes

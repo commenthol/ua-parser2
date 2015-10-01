@@ -1,4 +1,4 @@
-version: '0.1.27-0'
+version: '0.1.27-1'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 #### Browser ####
@@ -77,7 +77,7 @@ user_agent_parsers:
         family: 'Thunderbird'
         type: 'mail'
 
-  - regex: '\b(AideRSS|Akregator|Apple-PubSub|FeedDa?emon|Feeddler|Feedreader|JetBrains Omea Reader|Liferea|NetNewsWire|NewsBlur|newsbeuter|Pulp|ReadKit|Reeder|(?:RSS|Rss)Bandit|RssBar|RSS Junkie|RSS Menu|RSSOwl|SimplePie|SimpleRSS|Tiny Tiny RSS|UniversalFeedParser|Wizz RSS News Reader|Windows-RSS-Platform)(?:[ /](\d+)(?:\.(\d+))?(?:\.(\d+))?)?'
+  - regex: '\b(AideRSS|Akregator|Apple-PubSub|FeedDa?emon|Feeddler|Feedreader|JetBrains Omea Reader|Liferea|NetNewsWire|NewsBlur|newsbeuter|Pulp|ReadKit|(?:RSS|Rss)Bandit|RssBar|RSS Junkie|RSS Menu|RSSOwl|SimplePie|SimpleRSS|Tiny Tiny RSS|UniversalFeedParser|Wizz RSS News Reader|Windows-RSS-Platform)(?:[ /](\d+)(?:\.(\d+))?(?:\.(\d+))?)?'
     type: 'feedreader'
 
   # mediaplayers
@@ -89,6 +89,18 @@ user_agent_parsers:
 
   - regex: '(QuickTime)(?:(?:(?:.+qtver=)|(?:(?: E-)?[\./]))(\d+)(?:\.(\d+)(?:\.(\d)+)?)?)?'
     type: 'mediaplayer'
+
+  # social networks
+  - regex: 'Pinterest|\[FB'
+    group:
+      # Facebook
+      - regex: '\[FB.*;(FBAV)/(\d+)(?:\.(\d+)(?:\.(\d)+)?)?'
+        family: 'Facebook'
+        type: 'app'
+      # Pinterest
+      - regex: '\[(Pinterest)/[^\]]+\]'
+      - regex: '(Pinterest)(?: for Android(?: Tablet)?)?/(\d+)(?:\.(\d+)(?:\.(\d)+)?)?'
+        type: 'app'
 
   #### SPECIAL CASES TOP ####
 
@@ -208,16 +220,18 @@ user_agent_parsers:
   - regex: '(Puffin)/(\d+)\.(\d+)(?:\.(\d+))?'
 
   # Chrome Mobile
-  - regex: '(CrMo)/(\d+)\.(\d+)\.(\d+)\.(\d+)'
-    family: 'Chrome Mobile'
-  - regex: '(CriOS)/(\d+)\.(\d+)\.(\d+)\.(\d+)'
-    family: 'Chrome Mobile iOS'
-  - regex: '(Chrome)/(\d+)\.(\d+)\.(\d+)\.(\d+) .*\bMobile\b'
-    family: 'Chrome Mobile'
+  - regex: 'CrMo|CriOS|Chrome|chromeframe'
+    group:
+      - regex: '(CrMo)/(\d+)\.(\d+)\.(\d+)\.(\d+)'
+        family: 'Chrome Mobile'
+      - regex: '(CriOS)/(\d+)\.(\d+)\.(\d+)\.(\d+)'
+        family: 'Chrome Mobile iOS'
+      - regex: '(Chrome)/(\d+)\.(\d+)\.(\d+)\.(\d+) .*\bMobile\b'
+        family: 'Chrome Mobile'
 
-  # Chrome Frame must come before MSIE.
-  - regex: '(chromeframe)/(\d+)\.(\d+)\.(\d+)'
-    family: 'Chrome Frame'
+      # Chrome Frame must come before MSIE.
+      - regex: '(chromeframe)/(\d+)\.(\d+)\.(\d+)'
+        family: 'Chrome Frame'
 
   # UC Browser
   - regex: '(UC ?Browser|UCBrowser|UCWEB)[ /]?(\d+)\.(\d+)\.(\d+)'
