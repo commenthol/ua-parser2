@@ -4,6 +4,8 @@
 - regexes
   -user_agent_parsers
     - Adding support for qutebrowser
+    - Better detection of Facebook
+    - Mobile Safari UIWebView
 
 **2015-10-01** v0.1.27
 - regexes

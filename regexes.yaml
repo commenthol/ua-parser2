@@ -1,4 +1,4 @@
-version: '0.1.28-1'
+version: '0.1.28'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 #### Browser ####
@@ -94,7 +94,7 @@ user_agent_parsers:
   - regex: 'Pinterest|\[FB'
     group:
       # Facebook
-      - regex: '\[FB.*;(FBAV)/(\d+)(?:\.(\d+)(?:\.(\d)+)?)?'
+      - regex: '\[FB.*;(FB(?:AV|Version))/(\d+)(?:\.(\d+)(?:\.(\d)+)?)?'
         family: 'Facebook'
         type: 'app'
       # Pinterest
@@ -418,12 +418,22 @@ user_agent_parsers:
   - regex: '(iPod|iPhone|iPad)'
 
     group:
-      - regex: '(iPod|iPhone|iPad).+Version/(\d+)\.(\d+)(?:\.(\d+))?'
+      # @ref http://stackoverflow.com/questions/2143763/
+      - regex: '(iPod|iPhone|iPad).+Version/(\d+)\.(\d+)(?:\.(\d+))?.* Safari'
+        family: 'Mobile Safari'
+      - regex: '(iPod|iPhone|iPad).+Version/(\d+)\.(\d+)(?:\.(\d+))?.*'
+        family: 'Mobile Safari UIWebView'
+        type: 'app'
+      - regex: '(iPod|iPhone|iPad);.*CPU.*OS (\d+)(?:_\d+)?_(\d+).*Mobile.* Safari'
         family: 'Mobile Safari'
       - regex: '(iPod|iPhone|iPad);.*CPU.*OS (\d+)(?:_\d+)?_(\d+).*Mobile'
+        family: 'Mobile Safari UIWebView'
+        type: 'app'
+      - regex: '(iPod|iPhone|iPad).* Safari'
         family: 'Mobile Safari'
       - regex: '(iPod|iPhone|iPad)'
-        family: 'Mobile Safari'
+        family: 'Mobile Safari UIWebView'
+        type: 'app'
 
   # Safari
   - regex: '(Version)/(\d+)\.(\d+)(?:\.(\d+))?.*Safari/'
