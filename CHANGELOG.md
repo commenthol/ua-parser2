@@ -1,5 +1,10 @@
 # Changelog
 
+**2015-10-11** v0.1.28
+- regexes
+  -user_agent_parsers
+    - Adding support for qutebrowser
+
 **2015-10-01** v0.1.27
 - regexes
   - device_parsers
