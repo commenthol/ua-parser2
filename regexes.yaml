@@ -1,4 +1,4 @@
-version: '0.1.29-1'
+version: '0.1.29'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 #### Browser ####
@@ -218,6 +218,10 @@ user_agent_parsers:
 
   # @ref: http://www.puffinbrowser.com
   - regex: '(Puffin)/(\d+)\.(\d+)(?:\.(\d+))?'
+
+  # Edge Mobile
+  - regex: 'Windows Phone .*(Edge)/(\d+)\.(\d+)'
+    family: 'Edge Mobile'
 
   # Chrome Mobile
   - regex: 'CrMo|CriOS|Chrome|chromeframe'

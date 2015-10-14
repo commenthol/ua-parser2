@@ -6,6 +6,7 @@
     - fix wrong mobile safari version
     - Adding support for Otter and QupZilla
     - Adding Version to BB10
+    - Adding support for Edge Mobile
 
 **2015-10-11** v0.1.28
 - regexes
