@@ -1,8 +1,14 @@
 # Changelog
 
+**2015-10-12** v0.1.29
+- regexes
+  - user_agent_parsers
+    - fix wrong mobile safari version
+    - Adding support for Otter and QupZilla
+
 **2015-10-11** v0.1.28
 - regexes
-  -user_agent_parsers
+  - user_agent_parsers
     - Adding support for qutebrowser
     - Better detection of Facebook
     - Mobile Safari UIWebView
