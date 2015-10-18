@@ -1,5 +1,10 @@
 # Changelog
 
+**2015-10-18** v0.1.30
+- regexes
+  - device
+    - More XiaoMi Devices
+
 **2015-10-12** v0.1.29
 - regexes
   - user_agent_parsers

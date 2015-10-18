@@ -1,4 +1,4 @@
-version: '0.1.29'
+version: '0.1.30'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 #### Browser ####
@@ -4533,11 +4533,7 @@ device_parsers:
       # @ref: http://www.xiaomi.com/event/buyphone
       # @ref: http://www.mi.com/en
       #########
-      - regex: '; *(MI PAD|MiPad [^;/]+|MI \d[^;/]*|MI-ONE [^;/]+|MI2[ _][^;/]+) Build/'
-        device: 'XiaoMi $1'
-        brand: 'XiaoMi'
-        model: '$1'
-      - regex: '; *(HM [^;/]+) Build/'
+      - regex: '; *((?:MI|MI2|HM|MI-ONE|MiPad|Redmi)[ _][^;/]+) Build/'
         device: 'XiaoMi $1'
         brand: 'XiaoMi'
         model: '$1'
