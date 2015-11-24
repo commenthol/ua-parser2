@@ -1,5 +1,10 @@
 # Changelog
 
+**2015-11-24** v0.1.31
+- regexes
+  - os
+    - adding tvOS
+
 **2015-10-18** v0.1.30
 - regexes
   - device

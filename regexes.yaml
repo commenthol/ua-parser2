@@ -974,7 +974,7 @@ os_parsers:
   # iOS
   # http://en.wikipedia.org/wiki/IOS_version_history
   ##########
-  - regex: 'CPU OS|iPhone|iPad|iPod|iOS|Apple\s?TV|CFNetwork'
+  - regex: 'CPU OS|iPhone|iPad|iPod|iOS|Apple\s?TV|CFNetwork|tvOS'
     group:
       # Apple TV
       - regex: '(Apple\s?TV).* CPU OS (\d+)[_\.](\d+)(?:[_\.](\d+))?'
@@ -1058,6 +1058,13 @@ os_parsers:
       # iOS Apps
       - regex: '\b(iOS[ /]|iPhone(?:/| v|[ _]OS[/,]|; | OS : |\d,\d/|\d,\d; )|iPad/)(\d{1,2})[_\.](\d{1,2})(?:[_\.](\d+))?'
         family: 'iOS'
+
+      ##########
+      # Apple TV
+      ##########
+      - regex: '(tvOS)/(\d+).(\d+)'
+        family: 'tvOS'
+
 
   ##########
   # Chrome OS
