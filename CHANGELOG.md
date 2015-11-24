@@ -4,6 +4,7 @@
 - regexes
   - user_agent_parsers
     - better detection of Opera Mini
+    - better detection of Chrome Mobile
   - os_parsers
     - adding tvOS
 
