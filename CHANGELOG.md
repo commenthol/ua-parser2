@@ -2,7 +2,9 @@
 
 **2015-11-24** v0.1.31
 - regexes
-  - os
+  - user_agent_parsers
+    - better detection of Opera Mini
+  - os_parsers
     - adding tvOS
 
 **2015-10-18** v0.1.30
