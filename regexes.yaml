@@ -1,4 +1,4 @@
-version: '0.1.30'
+version: '0.1.31'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 #### Browser ####
