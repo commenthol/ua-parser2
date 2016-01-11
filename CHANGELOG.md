@@ -1,5 +1,9 @@
 # Changelog
 
+**2016-01-11**
+- regexes:
+  - fix YAMLException with duplicated mapping keys
+
 **2015-11-24** v0.1.31
 - regexes
   - user_agent_parsers

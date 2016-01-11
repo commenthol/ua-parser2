@@ -1,4 +1,4 @@
-version: '0.1.31'
+version: '0.1.32'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 #### Browser ####
@@ -147,7 +147,7 @@ user_agent_parsers:
       # Opera will stop at 9.80 and hide the real version in the Version string.
       # see: http://dev.opera.com/articles/view/opera-ua-string-changes/
       - regex: '(Opera Tablet).*Version/(\d+)\.(\d+)(?:\.(\d+))?'
-      - regex: '(Opera Mini)(?:/att)?/(\d+)?(?:\.(\d+))?(?:\.(\d+))?'      
+      - regex: '(Opera Mini)(?:/att)?/(\d+)?(?:\.(\d+))?(?:\.(\d+))?'
       - regex: '(Opera)/.+Opera Mobi.+Version/(\d+)\.(\d+)'
         family: 'Opera Mobile'
       - regex: '(Opera)/(\d+)\.(\d+).+Opera Mobi'
@@ -1409,7 +1409,6 @@ device_parsers:
             model: '$1'
           - regex: '; *(Behold ?(?:2|II)|YP\-G[^;/]+|SCL21|I9300) Build'
             device: 'Samsung $1'
-            device: 'Samsung $1'
             brand: 'Samsung'
             model: '$1'
           - regex: '; *(EK-GC\d{3}) Build'
@@ -1431,7 +1430,6 @@ device_parsers:
         device: '3Q $1'
         brand: '3Q'
         model: '$1'
-
 
       #########
       # Acer
@@ -3258,26 +3256,22 @@ device_parsers:
         device: 'Micromax $1'
         brand: 'Micromax'
         model: '$1'
-        device: 'tablet'
       - regex: '\b(?:Micromax[ _\-]?)+([A-Za-z0-9]+)'
         regex_flag: 'i'
         device: 'Micromax $1'
         brand: 'Micromax'
         model: '$1'
-        device: 'smartphone'
       # be carefull here with Acer e.g. A500
       - regex: '; *(A[02-9]\d|A[12]\d{2}|A90S|A110Q|X505|A068) Build(?:(?!QMobile).)*$'
         regex_flag: 'i'
         device: 'Micromax $1'
         brand: 'Micromax'
         model: '$1'
-        device: 'smartphone'
       - regex: '; *(P\d{3}|P\d{3})(?:\(Funbook\))? Build'
         regex_flag: 'i'
         device: 'Micromax $1'
         brand: 'Micromax'
         model: '$1'
-        device: 'tablet'
 
       #########
       # Mito
