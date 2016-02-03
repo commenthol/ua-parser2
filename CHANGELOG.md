@@ -1,10 +1,14 @@
 # Changelog
 
-**2016-02-03**
+**2013-02-03**
+- regexes:
+  - Correcting/Extending Mail User-Agents, Thunderbird, Shredder, Spicebird, Outlook, Windows Live Mail
+
+**2016-02-03** v0.1.33
 - regexes:
   - Adding support for Brave Browser https://brave.com
 
-**2016-01-11**
+**2016-01-11** v0.1.32
 - regexes:
   - fix YAMLException with duplicated mapping keys
 
