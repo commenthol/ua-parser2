@@ -2,7 +2,7 @@
   "name": "ua-parser2",
   "description": "An improved user agent parser.",
   "main": "./js/index",
-  "version": "0.1.32",
+  "version": "0.1.33",
   "engines": {
     "node": ">=0.8.0"
   },
@@ -42,6 +42,7 @@
     "type": "git",
     "url": "http://github.com/commenthol/ua-parser2.git"
   },
+  "license": "(MIT OR Apache-2.0)",
   "licenses": [
     {
       "type": "MIT",
