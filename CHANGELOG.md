@@ -1,5 +1,9 @@
 # Changelog
 
+**2016-02-03**
+- regexes:
+  - Adding support for Brave Browser https://brave.com
+
 **2016-01-11**
 - regexes:
   - fix YAMLException with duplicated mapping keys
