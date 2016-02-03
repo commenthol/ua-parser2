@@ -1,4 +1,4 @@
-version: '0.1.34-0'
+version: '0.1.34'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 #### Browser ####
@@ -72,7 +72,7 @@ user_agent_parsers:
       - regex: 'Outlook-Express\/7\.0.*'
         family: 'Windows Live Mail'
         type: 'mail'
-      # Other Main Agents
+      # Other Mail Agents
       - regex: '(Lotus-Notes|Microsoft Outlook|Outlook-Express|Barca(?:Pro)?|Postbox|The Bat!(?: Voyager)?)(?:[/ ](\d+)(?:\.(\d+))?)?'
         type: 'mail'
       # Apple Air Mail

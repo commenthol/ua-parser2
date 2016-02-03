@@ -1,6 +1,6 @@
 # Changelog
 
-**2013-02-03**
+**2013-02-03** v0.1.34
 - regexes:
   - Correcting/Extending Mail User-Agents, Thunderbird, Shredder, Spicebird, Outlook, Windows Live Mail
 
