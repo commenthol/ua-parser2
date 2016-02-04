@@ -1,6 +1,10 @@
 # Changelog
 
-**2013-02-03** v0.1.34
+**2016-02-04** 
+- regexes:
+  - Adding NerdyBot
+
+**2016-02-03** v0.1.34
 - regexes:
   - Correcting/Extending Mail User-Agents, Thunderbird, Shredder, Spicebird, Outlook, Windows Live Mail
 
