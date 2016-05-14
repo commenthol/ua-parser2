@@ -1,8 +1,34 @@
 # Changelog
 
-**2016-02-04** 
+**2016-05-14** v0.1.35
 - regexes:
-  - Adding NerdyBot
+  - user_agent_parsers
+    - Adding NerdyBot
+    - iOS has two types of webviews UI/WKWebView which cannot be distinguished
+    - Add TwitterBot
+    - Detection of Apple Mail
+    - CaptiveNetworkSupport <https://discussions.apple.com/thread/3688992>
+    - Improve Version detection on Bots
+    - PayPal Instant Payment Notification Bot
+    - adbeat.com Bot
+    - Comodo SSL Checker
+    - Digg Feed Fetcher
+    - Electron
+    - SamsungBrowser
+    - Dragon
+    - ScoutJet Bot
+    - DeuSu Bot
+    - MailBar
+    - 360 speed/ speed browser
+  - engine_parsers
+    - Adding Chrome::WebView <https://developer.chrome.com/multidevice/user-agent>
+    - Fixing Chrome::Samsung (SamsungBrowser)
+  - os_parsers
+    - Raspbian
+  - device_parsers
+    - Nexus 5X, Nexus 6P
+    - XiaoMi MI PAD, Mi 4i
+    - Fix device detection for Nokia rv:11 Windows Phone
 
 **2016-02-03** v0.1.34
 - regexes:
