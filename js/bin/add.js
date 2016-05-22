@@ -14,18 +14,17 @@ var
 	fs = require('fs'),
 	path = require('path'),
 	cmd = require('commander'),
-	sh = require("shelljs"),
 	splitLine = require('streamss').SplitLine,
 	through = require('streamss').Through,
 	helper = require('../test/lib/helper'),
 	parser = require('../')();
 
 var
-	pwd = sh.pwd(),
+	pwd = process.cwd(),
 	config = {
 		version: '0.0.2',
 		params: [ 'ua', 'engine', 'os', 'device' ], /// params to print on console
-		testsFile: __dirname + '/../../test_resources/tests.json', /// default tests file
+		testsFile: path.resolve(__dirname, '../../test_resources/tests.json'), /// default tests file
 	};
 
 /// the program

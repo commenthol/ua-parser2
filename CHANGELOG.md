@@ -1,5 +1,10 @@
 # Changelog
 
+**2016-05-22** v0.1.36-0
+- regexes:
+  - user_agent_parsers
+    - Detect Chrome Mobile based browsers, MobileIron, Crosswalks
+
 **2016-05-14** v0.1.35
 - regexes:
   - user_agent_parsers
