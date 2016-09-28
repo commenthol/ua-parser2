@@ -1,9 +1,21 @@
 # Changelog
 
-**2016-05-22** v0.1.36-0
+**2016-09-28** v0.1.36
 - regexes:
   - user_agent_parsers
     - Detect Chrome Mobile based browsers, MobileIron, Crosswalks
+    - Detect mail programs
+    - Fix UC Browser
+    - LG Browser
+  - engine
+    - Chrome::QtWebEngine
+  - os_parsers
+    - RemixOS
+    - macOS Sierra, Mac OSX El Capitan
+    - WebOS
+  - device
+    - correcting iPod touch
+    - snom
 
 **2016-05-14** v0.1.35
 - regexes:

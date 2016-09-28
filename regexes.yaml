@@ -45,7 +45,7 @@ user_agent_parsers:
         type: 'app'
 
   ### Mail
-  - regex: '\b(Thunderbird|Icedove|Shredder|Spicebird|Lotus-Notes|Airmail|Lightning|MSOffice|Outlook|Barca|Bat|(?:Macintosh.* AppleWebKit|MailBar))'
+  - regex: '\b(YahooMobileMail|Thunderbird|Icedove|Shredder|Spicebird|Lotus-Notes|Airmail|Lightning|MSOffice|Outlook|Barca|kmail2|Bat|(?:Macintosh.* AppleWebKit|MailBar))'
 
     group:
       # Outlook 2007
@@ -73,7 +73,7 @@ user_agent_parsers:
         family: 'Windows Live Mail'
         type: 'mail'
       # Other Mail Agents
-      - regex: '(Lotus-Notes|MailBar|Microsoft Outlook|Outlook-Express|Barca(?:Pro)?|Postbox|The Bat!(?: Voyager)?)(?:[/ ](\d+)(?:\.(\d+))?)?'
+      - regex: '(YahooMobileMail|Lotus-Notes|MailBar|Microsoft Outlook|Outlook-Express|Barca(?:Pro)?|Postbox|kmail2|The Bat!(?: Voyager)?)(?:[/ ](\d+)(?:\.(\d+)(?:\.(\d+))?)?)?'
         type: 'mail'
       # Apple Air Mail
       - regex: '(Airmail) (\d+)\.(\d+)(?:\.(\d+))?'
@@ -156,6 +156,10 @@ user_agent_parsers:
   - regex: '(MyIBrow)/(\d+)\.(\d+)'
     family: 'My Internet Browser'
 
+  # UC Browser (needs to be checked before Opera Mini)
+  - regex: '(UC ?Browser|UCWEB|\bU3)[ /]?(\d+)\.(\d+)\.(\d+)'
+    family: 'UC Browser'
+    
   # Opera group
   - regex: 'Opera|OPR|OPiOS|Coast'
 
@@ -255,10 +259,6 @@ user_agent_parsers:
       - regex: '(chromeframe)/(\d+)\.(\d+)\.(\d+)'
         family: 'Chrome Frame'
 
-  # UC Browser
-  - regex: '(UC ?Browser|UCBrowser|UCWEB)[ /]?(\d+)\.(\d+)\.(\d+)'
-    family: 'UC Browser'
-
   # Tizen Browser (second case included in browser/major.minor regex)
   - regex: '(Tizen|SLP) Browser/(\d+)\.(\d+)'
     family: 'Tizen Browser'
@@ -312,7 +312,7 @@ user_agent_parsers:
 
   # Browser/major_version.minor_version(.beta_version)
   - regex: '(Phoenix)/(\d+)(?:\.(\d+)(?:\.(\d+))?)?'
-  - regex: '(Abrowser|AdobeAIR|amaya|Amiga-AWeb|AmigaVoyager|ANTFresco|ANTGalio|Arora|Bolt|BOLT|brave|Bunjalloo|Crazy Browser|Chromium|ChromePlus|CoolNovo|Demeter|Dillo|Dolfin|Dolphin http client|Dragon|Epiphany|EspialTVBrowser|Electron|Espial|Fennec|FireWeb|Fluid|Fresco|Galeon|Googlebot|Google Earth(?: EC)?|HbbTV|HotJava|IBrowse|iCab|Iceape|ICE Browser|IceCat|Iceweasel|IceWeasel|iRider|OneBrowser|Iris|Iron|Jasmine|Kapiko|Kazehakase|Kindle|K-Meleon|Lobo|Lunascape|Lynx|MacAppStore|Maemo Browser|Maxthon|mDolphin|Mercury|MiniBrowserMobile|Midori|Minimo|Net[Ff]ront|NetFrontLifeBrowser|NetPositive|Netscape|NetSurf|OmniWeb|Opera|Opera Mini|Orca|Otter|PaleMoon|Planetweb|Polaris|Puffin|PyAMF|QupZilla|qutebrowser|Raven for Mac|RockMelt|SailfishBrowser|SeaMonkey|Shiira|SkipStone|Skyfire|Sleipnir|Snowshoe|Space Bison|Stainless|Sunrise|ThunderBrowse|UP\.Browser|Vienna|Vivaldi|WebPilot|WebPositive|Xiino)[/ ](\d+)(?:\.(\d+)(?:\.(\d+))?)?'
+  - regex: '(Abrowser|AdobeAIR|amaya|Amiga-AWeb|AmigaVoyager|ANTFresco|ANTGalio|Arora|Bolt|BOLT|brave|Bunjalloo|Crazy Browser|Chromium|ChromePlus|CoolNovo|Demeter|Dillo|Dolfin|Dolphin http client|Dragon|Epiphany|EspialTVBrowser|Electron|Espial|Fennec|FireWeb|Fluid|Fresco|Galeon|Googlebot|Google Earth(?: EC)?|HbbTV|HotJava|IBrowse|iCab|Iceape|ICE Browser|IceCat|Iceweasel|IceWeasel|iRider|OneBrowser|Iris|Iron|Jasmine|Kapiko|Kazehakase|Kindle|K-Meleon|LG Browser|Lobo|Lunascape|Lynx|MacAppStore|Maemo Browser|Maxthon|mDolphin|Mercury|MiniBrowserMobile|Midori|Minimo|Net[Ff]ront|NetFrontLifeBrowser|NetPositive|Netscape|NetSurf|OmniWeb|Opera|Opera Mini|Orca|Otter|PaleMoon|Planetweb|Polaris|Puffin|PyAMF|QupZilla|qutebrowser|Raven for Mac|RockMelt|SailfishBrowser|SeaMonkey|Shiira|SkipStone|Skyfire|Sleipnir|Snowshoe|Space Bison|Stainless|Sunrise|ThunderBrowse|UP\.Browser|Vienna|Vivaldi|WebPilot|WebPositive|Xiino)[/ ](\d+)(?:\.(\d+)(?:\.(\d+))?)?'
 
   # Browser without version
   - regex: '(QIHU 360[SE]E)'
@@ -536,6 +536,9 @@ engine_parsers:
     v1: '7'
     v2: '0'
 
+  - regex: 'QtWebEngine.* (Chr[o0]me)[/](\d+)\.(\d+)\.?(\d+)?\.?(\d+)?'
+    family: 'Chrome::QtWebEngine'
+
   - regex: '(Chrome)[/](\d+)\.(\d+)\.?(\d+)?\.?(\d+)?.*OPR/\d+'
     family: 'Chrome::Opera'
 
@@ -670,7 +673,7 @@ os_parsers:
 
       - regex: '(Windows)(?:(?!CFNetwork).)*$'
 
-  - regex: '(?:Ali)?(YunOS)'
+  - regex: '(?:Ali)?(YunOS|RemixOS)'
     regex_flag: 'i'
     group:
       # YunOS spoofs Android
@@ -680,6 +683,7 @@ os_parsers:
       - regex: '(?:Ali)?(YunOS)[ /\-](\d+)(?:\.(\d+)(?:\.(\d+)(?:\.(\d+))?)?)?'
         regex_flag: 'i'
         family: 'YunOS'
+      - regex: '(RemixOS) (\d+)(?:\.(\d+)(?:\.(\d+))?)?'
 
   ##########
   # Android
@@ -903,7 +907,32 @@ os_parsers:
       - regex: '((?:Mac ?|; )OS X)[\s/](?:Version\s)?(?:(\d+)[_.](\d+)(?:[_.](\d+))?|Mach-O)'
         family: 'Mac OS X'
 
+      # macOS Sierra
+      - regex: 'CFNetwork/807\.\d.* Darwin/16\.(\d)'
+        family: 'macOS'
+        v1: '10'
+        v2: '12'
+        v3: '$1'
+      - regex: 'CFNetwork/807\.(\d)'
+        family: 'macOS'
+        v1: '10'
+        v2: '12'
+        v3: '$1'
+      - regex: ' Darwin/16\.0\.0.*\((?:i386|x86_64)\)'
+        family: 'macOS'
+        v1: '10'
+        v2: '12'
       # El Capitan
+      - regex: 'CFNetwork/760\.\d.* Darwin/15\.(\d)'
+        family: 'Mac OS X'
+        v1: '10'
+        v2: '11'
+        v3: '$1'
+      - regex: 'CFNetwork/760\.(\d)'
+        family: 'Mac OS X'
+        v1: '10'
+        v2: '11'
+        v3: '$1'
       - regex: ' Darwin/15\.0\.0.*\((?:i386|x86_64)\)'
         family: 'Mac OS X'
         v1: '10'
@@ -1024,6 +1053,10 @@ os_parsers:
       # @ref: https://en.wikipedia.org/wiki/Darwin_(operating_system)#Release_history
       # @ref: http://user-agents.me/cfnetwork-version-list
       ##########
+      - regex: 'CFNetwork/(?:79(0)\.\d|808.(0).\d).* Darwin/(16)\.'
+        family: 'iOS'
+        v1: '10'
+        v2: '$1$2'
       - regex: 'CFNetwork/758\.(\d)'
         family: 'iOS'
         v1: '9'
@@ -1241,7 +1274,11 @@ os_parsers:
         family: 'FireHbbTV'
       # generic HbbTV, hoping to catch manufacturer name (always after 2nd comma) and the first string that looks like a 2011-2019 year
       - regex: 'HbbTV/\d+\.\d+\.\d+ \(.*; ?([a-zA-Z]+) ?;.*(201[1-9]).*\)'
-
+  # web0s LG TV
+  - regex: '(webOS\.TV)-(\d+)'
+    family: 'webOS TV'
+  - regex: '(Web0S)'
+    family: 'webOS TV'
   # Other OS
   - regex: '\b(Sailfish|Haiku|BeOS)\b'
 
@@ -5139,7 +5176,7 @@ device_parsers:
         device: '$1'
         brand: 'Apple'
         model: '$1'
-      - regex: '(iPod)(?:;| touch;| Simulator;)'
+      - regex: '(iPod|iPod touch)(?:;| Simulator;)'
         device: '$1'
         brand: 'Apple'
         model: '$1'
@@ -5348,6 +5385,15 @@ device_parsers:
     brand: 'LG'
     model: '$1'
     type: 'tv'
+  - regex: 'LGE; ([^;]+).*LG NetCast\.TV-.*'
+    device: 'NetCast.TV'
+    brand: 'LG'
+    model: '$1'
+    type: 'tv'
+  - regex: 'LG NetCast\.TV'
+    device: 'NetCast.TV'
+    brand: 'LG'
+    type: 'tv'
 
   ##########
   # InettvBrowser, DirectFB, SmartTV
@@ -5520,6 +5566,14 @@ device_parsers:
   - regex: '^SIE-([A-Za-z0-9]+)'
     device: 'Siemens $1'
     brand: 'Siemens'
+    model: '$1'
+
+  ##########
+  # snom
+  ##########
+  - regex: 'snom( m\d+|\d+-SIP)'
+    device: 'snom $1'
+    brand: 'snom'
     model: '$1'
 
   ##########
