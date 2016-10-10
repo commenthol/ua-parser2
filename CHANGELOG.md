@@ -1,5 +1,11 @@
 # Changelog
 
+**2016-10-10** v0.1.37
+- regexes:
+  - user_agent_parsers
+    - Detect Postbox mail client
+    - Detect Kodi, XMBC, spmc media players
+
 **2016-09-28** v0.1.36
 - regexes:
   - user_agent_parsers

@@ -97,8 +97,9 @@ user_agent_parsers:
     type: 'feedreader'
 
   # mediaplayers
-  - regex: '\b(Banshee|Clementine|MediaMonkey)(?:[ /](\d+)(?:\.(\d+)(?:\.(\d)+)?)?)?'
+  - regex: '\b(Banshee|Clementine|MediaMonkey|spmc|XBMC|Kodi)(?:[ /](\d+)(?:\.(\d+)(?:\.(\d+))?(\-[A-Z\d]+)?)?)?'
     type: 'mediaplayer'
+    v3: '$4$5'
 
   - regex: '\b(Instacast|iTunes(?:-iP\w+(?:-\w+)?)?|FlyCast|Nightingale|Songbird|Spotify|SubStream|vlc|Windows-Media-Player(?:-\w+)?|XBMC)\b(?:[ /]?(\d+)(?:\.(\d+)(?:\.(\d)+)?)?)?'
     type: 'mediaplayer'
