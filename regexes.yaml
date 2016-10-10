@@ -45,7 +45,7 @@ user_agent_parsers:
         type: 'app'
 
   ### Mail
-  - regex: '\b(YahooMobileMail|Thunderbird|Icedove|Shredder|Spicebird|Lotus-Notes|Airmail|Lightning|MSOffice|Outlook|Barca|kmail2|Bat|(?:Macintosh.* AppleWebKit|MailBar))'
+  - regex: '\b(YahooMobileMail|Thunderbird|Icedove|Shredder|Spicebird|Lotus-Notes|Airmail|Lightning|MSOffice|Outlook|Barca|kmail2|Bat|(?:Macintosh.* AppleWebKit|MailBar|Postbox))'
 
     group:
       # Outlook 2007
