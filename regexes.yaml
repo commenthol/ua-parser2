@@ -162,7 +162,6 @@ user_agent_parsers:
 
   # Opera group
   - regex: 'Opera|OPR|OPiOS|Coast'
-
     group:
       # Opera will stop at 9.80 and hide the real version in the Version string.
       # see: http://dev.opera.com/articles/view/opera-ua-string-changes/
@@ -273,13 +272,12 @@ user_agent_parsers:
   - regex: '(FlyFlow)/(\d+)\.(\d+)'
     family: 'Baidu Explorer'
 
-  #Baidu Spark
+  # Baidu Spark
   - regex: '((?:BD)?Spark|BIDUBrowser)[ /](\d+)(?:\.(\d+))?'
     family: 'Baidu Spark'
 
   # QQ Browsers
   - regex: 'QQBrowser'
-
     group:
       - regex: '(MQQBrowser/Mini)(?:(\d+)(?:\.(\d+)(?:\.(\d+))?)?)?'
         family: 'QQ Browser Mini'
@@ -311,6 +309,8 @@ user_agent_parsers:
   - regex: '(Mercury|Puffin)/(\d{3,5})'
 
   # Browser/major_version.minor_version(.beta_version)
+
+  # @note: Phoenix needs separate regex as conflicts with device "Fly Phoenix 2"
   - regex: '(Phoenix)/(\d+)(?:\.(\d+)(?:\.(\d+))?)?'
   - regex: '(Abrowser|AdobeAIR|amaya|Amiga-AWeb|AmigaVoyager|ANTFresco|ANTGalio|Arora|Bolt|BOLT|brave|Bunjalloo|Crazy Browser|Chromium|ChromePlus|CoolNovo|Demeter|Dillo|Dolfin|Dolphin http client|Dragon|Epiphany|EspialTVBrowser|Electron|Espial|Fennec|FireWeb|Fluid|Fresco|Galeon|Googlebot|Google Earth(?: EC)?|HbbTV|HotJava|IBrowse|iCab|Iceape|ICE Browser|IceCat|Iceweasel|IceWeasel|iRider|OneBrowser|Iris|Iron|Jasmine|Kapiko|Kazehakase|Kindle|K-Meleon|LG Browser|Lobo|Lunascape|Lynx|MacAppStore|Maemo Browser|Maxthon|mDolphin|Mercury|MiniBrowserMobile|Midori|Minimo|Net[Ff]ront|NetFrontLifeBrowser|NetPositive|Netscape|NetSurf|OmniWeb|Opera|Opera Mini|Orca|Otter|PaleMoon|Planetweb|Polaris|Puffin|PyAMF|QupZilla|qutebrowser|Raven for Mac|RockMelt|SailfishBrowser|SeaMonkey|Shiira|SkipStone|Skyfire|Sleipnir|Snowshoe|Space Bison|Stainless|Sunrise|ThunderBrowse|UP\.Browser|Vienna|Vivaldi|WebPilot|WebPositive|Xiino)[/ ](\d+)(?:\.(\d+)(?:\.(\d+))?)?'
 
@@ -465,7 +465,6 @@ user_agent_parsers:
     v1: '0'
 
   - regex: '(SEMC\-Browser)/(\d+)\.(\d+)'
-
 
   - regex: 'Trident(.*)rv:(\d+)\.(\d+)'
     family: 'IE'
@@ -903,7 +902,6 @@ os_parsers:
   # @ref: http://user-agents.me/cfnetwork-version-list
   ##########
   - regex: 'Mac|Darwin|CFNetwork'
-
     group:
       - regex: '((?:Mac ?|; )OS X)[\s/](?:Version\s)?(?:(\d+)[_.](\d+)(?:[_.](\d+))?|Mach-O)'
         family: 'Mac OS X'
@@ -5029,15 +5027,17 @@ device_parsers:
   #########
   # Firefox OS
   #########
-  - regex: '\(Mobile; ALCATEL ?(One|ONE) ?(Touch|TOUCH) ?([^;/]+)(?:/[^;]+)?; rv:[^\)]+\) Gecko/[^\/]+ Firefox/'
-    device: 'Alcatel $1 $2 $3'
-    brand: 'Alcatel'
-    model: 'One Touch $3'
-  - regex: '\(Mobile; (?:ZTE([^;]+)|(OpenC)|(Open) (C)); rv:[^\)]+\) Gecko/[^\/]+ Firefox/'
-    regex_flag: 'i'
-    device: 'ZTE $1$2$3$4'
-    brand: 'ZTE'
-    model: '$1$2$3$4'
+  - regex: Firefox
+    group:
+      - regex: '\(Mobile; ALCATEL ?(One|ONE) ?(Touch|TOUCH) ?([^;/]+)(?:/[^;]+)?; rv:[^\)]+\) Gecko/[^\/]+ Firefox/'
+        device: 'Alcatel $1 $2 $3'
+        brand: 'Alcatel'
+        model: 'One Touch $3'
+      - regex: '\(Mobile; (?:ZTE([^;]+)|(OpenC)|(Open) (C)); rv:[^\)]+\) Gecko/[^\/]+ Firefox/'
+        regex_flag: 'i'
+        device: 'ZTE $1$2$3$4'
+        brand: 'ZTE'
+        model: '$1$2$3$4'
 
   ##########
   # NOKIA
@@ -5215,15 +5215,18 @@ device_parsers:
   ##########
   # Alcatel
   ##########
-  - regex: '(?:alcatel[ _\-])(?:(?:one[ _\-]?touch[ _\-]|ot[ \-]))((?:(?!UNTRUSTED|Linux|Firmware|AppleWebKit|Build|UCWEB|[;/\(\)_\-]).)+)'
-    regex_flag: 'i'
-    device: 'Alcatel One Touch $1'
-    brand: 'Alcatel'
-    model: 'One Touch $1'
-  - regex: '(?:ALCATEL|Alcatel)-([A-Za-z0-9\-]+)'
-    device: 'Alcatel $1'
-    brand: 'Alcatel'
-    model: '$1'
+  - regex: 'alcatel'
+    regex_flag: i
+    group:
+      - regex: '(?:alcatel[ _\-])(?:(?:one[ _\-]?touch[ _\-]|ot[ \-]))((?:(?!UNTRUSTED|Linux|Firmware|AppleWebKit|Build|UCWEB|[;/\(\)_\-]).)+)'
+        regex_flag: 'i'
+        device: 'Alcatel One Touch $1'
+        brand: 'Alcatel'
+        model: 'One Touch $1'
+      - regex: '(?:ALCATEL|Alcatel)-([A-Za-z0-9\-]+)'
+        device: 'Alcatel $1'
+        brand: 'Alcatel'
+        model: '$1'
 
   ##########
   # Amoi
@@ -5246,14 +5249,17 @@ device_parsers:
   ##########
   # Asus
   ##########
-  - regex: '(?:; |\/|^)((?:Transformer (?:Pad|Prime) |Transformer |PadFone[ _]?)[A-Za-z0-9]*)'
-    device: 'Asus $1'
-    brand: 'Asus'
-    model: '$1'
-  - regex: '(?:asus.*?ASUS|Asus|ASUS|asus)[\- ;]*((?:Transformer (?:Pad|Prime) |Transformer |Padfone |Nexus[ _])?[A-Za-z0-9]+)'
-    device: 'Asus $1'
-    brand: 'Asus'
-    model: '$1'
+  - regex: 'asus|transformer|padfone|nexus'
+    regex_flag: i
+    group:
+      - regex: '(?:; |\/|^)((?:Transformer (?:Pad|Prime) |Transformer |PadFone[ _]?)[A-Za-z0-9]*)'
+        device: 'Asus $1'
+        brand: 'Asus'
+        model: '$1'
+      - regex: '(?:asus.*?ASUS|Asus|ASUS|asus)[\- ;]*((?:Transformer (?:Pad|Prime) |Transformer |Padfone |Nexus[ _])?[A-Za-z0-9]+)'
+        device: 'Asus $1'
+        brand: 'Asus'
+        model: '$1'
 
   ##########
   # Bird
@@ -5384,20 +5390,22 @@ device_parsers:
   ##########
   # LGE NetCast TV
   ##########
-  - regex: 'LGE; (?:Media\/)?([^;]*);[^;]*;[^;]*;?\); "?LG NetCast(\.TV|\.Media|)-\d+'
-    device: 'NetCast$2'
-    brand: 'LG'
-    model: '$1'
-    type: 'tv'
-  - regex: 'LGE; ([^;]+).*LG NetCast\.TV-.*'
-    device: 'NetCast.TV'
-    brand: 'LG'
-    model: '$1'
-    type: 'tv'
-  - regex: 'LG NetCast\.TV'
-    device: 'NetCast.TV'
-    brand: 'LG'
-    type: 'tv'
+  - regex: 'NetCast'
+    group:
+      - regex: 'LGE; (?:Media\/)?([^;]*);[^;]*;[^;]*;?\); "?LG NetCast(\.TV|\.Media|)-\d+'
+        device: 'NetCast$2'
+        brand: 'LG'
+        model: '$1'
+        type: 'tv'
+      - regex: 'LGE; ([^;]+).*LG NetCast\.TV-.*'
+        device: 'NetCast.TV'
+        brand: 'LG'
+        model: '$1'
+        type: 'tv'
+      - regex: 'LG NetCast\.TV'
+        device: 'NetCast.TV'
+        brand: 'LG'
+        type: 'tv'
 
   ##########
   # InettvBrowser, DirectFB, SmartTV
@@ -5454,18 +5462,20 @@ device_parsers:
   ##########
   # microsoft
   ##########
-  - regex: '(KIN\.[^ ]+) (\d+)\.(\d+)'
-    device: 'Microsoft $1'
-    brand: 'Microsoft'
-    model: '$1'
-  - regex: '(?:MSIE|XBMC).*\b(Xbox)\b'
-    device: '$1'
-    brand: 'Microsoft'
-    model: '$1'
-  - regex: '; ARM; Trident/6\.0; Touch[\);]'
-    device: 'Microsoft Surface RT'
-    brand: 'Microsoft'
-    model: 'Surface RT'
+  - regex: 'KIN\.|Xbox|Trident'
+    group:
+      - regex: '(KIN\.[^ ]+) (\d+)\.(\d+)'
+        device: 'Microsoft $1'
+        brand: 'Microsoft'
+        model: '$1'
+      - regex: '(?:MSIE|XBMC).*\b(Xbox)\b'
+        device: '$1'
+        brand: 'Microsoft'
+        model: '$1'
+      - regex: '; ARM; Trident/6\.0; Touch[\);]'
+        device: 'Microsoft Surface RT'
+        brand: 'Microsoft'
+        model: 'Surface RT'
 
   ##########
   # motorola
@@ -5511,14 +5521,10 @@ device_parsers:
   ##########
   # philips
   ##########
-  - regex: 'Philips([A-Za-z0-9]+)'
-    device: 'Philips $1'
-    brand: 'Philips'
-    model: '$1'
-  - regex: 'Philips ([A-Za-z0-9]+)'
-    device: 'Philips $1'
-    brand: 'Philips'
-    model: '$1'
+  - regex: '(Philips) ?([A-Za-z0-9]+)'
+    device: '$1 $2'
+    brand: '$1'
+    model: '$2'
 
   #########
   # Sprint (Operator Branded Devices)
@@ -5596,23 +5602,25 @@ device_parsers:
     brand: 'SonyEricsson'
     model: '$1'
 
-
   ##########
   # Sony PlayStation
   # @ref: http://playstation.com
   # The Vita spoofs the Kindle
   ##########
-  - regex: 'PlayStation (\d+)'
+  - regex: 'PlayStation'
     regex_flag: 'i'
-    device: 'PlayStation $1'
-    brand: 'Sony'
-    model: 'PlayStation $1'
-    type: 'tv'
-  - regex: '(PlayStation (?:Portable|Vita))'
-    device: '$1'
-    brand: 'Sony'
-    model: '$1'
-    type: 'console'
+    group:
+      - regex: 'PlayStation (\d+)'
+        regex_flag: 'i'
+        device: 'PlayStation $1'
+        brand: 'Sony'
+        model: 'PlayStation $1'
+        type: 'tv'
+      - regex: '(PlayStation (?:Portable|Vita))'
+        device: '$1'
+        brand: 'Sony'
+        model: '$1'
+        type: 'console'
 
   ##########
   # Sony
@@ -5625,14 +5633,16 @@ device_parsers:
   ##########
   # Amazon
   ##########
-  - regex: ' (Kindle)/(\d+\.\d+)'
-    device: 'Kindle'
-    brand: 'Amazon'
-    model: '$1 $2'
-  - regex: ' (Silk|Kindle)/(\d+)\.'
-    device: 'Kindle'
-    brand: 'Amazon'
-    model: 'Kindle'
+  - regex: 'Kindle|Silk'
+    group:
+      - regex: ' (Kindle)/(\d+\.\d+)'
+        device: 'Kindle'
+        brand: 'Amazon'
+        model: '$1 $2'
+      - regex: ' (Kindle|Silk)/(\d+)\.'
+        device: 'Kindle'
+        brand: 'Amazon'
+        model: 'Kindle'
 
   ##########
   # WeTab
@@ -5648,53 +5658,57 @@ device_parsers:
   # A=Android, I=iOS, P=Phone, T=Tablet
   # AT=Android+Tablet
   #########
-  - regex: 'Puffin/[\d\.]+IT'
-    device: 'iPad'
-    brand: 'Apple'
-    model: 'iPad'
-  - regex: 'Puffin/[\d\.]+IP'
-    device: 'iPhone'
-    brand: 'Apple'
-    model: 'iPhone'
-  - regex: 'Puffin/[\d\.]+AT'
-    device: 'Generic Tablet'
-    brand: 'Generic'
-    model: 'Tablet'
-  - regex: 'Puffin/[\d\.]+AP'
-    device: 'Generic Smartphone'
-    brand: 'Generic'
-    model: 'Smartphone'
+  - regex: 'Puffin'
+    group:
+      - regex: 'Puffin/[\d\.]+IT'
+        device: 'iPad'
+        brand: 'Apple'
+        model: 'iPad'
+      - regex: 'Puffin/[\d\.]+IP'
+        device: 'iPhone'
+        brand: 'Apple'
+        model: 'iPhone'
+      - regex: 'Puffin/[\d\.]+AT'
+        device: 'Generic Tablet'
+        brand: 'Generic'
+        model: 'Tablet'
+      - regex: 'Puffin/[\d\.]+AP'
+        device: 'Generic Smartphone'
+        brand: 'Generic'
+        model: 'Smartphone'
 
   #########
   # Android General Device Matching (far from perfect)
   #########
-  - regex: 'Android[\- ][\d]+\.[\d]+; [A-Za-z]{2}\-[A-Za-z]{0,2}; WOWMobile (.+) Build'
-    brand: 'Generic_Android'
-    model: '$1'
-  - regex: 'Android[\- ][\d]+\.[\d]+\-update1; [A-Za-z]{2}\-[A-Za-z]{0,2} *; *(.+?) Build'
-    brand: 'Generic_Android'
-    model: '$1'
-  - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[A-Za-z]{2}[_\-][A-Za-z]{0,2}\-? *; *(.+?) Build'
-    brand: 'Generic_Android'
-    model: '$1'
-  - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[A-Za-z]{0,2}\- *; *(.+?) Build'
-    brand: 'Generic_Android'
-    model: '$1'
-  # No build info at all - "Build" follows locale immediately
-  - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[a-z]{0,2}[_\-]?[A-Za-z]{0,2};? Build.* Mobile Safari'
-    device: 'Generic Smartphone'
-    brand: 'Generic'
-    model: 'Smartphone'
-  - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[a-z]{0,2}[_\-]?[A-Za-z]{0,2};? Build'
-    device: 'Generic Tablet'
-    brand: 'Generic'
-    model: 'Tablet'
-  - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *\-?[A-Za-z]{2}; *(.+?) Build'
-    brand: 'Generic_Android'
-    model: '$1'
-  - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}(?:;.*)?; *(.+?) Build'
-    brand: 'Generic_Android'
-    model: '$1'
+  - regex: 'Android'
+    group:
+      - regex: 'Android[\- ][\d]+\.[\d]+; [A-Za-z]{2}\-[A-Za-z]{0,2}; WOWMobile (.+) Build'
+        brand: 'Generic_Android'
+        model: '$1'
+      - regex: 'Android[\- ][\d]+\.[\d]+\-update1; [A-Za-z]{2}\-[A-Za-z]{0,2} *; *(.+?) Build'
+        brand: 'Generic_Android'
+        model: '$1'
+      - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[A-Za-z]{2}[_\-][A-Za-z]{0,2}\-? *; *(.+?) Build'
+        brand: 'Generic_Android'
+        model: '$1'
+      - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[A-Za-z]{0,2}\- *; *(.+?) Build'
+        brand: 'Generic_Android'
+        model: '$1'
+      # No build info at all - "Build" follows locale immediately
+      - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[a-z]{0,2}[_\-]?[A-Za-z]{0,2};? Build.* Mobile Safari'
+        device: 'Generic Smartphone'
+        brand: 'Generic'
+        model: 'Smartphone'
+      - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[a-z]{0,2}[_\-]?[A-Za-z]{0,2};? Build'
+        device: 'Generic Tablet'
+        brand: 'Generic'
+        model: 'Tablet'
+      - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *\-?[A-Za-z]{2}; *(.+?) Build'
+        brand: 'Generic_Android'
+        model: '$1'
+      - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}(?:;.*)?; *(.+?) Build'
+        brand: 'Generic_Android'
+        model: '$1'
 
   ##########
   # Google TV
