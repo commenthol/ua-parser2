@@ -3075,6 +3075,15 @@ device_parsers:
         model: '$1'
 
       #########
+      # Kurio
+      # @ref: http://www.kurioworld.com/
+      #########
+      - regex: '; *(Kurio.*?) Build/'
+        device: '$1'
+        brand: 'Kurio'
+        model: '$1'
+
+      #########
       # K-Touch
       # @ref: ??
       #########
