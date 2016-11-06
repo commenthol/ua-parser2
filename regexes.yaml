@@ -436,20 +436,19 @@ user_agent_parsers:
 
   # iOS
   - regex: '(iPod|iPhone|iPad)'
-
     group:
       # @ref http://stackoverflow.com/questions/2143763/
-      - regex: '(iPod|iPhone|iPad).+Version/(\d+)\.(\d+)(?:\.(\d+))?.* Safari'
+      - regex: '(iPod|iPhone|iPad).+Version/(\d+)\.(\d+)(?:\.(\d+))?.*[ +]Safari'
         family: 'Mobile Safari'
       - regex: '(iPod|iPhone|iPad).+Version/(\d+)\.(\d+)(?:\.(\d+))?.*'
         family: 'Mobile Safari UI/WKWebView'
         type: 'app'
-      - regex: '(iPod|iPhone|iPad);.*CPU.*OS (\d+)_(\d+)(?:_(\d+))?.*Mobile.* Safari'
+      - regex: '(iPod|iPhone|iPad);.*CPU.*OS[ +](\d+)_(\d+)(?:_(\d+))?.*Mobile.*[ +]Safari'
         family: 'Mobile Safari'
-      - regex: '(iPod|iPhone|iPad);.*CPU.*OS (\d+)_(\d+)(?:_(\d+))?.*Mobile'
+      - regex: '(iPod|iPhone|iPad);.*CPU.*OS[ +](\d+)_(\d+)(?:_(\d+))?.*Mobile'
         family: 'Mobile Safari UI/WKWebView'
         type: 'app'
-      - regex: '(iPod|iPhone|iPad).* Safari'
+      - regex: '(iPod|iPhone|iPad).*[ +]Safari'
         family: 'Mobile Safari'
       - regex: '(iPod|iPhone|iPad)'
         family: 'Mobile Safari UI/WKWebView'
@@ -1039,7 +1038,7 @@ os_parsers:
         family: 'ATV OS X'
 
       # General iOS
-      - regex: '(CPU OS|iPhone OS|CPU iPhone) +(\d+)[_\.](\d+)(?:[_\.](\d+))?'
+      - regex: '(CPU[ +]OS|iPhone[ +]OS|CPU[ +]iPhone)[ +]+(\d+)[_\.](\d+)(?:[_\.](\d+))?'
         family: 'iOS'
 
       # remaining cases are mostly only opera uas, so catch opera as to not catch iphone spoofs
