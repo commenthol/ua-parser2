@@ -158,7 +158,7 @@ user_agent_parsers:
     family: 'My Internet Browser'
 
   # UC Browser (needs to be checked before Opera Mini)
-  - regex: '(UC ?Browser|UCWEB|\bU3)[ /]?(\d+)\.(\d+)\.(\d+)'
+  - regex: '(UC? ?Browser|UCWEB|\bU3)[ /]?(\d+)\.(\d+)\.(\d+)'
     family: 'UC Browser'
     
   # Opera group
