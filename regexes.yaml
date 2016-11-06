@@ -45,8 +45,7 @@ user_agent_parsers:
         type: 'app'
 
   ### Mail
-  - regex: '\b(YahooMobileMail|Thunderbird|Icedove|Shredder|Spicebird|Lotus-Notes|Airmail|Lightning|MSOffice|Outlook|Barca|kmail2|Bat|(?:Macintosh.* AppleWebKit|MailBar|Postbox))'
-
+  - regex: '(YahooMobileMail|Thunderbird|Icedove|Shredder|Spicebird|Lotus-Notes|Airmail|Lightning|MSOffice|Exchange|Outlook|Barca|kmail2|Bat|(?:Macintosh.* AppleWebKit|MailBar|Postbox))'
     group:
       # Outlook 2007
       - regex: 'Microsoft Office Outlook 12\.\d+\.\d+|MSOffice 12'
@@ -73,7 +72,7 @@ user_agent_parsers:
         family: 'Windows Live Mail'
         type: 'mail'
       # Other Mail Agents
-      - regex: '(YahooMobileMail|Lotus-Notes|MailBar|Microsoft Outlook|Outlook-Express|Barca(?:Pro)?|Postbox|kmail2|The Bat!(?: Voyager)?)(?:[/ ](\d+)(?:\.(\d+)(?:\.(\d+))?)?)?'
+      - regex: '(YahooMobileMail|Lotus-Notes|MailBar|MacOutlook|ExchangeWebServices|ExchangeServicesClient|Microsoft Outlook|Outlook-Express|Barca(?:Pro)?|Postbox|Slack_SSB|kmail2|The Bat!(?: Voyager)?)(?:[/ ](\d+)(?:\.(\d+)(?:\.(\d+))?)?)?'
         type: 'mail'
       # Apple Air Mail
       - regex: '(Airmail) (\d+)\.(\d+)(?:\.(\d+))?'
@@ -160,7 +159,7 @@ user_agent_parsers:
   # UC Browser (needs to be checked before Opera Mini)
   - regex: '(UC? ?Browser|UCWEB|\bU3)[ /]?(\d+)\.(\d+)\.(\d+)'
     family: 'UC Browser'
-    
+
   # Opera group
   - regex: 'Opera|OPR|OPiOS|Coast'
 
@@ -468,8 +467,6 @@ user_agent_parsers:
 
   - regex: '(SEMC\-Browser)/(\d+)\.(\d+)'
 
-  - regex: '(Phantom)/V(\d+)\.(\d+)'
-    family: 'Phantom Browser'
 
   - regex: 'Trident(.*)rv:(\d+)\.(\d+)'
     family: 'IE'
@@ -487,12 +484,16 @@ user_agent_parsers:
   # Internet Explorer
   - regex: '(?:MS)?(IE)[ /](\d+)\.(\d+)'
 
+  # headless agents
+  - regex: '(Phantom)/V(\d+)\.(\d+)'
+    family: 'Phantom Browser'
+
   - regex: '(python-requests|(?:lib)?curl)(?:/(\d+)\.(\d+)(?:\.(\d+))?)?'
     type: 'headless'
-
   - regex: '(?:^|^Mozilla/\d+\.\d+ (?:\([^\)]+\) )?)(Java)[ /]?(\d+)(?:\.(\d+)(?:\.(\d+))?)?'
     type: 'headless'
 
+  - regex: '(Microsoft-CryptoAPI|Microsoft SkyDriveSync)[/ ](\d+)(?:\.(\d+)(?:\.(\d+))?)?'
 
 #### Engine ####
 engine_parsers:
