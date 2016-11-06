@@ -5167,24 +5167,27 @@ device_parsers:
   ##########
   - regex: 'iPhone|iPad|iPod|CFNetwork|Darwin'
     group:
-      # @note: on some ua the device can be identified e.g. iPhone5,1
-      - regex: '(iPhone|iPad|iPod)(\d+,\d+)'
-        device: '$1'
+      # @note: iPad needs to be before iPhone
+      - regex: '(iPad)(\d+,\d+)|(iPad)(?:;| Simulator;)'
+        device: '$1$3'
+        brand: 'Apple'
+        model: '$1$2$3'
+        type: tablet
+      - regex: '(iPod)(\d+,\d+).*(iPod touch)'
+        device: '$3'
         brand: 'Apple'
         model: '$1$2'
-      # @note: iPad needs to be before iPhone
-      - regex: '(iPad)(?:;| Simulator;)'
-        device: '$1'
+        type: player
+      - regex: '(iPod)(\d+,\d+)|(iPod|iPod touch)(?:;| Simulator;)'
+        device: '$1$3'
         brand: 'Apple'
-        model: '$1'
-      - regex: '(iPod|iPod touch)(?:;| Simulator;)'
-        device: '$1'
+        model: '$1$2$3'
+        type: player
+      - regex: '(iPhone)(\d+,\d+)|(iPhone)(?:;| Simulator;)'
+        device: '$1$3'
         brand: 'Apple'
-        model: '$1'
-      - regex: '(iPhone)(?:;| Simulator;)'
-        device: '$1'
-        brand: 'Apple'
-        model: '$1'
+        model: '$1$2$3'
+        type: smartphone
       # @note: desktop applications show device info
       - regex: 'CFNetwork/.* Darwin/\d.*\(((?:Mac|iMac|PowerMac|PowerBook)[^\d]*)(\d+)(?:,|%2C)(\d+)'
         device: '$1$2,$3'
