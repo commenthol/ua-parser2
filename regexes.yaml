@@ -5738,6 +5738,7 @@ device_parsers:
     device: 'Spider'
     brand: 'Spider'
     model: 'Desktop'
+    type: bot
 
   ##########
   # Generic Feature Phone
