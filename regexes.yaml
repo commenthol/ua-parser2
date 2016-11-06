@@ -5320,6 +5320,16 @@ device_parsers:
       model: '$1'
 
   ##########
+  # Enseo
+  # @ref http://www.enseo.com/
+  ##########
+  - regex: '(Enseo)/([A-Za-z0-9]+)'
+    device: '$1'
+    brand: '$1'
+    model: '$2'
+    type: tv
+
+  ##########
   # htc
   ##########
   - regex: '\b(?:HTC/|HTC/[a-z0-9]+/)?HTC[ _\-;]? *(.*?)(?:-?Mozilla|fingerPrint|[;/\(\)]|$)'
