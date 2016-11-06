@@ -16,7 +16,7 @@ user_agent_parsers:
       type: 'app'
 
   #### Bots ####
-  - regex: '(@|bot|dig|JNLP|NING|seek|Xenu|crawl|health|checker|scope|lycos|slurp|sitecon|teoma|Reaper|faviconGenieo|google|larbin|pompos|scrap|snappy|spider|vortex|zyborg|indexer|monitor|voyager|WhatWeb|WinHTTP|archiver|charlotte|http[^:]*?://|Retreiver|TLSProber|WordPress|BlogBridge|Squrl Java|Python-urllib|Apache-HttpClient|facebookexternalhit|PayPal|adbeat)'
+  - regex: '(@|bot|dig|JNLP|NING|seek|Xenu|crawl|health|checker|scope|lycos|slurp|sitecon|teoma|Reaper|faviconGenieo|google|larbin|pompos|scrap|snappy|spider|vortex|zyborg|indexer|monitor|voyager|WhatWeb|WinHTTP|archiver|charlotte|http[^:]*?://|Retreiver|TLSProber|WordPress|BingPreview|BlogBridge|Squrl Java|Python-urllib|Apache-HttpClient|facebookexternalhit|PayPal|adbeat)'
     regex_flag: 'i'
     group:
       # Pingdom
@@ -5730,10 +5730,10 @@ device_parsers:
     model: 'Smartphone'
 
   ##########
-  # Spiders (this is hack...)
+  # Spiders (this is a hack...)
   # Sort by length
   ##########
-  - regex: '(bot|zao|borg|DBot|oegp|silk|Xenu|zeal|^NING|CCBot|crawl|htdig|lycos|slurp|teoma|voila|yahoo|^Java/|^JNLP/|Daumoa|Genieo|ichiro|larbin|msnbot|msrbot|pompos|Scrapy|snappy|speedy|spider|^vortex|bingbot|crawler|favicon|furlbot|gigabot|indexer|openbot|polybot|Riddler|scooter|scraper|scrubby|seekbot|WhatWeb|WinHTTP|^voyager|archiver|blitzbot|Icarus6j|mogimogi|NerdyBot|Netvibes|altavista|charlotte|findlinks|ProoXiBot|Retreiver|SeznamBot|TLSProber|WordPress|EtaoSpider|PaperLiBot|SputnikBot|Squrl Java|wsr\-agent|A6\-Indexer|baiduspider|netresearch|searchsight|YisouSpider|ICC\-Crawler|MsnBot-Media|http%20client|Python-urllib|converacrawler|dataparksearch|AppEngine-Google|fast\-webcrawler|Sogou Pic Spider|semanticdiscovery|Innovazion Crawler|facebookexternalhit|Google-HTTP-Java-Client|Google.*/\+/web/snippet|ELB-HealthChecker|SiteScope)'
+  - regex: '(bot|zao|borg|DBot|oegp|silk|Xenu|zeal|^NING|CCBot|crawl|htdig|lycos|slurp|teoma|voila|yahoo|Sogou|CiBra|Nutch|^Java/|^JNLP/|Daumoa|Genieo|ichiro|larbin|pompos|Scrapy|snappy|speedy|spider|msnbot|msrbot|vortex|^vortex|crawler|favicon|indexer|Riddler|scooter|scraper|scrubby|WhatWeb|WinHTTP|bingbot|BingPreview|openbot|gigabot|furlbot|polybot|seekbot|^voyager|archiver|Icarus6j|mogimogi|Netvibes|blitzbot|altavista|charlotte|findlinks|Retreiver|TLSProber|WordPress|SeznamBot|ProoXiBot|wsr\-agent|Squrl Java|EtaoSpider|PaperLiBot|SputnikBot|A6\-Indexer|netresearch|searchsight|baiduspider|YisouSpider|ICC\-Crawler|http%20client|Python-urllib|dataparksearch|converacrawler|Screaming Frog|AppEngine-Google|YahooCacheSystem|fast\-webcrawler|Sogou Pic Spider|semanticdiscovery|Innovazion Crawler|facebookexternalhit|Google.*/\+/web/snippet|Google-HTTP-Java-Client|BlogBridge|IlTrovatore-Setaccio|InternetArchive|GomezAgent|WebThumbnail|heritrix|NewsGator|PagePeeker|Reaper|ZooShot|holmes|NL-Crawler)'
     regex_flag: 'i'
     device: 'Spider'
     brand: 'Spider'
