@@ -487,7 +487,7 @@ user_agent_parsers:
   # headless agents
   - regex: '(Phantom)/V(\d+)\.(\d+)'
     family: 'Phantom Browser'
-
+    type: 'headless'
   - regex: '(python-requests|(?:lib)?curl)(?:/(\d+)\.(\d+)(?:\.(\d+))?)?'
     type: 'headless'
   - regex: '(?:^|^Mozilla/\d+\.\d+ (?:\([^\)]+\) )?)(Java)[ /]?(\d+)(?:\.(\d+)(?:\.(\d+))?)?'
