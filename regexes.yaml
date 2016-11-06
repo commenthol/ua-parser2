@@ -896,6 +896,23 @@ os_parsers:
   - regex: '\b(Tizen)(?:[ /](\d+)\.(\d+))?'
 
   ##########
+  # webOS
+  # @note needs to come before Mac OS
+  ##########
+  - regex: 'hpwOS|webOS|Web0S'
+    group:
+      # web0s LG TV
+      - regex: '(webOS\.TV)-2016'
+        family: 'webOS TV'
+        v1: '3'
+      - regex: '(Web0S).*WEBOS(\d+)(?:\.(\d+))?|Web0S'
+        family: 'webOS TV'
+      # Palm webOS
+      - regex: '(hpw|web)OS[ /](\d+)\.(\d+)(?:\.(\d+))?'
+        family: 'webOS'
+      - regex: '(webOS)'
+
+  ##########
   # Mac OS
   # @ref: http://en.wikipedia.org/wiki/Mac_OS_X#Versions
   # @ref: http://www.puredarwin.org/curious/versions
@@ -1238,8 +1255,6 @@ os_parsers:
   ##########
   # Misc mobile
   ##########
-  - regex: '(hpw|web)OS[ /](\d+)\.(\d+)(?:\.(\d+))?'
-    family: 'webOS'
   - regex: '(Palm ?OS)'
     family: 'PalmOS'
   - regex: 'Xiino(?:.*v\. (\d+[\.\d]+))?'
