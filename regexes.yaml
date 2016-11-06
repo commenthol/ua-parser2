@@ -5168,10 +5168,10 @@ device_parsers:
   - regex: 'iPhone|iPad|iPod|CFNetwork|Darwin'
     group:
       # @note: on some ua the device can be identified e.g. iPhone5,1
-      - regex: '((?:iPhone|iPad|iPod)\d+,\d+)'
+      - regex: '(iPhone|iPad|iPod)(\d+,\d+)'
         device: '$1'
         brand: 'Apple'
-        model: '$1'
+        model: '$1$2'
       # @note: iPad needs to be before iPhone
       - regex: '(iPad)(?:;| Simulator;)'
         device: '$1'
