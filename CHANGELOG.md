@@ -1,10 +1,24 @@
 # Changelog
 
-**2016-10-10** v0.1.37
+**2016-11-12** v0.1.37
 - regexes:
-  - user_agent_parsers
-    - Detect Postbox mail client
-    - Detect Kodi, XMBC, spmc media players
+  - Detect Postbox mail client
+  - Detect Kodi, XMBC, spmc media players
+  - adding changed ua scheme for Iron
+  - adding Enseo room entertainment system
+  - adding Kurio devices
+  - adding GoogleImageProxy
+  - fixing webOS
+  - performance improvements
+  - adding Slackbot
+  - fix for iPad,iPod,iPhone family
+  - adding device type bot to spiders
+  - adding BingPreview as bot
+  - fixing iPhone,iPad family
+  - fixing iPad,iPhone
+  - type headless for Phantom Browser
+  - adding Slack and Office365/Outlook services
+  - fix UC Browser detection
 
 **2016-09-28** v0.1.36
 - regexes:
