@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "ua-parser2-benchmark",
   "description": "benchmark different user agent parsers",
   "version": "0.0.1",
