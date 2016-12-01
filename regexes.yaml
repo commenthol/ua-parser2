@@ -82,12 +82,12 @@ user_agent_parsers:
       - regex: '^Mozilla\/5\.0 \(.* Mac OS X.*\(KHTML, like Gecko\)(?: Mobile\/[\S]*)?$'
         family: 'Apple Mail'
         type: 'mail'
+      # Lightning (for Thunderbird) http://www.mozilla.org/projects/calendar/lightning/
+      - regex: 'Gecko/\d+ (Lightning)/(\d+)\.(\d+)\.?((?:[ab]?\d+[a-z]*)|(?:\d*))'
+        type: 'mail'
       # Thunderbird
       - regex: '(Thunderbird|Icedove)/(\d+)\.(\d+)(?:\.(\d+(?:pre)?))?'
         family: 'Thunderbird'
-        type: 'mail'
-      # Lightning
-      - regex: '\b(Lightning)/(\d+)(?:\.(\d+)(?:\.?([ab]?\d+[a-z]*))?)?'
         type: 'mail'
 
   # Feedreader
