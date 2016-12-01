@@ -1,5 +1,13 @@
 # Changelog
 
+**2016-12-02** v0.1.38
+- ua: distinguish Lightning from Thunderbird
+- ua: app Kurio, BacaBerita, Deezer
+- ua: MxBrowser is Maxthon
+- device: better detect iP devices
+- os: detect iPd UCWEB browser
+- os: better iOS detection
+
 **2016-11-12** v0.1.37
 - regexes:
   - Detect Postbox mail client
