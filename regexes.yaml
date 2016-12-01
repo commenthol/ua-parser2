@@ -10,7 +10,6 @@ user_agent_parsers:
     - regex: '^((?:(?! CFNetwork|/).)+)(?:/(\d+)(?:\.([a-z\d]+))*|.*)? CFNetwork/.*'
       type: 'app'
     - regex: '(CFNetwork)(?:/(\d+)(?:\.(\d+))+)?'
-      family: 'CFNetwork'
       type: 'app'
     - regex: '(CaptiveNetworkSupport)-(\d+)'
       type: 'app'
@@ -117,6 +116,10 @@ user_agent_parsers:
       - regex: '\[(Pinterest)/[^\]]+\]'
       - regex: '(Pinterest)(?: for Android(?: Tablet)?)?/(\d+)(?:\.(\d+)(?:\.(\d)+)?)?'
         type: 'app'
+
+  # Apps
+  - regex: '\b(Kurio|BacaBerita App|Deezer)[ /](\d+)(?:\.(\d+)(?:\.(\d+))?)?'
+    type: 'app'
 
   #### SPECIAL CASES TOP ####
 
