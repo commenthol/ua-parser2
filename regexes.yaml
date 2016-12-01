@@ -1133,8 +1133,9 @@ os_parsers:
         v1: '1'
 
       # iOS Apps
-      - regex: '\b(iOS[ /]|iPhone(?:/| v|[ _]OS[/,]|; | OS : |\d,\d/|\d,\d; )|iPad/)(\d{1,2})[_\.](\d{1,2})(?:[_\.](\d+))?'
+      - regex: '\b(iOS[ /]|iOS; |iPhone(?:/| v|[ _]OS[/,]|; | OS : |\d,\d/|\d,\d; )|iPad/)(\d{1,2})[_\.](\d{1,2})(?:[_\.](\d+))?'
         family: 'iOS'
+      - regex: '\((iOS); '
 
       ##########
       # Apple TV
