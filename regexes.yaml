@@ -496,12 +496,11 @@ user_agent_parsers:
   - regex: '(Phantom)/V(\d+)\.(\d+)'
     family: 'Phantom Browser'
     type: 'headless'
-  - regex: '(python-requests|(?:lib)?curl)(?:/(\d+)\.(\d+)(?:\.(\d+))?)?'
-    type: 'headless'
   - regex: '(?:^|^Mozilla/\d+\.\d+ (?:\([^\)]+\) )?)(Java)[ /]?(\d+)(?:\.(\d+)(?:\.(\d+))?)?'
     type: 'headless'
+  - regex: \b(Windows-Update-Agent|Microsoft SkyDriveSync|Microsoft-CryptoAPI|SophosUpdateManager|SophosAgent|(?:\w+) APT-HTTP|python-requests|libcurl-agent|libwww-perl|urlgrabber|curl|Wget|OpenBSD ftp|jupdate)(?:[ /](\d+)(?:\.(\d+)(?:\.(\d+))?)?)?
+    type: headless
 
-  - regex: '(Microsoft-CryptoAPI|Microsoft SkyDriveSync)[/ ](\d+)(?:\.(\d+)(?:\.(\d+))?)?'
 
 #### Engine ####
 engine_parsers:
@@ -5831,7 +5830,7 @@ device_parsers:
     device: 'Generic Feature Phone'
     brand: 'Generic'
     model: 'Feature Phone'
-  - regex: '^(talk|teli|topl|tosh|up.b|upg1|utst|v400|v750|veri|vk\-v|vk40|vk50|vk52|vk53|vm40|vx98|virg|vertu|vite|voda|vulc|w3c |w3c\-|wapj|wapp|wapu|wapm|wig |wapi|wapr|wapv|wapy|wapa|waps|wapt|winc|winw|wonu|x700|xda2|xdag|yas\-|your|zte\-|zeto|aste|audi|avan|blaz|brew|brvw|bumb|ccwa|cell|cldc|cmd\-|dang|eml2|fetc|hipt|http|ibro|idea|ikom|ipaq|jbro|jemu|jigs|keji|kyoc|kyok|libw|m\-cr|midp|mmef|moto|mwbp|mywa|newt|nok6|o2im|pant|pdxg|play|pluc|port|prox|rozo|sama|seri|smal|symb|treo|upsi|vx52|vx53|vx60|vx61|vx70|vx80|vx81|vx83|vx85|wap\-|webc|whit|wmlb|xda\-|xda_)'
+  - regex: '^(talk|teli|topl|tosh|up.b|upg1|utst|v400|v750|veri|vk\-v|vk40|vk50|vk52|vk53|vm40|vx98|virg|vertu|vite|voda|vulc|w3c |w3c\-|wapj|wapp|wapu|wapm|wig |wapi|wapr|wapv|wapy|wapa|waps|wapt|winc|winw|wonu|x700|xda2|xdag|yas\-|your|zte\-|zeto|aste|audi|avan|blaz|brew|brvw|bumb|ccwa|cell|cldc|cmd\-|dang|eml2|fetc|hipt|http|ibro|idea|ikom|ipaq|jbro|jemu|jigs|keji|kyoc|kyok|m\-cr|midp|mmef|moto|mwbp|mywa|newt|nok6|o2im|pant|pdxg|play|pluc|port|prox|rozo|sama|seri|smal|symb|treo|upsi|vx52|vx53|vx60|vx61|vx70|vx80|vx81|vx83|vx85|wap\-|webc|whit|wmlb|xda\-|xda_)'
     regex_flag: 'i'
     device: 'Generic Feature Phone'
     brand: 'Generic'
