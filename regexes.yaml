@@ -1341,8 +1341,9 @@ os_parsers:
 
   # Linux + Kernel Version
   - regex: '(Linux)(?:[ /](\d+)\.(\d+)(?:\.(\d+))?)?'
-
-  - regex: 'X11;'
+  - regex: 'redhat-linux-gnu'
+    family: 'Red Hat'
+  - regex: '(X11;|linux-gnu)'
     family: 'Linux'
 
 #### Device ####
