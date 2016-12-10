@@ -4923,6 +4923,7 @@ device_parsers:
         device: 'Alcatel $1'
         brand: 'Alcatel'
         model: '$1'
+        type: 'smartphone'
 
       #########
       # Asus Windows Phones
@@ -4931,6 +4932,7 @@ device_parsers:
         device: 'Asus $1'
         brand: 'Asus'
         model: '$1'
+        type: 'smartphone'
 
       #########
       # Dell Windows Phones
@@ -4939,6 +4941,7 @@ device_parsers:
         device: 'Dell $1'
         brand: 'Dell'
         model: '$1'
+        type: 'smartphone'
 
       #########
       # HTC Windows Phones
@@ -4947,14 +4950,17 @@ device_parsers:
         device: 'HTC $1'
         brand: 'HTC'
         model: '$1'
+        type: 'smartphone'
       - regex: 'WPDesktop; (Windows Phone 8[SX] by HTC)'
         device: 'HTC $1'
         brand: 'HTC'
         model: '$1'
+        type: 'smartphone'
       - regex: '(LEO70)'
         device: 'HTC $1'
         brand: 'HTC'
         model: '$1'
+        type: 'smartphone'
 
       #########
       # Huawei Windows Phones
@@ -4963,10 +4969,12 @@ device_parsers:
         device: 'Huawei $1'
         brand: 'Huawei'
         model: '$1'
+        type: 'smartphone'
       - regex: 'WPDesktop; (W1-U00)'
         device: 'Huawei $1'
         brand: 'Huawei'
         model: '$1'
+        type: 'smartphone'
 
       #########
       # LG Windows Phones
@@ -4975,30 +4983,41 @@ device_parsers:
         device: 'LG $1'
         brand: 'LG'
         model: '$1'
+        type: 'smartphone'
 
       #########
       # Noka Windows Phones
       #########
+      - regex: 'Lumia; (2520)'
+        device: 'Lumia $1'
+        brand: 'Nokia'
+        model: 'Lumia $1'
+        type: 'tablet'
       - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?)?(?:NOKIA|Nokia)[^;]*; *(?:NOKIA ?|Nokia ?|LUMIA ?|[Ll]umia ?)*(\d{3,}[^;\)]*)'
         device: 'Lumia $1'
         brand: 'Nokia'
         model: 'Lumia $1'
+        type: 'smartphone'
       - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?)?(?:NOKIA|Nokia)[^;]*; *(RM-\d{3,})'
         device: 'Nokia $1'
         brand: 'Nokia'
         model: '$1'
+        type: 'smartphone'
       - regex: '(?:Windows Phone Search.*|WPDesktop;) *(?:NOKIA|Nokia); *(Lumia[^;\)]+)'
         device: 'Nokia $1'
         brand: 'Nokia'
         model: '$1'
+        type: 'smartphone'
       - regex: 'WPDesktop;(?: NOKIA; Nokia| NOKIA;| Nokia)? (\d+[^;\)]+)'
         device: 'Nokia Lumia $1'
         brand: 'Nokia'
         model: 'Lumia $1'
+        type: 'smartphone'
       - regex: 'Windows Phone Search.*NOKIA;(?:Nokia )?(\d+[^;\)]+)'
         device: 'Nokia Lumia $1'
         brand: 'Nokia'
         model: 'Lumia $1'
+        type: 'smartphone'
 
       #########
       # Microsoft Windows Phones
@@ -5068,6 +5087,7 @@ device_parsers:
     device: 'Samsung $1'
     brand: 'Samsung'
     model: '$1'
+    type: 'smartphone'
 
   #########
   # Firefox OS
@@ -5078,11 +5098,13 @@ device_parsers:
         device: 'Alcatel $1 $2 $3'
         brand: 'Alcatel'
         model: 'One Touch $3'
+        type: 'smartphone'
       - regex: '\(Mobile; (?:ZTE([^;]+)|(OpenC)|(Open) (C)); rv:[^\)]+\) Gecko/[^\/]+ Firefox/'
         regex_flag: 'i'
         device: 'ZTE $1$2$3$4'
         brand: 'ZTE'
         model: '$1$2$3$4'
+        type: 'smartphone'
 
   ##########
   # NOKIA
@@ -5194,6 +5216,7 @@ device_parsers:
     device: 'AppleTV'
     brand: 'Apple'
     model: 'AppleTV$1$2'
+    type: tv
 
   #########
   # Tesla Model S
@@ -5266,6 +5289,7 @@ device_parsers:
     device: 'Acer $1'
     brand: 'Acer'
     model: '$1'
+    type: phone
 
   ##########
   # Alcatel
@@ -5786,6 +5810,7 @@ device_parsers:
   - regex: '(GoogleTV)'
     brand: 'Generic_Inettv'
     model: '$1'
+    type: 'tv'
 
   ##########
   # WebTV
@@ -5793,6 +5818,7 @@ device_parsers:
   - regex: '(WebTV)/\d+.\d+'
     brand: 'Generic_Inettv'
     model: '$1'
+    type: 'tv'
 
   ##########
   # Generic Tablet
@@ -5802,6 +5828,7 @@ device_parsers:
     device: 'Generic Tablet'
     brand: 'Generic'
     model: 'Tablet'
+    type: 'tablet'
 
   ##########
   # Generic Smart Phone
@@ -5836,14 +5863,17 @@ device_parsers:
     device: 'Generic Feature Phone'
     brand: 'Generic'
     model: 'Feature Phone'
+    type: 'phone'
   - regex: '^(Ice)$'
     device: 'Generic Feature Phone'
     brand: 'Generic'
     model: 'Feature Phone'
+    type: 'phone'
   - regex: '(wap[\-\ ]browser|maui|netfront|obigo|teleca|up\.browser|midp)'
     regex_flag: 'i'
     device: 'Generic Feature Phone'
     brand: 'Generic'
     model: 'Feature Phone'
+    type: 'phone'
 
 
