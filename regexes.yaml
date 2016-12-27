@@ -74,7 +74,7 @@ user_agent_parsers:
         family: 'Windows Live Mail'
         type: 'mail'
       # Other Mail Agents
-      - regex: '(YahooMobileMail|Lotus-Notes|MailBar|MacOutlook|ExchangeWebServices|ExchangeServicesClient|Microsoft Outlook|Outlook-Express|Barca(?:Pro)?|Postbox|Slack_SSB|kmail2|The Bat!(?: Voyager)?)(?:[/ ](\d+)(?:\.(\d+)(?:\.(\d+))?)?)?'
+      - regex: '(YahooMobileMail|Lotus-Notes|MailBar|MacOutlook|Outlook-iOS-Android|ExchangeWebServices|ExchangeServicesClient|Microsoft Outlook|Outlook-Express|Barca(?:Pro)?|Postbox|Slack_SSB|kmail2|The Bat!(?: Voyager)?)(?:[/ ](\d+)(?:\.(\d+)(?:\.(\d+))?)?)?'
         type: 'mail'
       # Apple Air Mail
       - regex: '(Airmail) (\d+)\.(\d+)(?:\.(\d+))?'
@@ -698,14 +698,21 @@ os_parsers:
         family: 'YunOS'
       - regex: '(RemixOS) (\d+)(?:\.(\d+)(?:\.(\d+))?)?'
 
+  - regex: Outlook-iOS-Android
+    group:
+      # Again a MS-special one
+      - regex: '(CPU[ +]OS|[iI]Phone[ +]OS|CPU[ +]iPhone)[ +]+(\d+)[_\.](\d+)(?:[_\.](\d+))?.*Outlook-iOS-Android'
+        family: 'iOS'
+      - regex: '^Outlook-iOS-Android'
+        family: ''
+
   ##########
   # Android
-  # can actually detect rooted android os. do we care?
   ##########
-  - regex: '(Android)[ \-/](\d+)\.(\d+)(?:[.\-]([a-z0-9]+))?'
-
   - regex: 'Android|Build|Linux'
     group:
+      - regex: '(Android)[ \-/](\d+)\.(\d+)(?:[.\-]([a-z0-9]+))?'
+
       - regex: '\((Linux); U; (\d+)\.(\d+)(?:[\.-](\d+|update1))?;'
         family: 'Android'
 
