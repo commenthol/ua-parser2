@@ -136,7 +136,7 @@ user_agent_parsers:
       - regex: 'Mozilla.*\b(Beonex|Camino|Chimera|CometBird|Firebird(?: Browser)?|Fireweb Navigator|Flock|IceDragon|SailfishBrowser|SeaMonkey)/(\d+)(?:\.(\d+)(?:\.?([ab]?\d+[a-z]*))?)?'
 
       # Firefox
-      - regex: '(Fennec)/(\d+)\.(\d+)\.?(pre|[ab]?\d+[a-z]*)'
+      - regex: '(Fennec)/(\d+)\.(\d+)(\.?(pre|[ab]?\d+[a-z]*))?'
         family: 'Firefox Mobile'
       - regex: '(?:Mobile[:;]|Tablet;).*(Firefox)/(\d+)\.(\d+)'
         family: 'Firefox Mobile'
