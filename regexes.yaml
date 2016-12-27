@@ -1066,7 +1066,7 @@ os_parsers:
         family: 'ATV OS X'
 
       # General iOS
-      - regex: '(CPU[ +]OS|iPhone[ +]OS|CPU[ +]iPhone)[ +]+(\d+)[_\.](\d+)(?:[_\.](\d+))?'
+      - regex: '(CPU[ +]OS|[iI]Phone[ +]OS|CPU[ +]iPhone)[ +]+(\d+)[_\.](\d+)(?:[_\.](\d+))?'
         family: 'iOS'
 
       # remaining cases are mostly only opera uas, so catch opera as to not catch iphone spoofs
