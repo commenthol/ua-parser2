@@ -1,5 +1,20 @@
 # Changelog
 
+**2016-12-27** v0.1.39
+- ua, os: Detection of Outlook-iOS-Android
+- ua: Fix detection of 008 bot
+- os: Fix iOS detection
+- ua: Fix doubled Minimo
+- ua: Fix Fennec browser
+- ua: Fix baidubrowser
+- device: adding device types
+- device: Huawei Honor
+- device: fix generic_android containing Build twice
+- ua: update mediaplayer, feedreader
+- os: Linux, Red Hat
+- ua: headless browsers
+- ua: Pinterest app, bot
+
 **2016-12-02** v0.1.38
 - ua: distinguish Lightning from Thunderbird
 - ua: app Kurio, BacaBerita, Deezer

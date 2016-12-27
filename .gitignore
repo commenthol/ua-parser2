@@ -4,3 +4,4 @@ node_modules/
 /*.bak
 /test_resources/bad-tests.json
 /test_resources/new-tests.json
+/test_resources/quick-tests.json
