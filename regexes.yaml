@@ -940,7 +940,7 @@ os_parsers:
   ##########
   - regex: 'Mac|Darwin|CFNetwork'
     group:
-      - regex: '((?:Mac ?|; )OS X)[\s/](?:Version\s)?(?:(\d+)[_.](\d+)(?:[_.](\d+))?|Mach-O)'
+      - regex: '((?:Mac[ +]?|; )OS[ +]X)[ /+](?:Version )?(?:(\d+)[_.](\d+)(?:[_.](\d+))?|Mach-O)'
         family: 'Mac OS X'
 
       # macOS Sierra
@@ -5880,5 +5880,3 @@ device_parsers:
     brand: 'Generic'
     model: 'Feature Phone'
     type: 'phone'
-
-
