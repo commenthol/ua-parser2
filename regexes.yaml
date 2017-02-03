@@ -162,6 +162,9 @@ user_agent_parsers:
       - regex: '(Firefox)/(\d+)\.(\d+)([ab]\d+[a-z]*)? \(Swiftfox\)'
         family: 'Swiftfox'
 
+      # Waterfox
+      - regex: '(Waterfox)/(\d+)\.(\d+)(?:\.(\d+))?'
+
   - regex: '(MyIBrow)/(\d+)\.(\d+)'
     family: 'My Internet Browser'
 
