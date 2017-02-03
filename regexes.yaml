@@ -2552,7 +2552,7 @@ device_parsers:
       # Google
       # @ref: http://www.google.de/glass/start/
       #########
-      - regex: '; *(Glass \d+) Build'
+      - regex: '; *(Glass \d+|Pixel C) Build'
         device: '$1'
         brand: 'Google'
         model: '$1'
