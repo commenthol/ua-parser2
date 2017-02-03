@@ -1,6 +1,6 @@
 VERSION ?= $(shell versionn -i)
 
-all: version 0.8 0.12 4. 5.
+all: version 0.8 0.12 4. 7.
 
 version: regexes.yaml
 	@echo $(VERSION)

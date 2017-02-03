@@ -1,5 +1,17 @@
 # Changelog
 
+**2017-02-03** v0.1.40
+- ua: New SohoNews app
+- device: New Google Pixel C
+- ua: fix Facebook app without version
+- ua: New PRTG Network Monitor bot
+- ua: New Waterfox
+- os: New iOS 10 CFNetwork
+- os: New Chromecast
+- ua: New Opera Neon
+- ua: New PingdomTMS bot
+- os: Fix os for chrome on mac os
+
 **2016-12-27** v0.1.39
 - ua, os: Detection of Outlook-iOS-Android
 - ua: Fix detection of 008 bot
