@@ -120,6 +120,9 @@ user_agent_parsers:
       - regex: '\[FB.*;(FB(?:AV|Version))/(\d+)(?:\.(\d+)(?:\.(\d)+)?)?'
         family: 'Facebook'
         type: 'app'
+      - regex: '\[FB.*/FB'
+        family: 'Facebook'
+        type: 'app'
       # Pinterest
       - regex: '\[(Pinterest)/[^\]]+\]'
         type: 'app'
