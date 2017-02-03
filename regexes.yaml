@@ -253,7 +253,7 @@ user_agent_parsers:
   - regex: 'Windows Phone .*(Edge)/(\d+)\.(\d+)'
     family: 'Edge Mobile'
 
-  # Chrome Mobile
+  # Chrome Mobile - Chrome based
   - regex: 'CrMo|CriOS|Chrome|chromeframe'
     group:
       - regex: '(CrMo)/(\d+)\.(\d+)\.(\d+)\.(\d+)'
@@ -268,6 +268,13 @@ user_agent_parsers:
       # Chrome Frame must come before MSIE.
       - regex: '(chromeframe)/(\d+)\.(\d+)\.(\d+)'
         family: 'Chrome Frame'
+
+      # Mail.ru Amigo/Internet Browser (Chromium-based)
+      - regex: '(Chrome)/(\d+)\.(\d+)\.(\d+).* MRCHROME'
+        family: 'Mail.ru Chromium Browser'
+      # Iron Browser ~since version 50
+      - regex: '(Chrome)/(\d+)\.(\d+)\.(\d+)[\d.]* Iron[^/]'
+        family: 'Iron'
 
   # Tizen Browser (second case included in browser/major.minor regex)
   - regex: '(Tizen|SLP) Browser/(\d+)\.(\d+)'
@@ -296,13 +303,6 @@ user_agent_parsers:
         family: 'QQ Browser Mobile'
       - regex: '(QQBrowser)(?:/(\d+)(?:\.(\d+)\.(\d+)(?:\.(\d+))?)?)?'
         family: 'QQ Browser'
-
-  # Mail.ru Amigo/Internet Browser (Chromium-based)
-  - regex: '(Chrome)/(\d+)\.(\d+)\.(\d+).* MRCHROME'
-    family: 'Mail.ru Chromium Browser'
-  # Iron Browser ~since version 50
-  - regex: '(Chrome)/(\d+)\.(\d+)\.(\d+)[\d.]* Iron[^/]'
-    family: 'Iron'
 
   # AOL Browser (IE-based)
   - regex: '(AOL) (\d+)\.(\d+); AOLBuild (\d+)'
@@ -1164,6 +1164,8 @@ os_parsers:
       - regex: '(tvOS)/(\d+).(\d+)'
         family: 'tvOS'
 
+  - regex: '(CrKey)(?:[/](\d+)\.(\d+)(?:\.(\d+))?)?'
+    family: 'Chromecast'
 
   ##########
   # Chrome OS
