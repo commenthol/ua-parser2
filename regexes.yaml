@@ -170,7 +170,7 @@ user_agent_parsers:
     family: 'UC Browser'
 
   # Opera group
-  - regex: 'Opera|OPR|OPiOS|Coast'
+  - regex: 'Opera|OPR|OPiOS|Coast| MMS/'
     group:
       # Opera will stop at 9.80 and hide the real version in the Version string.
       # see: http://dev.opera.com/articles/view/opera-ua-string-changes/
@@ -193,6 +193,10 @@ user_agent_parsers:
       # Opera 15 for Desktop is similar to Chrome but includes an "OPR" Version string.
       - regex: '(?:Chrome).*(OPR)/(\d+)\.(\d+)\.(\d+)'
         family: 'Opera'
+
+      # Opera Neon
+      - regex: 'Chrome/.+( MMS)/(\d+).(\d+).(\d+)'
+        family: 'Opera Neon'
 
       # Opera Coast
       - regex: '(Coast)/(\d+).(\d+).(\d+)'
