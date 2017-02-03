@@ -130,7 +130,7 @@ user_agent_parsers:
         type: 'app'
 
   # Apps
-  - regex: '\b(Kurio|BacaBerita App|Deezer)[ /](\d+)(?:\.(\d+)(?:\.(\d+))?)?'
+  - regex: '\b(Kurio|BacaBerita App|Deezer|SohuNews)[ /](\d+)(?:\.(\d+)(?:\.(\d+))?)?'
     type: 'app'
 
   #### SPECIAL CASES TOP ####
