@@ -1093,7 +1093,10 @@ os_parsers:
       # @ref: https://en.wikipedia.org/wiki/Darwin_(operating_system)#Release_history
       # @ref: http://user-agents.me/cfnetwork-version-list
       ##########
-      - regex: 'CFNetwork/(?:79(0)\.\d|808.(0).\d).* Darwin/(16)\.'
+      - regex: '(CF)(Network)/808\.(\d).* Darwin/(16)\.'
+        family: 'iOS'
+        v1: '10'
+      - regex: 'CFNetwork/(?:79(0)\.\d).* Darwin/(16)\.'
         family: 'iOS'
         v1: '10'
         v2: '$1$2'
