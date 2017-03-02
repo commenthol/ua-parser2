@@ -2552,7 +2552,7 @@ device_parsers:
       # Google
       # @ref: http://www.google.de/glass/start/
       #########
-      - regex: '; *(Glass \d+|Pixel C) Build'
+      - regex: '; *(Glass \d+|Pixel \w+) Build'
         device: '$1'
         brand: 'Google'
         model: '$1'
@@ -3734,6 +3734,19 @@ device_parsers:
         model: '$1'
 
       #########
+      # OnePlus
+      # @ref https://oneplus.net/
+      #########
+      - regex: '; (ONE [a-zA-Z]\d+) Build/'
+        device: 'OnePlus $1'
+        brand: 'OnePlus'
+        model: '$1'
+      - regex: '; (ONEPLUS [a-zA-Z]\d+) Build/'
+        device: 'OnePlus $1'
+        brand: 'OnePlus'
+        model: '$1'
+
+      #########
       # Orion
       # @ref: http://www.orion.ua/en/products/computer-products/tablet-pcs.html
       #########
@@ -3986,6 +3999,15 @@ device_parsers:
         brand: 'Ramos'
         model: '$1'
         type: 'tablet'
+
+      #########
+      # RCA
+      # @ref: http://rcamobilephone.com/
+      #########
+      - regex: '; (RCT\w+) Build/'
+        device: '$1'
+        brand: 'RCA'
+        model: '$1'
 
       #########
       # Rockchip
