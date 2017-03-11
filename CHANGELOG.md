@@ -1,6 +1,10 @@
 # Changelog
 
-**2017-03-02** v0.1.41
+**2017-03-11** v0.2.0
+- engine:
+  - correct "Chrome" to "Blink" engine
+  - move family type to "type", e.g. "Webkit::Apple" => family: "Webkit", type: "Apple"
+  - add new matchers
 - device: New Oneplus, RCA
 
 **2017-02-03** v0.1.40

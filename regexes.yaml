@@ -1,4 +1,4 @@
-version: '0.1.40'
+version: '0.2.0'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 #### Browser ####
@@ -530,77 +530,107 @@ engine_parsers:
         family: '$2'
         v1: '$3'
         v2: '$4'
-        v4: '$5'
+        v3: '$5'
         type: 'mode::MSIE $1'
       # MSIE 9 !== Trident/5
       - regex: 'MSIE ([^9])\.\d.* (Trident)[ /](5)\.(\d+)\.?(\d+)?'
         family: '$2'
         v1: '$3'
         v2: '$4'
-        v4: '$5'
+        v3: '$5'
         type: 'mode::MSIE $1'
       # MSIE 10 !== Trident/6
       - regex: 'MSIE ((?:(?!10)\d)+)\.\d.* (Trident)[ /](6)\.(\d+)\.?(\d+)?'
         family: '$2'
         v1: '$3'
         v2: '$4'
-        v4: '$5'
+        v3: '$5'
         type: 'mode::MSIE $1'
       # MSIE 11 !== Trident/7
       - regex: 'MSIE ((?:(?!11)\d)+)\.\d.* (Trident)[ /](7)\.(\d+)\.?(\d+)?'
         family: '$2'
         v1: '$3'
         v2: '$4'
-        v4: '$5'
+        v3: '$5'
         type: 'mode::MSIE $1'
 
   - regex: '(Trident|Presto)[ /](\d+)\.(\d+)\.?(\d+)?'
 
+  - regex: 'Opera'
+    family: 'Presto'
+
   # Windows 10 IE version uses "Edge" and "Chrome"
   - regex: '\b(Edge)/(\d+)\.(\d+)'
-    family: 'Trident'
-    v1: '7'
-    v2: '0'
+    family: 'EdgeHTML'
 
-  - regex: 'QtWebEngine.* (Chr[o0]me)[/](\d+)\.(\d+)\.?(\d+)?\.?(\d+)?'
-    family: 'Chrome::QtWebEngine'
+  - regex: 'QtWebEngine/(\d+)\.(\d+)(?:\.(\d+))?'
+    family: 'Blink'
+    type: 'QtWebEngine'
 
   - regex: '(Chrome)[/](\d+)\.(\d+)\.?(\d+)?\.?(\d+)?.*OPR/\d+'
-    family: 'Chrome::Opera'
+    family: 'Blink'
+    type: 'Opera'
 
-  - regex: '^Mozilla.*(?:Android\b.*SAMSUNG|SMART-TV).*SamsungBrowser[/].*(Chrome)[/](\d+)\.(\d+)\.?(\d+)?\.?(\d+)??'
-    family: 'Chrome::Samsung'
+  - regex: 'SamsungBrowser[/].*(Chrome)[/](\d+)\.(\d+)\.?(\d+)?\.?(\d+)??'
+    family: 'Blink'
+    type: 'Samsung'
+
+  - regex: 'Silk[/].*(Chrome)[/](\d+)\.(\d+)\.?(\d+)?\.?(\d+)??'
+    family: 'Blink'
+    type: 'Silk'
 
   # https://developer.chrome.com/multidevice/user-agent
   - regex: '(?:; wv\) )?AppleWeb[Kk]it/.*Version/.*(Chrome)[/](\d+)\.(\d+)\.?(\d+)?\.?(\d+)?'
-    family: 'Chrome::WebView'
+    family: 'Blink'
+    type: 'WebView'
 
   - regex: '(Chrome)[/](\d+)\.(\d+)\.?(\d+)?\.?(\d+)?'
+    family: 'Blink'
 
+  - regex: '(TDEHTML)/(\d+)\.(\d+)\.?(\d+)?'
+    family: 'TDEHTML'
+
+  - regex: '(KHTML|Konqueror)/(\d+)\.(\d+)\.?(\d+)?'
+    family: 'KHTML'
+
+  # http://docs.aws.amazon.com/silk/latest/developerguide/user-agent.html
   - regex: '(Silk)/(\d+)\.(\d+)'
+    family: 'Webkit'
+    type: 'Silk'
 
   - regex: 'Web[Kk]it.*(NokiaBrowser|BrowserNG)/(\d+)\.?(\d+)?\.?(\d+)?'
-    family: 'Webkit::Nokia'
+    family: 'Webkit'
+    type: 'Nokia'
 
   - regex: '^Mozilla.*Android\b.*SAMSUNG.*(AppleWeb[Kk]it)/?(\d+)\.?(\d+)?'
-    family: 'Webkit::Samsung'
+    family: 'Webkit'
+    type: 'Samsung'
 
   - regex: 'Android\b.*(AppleWeb[Kk]it)/?(\d+)\.?(\d+)?'
-    family: 'Webkit::Android'
+    family: 'Webkit'
+    type: 'Android'
 
-  - regex: '(?:DirectFB)\b.*(AppleWeb[Kk]it)/?(\d+)\.?(\d+)?'
-    family: 'Webkit::LG'
-  - regex: '(AppleWeb[Kk]it)/?(\d+)\.?(\d+)?.*\bNetCast'
-    family: 'Webkit::LG'
+  - regex: 'DirectFB\b.*(AppleWeb[Kk]it)/?(\d+)\.?(\d+)?'
+    family: 'Webkit'
+    type: 'LG'
+  - regex: '(AppleWeb[Kk]it)/?(\d+)\.?(\d+)?.*\b(NetCast|LG Browser)'
+    family: 'Webkit'
+    type: 'LG'
 
   - regex: 'Smart-?TV\b.*(AppleWeb[Kk]it)/?(\d+)\.?(\d+)?'
-    family: 'Webkit::Samsung'
+    family: 'Webkit'
+    type: 'Samsung'
+
+  - regex: '(Goanna)/.*PaleMoon/(\d+)\.(\d+)\.([\da-z]+)'
 
   - regex: '(rv:)(\d+)\.(\d+[ab]?)\.?([ab]?\d+[a-z]*)?\.?(\d+[a-z]*)?[;\)].* Gecko(?:[ /]|$)'
     family: 'Gecko'
 
+  - regex: '(Gecko)/20\d{6}'
+
   - regex: '(AppleWeb[Kk]it)(?:/(\d+)\.?(\d+)?\.?(\d+)?|[ ,]|$)'
-    family: 'Webkit::Apple'
+    family: 'Webkit'
+    type: 'Apple'
 
   - regex: '(Web[Kk]it)(?:/(\d+)\.?(\d+)?\.?(\d+)?|[ ,]|$)'
     family: 'Webkit'
@@ -608,7 +638,7 @@ engine_parsers:
   - regex: '(Net[Ff]ront)[ /]?(\d+)\.(\d+)'
     family: 'Netfront'
 
-  - regex: '(Gecko)/20\d{6}'
+  - regex: '(UCBrowser)/(\d+)\.(\d+)(?:\.(\d+))?'
 
 #### OS ####
 os_parsers:
