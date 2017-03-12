@@ -55,7 +55,7 @@ node js/test/sample.js "Mozilla/5.0 (Linux; Android 4.3.1; LG-E980 Build/JLS36I)
     "patch": "1650"
   },
   "engine": {
-    "family": "Chrome",
+    "family": "Blink",
     "major": "31",
     "minor": "0",
     "patch": "1650"
@@ -70,7 +70,8 @@ node js/test/sample.js "Mozilla/5.0 (Linux; Android 4.3.1; LG-E980 Build/JLS36I)
   "device": {
     "family": "LG-E980",
     "brand": "LG",
-    "model": "E980"
+    "model": "E980",
+    "type": "smartphone"
   },
   "string": "Mozilla/5.0 (Linux; Android 4.3.1; LG-E980 Build/JLS36I) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.59 Mobile Safari/537.36"
 }
@@ -83,8 +84,9 @@ node js/test/sample.js "AdsBot-Google-Mobile ( http://www.google.com/mobile/adsb
     "type": "bot"
   },
   "engine": {
-    "family": "AppleWebkit",
+    "family": "Webkit",
     ...
+    "type": "Apple"
   },
   "os": {
     "family": "Other",
@@ -93,7 +95,8 @@ node js/test/sample.js "AdsBot-Google-Mobile ( http://www.google.com/mobile/adsb
   "device": {
     "family": "iPhone",
     "brand": "Apple",
-    "model": "iPhone"
+    "model": "iPhone",
+    "type": "smartphone"    
   },
   "string": "AdsBot-Google-Mobile ( http://www.google.com/mobile/adsbot.html) Mozilla (iPhone; U; CPU iPhone OS 3 0 like Mac OS X) AppleWebKit (KHTML, like Gecko)"
 }
