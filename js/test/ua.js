@@ -131,7 +131,8 @@ describe('UA parser groups', function () {
   var
     contents = fs.readFileSync(path.join(__dirname, 'group.yaml'), 'utf8'),
     regexes = yaml.safeLoad(contents),
-    parse = makeParser(regexes.rules).parse
+    pattern = regexes.pattern,
+    parse = makeParser(regexes.rules, {pattern: pattern}).parse
 
   it('Parser correctly processes groups matching "foo"', function () {
     var ua = parse('foo 1.2.3')

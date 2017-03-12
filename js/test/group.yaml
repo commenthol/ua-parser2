@@ -1,9 +1,12 @@
+pattern:
+  __VERSION__: '(\d)\.(\d).(\d)'
+
 rules:
 
   - regex: 'foo'
     regex_flag: 'i'
     group:
-      - regex: '(foo) (\d)\.(\d).(\d)'
+      - regex: '(foo) __VERSION__'
         regex_flag: 'i'
         family: '$1bar'
         v1: 'a'
