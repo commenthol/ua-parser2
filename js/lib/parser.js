@@ -4,6 +4,15 @@ var
   UA = require('./ua'),
   Device = require('./device')
 
+function assign (target, source) {
+  if (!source) return target
+  target = target || {}
+  Object.keys(source).forEach(function (p) {
+    target[p] = source[p]
+  })
+  return target
+}
+
 function replaceMatches (str, m) {
   return str.replace(/\${(\d+)}|\$(\d+)/g, function (tmp, i, j) {
     return m[(i || j)] || ''
@@ -45,35 +54,42 @@ function parser (regexes, options) {
       return parseDevice
     }
 
-    function parse (str) {
-      var m = str.match(regexp)
+    function parse (str, preset) {
+      var m = regexp.exec(str)
       if (!m) { return null }
 
+      preset = preset || {}
       var
-        family = obj.family ? replaceMatches(obj.family, m) : m[1],
-        major = obj.v1 ? replaceMatches(obj.v1, m) : m[2],
-        minor = obj.v2 ? replaceMatches(obj.v2, m) : m[3],
-        patch = obj.v3 ? replaceMatches(obj.v3, m) : m[4],
-        type = obj.type ? replaceMatches(obj.type, m) : undefined,
-        patchMinor
-
+        family = (obj.family ? replaceMatches(obj.family, m) : m[1]) || preset.family,
+        major = (obj.v1 ? replaceMatches(obj.v1, m) : m[2]) || preset.major,
+        minor = (obj.v2 ? replaceMatches(obj.v2, m) : m[3]) || preset.minor,
+        patch = (obj.v3 ? replaceMatches(obj.v3, m) : m[4]) || preset.patch,
+        type = (obj.type ? replaceMatches(obj.type, m) : undefined) || preset.type,
+        patchMinor,
+        ret
       if (self.options.usePatchMinor) {
-        patchMinor = (obj.v4 ? replaceMatches(obj.v4, m) : m[5]) || null
+        patchMinor = (obj.v4 ? replaceMatches(obj.v4, m) : m[5]) || preset.v4 || null
       }
-      return new UA(family, major, minor, patch, patchMinor, type, obj.debug)
+      ret = new UA(family, major, minor, patch, patchMinor, type, obj.debug)
+
+      if (obj.preset) ret.preset = true
+      return ret
     }
 
-    function parseDevice (str) {
-      var m = str.match(regexp)
+    function parseDevice (str, preset) {
+      var m = regexp.exec(str)
       if (!m) { return null }
 
+      preset = preset || {}
       var
-        family = obj.device ? replaceMatches(obj.device, m) : m[1],
-        brand = obj.brand ? replaceMatches(obj.brand, m) : null,
-        model = obj.model ? replaceMatches(obj.model, m) : m[1],
-        type = obj.type ? replaceMatches(obj.type, m) : undefined
+        family = (obj.device ? replaceMatches(obj.device, m) : m[1]) || preset.family,
+        brand = (obj.brand ? replaceMatches(obj.brand, m) : undefined) || preset.brand || null,
+        model = (obj.model ? replaceMatches(obj.model, m) : m[1]) || preset.model,
+        type = (obj.type ? replaceMatches(obj.type, m) : undefined) || preset.type,
+        ret = new Device(family, brand, model, type, obj.debug)
 
-      return new Device(family, brand, model, type, obj.debug)
+      if (obj.preset) ret.preset = true
+      return ret
     }
   }
 
@@ -82,38 +98,44 @@ function parser (regexes, options) {
       regexp = _regexp(obj),
       parsers = (obj.group || []).map(_make)
 
-    function parseGroup (str) {
-      var m = str.match(regexp)
+    function parseGroup (str, preset) {
+      var m = regexp.exec(str)
       if (!m) { return null }
 
-      var
-        i, length, obj
+      return _parse(parsers, str, preset)
+    }
 
-      if (typeof str === 'string') {
-        for (i = 0, length = parsers.length; i < length; i++) {
-          obj = parsers[i](str)
-          if (obj) { return obj }
+    return parseGroup
+  }
+
+  function _parse (parsers, str, preset) {
+    var obj, length, i
+
+    for (i = 0, length = parsers.length; i < length; i++) {
+      obj = parsers[i](str, preset)
+      if (obj) {
+        if (obj.preset) {
+          preset = assign(preset, obj)
+        } else {
+          break
         }
       }
     }
-    return parseGroup
+    return obj
   }
 
   parsers = (regexes || []).map(_make)
 
   self.parse = function (str) {
-    var obj, length, i
+    var obj
 
-    if (typeof str === 'string') {
-      for (i = 0, length = parsers.length; i < length; i++) {
-        obj = parsers[i](str)
-        if (obj) { return obj }
-      }
-    }
+    str = (str || '').toString().substr(0, 500)
+    obj = _parse(parsers, str, {})
+
     if (!self.options.device) {
-      return obj || new UA()
+      return new UA(obj)
     } else {
-      return obj || new Device()
+      return new Device(obj)
     }
   }
 

@@ -1,6 +1,13 @@
 'use strict'
 
 function Device (family, brand, model, type, debug) {
+  if (family && typeof family === 'object') {
+    brand = family.brand
+    model = family.model
+    type = family.type
+    debug = family.debug
+    family = family.family
+  }
   this.family = family || 'Other'
   this.brand = brand || null
   this.model = model || null

@@ -197,4 +197,9 @@ describe('UA parser groups', function () {
     assert.strictEqual(ua.minor, 'b other 2')
     assert.strictEqual(ua.patch, 'c other 3')
   })
+
+  it('Parser correctly processes preset', function () {
+    var ua = parse('kitti foo 4.5.6')
+    assert.deepEqual(ua, {family: 'foobar', major: 'a', minor: 'b', patch: 'c', type: 'app::kitti'})
+  })
 })

@@ -106,4 +106,9 @@ describe('Device parser groups', function () {
     var device = parse('price ZBoZ')
     assert.deepEqual(device, {'family': 'Other', 'brand': null, 'model': null})
   })
+
+  it('Parser correctly processes preset', function () {
+    var device = parse('cool YBoY Mobile')
+    assert.deepEqual(device, {family: 'YBoY cool', brand: 'YBoY', model: 'cool', type: 'mobile'})
+  })
 })

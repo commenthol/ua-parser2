@@ -1,5 +1,9 @@
 rules:
 
+  - regex: '\bMobile\b'
+    preset: true
+    type: 'mobile'
+
   - regex: 'gumsang'
     regex_flag: 'i'
     group:

@@ -4,6 +4,15 @@ var
   startsWithDigit = require('./helpers').startsWithDigit
 
 function UA (family, major, minor, patch, patchMinor, type, debug) {
+  if (family && typeof family === 'object') {
+    major = family.major
+    minor = family.minor
+    patch = family.patch
+    patchMinor = family.patchMinor
+    type = family.type
+    debug = family.debug
+    family = family.family
+  }
   this.family = family || 'Other'
   this.major = major || null
   this.minor = minor || null

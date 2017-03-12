@@ -1422,6 +1422,13 @@ device_parsers:
   - regex: '[Aa]ndroid| Build| Adr |JUC|\bHTC|Linux|Archos'
     group:
 
+      - regex: ' Safari'
+        preset: true
+        type: 'tablet'
+      - regex: ' Mobile Safari'
+        preset: true
+        type: 'smartphone'
+
       #########
       # WebBrowser for SmartWatch
       # @ref: https://play.google.com/store/apps/details?id=se.vaggan.webbrowser&hl=en
@@ -1430,6 +1437,7 @@ device_parsers:
         device: '$1 $2'
         brand: '$1'
         model: '$2'
+        type: 'watch'
 
       # Android Application
       - regex: 'Android Application'
@@ -2588,10 +2596,21 @@ device_parsers:
       # Google
       # @ref: http://www.google.de/glass/start/
       #########
-      - regex: '; *(Glass \d+|Pixel \w+) Build'
+      - regex: '; *(Glass \d+) Build'
         device: '$1'
         brand: 'Google'
         model: '$1'
+        type: glasses
+      - regex: '; *(Pixel \w+) Build'
+        device: '$1'
+        brand: 'Google'
+        model: '$1'
+        type: tablet
+      - regex: '; *(Pixel) Build'
+        device: '$1'
+        brand: 'Google'
+        model: '$1'
+        type: smartphone
 
       #########
       # Gigabyte

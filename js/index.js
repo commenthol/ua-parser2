@@ -71,8 +71,6 @@ module.exports = function (options) {
    * @return {Object} - { family:, brand:, model: }
    */
   uaParser.parse = function (str) {
-    str = (str || '').toString().substr(0, 500)
-
     var
       ua = uaParser.parseUA(str),
       engine = uaParser.parseEngine(str),

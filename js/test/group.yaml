@@ -3,6 +3,10 @@ pattern:
 
 rules:
 
+  - regex: '(kitti)'
+    preset: true
+    type: 'app::$1'
+
   - regex: 'foo'
     regex_flag: 'i'
     group:
