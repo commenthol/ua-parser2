@@ -63,6 +63,10 @@
   },
   "devDependencies": {
     "commander": ">=2.9.0",
+    "eslint": "^3.17.1",
+    "eslint-config-standard": "^7.0.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.1.1",
     "mocha": "*",
     "shelljs": ">=0.7.5",
     "streamss": ">=0.2.4"
@@ -70,7 +74,13 @@
   "scripts": {
     "prepublish": "js/bin/quick.js",
     "test": "cd js && mocha test/load/*.mocha.js && mocha",
-    "lint": "jshint js/*.js js/*/*.js",
+    "lint": "eslint 'js/**/*.js'",
     "benchmark": "cd benchmark && npm i && node run.js"
+  },
+  "eslintConfig": {
+    "extends": "standard",
+    "rules": {
+      "one-var": 0
+    }
   }
 }

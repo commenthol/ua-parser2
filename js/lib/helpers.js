@@ -1,9 +1,9 @@
-'use strict';
+'use strict'
 
-var DIGITS = /^\d/;
+var DIGITS = /^\d/
 
-exports.startsWithDigit = startsWithDigit;
+exports.startsWithDigit = startsWithDigit
 
-function startsWithDigit(str) {
-  return DIGITS.test(str);
+function startsWithDigit (str) {
+  return DIGITS.test(str)
 }

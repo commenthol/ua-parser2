@@ -1,113 +1,123 @@
-'use strict';
+'use strict'
 
 var
-	UA = require('./ua'),
-	Device = require('./device');
+  UA = require('./ua'),
+  Device = require('./device')
 
-function replaceMatches(str, m) {
-  return str.replace(/\${(\d+)}|\$(\d+)/g, function(tmp, i, j) {
-    return m[(i||j)] || '';
-  }).trim();
+function replaceMatches (str, m) {
+  return str.replace(/\${(\d+)}|\$(\d+)/g, function (tmp, i, j) {
+    return m[(i || j)] || ''
+  }).trim()
 }
 
 function parser (regexes, options) {
-	var
-		parsers,
-		self = {};
+  var
+    parsers,
+    self = {}
 
-	self.options = options || {};
+  self.options = options || {}
 
-	function _regexp(obj) {
-		return (obj.regex && obj.regex_flag ? new RegExp(obj.regex, obj.regex_flag) : new RegExp(obj.regex));
-	}
+  function _replacePattern (regex) {
+    var pattern = self.options.pattern || {}
+    Object.keys(pattern).forEach(function (p) {
+      if (regex.indexOf(p) !== -1) {
+        regex = regex.replace(p, pattern[p])
+      }
+    })
+    return regex
+  }
 
-	function _make(obj) {
-		var regexp = _regexp(obj);
+  function _regexp (obj) {
+    var regex = _replacePattern(obj.regex)
+    regex = new RegExp(regex, obj.regex_flag)
+    // if (!require('safe-regex')(regex)) console.log(regex)
+    return regex
+  }
 
-		if (obj.group) {
-			return _makeGroup(obj);
-		}
-		else if (! self.options.device) {
-			return parse;
-		}
-		else {
-			return parseDevice;
-		}
+  function _make (obj) {
+    var regexp = _regexp(obj)
 
-		function parse (str) {
-			var m = str.match(regexp);
-			if (!m) { return null; }
+    if (obj.group) {
+      return _makeGroup(obj)
+    } else if (!self.options.device) {
+      return parse
+    } else {
+      return parseDevice
+    }
 
-			var
-				family = obj.family ? replaceMatches(obj.family, m) : m[1],
-				major  = obj.v1     ? replaceMatches(obj.v1    , m) : m[2],
-				minor  = obj.v2     ? replaceMatches(obj.v2    , m) : m[3],
-				patch  = obj.v3     ? replaceMatches(obj.v3    , m) : m[4],
-				type   = obj.type   ? replaceMatches(obj.type  , m) : undefined,
-				patchMinor;
+    function parse (str) {
+      var m = str.match(regexp)
+      if (!m) { return null }
 
-			if (self.options.usePatchMinor) {
-				patchMinor = (obj.v4 ? replaceMatches(obj.v4, m) : m[5]) || null;
-			}
-			return new UA(family, major, minor, patch, patchMinor, type, obj.debug);
-		}
+      var
+        family = obj.family ? replaceMatches(obj.family, m) : m[1],
+        major = obj.v1 ? replaceMatches(obj.v1, m) : m[2],
+        minor = obj.v2 ? replaceMatches(obj.v2, m) : m[3],
+        patch = obj.v3 ? replaceMatches(obj.v3, m) : m[4],
+        type = obj.type ? replaceMatches(obj.type, m) : undefined,
+        patchMinor
 
-		function parseDevice (str) {
-			var m = str.match(regexp);
-			if (!m) { return null; }
+      if (self.options.usePatchMinor) {
+        patchMinor = (obj.v4 ? replaceMatches(obj.v4, m) : m[5]) || null
+      }
+      return new UA(family, major, minor, patch, patchMinor, type, obj.debug)
+    }
 
-			var
-				family = obj.device ? replaceMatches(obj.device, m) : m[1],
-				brand  = obj.brand  ? replaceMatches(obj.brand , m) : null,
-				model  = obj.model  ? replaceMatches(obj.model , m) : m[1],
-				type   = obj.type   ? replaceMatches(obj.type  , m) : undefined;
+    function parseDevice (str) {
+      var m = str.match(regexp)
+      if (!m) { return null }
 
-			return new Device(family, brand, model, type, obj.debug);
-		}
-	}
+      var
+        family = obj.device ? replaceMatches(obj.device, m) : m[1],
+        brand = obj.brand ? replaceMatches(obj.brand, m) : null,
+        model = obj.model ? replaceMatches(obj.model, m) : m[1],
+        type = obj.type ? replaceMatches(obj.type, m) : undefined
 
-	function _makeGroup(obj) {
-		var
-			regexp = _regexp(obj),
-			parsers = (obj.group||[]).map(_make);
+      return new Device(family, brand, model, type, obj.debug)
+    }
+  }
 
-		function parseGroup (str) {
-			var m = str.match(regexp);
-			if (!m) { return null; }
+  function _makeGroup (obj) {
+    var
+      regexp = _regexp(obj),
+      parsers = (obj.group || []).map(_make)
 
-			var
-				i, length, obj;
+    function parseGroup (str) {
+      var m = str.match(regexp)
+      if (!m) { return null }
 
-			if (typeof str === 'string') {
-				for (i = 0, length = parsers.length; i < length; i++) {
-					obj = parsers[i](str);
-					if (obj) { return obj; }
-				}
-			}
-		}
-		return parseGroup;
-	}
+      var
+        i, length, obj
 
-	parsers = (regexes||[]).map(_make);
+      if (typeof str === 'string') {
+        for (i = 0, length = parsers.length; i < length; i++) {
+          obj = parsers[i](str)
+          if (obj) { return obj }
+        }
+      }
+    }
+    return parseGroup
+  }
 
-	self.parse = function (str) {
-		var obj, length, i;
+  parsers = (regexes || []).map(_make)
 
-		if (typeof str === 'string') {
-			for (i = 0, length = parsers.length; i < length; i++) {
-				obj = parsers[i](str);
-				if (obj) { return obj; }
-			}
-		}
-		if (! self.options.device) {
-			return obj || new UA();
-		}
-		else {
-			return obj || new Device();
-		}
-	};
+  self.parse = function (str) {
+    var obj, length, i
 
-	return self;
+    if (typeof str === 'string') {
+      for (i = 0, length = parsers.length; i < length; i++) {
+        obj = parsers[i](str)
+        if (obj) { return obj }
+      }
+    }
+    if (!self.options.device) {
+      return obj || new UA()
+    } else {
+      return obj || new Device()
+    }
+  }
+
+  return self
 }
 
-module.exports = parser;
+module.exports = parser

@@ -9,7 +9,7 @@
 'use strict';
 
 var
-	parser = require('../../')();
+  parser = require('../../')();
 
 var M = {};
 
@@ -67,44 +67,44 @@ function merge() {
  * Compacts a UA parser object to keep information for test-cases small
  */
 var compact = {
-	/**
-	 * Default uaparser result for an empty user-agent.
-	 * @api private
-	 */
-	_empty: parser.parse(''),
-	/**
-	 * Delete all properties of the UAParser object without a significant
-	 * parsing result
-	 * @param {Object} ua : UAParser object
-	 * @return {Object} compacted UAParser object
-	 * @api public
-	 */
-	strip: function(ua) {
-		if (ua) {
-			for (var p1 in ua) {
-				if (ua[p1] && ua[p1].family === 'Other') {
-					delete(ua[p1]);
-				}
-				else { 
-					['major', 'minor', 'patch', 'patchMinor', 'brand', 'model'].forEach(function(p2){
-						if (ua[p1] && ua[p1][p2] === null) {
-							delete(ua[p1][p2]);
-						}
-					});
-				}
-			}
-		}
-		return ua;
-	},
-	/**
-	 * Adds all properties to the UAParser object back again
-	 * @param {Object} ua : compacted UAParser object
-	 * @return {Object} normal UAParser object
-	 * @api public
-	 */
-	unstrip: function(ua) {
-		return merge(this._empty, { os: { patchMinor: null } }, ua);
-	}
+  /**
+   * Default uaparser result for an empty user-agent.
+   * @api private
+   */
+  _empty: parser.parse(''),
+  /**
+   * Delete all properties of the UAParser object without a significant
+   * parsing result
+   * @param {Object} ua : UAParser object
+   * @return {Object} compacted UAParser object
+   * @api public
+   */
+  strip: function(ua) {
+    if (ua) {
+      for (var p1 in ua) {
+        if (ua[p1] && ua[p1].family === 'Other') {
+          delete(ua[p1]);
+        }
+        else { 
+          ['major', 'minor', 'patch', 'patchMinor', 'brand', 'model'].forEach(function(p2){
+            if (ua[p1] && ua[p1][p2] === null) {
+              delete(ua[p1][p2]);
+            }
+          });
+        }
+      }
+    }
+    return ua;
+  },
+  /**
+   * Adds all properties to the UAParser object back again
+   * @param {Object} ua : compacted UAParser object
+   * @return {Object} normal UAParser object
+   * @api public
+   */
+  unstrip: function(ua) {
+    return merge(this._empty, { os: { patchMinor: null } }, ua);
+  }
 };
 
 /// exports

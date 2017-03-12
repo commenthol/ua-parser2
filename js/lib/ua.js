@@ -1,41 +1,41 @@
-'use strict';
+'use strict'
 
 var
-	startsWithDigit = require('./helpers').startsWithDigit;
+  startsWithDigit = require('./helpers').startsWithDigit
 
-function UA(family, major, minor, patch, patchMinor, type, debug) {
-  this.family = family || 'Other';
-  this.major = major || null;
-  this.minor = minor || null;
-  this.patch = patch || null;
-  if (typeof patchMinor !== 'undefined') { this.patchMinor = patchMinor || null; }
-  if (typeof type !== 'undefined') { this.type = type || null; }
-  if (typeof debug !== 'undefined') { this.debug = debug || null; }
+function UA (family, major, minor, patch, patchMinor, type, debug) {
+  this.family = family || 'Other'
+  this.major = major || null
+  this.minor = minor || null
+  this.patch = patch || null
+  if (typeof patchMinor !== 'undefined') { this.patchMinor = patchMinor || null }
+  if (typeof type !== 'undefined') { this.type = type || null }
+  if (typeof debug !== 'undefined') { this.debug = debug || null }
 }
 
-UA.prototype.toVersionString = function() {
-  var output = '';
+UA.prototype.toVersionString = function () {
+  var output = ''
   if (this.major !== null) {
-    output += this.major;
+    output += this.major
     if (this.minor !== null) {
-      output += '.' + this.minor;
+      output += '.' + this.minor
       if (this.patch !== null) {
-        if (startsWithDigit(this.patch)) { output += '.'; }
-        output += this.patch;
+        if (startsWithDigit(this.patch)) { output += '.' }
+        output += this.patch
         if (this.patchMinor !== null && this.patchMinor !== undefined) {
-          if (startsWithDigit(this.patchMinor)) { output += '.'; }
-          output += this.patchMinor;
+          if (startsWithDigit(this.patchMinor)) { output += '.' }
+          output += this.patchMinor
         }
       }
     }
   }
-  return output;
-};
+  return output
+}
 
-UA.prototype.toString = function() {
-  var suffix = this.toVersionString();
-  if (suffix) { suffix = ' ' + suffix; }
-  return this.family + suffix;
-};
+UA.prototype.toString = function () {
+  var suffix = this.toVersionString()
+  if (suffix) { suffix = ' ' + suffix }
+  return this.family + suffix
+}
 
-module.exports = UA;
+module.exports = UA

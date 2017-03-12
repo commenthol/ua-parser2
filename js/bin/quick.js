@@ -7,29 +7,30 @@
  */
 
 var fs = require('fs'),
-	splitLine = require('streamss').SplitLine,
-	through = require('streamss').Through;
+  path = require('path'),
+  splitLine = require('streamss').SplitLine,
+  through = require('streamss').Through
 
 var config = {
-	each: 500,
-	testResources: __dirname + '/../../test_resources/',
-	in: 'tests.json',
-	out: 'quick-tests.json',
-};
+  each: 500,
+  testResources: path.resolve(__dirname, '../../test_resources/'),
+  in: 'tests.json',
+  out: 'quick-tests.json'
+}
 
-var streamIn = config.testResources + config.in;
-var streamOut = config.testResources + config.out;
-var count = config.each;
+var streamIn = config.testResources + config.in
+var streamOut = config.testResources + config.out
+var count = config.each
 
-function select(line, encoding, done) {
-	if (count-- <= 1) {
-		count = config.each;
-		this.push(line);
-	}
-	done();
+function select (line, encoding, done) {
+  if (count-- <= 1) {
+    count = config.each
+    this.push(line)
+  }
+  done()
 }
 
 fs.createReadStream(streamIn, { encoding: 'utf8' })
-	.pipe(splitLine({chomp: false}))
-	.pipe(through(select))
-	.pipe(fs.createWriteStream(streamOut, { flags: 'w', encoding: 'utf8'}));
+  .pipe(splitLine({chomp: false}))
+  .pipe(through(select))
+  .pipe(fs.createWriteStream(streamOut, { flags: 'w', encoding: 'utf8' }))

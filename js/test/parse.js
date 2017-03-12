@@ -1,21 +1,20 @@
-'use strict';
+'use strict'
 
 /* global describe, it */
 
 var assert = require('assert'),
-    uaParser = require('../index')(),
-    parse = uaParser.parse;
-    
-var USER_AGENT_STRING = 'Mozilla/5.0 (Windows NT 6.1; rv:2.0b6pre) Gecko/20100903 Firefox/4.0b6pre Firefox/4.0b6pre';
+  uaParser = require('../index')(),
+  parse = uaParser.parse
 
-describe('parse function', function() {
-  it('Unexpected args don\'t throw', function() {
-    assert.doesNotThrow(function() { parse(USER_AGENT_STRING); });
-    assert.doesNotThrow(function() { parse(''); });
-    assert.doesNotThrow(function() { parse(); });
-    assert.doesNotThrow(function() { parse(null); });
-    assert.doesNotThrow(function() { parse({}); });
-    assert.doesNotThrow(function() { parse(123); });
-  });
-});
+var USER_AGENT_STRING = 'Mozilla/5.0 (Windows NT 6.1; rv:2.0b6pre) Gecko/20100903 Firefox/4.0b6pre Firefox/4.0b6pre'
 
+describe('parse function', function () {
+  it('Unexpected args don\'t throw', function () {
+    assert.doesNotThrow(function () { parse(USER_AGENT_STRING) })
+    assert.doesNotThrow(function () { parse('') })
+    assert.doesNotThrow(function () { parse() })
+    assert.doesNotThrow(function () { parse(null) })
+    assert.doesNotThrow(function () { parse({}) })
+    assert.doesNotThrow(function () { parse(123) })
+  })
+})

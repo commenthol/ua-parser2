@@ -1,5 +1,11 @@
 # Changelog
 
+**2017-03-12** v0.3.0-0
+- exchange jshint by eslint
+- adding __VERSION__ pattern
+- ua:
+  - Nutch crawler
+
 **2017-03-11** v0.2.0
 - engine:
   - correct "Chrome" to "Blink" engine
