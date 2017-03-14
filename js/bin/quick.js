@@ -13,13 +13,13 @@ var fs = require('fs'),
 
 var config = {
   each: 500,
-  testResources: path.resolve(__dirname, '../../test_resources/'),
+  testResources: path.resolve(__dirname, '../../test_resources'),
   in: 'tests.json',
   out: 'quick-tests.json'
 }
 
-var streamIn = config.testResources + config.in
-var streamOut = config.testResources + config.out
+var streamIn = path.resolve(config.testResources, config.in)
+var streamOut = path.resolve(config.testResources, config.out)
 var count = config.each
 
 function select (line, encoding, done) {

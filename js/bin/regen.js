@@ -27,9 +27,9 @@ var
   config = {
     version: '0.0.2',
     params: [ 'ua', 'engine', 'os', 'device' ],
-    testsFile: basedir + '/tests.json',      // default tests file
-    outFile: basedir + '/new-tests.json',  // new generated tests file
-    badFile: basedir + '/bad-tests.json'   // file containing bad matches
+    testsFile: path.resolve(basedir, 'tests.json'),      // default tests file
+    outFile: path.resolve(basedir, 'new-tests.json'),    // new generated tests file
+    badFile: path.resolve(basedir, 'bad-tests.json')     // file containing bad matches
   }
 
 // / the program
