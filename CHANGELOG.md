@@ -1,10 +1,10 @@
 # Changelog
 
-**2017-03-12** v0.3.0-0
+**2017-03-14** v0.3.0
 - adding `preset: true` flag for better Android device.type detection
 - ua: Google Pixel
 - ua: masscan bot
-- exchange jshint by eslint
+- exchange jshint by eslint - whitespace changes
 - adding __VERSION__ pattern
 - ua: fix Nutch crawler
 - ua: fix IEMobile which hides as Chrome
