@@ -329,7 +329,7 @@ user_agent_parsers:
 
 
   # Windows 10 IE version uses "Edge" and "Chrome"
-  - regex: '\b(Edge)/(\d+)\.(\d+)'
+  - regex: '\b(Edge)/(\d+)(?:\.(\d+))?'
     family: 'Edge'
 
   # iOS Versions of Browsers
@@ -567,7 +567,7 @@ engine_parsers:
     family: 'Presto'
 
   # Windows 10 IE version uses "Edge" and "Chrome"
-  - regex: '\b(Edge)/(\d+)\.(\d+)'
+  - regex: '\b(Edge)/(\d+)(?:\.(\d+))?'
     family: 'EdgeHTML'
 
   - regex: 'QtWebEngine/__VERSION__'
