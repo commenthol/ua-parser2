@@ -259,7 +259,7 @@ user_agent_parsers:
     family: 'Amazon Silk'
 
   # Chrome Mobile Based Browsers
-  - regex: '(Puffin|SamsungBrowser|MobileIron|Crosswalk|baidubrowser|Polarity|Qiyu)/__VERSION__'
+  - regex: '(Puffin|SamsungBrowser|MobileIron|Crosswalk|baidubrowser|OverwolfClient|Polarity|Qiyu)/__VERSION__'
 
   # Edge Mobile
   - regex: 'Windows Phone .*(Edge)/(\d+)\.(\d+)'
