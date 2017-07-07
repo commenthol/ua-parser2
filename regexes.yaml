@@ -349,6 +349,10 @@ user_agent_parsers:
   # Chrome needs to come after as it hides a lot of browsers from previous regex
   - regex: '(Chrome)[/ ]__VERSION__'
 
+  # Headless Chrome
+  # https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md
+  - regex: '(HeadlessChrome)'
+
   - regex: '(Galeon|UP\.Browser)(?:[ /]__VERSION__)?'
 
   - regex: '(Openwave)(?:/__VERSION__)?'
@@ -522,7 +526,6 @@ user_agent_parsers:
   - regex: '\b(curl|jupdate|libcurl-agent|libwww-perl|Microsoft-CryptoAPI|Microsoft SkyDriveSync|okhttp|OpenBSD ftp|python-requests|SophosAgent|SophosUpdateManager|urlgrabber|(?:\w+) APT-HTTP|Wget|Windows-Update-Agent)\b(?:[ /]__VERSION__)?'
     type: headless
 
-
 #### Engine ####
 engine_parsers:
 
@@ -589,6 +592,9 @@ engine_parsers:
     type: 'WebView'
 
   - regex: '(Chrome)[/]__VERSION__'
+    family: 'Blink'
+
+  - regex: '(HeadlessChrome)'
     family: 'Blink'
 
   - regex: '(TDEHTML)/__VERSION__'

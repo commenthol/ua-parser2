@@ -1,5 +1,8 @@
 # Changelog
 
+****
+- ua: HeadlessChrome
+
 **2017-03-14** v0.3.0
 - adding `preset: true` flag for better Android device.type detection
 - ua: Google Pixel
