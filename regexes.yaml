@@ -259,7 +259,7 @@ user_agent_parsers:
     family: 'Amazon Silk'
 
   # Chrome Mobile Based Browsers
-  - regex: '(Puffin|SamsungBrowser|MobileIron|Crosswalk|baidubrowser)/__VERSION__'
+  - regex: '(Puffin|SamsungBrowser|MobileIron|Crosswalk|baidubrowser|Polarity)/__VERSION__'
 
   # Edge Mobile
   - regex: 'Windows Phone .*(Edge)/(\d+)\.(\d+)'
@@ -328,7 +328,6 @@ user_agent_parsers:
   # Netscape
   - regex: '\b(Navigator|Netscape6)/(\d+)(?:\.(\d+)(?:\.?([ab]?\d+[a-z]*))?)?'
     family: 'Netscape'
-
 
   # Windows 10 IE version uses "Edge" and "Chrome"
   - regex: '\b(Edge)/(\d+)(?:\.(\d+))?'
