@@ -1508,7 +1508,7 @@ device_parsers:
             device: '$1'
             brand: 'Huawei'
             model: '$1'
-          - regex: '; *([^;]+) Build/Huawei'
+          - regex: '; *([^;]+) Build/(?:Huawei|HUAWEI)'
             device: '$1'
             brand: 'Huawei'
             model: '$1'
