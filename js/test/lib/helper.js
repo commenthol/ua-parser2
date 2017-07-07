@@ -5,13 +5,13 @@
  */
 
 /* jshint loopfunc:true */
- 
-'use strict';
+
+'use strict'
 
 var
-  parser = require('../../')();
+  parser = require('../../')()
 
-var M = {};
+var M = {}
 
 /**
  * Merges multiple objects from 1..n object sources.
@@ -31,36 +31,33 @@ var M = {};
  * @param  {Object} source1 .. sourceN
  * @return {Object}
  */
-function merge() {
-  var 
+function merge () {
+  var
     i, j, k,
-    target = {};
+    target = {}
   for (i in arguments) {
     for (j in arguments[i]) {
       if (arguments[i].hasOwnProperty(j)) {
-        if (arguments[i][j] !== null && typeof(arguments[i][j]) === 'object') {
+        if (arguments[i][j] !== null && typeof (arguments[i][j]) === 'object') {
           if (arguments[i][j] instanceof Array) {
-            if (! target[j]) {
-              target[j] = [];
+            if (!target[j]) {
+              target[j] = []
             }
-            for (k=0; k<arguments[i][j].length; k+=1) {
-              target[j].push(arguments[i][j][k]);
+            for (k = 0; k < arguments[i][j].length; k += 1) {
+              target[j].push(arguments[i][j][k])
             }
+          } else {
+            target[j] = merge(target[j], arguments[i][j])
           }
-          else {
-            target[j] = merge(target[j], arguments[i][j]);
-          }
-        }
-        else if (arguments[i][j] === null && target[j]) {
+        } else if (arguments[i][j] === null && target[j]) {
           // do nothing
-        } 
-        else {
-          target[j] = arguments[i][j];
+        } else {
+          target[j] = arguments[i][j]
         }
       }
     }
-  } 
-  return target;
+  }
+  return target
 }
 
 /**
@@ -79,22 +76,21 @@ var compact = {
    * @return {Object} compacted UAParser object
    * @api public
    */
-  strip: function(ua) {
+  strip: function (ua) {
     if (ua) {
       for (var p1 in ua) {
         if (ua[p1] && ua[p1].family === 'Other') {
-          delete(ua[p1]);
-        }
-        else { 
-          ['major', 'minor', 'patch', 'patchMinor', 'brand', 'model'].forEach(function(p2){
+          delete (ua[p1])
+        } else {
+          ['major', 'minor', 'patch', 'patchMinor', 'brand', 'model'].forEach(function (p2) {
             if (ua[p1] && ua[p1][p2] === null) {
-              delete(ua[p1][p2]);
+              delete (ua[p1][p2])
             }
-          });
+          })
         }
       }
     }
-    return ua;
+    return ua
   },
   /**
    * Adds all properties to the UAParser object back again
@@ -102,12 +98,12 @@ var compact = {
    * @return {Object} normal UAParser object
    * @api public
    */
-  unstrip: function(ua) {
-    return merge(this._empty, { os: { patchMinor: null } }, ua);
+  unstrip: function (ua) {
+    return merge(this._empty, { os: { patchMinor: null } }, ua)
   }
-};
+}
 
 /// exports
-M.merge = merge;
-M.compact = compact;
-module.exports = M;
+M.merge = merge
+M.compact = compact
+module.exports = M

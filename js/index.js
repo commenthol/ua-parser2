@@ -3,7 +3,7 @@
 var path = require('path'),
   fs = require('fs'),
   yaml = require('js-yaml'),
-  extend = require('util')._extend
+  assign = Object.assign || require('util')._extend // eslint-disable-line
 
 /**
  * ua-parser
@@ -119,7 +119,7 @@ module.exports = function (options) {
   function setOptions (options) {
     var i
 
-    options = extend(config, options)
+    options = assign(config, options)
 
     for (i in config) {
       if (i !== 'file' && options[i]) {

@@ -1,7 +1,46 @@
 # Changelog
 
-****
-- ua: HeadlessChrome
+**2017-07-07** v0.3.1
+- ua: 1stBrowser
+- ua: Kinza browser
+- ua: AOL browser
+- ua: AviraScout browser
+- ua: Cent browser
+- ua: Tenta browser
+- ua: SpeedCurve WebPage Test bot
+- ua: Coc Coc browser fix
+- ua: fix notifyninja.com, XaxisSemanticsClassifier bot detection
+- ua: shrinktheweb, HubSpot Marketing Grader, crystalsemantics, collection@infegy.com bots ua: Contiki browser ua: better detection of bots
+- ua: Salam Browser
+- ua: Whale
+- ua: Slimjet
+- ua: Kuaiso
+- ua: 7Star
+- ua: Juzibrowser; fix tests
+- ua: JuziBrowser
+- ua: OverwolfClient
+- ua: Qiyu
+- ua: Polarity
+- ua: TungstenBrowser
+- ua: SputnikBrowser
+- ua: Valve Steam clients
+- ua: Semrush bot
+- ua: Tumblr bot
+- ua: Sparrow browser
+- ua: Google Page Speed Insights bot
+- ua: Snapchat app
+- ua: feedreader Bloglovin, Feedbin, Mtps Feed Aggregation System, Stringer
+- ua: Coc Coc browser
+- ua: Seznam.cz
+- ua: Hipchat mail
+- ua, device: Qwantify bot
+- ua, device: Catchpoint bot
+- ua, device: Google Web Preview bot
+- device: Huawei EVA-AL10
+- ua: StatusCake bot
+- ua: Chrome Mobile Webview
+- ua, engine: fix Edge
+- ua, engine: HeadlessChome
 
 **2017-03-14** v0.3.0
 - adding `preset: true` flag for better Android device.type detection

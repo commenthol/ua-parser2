@@ -2,7 +2,7 @@
   "name": "ua-parser2",
   "description": "An improved user agent parser.",
   "main": "./js/index",
-  "version": "0.3.0",
+  "version": "0.3.1-0",
   "engines": {
     "node": ">=0.8.0"
   },
@@ -59,17 +59,19 @@
     "ua-parser"
   ],
   "dependencies": {
-    "js-yaml": ">=3.7.0"
+    "js-yaml": ">=3.8.4"
   },
   "devDependencies": {
-    "commander": ">=2.9.0",
-    "eslint": "^3.17.1",
-    "eslint-config-standard": "^7.0.1",
+    "commander": ">=2.11.0",
+    "eslint": "^4.1.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.0",
     "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^2.1.1",
+    "eslint-plugin-standard": "^3.0.1",
     "mocha": "*",
-    "shelljs": ">=0.7.5",
-    "streamss": ">=0.2.4"
+    "shelljs": ">=0.7.8",
+    "streamss": ">=0.2.5"
   },
   "scripts": {
     "prepublish": "js/bin/quick.js",
