@@ -61,7 +61,7 @@ user_agent_parsers:
         type: 'app'
 
   ### Mail
-  - regex: '(YahooMobileMail|Thunderbird|Icedove|Shredder|Spicebird|Lotus-Notes|Airmail|Lightning|MSOffice|Exchange|Outlook|Barca|kmail2|Bat|(?:Macintosh.* AppleWebKit|MailBar|Postbox))'
+  - regex: '(YahooMobileMail|Thunderbird|Icedove|Shredder|Spicebird|Lotus-Notes|Airmail|Lightning|MSOffice|Exchange|Outlook|Barca|kmail2|Bat|(?:Macintosh.* AppleWebKit|MailBar|Postbox|HipChat))'
     group:
       # Outlook 2007
       - regex: 'Microsoft Office Outlook 12\.\d+\.\d+|MSOffice 12'
@@ -88,7 +88,7 @@ user_agent_parsers:
         family: 'Windows Live Mail'
         type: 'mail'
       # Other Mail Agents
-      - regex: '(YahooMobileMail|Lotus-Notes|MailBar|MacOutlook|Outlook-iOS-Android|ExchangeWebServices|ExchangeServicesClient|Microsoft Outlook|Outlook-Express|Barca(?:Pro)?|Postbox|Slack_SSB|kmail2|The Bat!(?: Voyager)?)(?:[/ ]__VERSION__)?'
+      - regex: '(YahooMobileMail|Lotus-Notes|MailBar|MacOutlook|Outlook-iOS-Android|ExchangeWebServices|ExchangeServicesClient|Microsoft Outlook|Outlook-Express|Barca(?:Pro)?|Postbox|Slack_SSB|HipChat|kmail2|The Bat!(?: Voyager)?)(?:[/ ]__VERSION__)?'
         type: 'mail'
       # Apple Air Mail
       - regex: '(Airmail) __VERSION__'
