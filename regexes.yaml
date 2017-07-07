@@ -145,7 +145,7 @@ user_agent_parsers:
         type: 'app'
 
   # Apps
-  - regex: '\b(Kurio|BacaBerita App|Deezer|SohuNews|Snapchat|RedFlagDealsApp)[ /]__VERSION__'
+  - regex: '\b(Kurio|BacaBerita App|Deezer|SohuNews|Snapchat|RedFlagDealsApp|Instagram)[ /]__VERSION__'
     type: 'app'
 
   #### SPECIAL CASES TOP ####
@@ -2783,6 +2783,14 @@ device_parsers:
         model: 'AMAZE $1$2'
 
       #########
+      # HOTWAV
+      # @ref: 
+      #########
+      - regex: '; *(IP7) Build'
+        device: 'HOTWAV $1'
+        brand: 'HOTWAV'
+        model: '$1'
+      #########
       # HP
       # @ref: http://www.hp.com/
       #########
@@ -3469,7 +3477,7 @@ device_parsers:
       # Meizu
       # @ref: http://www.meizu.com
       #########
-      - regex: '; *(M030|M031|M035|M040|M065|m9) Build'
+      - regex: '; *(M030|M031|M035|M040|M065|m9|M3s) Build'
         device: 'Meizu $1'
         brand: 'Meizu'
         model: '$1'
@@ -3806,7 +3814,7 @@ device_parsers:
       # Oppo
       # @ref: http://en.oppo.com/products/
       #########
-      - regex: '; *(Find ?(?:5|7a)|R8[012]\d{1,2}|T703\d{0,1}|U70\d{1,2}T?|X90\d{1,2}) Build'
+      - regex: '; *(Find ?(?:5|7a)|R8[012]\d{1,2}|T703\d{0,1}|U70\d{1,2}T?|X90\d{1,2}|A1601) Build'
         device: 'Oppo $1'
         brand: 'Oppo'
         model: '$1'
