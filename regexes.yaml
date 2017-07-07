@@ -490,6 +490,8 @@ user_agent_parsers:
   # Browser major_version.minor_version (space instead of slash)
   - regex: '(Android) __VERSION__'
 
+  - regex: '(Odyssey Web Browser); rv:__VERSION__'
+  
   # iOS
   - regex: '(iPod|iPhone|iPad)'
     group:
