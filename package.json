@@ -1,6 +1,6 @@
 {
   "name": "ua-parser2",
-  "version": "0.3.1-0",
+  "version": "0.3.1",
   "description": "An improved user agent parser.",
   "keywords": [
     "Parser",
