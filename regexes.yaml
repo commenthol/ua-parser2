@@ -145,7 +145,7 @@ user_agent_parsers:
         type: 'app'
 
   # Apps
-  - regex: '\b(Kurio|BacaBerita App|Deezer|SohuNews|Snapchat)[ /]__VERSION__'
+  - regex: '\b(Kurio|BacaBerita App|Deezer|SohuNews|Snapchat|RedFlagDealsApp)[ /]__VERSION__'
     type: 'app'
 
   #### SPECIAL CASES TOP ####
@@ -373,6 +373,7 @@ user_agent_parsers:
   # Headless Chrome
   # https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md
   - regex: '(HeadlessChrome)'
+    type: 'headless'
 
   - regex: '(Galeon|UP\.Browser)(?:[ /]__VERSION__)?'
 
