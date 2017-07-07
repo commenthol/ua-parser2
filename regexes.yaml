@@ -108,7 +108,7 @@ user_agent_parsers:
         type: 'mail'
 
   # Feedreader
-  - regex: '\b(CITA RSS Aggregator|Custom-Feed Reader|Digg Feed Fetcher|AideRSS|Akregator|Apple-PubSub|FeedDa?emon|Feeddler|Feedreader|JetBrains Omea Reader|Liferea|NetNewsWire|NewsBlur|newsbeuter|Pulp|ReadKit|(?:RSS|Rss)Bandit|RssBar|RSS Junkie|RSS Menu|RSSOwl|SimplePie|SimpleRSS|Tiny Tiny RSS|UniversalFeedParser|Wizz RSS News Reader|Windows-RSS-Platform)(?:[ /]__VERSION__)?'
+  - regex: '\b(CITA RSS Aggregator|Custom-Feed Reader|Digg Feed Fetcher|AideRSS|Akregator|Apple-PubSub|FeedDa?emon|Feeddler|Feedreader|JetBrains Omea Reader|Liferea|NetNewsWire|NewsBlur|newsbeuter|Pulp|ReadKit|(?:RSS|Rss)Bandit|RssBar|RSS Junkie|RSS Menu|RSSOwl|SimplePie|SimpleRSS|Tiny Tiny RSS|UniversalFeedParser|Wizz RSS News Reader|Windows-RSS-Platform|Bloglovin|Stringer|Mtps Feed Aggregation System|Feedbin )(?:[ /]__VERSION__)?'
     type: 'feedreader'
 
   # podcast
