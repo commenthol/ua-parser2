@@ -1,17 +1,13 @@
 {
   "name": "ua-parser2",
-  "description": "An improved user agent parser.",
-  "main": "./js/index",
   "version": "0.3.1-0",
-  "engines": {
-    "node": ">=0.8.0"
-  },
-  "maintainers": [
-    {
-      "name": "commenthol",
-      "email": "commenthol@gmail.com"
-    }
+  "description": "An improved user agent parser.",
+  "keywords": [
+    "Parser",
+    "User-Agent",
+    "ua-parser"
   ],
+  "license": "(MIT OR Apache-2.0)",
   "contributors": [
     {
       "name": "Tobie Langel",
@@ -38,26 +34,23 @@
       "email": "commenthol@gmail.com"
     }
   ],
+  "main": "./js/index",
   "repository": {
     "type": "git",
     "url": "http://github.com/commenthol/ua-parser2.git"
   },
-  "license": "(MIT OR Apache-2.0)",
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://raw.github.com/commenthol/ua-parser2/master/js/LICENSE"
-    },
-    {
-      "type": "Apache-2.0",
-      "url": "https://raw.github.com/commenthol/ua-parser2/master/js/LICENSE"
+  "scripts": {
+    "benchmark": "cd benchmark && npm i && node run.js",
+    "lint": "eslint 'js/**/*.js'",
+    "prepublish": "js/bin/quick.js",
+    "test": "cd js && mocha test/load/*.mocha.js && mocha"
+  },
+  "eslintConfig": {
+    "extends": "standard",
+    "rules": {
+      "one-var": 0
     }
-  ],
-  "keywords": [
-    "User-Agent",
-    "Parser",
-    "ua-parser"
-  ],
+  },
   "dependencies": {
     "js-yaml": ">=3.8.4"
   },
@@ -73,16 +66,23 @@
     "shelljs": ">=0.7.8",
     "streamss": ">=0.2.5"
   },
-  "scripts": {
-    "prepublish": "js/bin/quick.js",
-    "test": "cd js && mocha test/load/*.mocha.js && mocha",
-    "lint": "eslint 'js/**/*.js'",
-    "benchmark": "cd benchmark && npm i && node run.js"
+  "engines": {
+    "node": ">=0.8.0"
   },
-  "eslintConfig": {
-    "extends": "standard",
-    "rules": {
-      "one-var": 0
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://raw.github.com/commenthol/ua-parser2/master/js/LICENSE"
+    },
+    {
+      "type": "Apache-2.0",
+      "url": "https://raw.github.com/commenthol/ua-parser2/master/js/LICENSE"
     }
-  }
+  ],
+  "maintainers": [
+    {
+      "name": "commenthol",
+      "email": "commenthol@gmail.com"
+    }
+  ]
 }
