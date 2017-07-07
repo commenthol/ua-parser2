@@ -487,6 +487,9 @@ user_agent_parsers:
   - regex: '(AppleWebKit)/(\d+)\.?(\d+)?\+ .* Safari'
     family: 'AppleWebKit'
 
+  - regex: '(Callpod Keeper) for Android __VERSION__'
+    type: 'app'
+
   # Browser major_version.minor_version (space instead of slash)
   - regex: '(Android) __VERSION__'
 
