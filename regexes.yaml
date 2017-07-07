@@ -336,6 +336,9 @@ user_agent_parsers:
   # iOS Versions of Browsers
   - regex: '(Mercury|Puffin)/(\d{3,5})'
 
+  # Chrome based
+  - regex: '(Chrome)\/__VERSION__.*\b(JuziBrowser)\b'
+    family: '$5'
   # no version
   - regex: '\b(JuziBrowser)\b'
 
