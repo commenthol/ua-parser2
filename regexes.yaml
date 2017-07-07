@@ -1657,7 +1657,7 @@ device_parsers:
             brand: 'Acer'
             model: '$2'
             type: 'tablet'
-          - regex: '; *(Z1[123456]0|Z200|Z410|Z500|E3[28]0[^/]*|E39|S5[012]0|S5[56]|Liquid[^;/]*|Iconia A\d+) Build'
+          - regex: '; *(Z1[123456]0|Z200|Z410|Z500|Z8[12][0-9]|E3[28]0[^/]*|E39|S5[012]0|S5[56]|Liquid[^;/]*|Iconia A\d+) Build'
             device: '$1'
             brand: 'Acer'
             model: '$1'
@@ -3242,6 +3242,10 @@ device_parsers:
       # @ref: http://www.android.com/devices/?country=all&m=kyocera
       #########
       - regex: '; *(Zio|Hydro|Torque|Event|EVENT|Echo|Milano|Rise|URBANO PROGRESSO|WX04K|WX06K|WX10K|KYL21|[12]0[12]K|302KC|C5[12]\d{2}|E6782) Build/'
+        device: '$1'
+        brand: 'Kyocera'
+        model: '$1'
+      - regex: '; *KYOCERA-([^ ]+) Build/'
         device: '$1'
         brand: 'Kyocera'
         model: '$1'
@@ -4916,6 +4920,10 @@ device_parsers:
       # @ref: https://developer.amazon.com/appsandservices/solutions/devices/kindle-fire/specifications/01-device-and-feature-specifications
       # @ref: http://amazonsilk.wordpress.com/useful-bits/silk-user-agent/
       ##########
+      - regex: '; ?(KFFOWI) Build\b'
+        brand: 'Amazon'
+        model: '$1'
+        device: '$1'
       - regex: '; ?(Kindle Fire) Build\b'
         device: 'Kindle Fire'
         brand: 'Amazon'
