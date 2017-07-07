@@ -337,7 +337,7 @@ user_agent_parsers:
   - regex: '(Mercury|Puffin)/(\d{3,5})'
 
   # Chrome based
-  - regex: '(Chrome)\/__VERSION__.*\b(JuziBrowser)\b'
+  - regex: '(Chrome)\/__VERSION__.*\b(JuziBrowser|Salam Browser)\b'
     family: '$5'
   # no version
   - regex: '\b(JuziBrowser)\b'
