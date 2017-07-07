@@ -275,6 +275,8 @@ user_agent_parsers:
         family: 'Chrome Mobile'
       - regex: '(CriOS)/__VERSION__'
         family: 'Chrome Mobile iOS'
+      - regex: '; wv\).+(Chrome)/__VERSION__.*\bMobile\b'
+        family: 'Chrome Mobile Webview'
       - regex: '(Chrome)/__VERSION__.*\bMobile\b'
         family: 'Chrome Mobile'
       - regex: '\bMobile\b.*(Chrome)/__VERSION__'
