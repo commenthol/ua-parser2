@@ -349,6 +349,10 @@ user_agent_parsers:
   - regex: '(SznProhlizec)/(\d+)\.(\d+)(?:\.(\d+))?'
     family: 'Seznam.cz'
 
+  # Coc Coc browser, based on Chrome (used in Vietnam)
+  - regex: '(coc_coc_browser)/(\d+)\.(\d+)(?:\.(\d+))?'
+    family: 'Coc Coc'
+
   # Browser without version
   - regex: '(QIHU 360[SE]E)'
 
