@@ -327,8 +327,10 @@ user_agent_parsers:
       - regex: '(QQBrowser)(?:/__VERSION__)?'
         family: 'QQ Browser'
 
-  # AOL Browser (IE-based)
-  - regex: '(AOL) (\d+)\.(\d+); AOLBuild (\d+)'
+  # AOL Browser
+  - regex: '(AOL)[/ ](\d+)\.(\d+);? AOL(?:Build|BUILD)[ /]\d+'
+  - regex: '(ADM)/'
+    family: 'AOL'
 
   # OmniWeb
   - regex: '(OmniWeb)/v?__VERSION__'
