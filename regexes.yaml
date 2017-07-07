@@ -261,6 +261,10 @@ user_agent_parsers:
   # Chrome Mobile Based Browsers
   - regex: '(Puffin|SamsungBrowser|MobileIron|Crosswalk|baidubrowser|OverwolfClient|Polarity|Qiyu)/__VERSION__'
 
+  # Coc Coc browser, based on Chrome (used in Vietnam)
+  - regex: '(coc_coc_browser|CoRom)/(\d+)\.(\d+)(?:\.(\d+))?'
+    family: 'Coc Coc'
+
   # Edge Mobile
   - regex: 'Windows Phone .*(Edge)/(\d+)\.(\d+)'
     family: 'Edge Mobile'
@@ -353,10 +357,6 @@ user_agent_parsers:
   # Seznam.cz browser (based on WebKit)
   - regex: '(SznProhlizec)/(\d+)\.(\d+)(?:\.(\d+))?'
     family: 'Seznam.cz'
-
-  # Coc Coc browser, based on Chrome (used in Vietnam)
-  - regex: '(coc_coc_browser)/(\d+)\.(\d+)(?:\.(\d+))?'
-    family: 'Coc Coc'
 
   # Browser without version
   - regex: '(QIHU 360[SE]E)'
