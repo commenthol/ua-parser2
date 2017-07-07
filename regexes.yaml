@@ -141,7 +141,7 @@ user_agent_parsers:
         type: 'app'
 
   # Apps
-  - regex: '\b(Kurio|BacaBerita App|Deezer|SohuNews)[ /]__VERSION__'
+  - regex: '\b(Kurio|BacaBerita App|Deezer|SohuNews|Snapchat)[ /]__VERSION__'
     type: 'app'
 
   #### SPECIAL CASES TOP ####
