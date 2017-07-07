@@ -494,6 +494,8 @@ user_agent_parsers:
   - regex: '(iPod|iPhone|iPad)'
     group:
       # @ref http://stackoverflow.com/questions/2143763/
+      - regex: '\b(GSA)/__VERSION__'
+        family: 'Google App'
       - regex: '(iPod|iPhone|iPad).+Version/__VERSION_2_DIGITS__.*[ +]Safari'
         family: 'Mobile Safari'
       - regex: '(iPod|iPhone|iPad).+Version/__VERSION_2_DIGITS__'
@@ -3241,7 +3243,7 @@ device_parsers:
       # Kyocera
       # @ref: http://www.android.com/devices/?country=all&m=kyocera
       #########
-      - regex: '; *(Zio|Hydro|Torque|Event|EVENT|Echo|Milano|Rise|URBANO PROGRESSO|WX04K|WX06K|WX10K|KYL21|[12]0[12]K|302KC|C5[12]\d{2}|E6782) Build/'
+      - regex: '; *(Zio|Hydro|Torque|Event|EVENT|Echo|Milano|Rise|URBANO PROGRESSO|WX04K|WX06K|WX10K|KYL21|[12]0[12]K|302KC|C5[12]\d{2}|C6743|E6782) Build/'
         device: '$1'
         brand: 'Kyocera'
         model: '$1'
