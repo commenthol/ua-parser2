@@ -3912,7 +3912,11 @@ device_parsers:
       # Oysters
       # @ref: 
       #########
-      - regex: '(Oysters)[ _](.*?)(?: Build|[;)])'
+      - regex: '; *(Oysters)[ _](.*?)(?: Build|[;)])'
+        device: '$1 $2'
+        brand: 'Oysters'
+        model: '$2'
+      - regex: ';* (T\d{1,2}[A-Z]{1,2}_?3G)(?: Build|[;)])'
         device: '$1 $2'
         brand: 'Oysters'
         model: '$2'
