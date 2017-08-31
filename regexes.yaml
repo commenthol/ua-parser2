@@ -1034,8 +1034,10 @@ os_parsers:
 
   ##########
   # Mac OS
-  # @ref: http://en.wikipedia.org/wiki/Mac_OS_X#Versions
-  # @ref: http://www.puredarwin.org/curious/versions
+  # @ref: https://en.wikipedia.org/wiki/Mac_OS_X#Versions
+  # @ref: https://en.wikipedia.org/wiki/MacOS_Sierra
+  # @ref: https://en.wikipedia.org/wiki/Darwin_(operating_system)#Release_history
+  # @ref: https://github.com/PureDarwin/PureDarwin/wiki/Versions
   # @ref: http://user-agents.me/cfnetwork-version-list
   ##########
   - regex: 'Mac|Darwin|CFNetwork'
@@ -1054,7 +1056,7 @@ os_parsers:
         v1: '10'
         v2: '12'
         v3: '$1'
-      - regex: ' Darwin/16\.0\.0.*\((?:i386|x86_64)\)'
+      - regex: ' Darwin/16\..*\((?:i386|x86_64)\)'
         family: 'macOS'
         v1: '10'
         v2: '12'
@@ -1069,7 +1071,7 @@ os_parsers:
         v1: '10'
         v2: '11'
         v3: '$1'
-      - regex: ' Darwin/15\.0\.0.*\((?:i386|x86_64)\)'
+      - regex: ' Darwin/15\..*\((?:i386|x86_64)\)'
         family: 'Mac OS X'
         v1: '10'
         v2: '11'
@@ -1189,18 +1191,19 @@ os_parsers:
       # @ref: https://en.wikipedia.org/wiki/Darwin_(operating_system)#Release_history
       # @ref: http://user-agents.me/cfnetwork-version-list
       ##########
-      - regex: '(CF)(Network)/808\.(\d).* Darwin/(16)\.'
+      - regex: 'CFNetwork/808\.(\d).* Darwin/16\.'
         family: 'iOS'
         v1: '10'
-      - regex: 'CFNetwork/(?:79(0)\.\d).* Darwin/(16)\.'
+        v2: '$1'
+      - regex: 'CFNetwork/(?:790\.\d).* Darwin/16\.'
         family: 'iOS'
         v1: '10'
-        v2: '$1$2'
+        v2: '0'
       - regex: 'CFNetwork/758\.(\d)'
         family: 'iOS'
         v1: '9'
         v2: '$1'
-      - regex: 'CFNetwork/711\.(\d).* Darwin/(14)\.\d+'
+      - regex: 'CFNetwork/711\.(\d).* Darwin/14\.'
         family: 'iOS'
         v1: '8'
         v2: '$1'

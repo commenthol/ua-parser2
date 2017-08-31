@@ -43,7 +43,9 @@
     "benchmark": "cd benchmark && npm i && node run.js",
     "lint": "eslint 'js/**/*.js'",
     "prepublish": "js/bin/quick.js",
-    "test": "cd js && mocha test/load/*.mocha.js && mocha"
+    "regen": "node ./js/bin/regen -c",
+    "test": "cd js && mocha test/load/*.mocha.js && mocha",
+    "update": "cp test_resources/new-tests.json test_resources/tests.json"
   },
   "eslintConfig": {
     "extends": "standard",
