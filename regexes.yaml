@@ -257,6 +257,9 @@ user_agent_parsers:
   - regex: '(YaBrowser)/__VERSION__'
     family: 'Yandex Browser'
 
+  - regex: (2345Explorer|2345chrome)(?:[ /]| v)__VERSION__
+    family: 2345Explorer
+
   # PlayStation Vita should go before Amazon Silk
   - regex: '(PLAYSTATION 3.+WebKit|Nintendo 3DS|PlayStation Vita|AppleWebKit.+ NX)(?:/__VERSION__)?'
     family: 'NetFront NX'
