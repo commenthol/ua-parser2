@@ -1763,7 +1763,7 @@ device_parsers:
         brand: '$1'
         model: '$2'
       # operator specific models
-      - regex: '; *(Vodafone[ _]Smart[ _]II|Optimus_Madrid|Orange (?:Infinity 8008X|Hiro|Yomi)|Telenor[_ ](?:Smart|One_?Touch)([_ ][^;]*?)?|move 2|BS471|I213|Mobile Sosh|MTC975|smart_a17|7040[NRT]) Build'
+      - regex: '; *(Vodafone[ _]Smart[ _]II|Optimus_Madrid|Orange (?:Infinity 8008X|Hiro|Yomi)|Telenor[_ ](?:Smart|One_?Touch)([_ ][^;]*?)?|move 2|BS471|I213|Mobile Sosh|MTC975|smart_a17|7040[NRT]|9005X) Build'
         device: 'Alcatel $1'
         brand: 'Alcatel'
         model: '$1'
