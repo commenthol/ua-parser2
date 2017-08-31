@@ -1,5 +1,33 @@
 # Changelog
 
+**2017-08-30** v0.3.2
+- ua: HeadlessChrome with Version, fix Chromium
+- ua: fix GSA, Flipboard, Listia, OPR, Beamrise
+- ua: 2345Explorer
+- device: Amazon refactor
+- device: Oysters
+- device: Irbis
+- device: Dialog
+- device: Oysters
+- device: Alcatel Pixi3
+- device: Asus P01T_1
+- device: Digma
+- device: Supra
+- device: 4Good tablets
+- ua: Firefox Focus
+- ua: fix shrinktheweb.com bot
+- device: Asus TouchPad, Asus DA241HL, Dell Venue
+- ua: Instagram device: Meizu M3s, Oppo A1601
+- ua: MultiZilla, K-Ninja, KMLite, Prism, Vonkeror Gecko based browsers
+- ua: RedFlagDealsApp app
+- ua: WhatsApp bot
+- ua: Callpod Keeper
+- ua: Odyssey Web Browser
+- ua: SecondLife
+- ua: TizenBrowser
+- ua: Google App (GSA)
+- device: Acer, Amazon, Kyocera
+
 **2017-07-07** v0.3.1
 - ua: 1stBrowser
 - ua: Kinza browser
