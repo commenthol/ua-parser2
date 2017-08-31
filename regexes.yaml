@@ -1,4 +1,4 @@
-version: '0.3.1'
+version: '0.3.2'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 # replacement pattern
