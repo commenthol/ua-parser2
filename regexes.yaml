@@ -3891,6 +3891,15 @@ device_parsers:
         model: '$1'
 
       #########
+      # Oysters
+      # @ref: 
+      #########
+      - regex: '(Oysters)[ _](.*?)(?: Build|[;)])'
+        device: '$1 $2'
+        brand: 'Oysters'
+        model: '$2'
+
+      #########
       # PackardBell
       # @ref: http://www.packardbell.com/pb/en/AE/content/productgroup/tablets
       #########
