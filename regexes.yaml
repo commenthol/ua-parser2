@@ -2433,6 +2433,15 @@ device_parsers:
         model: '$1'
 
       #########
+      # Dialog
+      # @ref:
+      #########
+      - regex: '; *(Tab_2)(?: Build|[;)])'
+        device: '$1'
+        brand: 'Dialog'
+        model: '$1'
+
+      #########
       # Digma
       # @ref:
       #########
