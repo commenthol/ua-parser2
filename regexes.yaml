@@ -267,15 +267,6 @@ user_agent_parsers:
   - regex: '(Silk)/(\d+)\.(\d+)(?:\.([0-9\-]+))?'
     family: 'Amazon Silk'
 
-  - regex: ' (Nichrome)/self/(\d+)'
-
-  # Chrome Mobile Based App
-  - regex: '\b(GSA|Listia|Flipboard)/__VERSION__'
-    type: app
-
-  # Chrome Mobile Based Browsers
-  - regex: '\b(Puffin|SamsungBrowser|MobileIron|Crosswalk|baidubrowser|OverwolfClient|Polarity|Qiyu|Tenta|Focus|Beamrise)/__VERSION__'
-
   # Coc Coc browser, based on Chrome (used in Vietnam)
   - regex: '(coc_coc_browser|CoRom)/(\d+)\.(\d+)(?:\.(\d+))?'
     family: 'Coc Coc'
@@ -284,9 +275,22 @@ user_agent_parsers:
   - regex: 'Windows Phone .*(Edge)/(\d+)\.(\d+)'
     family: 'Edge Mobile'
 
+  - regex: '\b(GSA|Listia|Flipboard)/__VERSION__'
+    type: app
+
+  # Partly Chrome Based Browsers
+  - regex: '\b(SamsungBrowser|baidubrowser|Focus)/__VERSION__'
+
   # Chrome Mobile - Chrome based
-  - regex: 'CrMo|CriOS|Chrome|chromeframe'
+  - regex: 'CrMo|CriOS|Chrom|chromeframe'
     group:
+      # Headless Chrome
+      # https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md
+      - regex: '(HeadlessChrome)(?:/(\d+)\.(\d+)\.?(\d+)?)?'
+        type: 'headless'
+      - regex: ' (Nichrome)/self/(\d+)'
+      # Chrome Based Browsers
+      - regex: '\b(Chromium|Puffin|MobileIron|Crosswalk|OverwolfClient|Polarity|Qiyu|Tenta|Beamrise)/__VERSION__'
       # IE Mobile - strange MS ua contains Chrome
       - regex: '(IEMobile)/__VERSION__'
         family: 'IE Mobile'
@@ -296,7 +300,7 @@ user_agent_parsers:
         family: 'Chrome Mobile iOS'
       - regex: '; wv\).+(Chrome)/__VERSION__.*\bMobile\b'
         family: 'Chrome Mobile Webview'
-      - regex: '(Chrome)/__VERSION__.*\bMobile\b'
+      - regex: '\b(Chrome)/__VERSION__.*\bMobile\b'
         family: 'Chrome Mobile'
       - regex: '\bMobile\b.*(Chrome)/__VERSION__'
         family: 'Chrome Mobile'
@@ -311,6 +315,9 @@ user_agent_parsers:
       # Iron Browser ~since version 50
       - regex: '(Chrome)/__VERSION__[\d.]* Iron[^/]'
         family: 'Iron'
+      # Chrome based
+      - regex: '\b(Chrome)\/__VERSION__.*\b(JuziBrowser|Salam Browser)\b'
+        family: '$5'
 
   # Tizen Browser (second case included in browser/major.minor regex)
   - regex: '(Tizen|SLP) Browser/__VERSION__'
@@ -357,9 +364,6 @@ user_agent_parsers:
   # iOS Versions of Browsers
   - regex: '(Mercury|Puffin)/(\d{3,5})'
 
-  # Chrome based
-  - regex: '(Chrome)\/__VERSION__.*\b(JuziBrowser|Salam Browser)\b'
-    family: '$5'
   # no version
   - regex: '\b(JuziBrowser)\b'
 
@@ -369,7 +373,7 @@ user_agent_parsers:
   - regex: '(Phoenix)/__VERSION__'
   - regex: '(MAXTHON|Maxthon|MxBrowser)[ /]__VERSION__'
     family: 'Maxthon'
-  - regex: '(1stBrowser|7Star|Abrowser|AdobeAIR|amaya|Amiga-AWeb|AmigaVoyager|ANTFresco|ANTGalio|Arora|AviraScout|Bolt|BOLT|brave|Bunjalloo|Cent|Crazy Browser|Chromium|ChromePlus|Contiki|CoolNovo|Demeter|Dillo|Dolfin|Dolphin http client|Dragon|Epiphany|EspialTVBrowser|Electron|Espial|Fennec|FireWeb|Fluid|Fresco|Galeon|Googlebot|Google Earth(?: EC)?|HbbTV|HotJava|IBrowse|iCab|Iceape|ICE Browser|IceCat|Iceweasel|IceWeasel|iRider|OneBrowser|Iris|Iron|Jasmine|Kapiko|Kazehakase|Kindle|Kinza|K-Meleon|Kuaiso|LG Browser|Lobo|Lunascape|Lynx|MacAppStore|Maemo Browser|mDolphin|Mercury|MiniBrowserMobile|Midori|Minimo|Net[Ff]ront|NetFrontLifeBrowser|NetPositive|Netscape|NetSurf|OmniWeb|Opera|Opera Mini|Orca|Otter|PaleMoon|Planetweb|Polaris|Puffin|PyAMF|QupZilla|qutebrowser|Raven for Mac|RockMelt|SailfishBrowser|SecondLife|SeaMonkey|Shiira|SkipStone|Skyfire|Sleipnir|Slimjet|Snowshoe|Space Bison|Sparrow|SputnikBrowser|Stainless|Sunrise|TizenBrowser|ThunderBrowse|TungstenBrowser|UP\.Browser|Valve (?:Client|Steam \w+)|Vienna|Vivaldi|WebPilot|WebPositive|Whale|Xiino)[/ ]__VERSION_DIGITS__'
+  - regex: '(1stBrowser|7Star|Abrowser|AdobeAIR|amaya|Amiga-AWeb|AmigaVoyager|ANTFresco|ANTGalio|Arora|AviraScout|Bolt|BOLT|brave|Bunjalloo|Cent|Crazy Browser|ChromePlus|Contiki|CoolNovo|Demeter|Dillo|Dolfin|Dolphin http client|Dragon|Epiphany|EspialTVBrowser|Electron|Espial|Fennec|FireWeb|Fluid|Fresco|Galeon|Googlebot|Google Earth(?: EC)?|HbbTV|HotJava|IBrowse|iCab|Iceape|ICE Browser|IceCat|Iceweasel|IceWeasel|iRider|OneBrowser|Iris|Iron|Jasmine|Kapiko|Kazehakase|Kindle|Kinza|K-Meleon|Kuaiso|LG Browser|Lobo|Lunascape|Lynx|MacAppStore|Maemo Browser|mDolphin|Mercury|MiniBrowserMobile|Midori|Minimo|Net[Ff]ront|NetFrontLifeBrowser|NetPositive|Netscape|NetSurf|OmniWeb|Opera|Opera Mini|Orca|Otter|PaleMoon|Planetweb|Polaris|Puffin|PyAMF|QupZilla|qutebrowser|Raven for Mac|RockMelt|SailfishBrowser|SecondLife|SeaMonkey|Shiira|SkipStone|Skyfire|Sleipnir|Slimjet|Snowshoe|Space Bison|Sparrow|SputnikBrowser|Stainless|Sunrise|TizenBrowser|ThunderBrowse|TungstenBrowser|UP\.Browser|Valve (?:Client|Steam \w+)|Vienna|Vivaldi|WebPilot|WebPositive|Whale|Xiino)[/ ]__VERSION_DIGITS__'
 
   # Seznam.cz browser (based on WebKit)
   - regex: '(SznProhlizec)/(\d+)\.(\d+)(?:\.(\d+))?'
@@ -380,11 +384,6 @@ user_agent_parsers:
 
   # Chrome needs to come after as it hides a lot of browsers from previous regex
   - regex: '(Chrome)[/ ]__VERSION__'
-
-  # Headless Chrome
-  # https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md
-  - regex: '(HeadlessChrome)'
-    type: 'headless'
 
   - regex: '(Galeon|UP\.Browser)(?:[ /]__VERSION__)?'
 
