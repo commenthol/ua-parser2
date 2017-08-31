@@ -1942,7 +1942,7 @@ device_parsers:
       # Asus
       # @ref: http://www.asus.com/uk/Tablets_Mobile/
       #########
-      - regex: '; *(A500CG|AST21|ME(?:[13]\d{2})[^;/]+|K0[01][A-Z0-9]|Nexus 10|Nexus 7(?: 2013| LTE)?|Nexus HDX 7|PadFone[^;/]*|Transformer[^;/]*|TF\d{3}[^;/]*|TX201LA|eeepc|TouchPad|DA241HL) Build'
+      - regex: '; *(A500CG|AST21|DA241HL|ME(?:[13]\d{2})[^;/]+|K0[01][A-Z0-9]|Nexus 10|Nexus 7(?: 2013| LTE)?|Nexus HDX 7|PadFone[^;/]*|P01T_1|Transformer[^;/]*|TF\d{3}[^;/]*|TX201LA|eeepc|TouchPad) Build'
         device: 'Asus $1'
         brand: 'Asus'
         model: '$1'
