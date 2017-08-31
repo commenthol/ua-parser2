@@ -1639,6 +1639,16 @@ device_parsers:
         model: '$1'
 
       #########
+      # 4Good
+      # @ref: http://www.??
+      #########
+      - regex: '; *(Light_AT200|T700i_3G) +Build'
+        device: '4Good $1'
+        brand: '4Good'
+        model: '$1'
+        type: tablet
+
+      #########
       # Acer
       # @ref: http://us.acer.com/ac/en/US/content/group/tablets
       #########
