@@ -2433,6 +2433,15 @@ device_parsers:
         model: '$1'
 
       #########
+      # Digma
+      # @ref:
+      #########
+      - regex: '; *(?:Digma |DIGMA )?(Optima .*?|Plane .*?|HIT .*?|iD[jnsx]D\d+.*?|TT7022MG.*?)(?: Build|[;)])'
+        device: '$1'
+        brand: 'Digma'
+        model: '$1'
+
+      #########
       # DNS AirTab
       # @ref: http://www.dns-shop.ru/
       #########
