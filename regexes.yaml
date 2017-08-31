@@ -3054,6 +3054,15 @@ device_parsers:
         type: 'tablet'
 
       #########
+      # Irbis
+      # @ref:
+      #########
+      - regex: '; *(TG97|TX08|TX17|TX18|TX22|TX68|TX97|TZ43|TZ709|TZ857)(?: Build|[;)])'
+        device: '$1'
+        brand: 'Irbis'
+        model: '$1'
+
+      #########
       # IRU.ru
       # @ref: http://www.iru.ru/catalog/soho/planetable/
       #########
