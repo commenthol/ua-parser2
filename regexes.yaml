@@ -205,11 +205,11 @@ user_agent_parsers:
       - regex: '(Opera)/9.80.*Version/__VERSION_DIGITS__'
 
       # Opera 14 for Android uses a WebKit render engine.
-      - regex: '(?:Mobile Safari).*(OPR)/__VERSION__'
+      - regex: '(?:Mobile Safari).*( OPR)/__VERSION__'
         family: 'Opera Mobile'
 
       # Opera 15 for Desktop is similar to Chrome but includes an "OPR" Version string.
-      - regex: '(?:Chrome).*(OPR)/__VERSION__'
+      - regex: '(?:Safari).*( OPR)/__VERSION__'
         family: 'Opera'
 
       # Opera Neon
@@ -267,8 +267,14 @@ user_agent_parsers:
   - regex: '(Silk)/(\d+)\.(\d+)(?:\.([0-9\-]+))?'
     family: 'Amazon Silk'
 
+  - regex: ' (Nichrome)/self/(\d+)'
+
+  # Chrome Mobile Based App
+  - regex: '\b(GSA|Listia|Flipboard)/__VERSION__'
+    type: app
+
   # Chrome Mobile Based Browsers
-  - regex: '(Puffin|SamsungBrowser|MobileIron|Crosswalk|baidubrowser|OverwolfClient|Polarity|Qiyu|Tenta|Focus)/__VERSION__'
+  - regex: '\b(Puffin|SamsungBrowser|MobileIron|Crosswalk|baidubrowser|OverwolfClient|Polarity|Qiyu|Tenta|Focus|Beamrise)/__VERSION__'
 
   # Coc Coc browser, based on Chrome (used in Vietnam)
   - regex: '(coc_coc_browser|CoRom)/(\d+)\.(\d+)(?:\.(\d+))?'
