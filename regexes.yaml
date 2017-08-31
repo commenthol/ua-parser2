@@ -5001,10 +5001,6 @@ device_parsers:
       # @ref: https://developer.amazon.com/appsandservices/solutions/devices/kindle-fire/specifications/01-device-and-feature-specifications
       # @ref: http://amazonsilk.wordpress.com/useful-bits/silk-user-agent/
       ##########
-      - regex: '; ?(KFFOWI) Build\b'
-        brand: 'Amazon'
-        model: '$1'
-        device: '$1'
       - regex: '; ?(Kindle Fire) Build\b'
         device: 'Kindle Fire'
         brand: 'Amazon'
@@ -5093,7 +5089,11 @@ device_parsers:
         device: 'Kindle'
         brand: 'Amazon'
         model: 'Kindle'
-      - regex: '; (AFTB|AFTM) Build'
+      - regex: '; (AFT[BM]) Build'
+        device: '$1'
+        brand: 'Amazon'
+        model: '$1'
+      - regex: '; (KF[A-Z]{1,2}W[AI]) Build'
         device: '$1'
         brand: 'Amazon'
         model: '$1'
