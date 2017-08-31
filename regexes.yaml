@@ -4373,6 +4373,15 @@ device_parsers:
         model: '$2'
 
       #########
+      # Supra
+      # @ref:
+      #########
+      - regex: '(SUPRA)[ _](.*?)(?: Build|[;)])'
+        device: '$1 $2'
+        brand: 'Supra'
+        model: '$2'
+
+      #########
       # Switel
       # @ref: http://www.switelmobile.com
       #########
