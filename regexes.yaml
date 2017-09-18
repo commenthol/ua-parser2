@@ -36,7 +36,8 @@ user_agent_parsers:
       - regex: 'Google.*/\+/web/snippet'
         family: 'GooglePlusBot'
         type: 'bot'
-      - regex: '(Pinterest)\/(\d+)(?:\.(\d+)|[^\.]).*https?:\/\/'
+      # Pinterestbot
+      - regex: '(Pinterest(?:bot)?)\/(\d+)(?:\.(\d+)|[^\.]).*https?:\/\/'
         type: 'bot'
       # Add loadbalancer, monitoring, health-checks
       - regex: '(ELB-HealthChecker|SiteScope)(?:[/ ]__VERSION__|.|$)'
