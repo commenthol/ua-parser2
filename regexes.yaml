@@ -291,7 +291,7 @@ user_agent_parsers:
         type: 'headless'
       - regex: ' (Nichrome)/self/(\d+)'
       # Chrome Based Browsers
-      - regex: '\b(Chromium|Puffin|MobileIron|Crosswalk|OverwolfClient|Polarity|Qiyu|Tenta|Beamrise)/__VERSION__'
+      - regex: '\b(Chromium|Puffin|MobileIron|Crosswalk|OverwolfClient|Polarity|Qiyu|Tenta|Beamrise|Chedot)/__VERSION__'
       # IE Mobile - strange MS ua contains Chrome
       - regex: '(IEMobile)/__VERSION__'
         family: 'IE Mobile'
@@ -319,6 +319,8 @@ user_agent_parsers:
       # Chrome based
       - regex: '\b(Chrome)\/__VERSION__.*\b(JuziBrowser|Salam Browser)\b'
         family: '$5'
+      - regex: '\b(Chedot)\b.*\bChrome\/__VERSION__'
+        family: '$1'
 
   # Tizen Browser (second case included in browser/major.minor regex)
   - regex: '(Tizen|SLP) Browser/__VERSION__'
@@ -374,7 +376,7 @@ user_agent_parsers:
   - regex: '(Phoenix)/__VERSION__'
   - regex: '(MAXTHON|Maxthon|MxBrowser)[ /]__VERSION__'
     family: 'Maxthon'
-  - regex: '(1stBrowser|7Star|Abrowser|AdobeAIR|amaya|Amiga-AWeb|AmigaVoyager|ANTFresco|ANTGalio|Arora|AviraScout|Bolt|BOLT|brave|Bunjalloo|Cent|Crazy Browser|ChromePlus|Contiki|CoolNovo|Demeter|Dillo|Dolfin|Dolphin http client|Dragon|Epiphany|EspialTVBrowser|Electron|Espial|Fennec|FireWeb|Fluid|Fresco|Galeon|Googlebot|Google Earth(?: EC)?|HbbTV|HotJava|IBrowse|iCab|Iceape|ICE Browser|IceCat|Iceweasel|IceWeasel|iRider|OneBrowser|Iris|Iron|Jasmine|Kapiko|Kazehakase|Kindle|Kinza|K-Meleon|Kuaiso|LG Browser|Lobo|Lunascape|Lynx|MacAppStore|Maemo Browser|mDolphin|Mercury|MiniBrowserMobile|Midori|Minimo|Net[Ff]ront|NetFrontLifeBrowser|NetPositive|Netscape|NetSurf|OmniWeb|Opera|Opera Mini|Orca|Otter|PaleMoon|Planetweb|Polaris|Puffin|PyAMF|QupZilla|qutebrowser|Raven for Mac|RockMelt|SailfishBrowser|SecondLife|SeaMonkey|Shiira|SkipStone|Skyfire|Sleipnir|Slimjet|Snowshoe|Space Bison|Sparrow|SputnikBrowser|Stainless|Sunrise|TizenBrowser|ThunderBrowse|TungstenBrowser|UP\.Browser|Valve (?:Client|Steam \w+)|Vienna|Vivaldi|WebPilot|WebPositive|Whale|Xiino)[/ ]__VERSION_DIGITS__'
+  - regex: '(1stBrowser|7Star|Abrowser|AdobeAIR|amaya|Amiga-AWeb|AmigaVoyager|ANTFresco|ANTGalio|Arora|AviraScout|Bolt|BOLT|brave|Bunjalloo|Cent|Crazy Browser|ChromePlus|Contiki|CoolNovo|Demeter|Dillo|Dolfin|Dolphin http client|Dragon|Epiphany|EspialTVBrowser|Electron|Espial|Fennec|FireWeb|Fluid|Fresco|Galeon|Googlebot|Google Earth(?: EC)?|HbbTV|HotJava|IBrowse|iCab|Iceape|ICE Browser|IceCat|Iceweasel|IceWeasel|iRider|OneBrowser|Iris|Iron|Jasmine|Kapiko|Kazehakase|Kindle|Kinza|K-Meleon|Kuaiso|LG Browser|Lobo|Lunascape|Lynx|MacAppStore|Maemo Browser|mDolphin|Mercury|MiniBrowserMobile|Midori|Minimo|Net[Ff]ront|NetFrontLifeBrowser|NetPositive|Netscape|NetSurf|OmniWeb|Opera|Opera Mini|Orca|Otter|PaleMoon|Planetweb|Polaris|Puffin|PyAMF|QupZilla|qutebrowser|Raven for Mac|RockMelt|SailfishBrowser|SecondLife|SeaMonkey|Shiira|SkipStone|Skyfire|Sleipnir|Slimjet|Snowshoe|Space Bison|Sparrow|SputnikBrowser|Stainless|Sunrise|TizenBrowser|ThunderBrowse|TungstenBrowser|UP\.Browser|Valve (?:Client|Steam \w+)|Vienna|Vivaldi|WebPilot|WebPositive|Whale|Xiino|Chedot)[/ ]__VERSION_DIGITS__'
 
   # Seznam.cz browser (based on WebKit)
   - regex: '(SznProhlizec)/(\d+)\.(\d+)(?:\.(\d+))?'
