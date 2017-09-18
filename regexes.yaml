@@ -6085,7 +6085,7 @@ device_parsers:
   # Spiders (this is a hack...)
   # Sort by length
   ##########
-  - regex: '(bot|zao|oegp|ktht|xenu|zeal|borg|silk|ktxn|khte|yahoo|crawl|lycos|slurp|teoma|voila|sogou|cibra|nutch|^ning|htdig|^jnlp/|daumoa|genieo|ichiro|larbin|reaper|scrapy|snappy|speedy|spider|vortex|^java/|holmes|pompos|favicon|monitor|riddler|scooter|scraper|scrubby|whatweb|winhttp|indexer|zooshot|archiver|icarus6j|mogimogi|netvibes|^voyager|qwantify|heritrix|wsr-agent|retreiver|wordpress|tlsprober|altavista|charlotte|newsgator|findlinks|synthetic|statuscake|catchpoint|classifier|pagepeeker|squrl java|gomezagent|blogbridge|netresearch|searchsight|bingpreview|webthumbnail|http%20client|python-urllib|dataparksearch|screaming frog|internetarchive|appengine-google|semanticdiscovery|google web preview|facebookexternalhit|iltrovatore-setaccio|google.*/\+/web/snippet|google-http-java-client)'
+  - regex: '(bot|zao|borg|khte|ktht|ktxn|oegp|silk|xenu|zeal|^ning|lycos|nutch|htdig|crawl|cibra|slurp|sogou|teoma|voila|yahoo|daumoa|genieo|ichiro|holmes|^jnlp/|^java/|larbin|pompos|reaper|scrapy|snappy|speedy|spider|vortex|favicon|monitor|riddler|scooter|scraper|scrubby|whatweb|winhttp|indexer|zooshot|archiver|^voyager|heritrix|icarus6j|mogimogi|netvibes|qwantify|retreiver|newsgator|findlinks|altavista|charlotte|synthetic|tlsprober|wordpress|wsr-agent|blogbridge|catchpoint|classifier|pagepeeker|gomezagent|squrl java|statuscake|bingpreview|netresearch|searchsight|webthumbnail|http%20client|python-urllib|dataparksearch|screaming frog|internetarchive|appengine-google|semanticdiscovery|google web preview|facebookexternalhit|iltrovatore-setaccio|google-http-java-client|google.*/\+/web/snippet)'
     regex_flag: 'i'
     device: 'Spider'
     brand: 'Spider'
