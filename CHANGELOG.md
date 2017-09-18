@@ -1,5 +1,17 @@
 # Changelog
 
+**2017-09-18** v0.3.3
+- os: fix CFNetwork
+- ua: GomezAgent Bot added
+- ua: RuxitSynthetic bot
+- ua: KTXN bot
+- ua: KHTE bot
+- ua: fix PinterestBot
+- ua: Discordbot
+- os: Android 8
+- ua: Chedot
+- update benchmark with latest libs
+
 **2017-08-30** v0.3.2
 - ua: HeadlessChrome with Version, fix Chromium
 - ua: fix GSA, Flipboard, Listia, OPR, Beamrise
