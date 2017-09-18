@@ -56,7 +56,7 @@ froomfroom
     );
 })
 .on('complete', function () {
-    console.log('Module: "'+ this.filter('fastest').pluck('name') +'" is the user agent fastest parser.');
+    console.log('Module: "'+ this.filter('fastest').map('name') +'" is the user agent fastest parser.');
 });
 
 /**

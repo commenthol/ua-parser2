@@ -126,17 +126,21 @@ In folder `benchmarks` you'll find a benchmark test which compares [useragent][]
 
 Results on my laptop:
 
+- node-uap@0.0.3
+- useragent@2.2.1
+- ua-parser2@0.3.2
+
 ```
 Starting the benchmark, parsing 63 useragent strings per run
 
 Executed benchmark against node module: "useragent"
-Count (2), Cycles (2), Elapsed (5.659), Hz (36.15879308222243)
+Count (3), Cycles (2), Elapsed (5.782), Hz (40.84696387495286)
 
 Executed benchmark against node module: "node-uap"
-Count (2), Cycles (2), Elapsed (5.59), Hz (34.612143954637716)
+Count (3), Cycles (2), Elapsed (5.628), Hz (41.23226067803832)
 
 Executed benchmark against node module: "ua-parser2"
-Count (4), Cycles (3), Elapsed (5.548), Hz (76.46759480868256)
+Count (7), Cycles (4), Elapsed (5.568), Hz (108.4435776239968)
 
 Module: "ua-parser2" is the user agent fastest parser.
 ```
