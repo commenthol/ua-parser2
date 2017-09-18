@@ -1,12 +1,13 @@
 {
-  "private": true,
   "name": "ua-parser2-benchmark",
-  "description": "benchmark different user agent parsers",
   "version": "0.0.1",
+  "private": true,
+  "description": "benchmark different user agent parsers",
+  "main": "run.js",
   "dependencies": {
-    "benchmark": "",
-    "node-uap": "",
-    "ua-parser2": "^0.1.21",
-    "useragent": ""
+    "benchmark": "^2.1.4",
+    "node-uap": "latest",
+    "ua-parser2": "latest",
+    "useragent": "^2.2.1"
   }
 }
