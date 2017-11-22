@@ -25,7 +25,122 @@ user_agent_parsers:
       type: 'app'
 
   #### Bots ####
-  - regex: '(@|bot|dig|JNLP|NING|seek|Xenu|crawl|health|checker|scope|lycos|slurp|sitecon|teoma|Reaper|faviconGenieo|gomezagent|google|larbin|pompos|scrap|snappy|spider|synthetic|vortex|zyborg|indexer|monitor|voyager|WhatWeb|WinHTTP|archiver|charlotte|marketing|http[^:]*?://|Retreiver|TLSProber|WordPress|BingPreview|BlogBridge|Squrl Java|StatusCake|Python-urllib|Apache-HttpClient|facebookexternalhit|PayPal|adbeat|Pinterest|Pingdom|PRTG|PTST|scan|Tumblr|WhatsApp/|KTXN|KHTE)'
+  - regex: "(\
+      @|\
+      Acoon|\
+      adbeat|\
+      AHC|\
+      aggregator|\
+      analyzer|\
+      anonymous|\
+      ApacheBench|\
+      Arachmo|\
+      archiver|\
+      [A-Za-z]{3,30}\\.com|\
+      Azureus|\
+      BDFetch|\
+      BingPreview|\
+      blog|\
+      BlogBridge|\
+      \\bNG\\b|\
+      bot|\
+      boost|\
+      Cerberian Drtrs|\
+      charlotte|\
+      checker|\
+      Clarsentia|\
+      crawl|\
+      diagnostic|\
+      \\bdig\\b|\
+      discovery|\
+      Download Demon|\
+      Evidon|\
+      ExaleadCloudview|\
+      explorer|\
+      extract|\
+      facebookexternalhit|\
+      faviconGenieo|\
+      FavOrg|\
+      ^FDM|\
+      GigablastOpenSource|\
+      gomezagent|\
+      google|\
+      GTmetrix|\
+      HatenaScreenshot|\
+      health|\
+      history|\
+      http[^:]*?://|\
+      httpunit|\
+      indexer|\
+      inspect|\
+      intraVnews|\
+      ips-agent|\
+      JetBrains|\
+      Jigsaw|\
+      JNLP|\
+      KHTE|\
+      KTXN|\
+      larbin|\
+      link|\
+      LinkAlarm|\
+      lycos|\
+      Mail\\.Ru|\
+      marketing|\
+      MetaURI API|\
+      Microsoft URL Control|\
+      monitor|\
+      MovableType|\
+      netcraft|\
+      Neustar WPM|\
+      NING|\
+      \\boBot|\
+      PayPal|\
+      Pingdom|\
+      Pinterest|\
+      pompos|\
+      proxy|\
+      PRTG|\
+      PTST|\
+      QQDownload|\
+      Reaper|\
+      Retreiver|\
+      Robozilla|\
+      scan|\
+      Scooter|\
+      scope|\
+      scrap|\
+      screenshot|\
+      search|\
+      seek|\
+      Shelob|\
+      site|\
+      sitecon|\
+      slurp|\
+      snap|\
+      Snoopy|\
+      SpaceBison|\
+      spider|\
+      Squrl Java|\
+      StackRambler|\
+      StatusCake|\
+      survey|\
+      synthetic|\
+      teoma|\
+      TLSProber|\
+      Tumblr|\
+      vortex|\
+      voyager|\
+      web-capture.net|\
+      WebMon|\
+      Webster Pro|\
+      WhatsApp/|\
+      WhatWeb|\
+      WinHTTP|\
+      WordPress|\
+      www\\.|\
+      Xenu|\
+      zyborg\
+      )"
     regex_flag: 'i'
     group:
       # Pingdom
@@ -47,15 +162,294 @@ user_agent_parsers:
         regex_flag: 'i'
         type: 'bot::monitor'
 
-      - regex: '(PTST)/__VERSION__'
+      - regex: '(PTST)[/ ]__VERSION__'
         family: 'SpeedCurve WebPage Test'
         type: 'bot'
 
-      # sort by length
-      - regex: '(BoardReader Favicon Fetcher\s{0,5}|HubSpot Marketing Grader|TrialPay URL checker|Comodo SSL Checker|Flamingo_SearchEngine|Google-HTTP-Java-Client|Peeplo Screenshot Bot|IlTrovatore(?:-Setaccio)?|Rackspace Monitoring|facebookexternalhit|Mediapartners-Google|PlantyNet_WebRobot|Daumoa(?:-feedfetcher)?|Innovazion Crawler|semanticdiscovery|Apache-HttpClient|Xenu(?:.s)? Link Sleuth|AppEngine-Google|InternetArchive|PagesInventory|archive.*?\.org_bot|1470\.net crawler|AdsBot-Google(?:-[a-z]{1,20})?|fast-webcrawler|websitepulse checker|Google SketchUp|GoogleImageProxy|Google Web Preview|Google Page Speed Insights|GomezAgent|Discordbot|ConveraCrawler|dataparksearch|PaxleFramework|ObjectsSearch|8bo Crawler Bot|ZeBot_www\.ze\.bz|Yahoo[a-z]{0,20}Seeker|collection@infegy\.com|Catchpoint(?: bot)?|FollowSite Bot|ThumbShotsBot|YottaaMonitor|Feed Seeker Bot|(?:[a-z]{1,20}-)?Googlebot(?:-[a-z]{1,20})?|masidani_bot|Sogou \w{1,20} (?:Robot|Spider)|ichiro(?:/mobile)?|http%20client|Python-urllib|Microsoft .*? Bot|Thumbshots\.ru|TheUsefulbot|robotgenius|RuxitSynthetic|BoardReader|msnbot(?:-media\s{0,5})?|\b\w*favicon\w*\b|boitho.com-dc|Read%20Later|WASALive.Bot|BingPreview|HttpMonitor|LinkedInBot|MSIECrawler|netresearch|searchsight|Yahoo! Slurp|SiteCon|shrinktheweb\.com|Slackbot-LinkExpanding|Slack-ImgProxy|ScoutJet|PayPal IPN|BlogBridge|Checklinks|PagePeeker|TwitterBot|Linguee Bot|Mail\.RU_Bot|RedCarpet|A6-Indexer|Squrl Java|StatusCake|adbeat\.com|altavista|Altresium|charlotte|findlinks|Retreiver|TLSProber|Tumblr|WordPress|NewsGator[^/]*|LesnikBot|archiver|Votay bot|teoma(?!bar)?|archiver|blitzbot|clumboot|heritrix|Icarus6j|IconSurf|InfuzApp|mogimogi|NerdyBot|Netvibes|WebThumb|IP2[a-z]{1,20}Bot|voila(?:bot)?|Lite Bot|Riddler|Orbiter|\bYeti(?:-[a-z]{0,20})?|Yandex\w+|^voyager|bingbot|furlbot|gigabot|masscan|openbot|polybot|Riddler|scooter|scrubby|seekbot|URL2PNG|WhatWeb|WinHTTP|ZooShot|BotSeer|mozDex|Reaper|^vortex|DeuSu|Genieo|GomezA|holmes|Kraken|Kurzor|larbin|m65bot|msrbot|pompos|Qwantify|Scrapy|snappy|speedy|ZyBorg|Wotbox|^Nutch[^/]{0,30}|Nutch|Argus|htdig|Llaut|lycos|Slurp|jbot\b|50\.nu|Bot-TailTrend|EasyDL|Filangy|Yahoo! SearchMonkey|CostaCider Search|YahooYSMcm|YFSJ crawler|Y!J(?:-[A-Z]+)?|Buscaplus Robi|Minstrel-Browse|JemmaTheTourist|Popdexter|SafariBookmarkChecker|Giant|WorldWideWeb-X|XaxisSemanticsClassifier|notifyninja\.com|seoscanners\.net|\bKTXN\b|\bKHTE\b|WIRE|^NING|JNLP|^zao|baidu[a-z]{0,20}(?:spider|Mobaider)|[^ \/]\bbot\b|\b008|(?:[a-z\.\u0027]{1,30}[ _-]){0,4}[a-z_]{0,30}(?:crawler|crawl|scraper|spider|indexer|webbot|WhatsApp|robot\b|(?:(?!cubot)[\w-]{2})bot\b|[\w.]+ bot\b| bot(?=@)\b))(?:[ /-]__VERSION__)?'
-        regex_flag: 'i'
+      - regex: '^(PHP) '
+        type: 'bot'
+      - regex: 'aggregator:(\\w+)'
         type: 'bot'
 
+      # sort by length
+      - regex: "(\
+          GeoHasher/Nutch|\
+          (?:[a-z]{1,20}-)?Googlebot(?:-[a-z]{1,20})?|\
+          Microsoft Windows Network Diagnostics|\
+          Microsoft [A-Za-z ]{6,50} Discovery|\
+          BoardReader Favicon Fetcher\\s{0,5}|\
+          baidu[a-z]{0,20}(?:spider|Mobaider)|\
+          Netcraft (?:Web|SSL) Server Survey|\
+          Sogou \\w{1,20} (?:Robot|Spider)|\
+          AdsBot-Google(?:-[a-z]{1,20})?|\
+          Google Page Speed Insights|\
+          msnbot(?:-media\\s{0,5})?|\
+          IlTrovatore(?:-Setaccio)?|\
+          XaxisSemanticsClassifier|\
+          HubSpot Marketing Grader|\
+          \\bYeti(?:-[a-z]{0,20})?|\
+          Advanced Email Extractor|\
+          Xenu(?:.s)? Link Sleuth|\
+          Google-HTTP-Java-Client|\
+          Daumoa(?:-feedfetcher)?|\
+          collection@infegy\\.com|\
+          Yahoo[a-z]{0,20}Seeker|\
+          Slackbot-LinkExpanding|\
+          NetShelter ContentScan|\
+          Free ScreenShotService|\
+          SafariBookmarkChecker|\
+          Peeplo Screenshot Bot|\
+          Microsoft URL Control|\
+          Google Search Console|\
+          FlipboardBrowserProxy|\
+          Flamingo_SearchEngine|\
+          \\b\\w*favicon\\w*\\b|\
+          BrokenLinkCheck\\.com|\
+          Y!J(?:-[A-Z]{1,30})?|\
+          websitepulse checker|\
+          TrialPay URL checker|\
+          Rackspace Monitoring|\
+          Mediapartners-Google|\
+          Google-SearchByImage|\
+          archive.*?\\.org_bot|\
+          ZeBot_www\\.ze\\.bz|\
+          Yahoo! SearchMonkey|\
+          www\\.alertra\\.com|\
+          RetrevoPageAnalyzer|\
+          NetcraftSurveyAgent|\
+          GigablastOpenSource|\
+          facebookexternalhit|\
+          Catchpoint(?: bot)?|\
+          shrinktheweb\\.com|\
+          Shoppimon Analyzer|\
+          PlantyNet_WebRobot|\
+          mixed-content-scan|\
+          Mail\\.RU(?:_Bot)?|\
+          Innovazion Crawler|\
+          ichiro(?:/mobile)?|\
+          Google Web Preview|\
+          Comodo SSL Checker|\
+          1470\\.net crawler|\
+          Siteimprove\\.com|\
+          seoscanners\\.net|\
+          semanticdiscovery|\
+          notifyninja\\.com|\
+          Microsoft .*? Bot|\
+          IP2[a-z]{1,20}Bot|\
+          CostaCider Search|\
+          Offline Explorer|\
+          ^Nutch[^/]{0,30}|\
+          Newneon BlogBorg|\
+          HatenaScreenshot|\
+          GoogleImageProxy|\
+          ExaleadCloudview|\
+          AppEngine-Google|\
+          web-capture.net|\
+          Thumbshots\\.ru|\
+          SiteTruth\\.com|\
+          panscient\\.com|\
+          Minstrel-Browse|\
+          JemmaTheTourist|\
+          InternetArchive|\
+          Google SketchUp|\
+          Ghost Inspector|\
+          Feed Seeker Bot|\
+          fast-webcrawler|\
+          Cerberian Drtrs|\
+          agentslug\\.com|\
+          8bo Crawler Bot|\
+          WorldWideWeb-X|\
+          trendictionbot|\
+          Slack-ImgProxy|\
+          RuxitSynthetic|\
+          PaxleFramework|\
+          PagesInventory|\
+          NewsGator[^/]*|\
+          FollowSite Bot|\
+          FlipboardProxy|\
+          Download Demon|\
+          dataparksearch|\
+          ConveraCrawler|\
+          Buscaplus Robi|\
+          YottaaMonitor|\
+          voila(?:bot)?|\
+          ThumbShotsBot|\
+          teoma(?!bar)?|\
+          ObjectsSearch|\
+          http%20client|\
+          GoogleToolbar|\
+          Bot-TailTrend|\
+          boitho.com-dc|\
+          BlogPulseLive|\
+          YFSJ crawler|\
+          Yahoo! Slurp|\
+          WASALive.Bot|\
+          TheUsefulbot|\
+          StackRambler|\
+          Read%20Later|\
+          masidani_bot|\
+          HistoryHound|\
+          adbeat\\.com|\
+          Webster Pro|\
+          searchsight|\
+          SearchByUsa|\
+          robotgenius|\
+          Neustar WPM|\
+          netresearch|\
+          MSIECrawler|\
+          MovableType|\
+          MetaURI API|\
+          LinkedInBot|\
+          Linkchecker|\
+          Linguee Bot|\
+          HttpMonitor|\
+          BoardReader|\
+          BingPreview|\
+          ApacheBench|\
+          Yandex\\w+|\
+          YahooYSMcm|\
+          TwitterBot|\
+          StatusCake|\
+          Squrl Java|\
+          SpaceBison|\
+          QQDownload|\
+          PayPal IPN|\
+          PagePeeker|\
+          KiwiStatus|\
+          intraVnews|\
+          GuzzleHttp|\
+          GomezAgent|\
+          Discordbot|\
+          Clarsentia|\
+          Checklinks|\
+          BlogBridge|\
+          \\bKTXN\\b|\
+          \\bKHTE\\b|\
+          A6-Indexer|\
+          WordPress|\
+          Votay bot|\
+          TLSProber|\
+          Site-Shot|\
+          Robozilla|\
+          RMSnapKit|\
+          Retreiver|\
+          RedCarpet|\
+          Popdexter|\
+          LinkAlarm|\
+          LesnikBot|\
+          JetBrains|\
+          ips-agent|\
+          findlinks|\
+          DareBoost|\
+          charlotte|\
+          Butterfly|\
+          BuiltWith|\
+          ^anonymous|\
+          Altresium|\
+          altavista|\
+          NG-Search|\
+          WebThumb|\
+          ^voyager|\
+          ScoutJet|\
+          Qwantify|\
+          OSSProxy|\
+          Netvibes|\
+          NerdyBot|\
+          mogimogi|\
+          Lite Bot|\
+          InfuzApp|\
+          IconSurf|\
+          Icarus6j|\
+          httpunit|\
+          heritrix|\
+          GTmetrix|\
+          clumboot|\
+          AcoonBot|\
+          \\bNG\\b|\
+          blitzbot|\
+          archiver|\
+          archiver|\
+          ZooShot|\
+          WinHTTP|\
+          WhatWeb|\
+          ^vortex|\
+          URL2PNG|\
+          SiteCon|\
+          Semager|\
+          seekbot|\
+          scrubby|\
+          Scooter|\
+          Scooter|\
+          scooter|\
+          Riddler|\
+          Riddler|\
+          polybot|\
+          Plukkie|\
+          Orbiter|\
+          openbot|\
+          NetSurf|\
+          masscan|\
+          Lsearch|\
+          jbot\\b|\
+          gigabot|\
+          furlbot|\
+          Filangy|\
+          BotSeer|\
+          \\boBot|\
+          bingbot|\
+          BDFetch|\
+          Azureus|\
+          Arachmo|\
+          50\\.nu|\
+          Spinn3r|\
+          ZyBorg|\
+          zimeno|\
+          Wotbox|\
+          WebMon|\
+          Tumblr|\
+          speedy|\
+          Snoopy|\
+          snappy|\
+          Shelob|\
+          Scrapy|\
+          Reaper|\
+          pompos|\
+          msrbot|\
+          mozDex|\
+          m65bot|\
+          larbin|\
+          Kurzor|\
+          Kraken|\
+          Jigsaw|\
+          holmes|\
+          GomezA|\
+          Genieo|\
+          FavOrg|\
+          Evidon|\
+          EasyDL|\
+          Slurp|\
+          Nutch|\
+          ^NING|\
+          lycos|\
+          Llaut|\
+          htdig|\
+          Giant|\
+          DeuSu|\
+          Argus|\
+          Acoon|\
+          ^zao|\
+          Yepi|\
+          WIRE|\
+          JNLP|\
+          ^FDM|\
+          ^ECCP|\
+          ^AHC|\
+          [^ \\/]\\bbot\\b|\
+          \\b008|\
+          (?:[a-z\\.\\u0027]{1,30}[ _-]){0,4}[a-z_]{0,30}(?:crawler|crawl|scraper|spider|indexer|webbot|WhatsApp|robot\\b|(?:(?!cubot)[\\w-]{2})bot\\b|[\\w.]+ bot\\b| bot(?=@)\\b)\
+          )(?:[ /-]__VERSION__)?"
+        regex_flag: 'i'
+        type: 'bot'
 
   ### iOS / OSX Applications
   - regex: '\b(iPhone|iPad|iPod)'
@@ -66,7 +460,23 @@ user_agent_parsers:
         type: 'app'
 
   ### Mail
-  - regex: '(YahooMobileMail|Thunderbird|Icedove|Shredder|Spicebird|Lotus-Notes|Airmail|Lightning|MSOffice|Exchange|Outlook|Barca|kmail2|Bat|(?:Macintosh.* AppleWebKit|MailBar|Postbox|HipChat))'
+  - regex: "(\
+      Airmail|\
+      Barca|\
+      \\bBat|\
+      Exchange|\
+      Icedove|\
+      kmail2|\
+      Lightning|\
+      Lotus-Notes|\
+      MSOffice|\
+      Outlook|\
+      Shredder|\
+      Spicebird|\
+      Thunderbird|\
+      YahooMobileMail|\
+      (?:Macintosh.* AppleWebKit|MailBar|Postbox|HipChat)\
+      )"
     group:
       # Outlook 2007
       - regex: 'Microsoft Office Outlook 12\.\d+\.\d+|MSOffice 12'
@@ -93,7 +503,23 @@ user_agent_parsers:
         family: 'Windows Live Mail'
         type: 'mail'
       # Other Mail Agents
-      - regex: '(YahooMobileMail|Lotus-Notes|MailBar|MacOutlook|Outlook-iOS-Android|ExchangeWebServices|ExchangeServicesClient|Microsoft Outlook|Outlook-Express|Barca(?:Pro)?|Postbox|Slack_SSB|HipChat|kmail2|The Bat!(?: Voyager)?)(?:[/ ]__VERSION__)?'
+      - regex: "(\
+          Barca(?:Pro)?|\
+          ExchangeServicesClient|\
+          ExchangeWebServices|\
+          HipChat|\
+          kmail2|\
+          Lotus-Notes|\
+          MacOutlook|\
+          MailBar|\
+          Microsoft Outlook|\
+          Outlook-Express|\
+          Outlook-iOS-Android|\
+          Postbox|\
+          Slack_SSB|\
+          The Bat!(?: Voyager)?|\
+          YahooMobileMail\
+          )(?:[/ ]__VERSION__)?"
         type: 'mail'
       # Apple Air Mail
       - regex: '(Airmail) __VERSION__'
@@ -113,15 +539,102 @@ user_agent_parsers:
         type: 'mail'
 
   # Feedreader
-  - regex: '\b(CITA RSS Aggregator|Custom-Feed Reader|Digg Feed Fetcher|AideRSS|Akregator|Apple-PubSub|FeedDa?emon|Feeddler|Feedreader|JetBrains Omea Reader|Liferea|NetNewsWire|NewsBlur|newsbeuter|Pulp|ReadKit|(?:RSS|Rss)Bandit|RssBar|RSS Junkie|RSS Menu|RSSOwl|SimplePie|SimpleRSS|Tiny Tiny RSS|UniversalFeedParser|Wizz RSS News Reader|Windows-RSS-Platform|Bloglovin|Stringer|Mtps Feed Aggregation System|Feedbin )(?:[ /]__VERSION__)?'
+  - regex: "\\b(\
+      AideRSS|\
+      Akregator|\
+      Apple-PubSub|\
+      Bloglovin|\
+      CITA RSS Aggregator|\
+      Custom-Feed Reader|\
+      Digg Feed Fetcher|\
+      Feedbin |\
+      FeedDa?emon|\
+      Feeddler|\
+      Feedreader|\
+      JetBrains Omea Reader|\
+      Liferea|\
+      NetNewsWire|\
+      Mtps Feed Aggregation System|\
+      newsbeuter|\
+      newspaper|\
+      NewsBlur|\
+      Pulp|\
+      ReadKit|\
+      ReederForMac|\
+      RssBar|\
+      RSS Junkie|\
+      RSS Menu|\
+      RSSOwl|\
+      (?:RSS|Rss)Bandit|\
+      SimplePie|\
+      SimpleRSS|\
+      Stringer|\
+      Tiny Tiny RSS|\
+      UniversalFeedParser|\
+      Windows-RSS-Platform|\
+      Wizz RSS News Reader\
+      )(?:[ /]__VERSION__)?"
     type: 'feedreader'
 
   # podcast
-  - regex: '\b(AntennaPod|BashPodder|BeyondPod|bPod|DoggCatcher|Doppler|Downcast|ESPN Radio|Fancy Cloud Music|FancyMusic|gPodder|GoldenPod|iPodder|jPodder|Juice|MediaGo|Overcast|Peapod|philpodder|Player FM|PodCruncher|PocketTunes|Podcasts|Podkicker(?: Classic| Pro|)|podracer|RSS_?Radio)\b(?:(?: v ?|[ /])__VERSION__)?'
+  - regex: "\\b(\
+      AntennaPod|\
+      BashPodder|\
+      BeyondPod|\
+      bPod|\
+      DoggCatcher|\
+      Doppler|\
+      Downcast|\
+      ESPN Radio|\
+      Fancy Cloud Music|\
+      FancyMusic|\
+      gPodder|\
+      GoldenPod|\
+      iPodder|\
+      jPodder|\
+      Juice|\
+      MediaGo|\
+      Overcast|\
+      Peapod|\
+      philpodder|\
+      Player FM|\
+      PodCruncher|\
+      PocketTunes|\
+      Podcasts|\
+      Podkicker(?: Classic| Pro)?|\
+      podracer|\
+      RSS_?Radio\
+      )\\b(?:(?: v ?|[ /])__VERSION__)?"
     type: 'podcast'
 
   # mediaplayers
-  - regex: '\b(AlexaMediaPlayer|Banshee|Clementine|ExoPlayerLib|FlyCast|foobar2000|HTC Streaming Player|Instacast|iTunes(?:-iP\w+(?:-\w+)?)?|Kodi|LG Player|MediaMonkey|Nightingale|NSPlayer|Songbird|spmc|Spotify|SubStream|vlc|VLC|VOX Music Player|Windows-Media-Player(?:-\w+)?|WMPlayer|XBMC|Zune)\b(?:[ /](\d+)(?:\.(\d+)(?:\.(\d+))?(\-[A-Z\d]+)?)?)?'
+  - regex: "\\b(
+      AlexaMediaPlayer|\
+      Banshee|\
+      Clementine|\
+      ExoPlayerLib|\
+      FlyCast|\
+      foobar2000|\
+      HTC Streaming Player|\
+      Instacast|\
+      iTunes(?:-iP\\w+(?:-\\w+)?)?|\
+      Kodi|\
+      LG Player|\
+      MediaMonkey|\
+      Nightingale|\
+      NSPlayer|\
+      Songbird|\
+      spmc|\
+      Spotify|\
+      SubStream|\
+      vlc|\
+      VLC|\
+      VOX Music Player|\
+      Windows-Media-Player(?:-\\w+)?|\
+      WMPlayer|\
+      XBMC|\
+      Zune\
+      )\\b(?:[ /](\\d+)(?:\\.(\\d+)(?:\\.(\\d+))?(-[A-Z\\d]+)?)?)?"
     v3: '$4$5'
     type: 'mediaplayer'
   - regex: '(Lavf|Miro)/?__VERSION__'
@@ -376,7 +889,118 @@ user_agent_parsers:
   - regex: '(Phoenix)/__VERSION__'
   - regex: '(MAXTHON|Maxthon|MxBrowser)[ /]__VERSION__'
     family: 'Maxthon'
-  - regex: '(1stBrowser|7Star|Abrowser|AdobeAIR|amaya|Amiga-AWeb|AmigaVoyager|ANTFresco|ANTGalio|Arora|AviraScout|Bolt|BOLT|brave|Bunjalloo|Cent|Crazy Browser|ChromePlus|Contiki|CoolNovo|Demeter|Dillo|Dolfin|Dolphin http client|Dragon|Epiphany|EspialTVBrowser|Electron|Espial|Fennec|FireWeb|Fluid|Fresco|Galeon|Googlebot|Google Earth(?: EC)?|HbbTV|HotJava|IBrowse|iCab|Iceape|ICE Browser|IceCat|Iceweasel|IceWeasel|iRider|OneBrowser|Iris|Iron|Jasmine|Kapiko|Kazehakase|Kindle|Kinza|K-Meleon|Kuaiso|LG Browser|Lobo|Lunascape|Lynx|MacAppStore|Maemo Browser|mDolphin|Mercury|MiniBrowserMobile|Midori|Minimo|Net[Ff]ront|NetFrontLifeBrowser|NetPositive|Netscape|NetSurf|OmniWeb|Opera|Opera Mini|Orca|Otter|PaleMoon|Planetweb|Polaris|Puffin|PyAMF|QupZilla|qutebrowser|Raven for Mac|RockMelt|SailfishBrowser|SecondLife|SeaMonkey|Shiira|SkipStone|Skyfire|Sleipnir|Slimjet|Snowshoe|Space Bison|Sparrow|SputnikBrowser|Stainless|Sunrise|TizenBrowser|ThunderBrowse|TungstenBrowser|UP\.Browser|Valve (?:Client|Steam \w+)|Vienna|Vivaldi|WebPilot|WebPositive|Whale|Xiino|Chedot)[/ ]__VERSION_DIGITS__'
+  - regex: "(\
+      1stBrowser|\
+      7Star|\
+      Abrowser|\
+      AdobeAIR|\
+      amaya|\
+      Amiga-AWeb|\
+      AmigaVoyager|\
+      ANTFresco|\
+      ANTGalio|\
+      Arora|\
+      AviraScout|\
+      Bolt|\
+      BOLT|\
+      brave|\
+      Bunjalloo|\
+      Cent|\
+      Chedot|\
+      ChromePlus|\
+      Contiki|\
+      CoolNovo|\
+      Crazy Browser|\
+      Demeter|\
+      Dillo|\
+      Dolfin|\
+      Dolphin http client|\
+      Dragon|\
+      Electron|\
+      Epiphany|\
+      Espial|\
+      EspialTVBrowser|\
+      Fennec|\
+      FireWeb|\
+      Fluid|\
+      Fresco|\
+      Galeon|\
+      Google Earth(?: EC)?|\
+      HbbTV|\
+      HotJava|\
+      IBrowse|\
+      iCab|\
+      Iceape|\
+      ICE Browser|\
+      IceCat|\
+      Ice[Ww]easel|\
+      iRider|\
+      Iris|\
+      Iron|\
+      Jasmine|\
+      Kapiko|\
+      Kazehakase|\
+      Kindle|\
+      Kinza|\
+      K-Meleon|\
+      Kuaiso|\
+      LG Browser|\
+      Lobo|\
+      Lunascape|\
+      Lynx|\
+      MacAppStore|\
+      Maemo Browser|\
+      mDolphin|\
+      Mercury|\
+      Midori|\
+      MiniBrowserMobile|\
+      Minimo|\
+      Net[Ff]ront|\
+      NetFrontLifeBrowser|\
+      NetPositive|\
+      Netscape|\
+      NetSurf|\
+      OmniWeb|\
+      OneBrowser|\
+      Opera|\
+      Opera Mini|\
+      Orca|\
+      Otter|\
+      PaleMoon|\
+      Planetweb|\
+      Polaris|\
+      Puffin|\
+      PyAMF|\
+      QupZilla|\
+      qutebrowser|\
+      Raven for Mac|\
+      RockMelt|\
+      SailfishBrowser|\
+      SeaMonkey|\
+      SecondLife|\
+      Shiira|\
+      SkipStone|\
+      Skyfire|\
+      Sleipnir|\
+      Slimjet|\
+      Snowshoe|\
+      Space Bison|\
+      Sparrow|\
+      SputnikBrowser|\
+      Stainless|\
+      Sunrise|\
+      ThunderBrowse|\
+      TizenBrowser|\
+      TungstenBrowser|\
+      UP\\.Browser|\
+      Valve (?:Client|Steam \\w+)|\
+      Vienna|\
+      Vivaldi|\
+      WebPilot|\
+      WebPositive|\
+      Whale|\
+      Xiino\
+      )[/ ]__VERSION_DIGITS__"
 
   # Seznam.cz browser (based on WebKit)
   - regex: '(SznProhlizec)/(\d+)\.(\d+)(?:\.(\d+))?'
@@ -565,16 +1189,43 @@ user_agent_parsers:
     type: 'headless'
   - regex: '(?:^|^Mozilla/\d+\.\d+ (?:\([^\)]+\) )?)(Java)[ /]?__VERSION__'
     type: 'headless'
-  - regex: '\b(curl|jupdate|libcurl-agent|libwww-perl|Microsoft-CryptoAPI|Microsoft SkyDriveSync|okhttp|OpenBSD ftp|python-requests|SophosAgent|SophosUpdateManager|urlgrabber|(?:\w+) APT-HTTP|Wget|Windows-Update-Agent)\b(?:[ /]__VERSION__)?'
+  - regex: "\\b(\
+      Apache-Http(?:Async)?Client|\
+      BitTorrent|\
+      curl|\
+      Go-http-client|\
+      HTMLParser|\
+      Jakarta Commons-HttpClient|\
+      jupdate|\
+      libcurl-agent|\
+      libwww-perl|\
+      Microsoft-CryptoAPI|\
+      Microsoft SkyDriveSync|\
+      node-superagent|\
+      okhttp|\
+      OpenBSD ftp|\
+      PHP|\
+      [Pp]ython-[^/]+|\
+      SophosAgent|\
+      SophosUpdateManager|\
+      urlgrabber|\
+      (?:\\w+) APT-HTTP|\
+      Wget|\
+      Windows-Update-Agent\
+      )\\b(?:[ /]__VERSION__)?"
     type: headless
 
   # Proxy
-  - regex: '\b(Hatena-Mobile-Gateway)/__VERSION__'
+  - regex: '\b(Hatena-Mobile-Gateway|Privoxy)/__VERSION__'
     type: 'proxy'
 
   # generic catcher for bots
-  - regex: 'https?:\/\/(?:www\.)?([^/)]+)'
+  - regex: 'https?://((?:[\w\d-]+\.)?[\w\d-]+\.\w+)'
     type: 'bot'
+  - regex: 'Mozilla/[45]\.0 \(compatible;?\)'
+    family: compatible
+    type: 'bot'
+  
 
 #### Engine ####
 engine_parsers:
