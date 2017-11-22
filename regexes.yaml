@@ -1,4 +1,4 @@
-version: '0.3.3'
+version: '0.3.4'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 # replacement pattern
@@ -170,10 +170,11 @@ user_agent_parsers:
         type: 'bot'
       - regex: 'aggregator:(\\w+)'
         type: 'bot'
+      - regex: 'MSIE \d+\..*?https?://((?:[\w\d-]+\.)?[\w\d-]+\.\w+)'
+        type: 'bot'
 
       # sort by length
       - regex: "(\
-          GeoHasher/Nutch|\
           (?:[a-z]{1,20}-)?Googlebot(?:-[a-z]{1,20})?|\
           Microsoft Windows Network Diagnostics|\
           Microsoft [A-Za-z ]{6,50} Discovery|\
@@ -248,6 +249,7 @@ user_agent_parsers:
           Thumbshots\\.ru|\
           SiteTruth\\.com|\
           panscient\\.com|\
+          GeoHasher/Nutch|\
           Minstrel-Browse|\
           JemmaTheTourist|\
           InternetArchive|\
