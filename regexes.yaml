@@ -797,7 +797,7 @@ user_agent_parsers:
     type: app
 
   # Partly Chrome Based Browsers
-  - regex: '\b(SamsungBrowser|baidubrowser|Focus)/__VERSION__'
+  - regex: '\b(SamsungBrowser|baidubrowser|Focus|MiuiBrowser)/__VERSION__'
 
   # Chrome Mobile - Chrome based
   - regex: 'CrMo|CriOS|Chrom|chromeframe'
