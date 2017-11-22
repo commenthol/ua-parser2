@@ -776,6 +776,8 @@ user_agent_parsers:
   - regex: (2345Explorer|2345chrome)(?:[ /]| v)__VERSION__
     family: 2345Explorer
 
+  - regex: '(Nintendo Switch.+? NF)(?:/__VERSION__)?'
+    family: 'NetFront NF'
   # PlayStation Vita should go before Amazon Silk
   - regex: '(PLAYSTATION 3.+WebKit|Nintendo 3DS|PlayStation Vita|AppleWebKit.+ NX)(?:/__VERSION__)?'
     family: 'NetFront NX'
@@ -2096,7 +2098,7 @@ os_parsers:
     regex_flag: 'i'
     family: 'Playstation $1'
   # Mobile Gaming Console
-  - regex: '(Nitro|Nintendo) ([3]?DS[i]?)'
+  - regex: '(Nitro|Nintendo) ([3]?DS[i]?|Switch)'
     family: 'Nintendo Mobile'
   - regex: 'PlayStation (Portable|Vita)'
     family: 'PlayStation $1'
@@ -6490,7 +6492,7 @@ device_parsers:
       device: 'Nintendo Wii U'
       brand: 'Nintendo'
       model: 'Wii U'
-    - regex: 'Nintendo (DS|3DS|DSi|Wii);'
+    - regex: 'Nintendo (DS|3DS|DSi|Wii|Switch)'
       device: 'Nintendo $1'
       brand: 'Nintendo'
       model: '$1'
