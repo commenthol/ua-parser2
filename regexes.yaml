@@ -258,6 +258,7 @@ user_agent_parsers:
           Microsoft .*? Bot|\
           IP2[a-z]{1,20}Bot|\
           CostaCider Search|\
+          SeznamEmailProxy|\
           sureseeker\\.com|\
           Offline Explorer|\
           ^Nutch[^/]{0,30}|\
