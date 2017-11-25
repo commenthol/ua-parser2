@@ -515,13 +515,12 @@ user_agent_parsers:
 
   ### Mail
   - regex: "(\
-      Airmail|\
+      [Mm]ail|\
       Barca|\
       \\bBat|\
       Exchange|\
       Evolution|\
       Icedove|\
-      kmail2|\
       Lightning|\
       Lotus-Notes|\
       MSOffice|\
@@ -564,6 +563,7 @@ user_agent_parsers:
           Evolution|\
           ExchangeServicesClient|\
           ExchangeWebServices|\
+          FossaMail|\
           HipChat|\
           kmail2|\
           Lotus-Notes|\
