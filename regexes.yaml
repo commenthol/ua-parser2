@@ -89,6 +89,7 @@ user_agent_parsers:
       MetaURI API|\
       Microsoft URL Control|\
       monitor|\
+      Moozilla|\
       MovableType|\
       netcraft|\
       Neustar WPM|\
@@ -98,6 +99,7 @@ user_agent_parsers:
       Pingdom|\
       Pinterest|\
       pompos|\
+      probe|\
       proxy|\
       PRTG|\
       PTST|\
@@ -231,6 +233,7 @@ user_agent_parsers:
           Google Web Preview|\
           Comodo SSL Checker|\
           1470\\.net crawler|\
+          NetLyzer FastProbe|\
           Siteimprove\\.com|\
           seoscanners\\.net|\
           semanticdiscovery|\
@@ -308,6 +311,7 @@ user_agent_parsers:
           BoardReader|\
           BingPreview|\
           ApacheBench|\
+          MnoGoSearch|\
           Yandex\\w+|\
           YahooYSMcm|\
           TwitterBot|\
@@ -329,6 +333,7 @@ user_agent_parsers:
           \\bKHTE\\b|\
           ^anonymous|\
           A6-Indexer|\
+          i?seekbot|\
           WordPress|\
           Votay bot|\
           TLSProber|\
@@ -358,6 +363,7 @@ user_agent_parsers:
           OSSProxy|\
           Netvibes|\
           NerdyBot|\
+          Moozilla|\
           mogimogi|\
           Lite Bot|\
           InfuzApp|\
@@ -370,7 +376,6 @@ user_agent_parsers:
           \\bNG\\b|\
           blitzbot|\
           archiver|\
-          archiver|\
           adidxbot|\
           AcoonBot|\
           ZooShot|\
@@ -381,7 +386,6 @@ user_agent_parsers:
           Spinn3r|\
           SiteCon|\
           Semager|\
-          seekbot|\
           scrubby|\
           Scooter|\
           Scooter|\
@@ -456,7 +460,7 @@ user_agent_parsers:
       - regex: '^(bot)[^a-z](?:__VERSION__)?'
         regex_flag: 'i'
         type: 'bot'
-  
+
       - regex: "(\
           (?:[a-z\\.\\u0027]{1,30}[ _-]){0,4}[a-z_]{0,30}\
           (?:\
@@ -472,7 +476,7 @@ user_agent_parsers:
       - regex: 'MSIE \d+\..*?https?://((?:[\w\d-]+\.)?[\w\d-]+\.\w+)'
         type: 'bot'
 
-      
+
   ### iOS / OSX Applications
   - regex: '\b(iPhone|iPad|iPod)'
     group:
@@ -683,7 +687,17 @@ user_agent_parsers:
         type: 'app'
 
   # Apps
-  - regex: '\b(Kurio|BacaBerita App|Deezer|SohuNews|Snapchat|RedFlagDealsApp|Instagram)[ /]__VERSION__'
+  - regex: "\\b(\
+      BacaBerita App|\
+      Deezer|\
+      Instagram|\
+      Kurio|\
+      MS FrontPage|\
+      OpenOffice|\
+      RedFlagDealsApp|\
+      Snapchat|\
+      SohuNews\
+      )[ /]__VERSION__"
     type: 'app'
 
   #### SPECIAL CASES TOP ####
@@ -821,6 +835,8 @@ user_agent_parsers:
   # PlayStation Vita should go before Amazon Silk
   - regex: '(PLAYSTATION 3.+WebKit|Nintendo 3DS|PlayStation Vita|AppleWebKit.+ NX)(?:/__VERSION__)?'
     family: 'NetFront NX'
+  - regex: '(PlayStation 4) __VERSION__'
+    family: 'PlayStation Browser'
   # Amazon Silk, should go before Chrome Mobile and Safari
   - regex: '(Silk)/(\d+)\.(\d+)(?:\.([0-9\-]+))?'
     family: 'Amazon Silk'
@@ -936,7 +952,7 @@ user_agent_parsers:
   - regex: '(Phoenix)/__VERSION__'
   - regex: '(MAXTHON|Maxthon|MxBrowser)[ /]__VERSION__'
     family: 'Maxthon'
-  # Other browsers 
+  # Other browsers
   - regex: "(\
       1stBrowser|\
       7Star|\
@@ -1019,6 +1035,8 @@ user_agent_parsers:
       Polaris|\
       Puffin|\
       PyAMF|\
+      Qt|\
+      QuickLook|\
       QupZilla|\
       qutebrowser|\
       Raven for Mac|\
@@ -1182,7 +1200,7 @@ user_agent_parsers:
   - regex: '(Android) __VERSION__'
 
   - regex: '(Odyssey Web Browser); rv:__VERSION__'
-  
+
   # iOS
   - regex: '(iPod|iPhone|iPad)'
     group:
@@ -1245,6 +1263,7 @@ user_agent_parsers:
       curl|\
       Go-http-client|\
       HTMLParser|\
+      HTTrack|\
       Jakarta Commons-HttpClient|\
       jupdate|\
       libcurl-agent|\
@@ -1256,12 +1275,14 @@ user_agent_parsers:
       OpenBSD ftp|\
       PHP|\
       [Pp]ython-[^/]+|\
+      PycURL|\
       SophosAgent|\
       SophosUpdateManager|\
       urlgrabber|\
       (?:\\w+) APT-HTTP|\
       Wget|\
-      Windows-Update-Agent\
+      Windows-Update-Agent|\
+      Zend_Http_Client\
       )\\b(?:[ /]__VERSION__)?"
     type: headless
 
@@ -1275,7 +1296,7 @@ user_agent_parsers:
   - regex: 'Mozilla/[45]\.0 \(compatible;?\)'
     family: compatible
     type: 'bot'
-  
+
 
 #### Engine ####
 engine_parsers:
@@ -3531,7 +3552,7 @@ device_parsers:
 
       #########
       # HOTWAV
-      # @ref: 
+      # @ref:
       #########
       - regex: '; *(IP7) Build'
         device: 'HOTWAV $1'
@@ -4625,7 +4646,7 @@ device_parsers:
 
       #########
       # Oysters
-      # @ref: 
+      # @ref:
       #########
       - regex: '; *(Oysters)[ _](.*?)(?: Build|[;)])'
         device: '$1 $2'

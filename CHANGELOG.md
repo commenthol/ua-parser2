@@ -1,5 +1,16 @@
 # Changelog
 
+- ua: new bots: NetLyzer FastProbe, MnoGoSearch, Moozilla
+- ua: new apps: MS FrontPage, OpenOffice
+- ua: PlayStation Browser, Qt, QuickLook, HTTrack, PycURL, Zend_Http_Client\
+- ua: Acoo Browser ua: Cheshire
+- ua: Sparrow email client ua: zdesktop
+- ua: MiuiBrowser
+- better bot detection
+- Nintendo browsers
+- better bot detection
+
+
 **2017-09-18** v0.3.3
 - os: fix CFNetwork
 - ua: GomezAgent Bot added
