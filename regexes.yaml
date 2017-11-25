@@ -494,6 +494,7 @@ user_agent_parsers:
       MSOffice|\
       Outlook|\
       Shredder|\
+      Sparrow|\
       Spicebird|\
       Thunderbird|\
       YahooMobileMail|\
@@ -539,6 +540,7 @@ user_agent_parsers:
           Outlook-iOS-Android|\
           Postbox|\
           Slack_SSB|\
+          Sparrow|\
           The Bat!(?: Voyager)?|\
           YahooMobileMail\
           )(?:[/ ]__VERSION__)?"
@@ -916,6 +918,7 @@ user_agent_parsers:
   - regex: '(Phoenix)/__VERSION__'
   - regex: '(MAXTHON|Maxthon|MxBrowser)[ /]__VERSION__'
     family: 'Maxthon'
+  # Other browsers 
   - regex: "(\
       1stBrowser|\
       7Star|\
@@ -1012,7 +1015,6 @@ user_agent_parsers:
       Slimjet|\
       Snowshoe|\
       Space Bison|\
-      Sparrow|\
       SputnikBrowser|\
       Stainless|\
       Sunrise|\
@@ -1026,7 +1028,8 @@ user_agent_parsers:
       WebPilot|\
       WebPositive|\
       Whale|\
-      Xiino\
+      Xiino|\
+      zdesktop\
       )[/ ]__VERSION_DIGITS__"
 
   # Seznam.cz browser (based on WebKit)
