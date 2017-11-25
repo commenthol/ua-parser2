@@ -1,5 +1,6 @@
 # Changelog
 
+- ua: Framabird
 - ua: Powermarks
 - ua: FossaMail
 - ua: Evolution

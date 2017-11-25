@@ -522,6 +522,7 @@ user_agent_parsers:
       \\bBat|\
       Exchange|\
       Evolution|\
+      Framabird|\
       Icedove|\
       Lightning|\
       Lotus-Notes|\
@@ -565,6 +566,7 @@ user_agent_parsers:
           Evolution|\
           ExchangeServicesClient|\
           ExchangeWebServices|\
+          Framabird|\
           FossaMail|\
           HipChat|\
           kmail2|\
