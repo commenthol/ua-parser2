@@ -136,6 +136,7 @@ user_agent_parsers:
       synthetic|\
       teoma|\
       TLSProber|\
+      Tumblr|\
       validator|\
       vortex|\
       voyager|\
@@ -449,6 +450,7 @@ user_agent_parsers:
           zimeno|\
           Wotbox|\
           WebMon|\
+          ^Tumblr|\
           speedy|\
           Snoopy|\
           snappy|\
@@ -751,7 +753,6 @@ user_agent_parsers:
       kioclient|\
       Kurio|\
       Line|\
-      Tumblr|\
       MicroMessenger|\
       Microsoft Office|\
       Microsoft Office Excel|\
