@@ -312,6 +312,7 @@ user_agent_parsers:
           BingPreview|\
           ApacheBench|\
           MnoGoSearch|\
+          Taringa UGC|\
           Yandex\\w+|\
           YahooYSMcm|\
           TwitterBot|\
@@ -378,6 +379,7 @@ user_agent_parsers:
           archiver|\
           adidxbot|\
           AcoonBot|\
+          MuckRack|\
           ZooShot|\
           WinHTTP|\
           WhatWeb|\
@@ -965,6 +967,7 @@ user_agent_parsers:
       ANTGalio|\
       Arora|\
       AviraScout|\
+      BlackHawk|\
       Bolt|\
       BOLT|\
       brave|\
@@ -1054,6 +1057,7 @@ user_agent_parsers:
       SputnikBrowser|\
       Stainless|\
       Sunrise|\
+      SunriseBrowser|\
       ThunderBrowse|\
       TizenBrowser|\
       TungstenBrowser|\
@@ -1073,7 +1077,7 @@ user_agent_parsers:
     family: 'Seznam.cz'
 
   # Browser without version
-  - regex: '(QIHU 360[SE]E)'
+  - regex: '(QIHU 360[SE]E|Sunrise)'
 
   # Chrome needs to come after as it hides a lot of browsers from previous regex
   - regex: '(Chrome)[/ ]__VERSION__'

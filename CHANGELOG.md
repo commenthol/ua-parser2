@@ -1,5 +1,7 @@
 # Changelog
 
+- ua: Taringa UGC, MuckRack, BlackHawk, Sunrise
+- ua: BlackHawk
 - os: iOS special cases
 - ua: new bots: NetLyzer FastProbe, MnoGoSearch, Moozilla
 - ua: new apps: MS FrontPage, OpenOffice
