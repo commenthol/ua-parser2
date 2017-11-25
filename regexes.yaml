@@ -1903,6 +1903,10 @@ os_parsers:
       - regex: '(CPU[ +]OS|[iI]Phone[ +]OS|CPU[ +]iPhone)[ +]+(\d+)[_\.](\d+)(?:[_\.](\d+))?'
         family: 'iOS'
 
+      # Special Cases - CPU iPhone OS 811
+      - regex: '(CPU[ ]OS|[iI]Phone[ ]OS|CPU[ ]iPhone)[ ]+(\d)[\d](\d+)'
+        family: 'iOS'
+
       # remaining cases are mostly only opera uas, so catch opera as to not catch iphone spoofs
       - regex: '(iPhone|iPad|iPod); Opera'
         family: 'iOS'

@@ -1,8 +1,9 @@
 # Changelog
 
+- os: iOS special cases
 - ua: new bots: NetLyzer FastProbe, MnoGoSearch, Moozilla
 - ua: new apps: MS FrontPage, OpenOffice
-- ua: PlayStation Browser, Qt, QuickLook, HTTrack, PycURL, Zend_Http_Client\
+- ua: PlayStation Browser, Qt, QuickLook, HTTrack, PycURL, Zend_Http_Client
 - ua: Acoo Browser ua: Cheshire
 - ua: Sparrow email client ua: zdesktop
 - ua: MiuiBrowser
