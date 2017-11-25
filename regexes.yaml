@@ -132,6 +132,7 @@ user_agent_parsers:
       Squrl Java|\
       StackRambler|\
       StatusCake|\
+      StumbleUpon|\
       survey|\
       synthetic|\
       teoma|\
@@ -327,6 +328,7 @@ user_agent_parsers:
           BilgiBetaBot|\
           adbeat\\.com|\
           Webster Pro|\
+          StumbleUpon|\
           Websearch4u|\
           Taringa UGC|\
           searchsight|\
