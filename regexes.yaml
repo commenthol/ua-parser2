@@ -690,6 +690,7 @@ user_agent_parsers:
       Songbird|\
       spmc|\
       Spotify|\
+      stagefright|\
       SubStream|\
       vlc|\
       VLC|\

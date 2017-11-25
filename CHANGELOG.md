@@ -1,5 +1,6 @@
 # Changelog
 
+- ua: stagefright
 - ua: Framabird
 - ua: Powermarks
 - ua: FossaMail
