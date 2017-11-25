@@ -519,6 +519,7 @@ user_agent_parsers:
       Barca|\
       \\bBat|\
       Exchange|\
+      Evolution|\
       Icedove|\
       kmail2|\
       Lightning|\
@@ -560,6 +561,7 @@ user_agent_parsers:
       # Other Mail Agents
       - regex: "(\
           Barca(?:Pro)?|\
+          Evolution|\
           ExchangeServicesClient|\
           ExchangeWebServices|\
           HipChat|\

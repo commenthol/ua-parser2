@@ -1,5 +1,6 @@
 # Changelog
 
+- ua: Evolution
 - ua: InternetSeer.com, Photon, validator, Google-Site-Verification, MnoGoSearch, analyzer, FeedBlitz, FeedForAll, Alltop, Microsoft Office Mobile, Synapse, binlar, lbot, visionutils, WebThumb
 - ua: Taringa UGC, MuckRack, BlackHawk, Sunrise
 - ua: BlackHawk
