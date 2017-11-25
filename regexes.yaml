@@ -689,10 +689,28 @@ user_agent_parsers:
   #### SPECIAL CASES TOP ####
 
   # Gecko group
-  - regex: 'Gecko|Treco|FxiOS'
+  - regex: 'Gecko|Treco|FxiOS|Cheshire'
     group:
       # Browsers using Gecko; must go before Firefox
-      - regex: 'Mozilla.*\b(Beonex|Camino|Chimera|CometBird|Firebird(?: Browser)?|Fireweb Navigator|Flock|IceDragon|K-Ninja|KMLite|lolifox|MultiZilla|[Pp]rism|SailfishBrowser|SeaMonkey|Vonkeror)/__VERSION_MOZILLA__'
+      - regex: "Mozilla.*\\b(\
+          Beonex|\
+          Camino|\
+          Cheshire|\
+          Chimera|\
+          CometBird|\
+          Firebird(?: Browser)?|\
+          Fireweb Navigator|\
+          Flock|\
+          IceDragon|\
+          K-Ninja|\
+          KMLite|\
+          lolifox|\
+          MultiZilla|\
+          [Pp]rism|\
+          SailfishBrowser|\
+          SeaMonkey|\
+          Vonkeror\
+          )/__VERSION_MOZILLA__"
 
       - regex: '(MultiZilla) v__VERSION_MOZILLA__'
 
@@ -1082,6 +1100,8 @@ user_agent_parsers:
   - regex: '(XBMC)/(\d+)\.(\d+)[-\w\s]+(r\d+)'
 
   - regex: '(ABrowse) (\d+)(?:\.(\d+))?'
+
+  - regex: '(Acoo Browser)(?: __VERSION__)?'
 
   - regex: '(BrowseX) \(__VERSION__'
 
