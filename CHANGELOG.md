@@ -1,6 +1,7 @@
 # Changelog
 
 **2017-11-??** v0.3.4
+- ua: Box, BoxNotes, Box Sync app
 - ua: webdav clients
 - device: Google Pixel 2 XL
 - ua: Uptimebot, ZoomBot, CloudEndure Scanner bot

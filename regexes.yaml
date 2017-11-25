@@ -767,6 +767,9 @@ user_agent_parsers:
       Alltop|\
       baiduboxapp|\
       BacaBerita App|\
+      Box|\
+      BoxNotes|\
+      Box Sync|\
       Coursera-Mobile|\
       Crowsnest|\
       Cyberdog|\
@@ -2036,6 +2039,7 @@ os_parsers:
       # ios devices spoof (mac os x), so including intel/ppc prefixes
       - regex: '(?:PPC|Intel) (Mac OS X)'
 
+
       # IE on Mac doesn't specify version number
       - regex: 'Mac_PowerPC'
         family: 'Mac OS'
@@ -2047,7 +2051,7 @@ os_parsers:
   # iOS
   # http://en.wikipedia.org/wiki/IOS_version_history
   ##########
-  - regex: 'CPU OS|iPhone|iPad|iPod|iOS|Apple\s?TV|CFNetwork|tvOS'
+  - regex: 'CPU OS|iPhone|iPad|iPod|iOS|Apple\s?TV|CFNetwork|tvOS|Darwin'
     group:
       # Apple TV
       - regex: '(Apple\s?TV).* CPU OS (\d+)[_\.](\d+)(?:[_\.](\d+))?'
@@ -2151,6 +2155,8 @@ os_parsers:
       - regex: '(tvOS)/__VERSION__'
         family: 'tvOS'
 
+      - regex: '(Darwin)/__VERSION__'
+  
   - regex: '(CrKey)(?:[/]__VERSION__)?'
     family: 'Chromecast'
 
