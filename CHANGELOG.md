@@ -1,6 +1,7 @@
 # Changelog
 
 **2017-11-??** v0.3.4
+- ua: Mail Free
 - ua: Eudora
 - ua: mobmail
 - ua: lwp-trivial, LinkWalker, David Client, Qwantify
