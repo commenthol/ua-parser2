@@ -48,6 +48,7 @@ user_agent_parsers:
       catalog|\
       Cerberian Drtrs|\
       charlotte|\
+      check|\
       checker|\
       Clarsentia|\
       crawl|\
@@ -247,6 +248,7 @@ user_agent_parsers:
           Google Web Preview|\
           Comodo SSL Checker|\
           1470\\.net crawler|\
+          WEB\\.DE MailCheck|\
           Siteimprove\\.com|\
           seoscanners\\.net|\
           semanticdiscovery|\
@@ -690,7 +692,6 @@ user_agent_parsers:
       Songbird|\
       spmc|\
       Spotify|\
-      stagefright|\
       SubStream|\
       vlc|\
       VLC|\
@@ -1128,8 +1129,10 @@ user_agent_parsers:
   # @ref: http://www.dolphin.com
   - regex: '\b(Dolphin)(?: |/|HDCN/|/INT\-)__VERSION__'
 
-  # @note: needs to come after "Dolfin" as part of Samsung Bada UAs
-  - regex: '\b(NexPlayer)\b(?:[ /]?__VERSION__)?'
+  # @note: NexPlayer needs to come after "Dolfin" as part of Samsung Bada UAs
+  - regex: '\b(stagefright)/__VERSION_DIGITS__'
+    type: 'mediaplayer'
+  - regex: '\b(NexPlayer)(?:[ /]?__VERSION__)?'
     type: 'mediaplayer'
 
   # IE Xbox
@@ -6783,7 +6786,7 @@ device_parsers:
   #########
   # Android General Device Matching (far from perfect)
   #########
-  - regex: 'Android'
+  - regex: 'Android| Adr '
     group:
       - regex: 'Android[\- ][\d]+\.[\d]+; [A-Za-z]{2}\-[A-Za-z]{0,2}; WOWMobile (.+) Build[ /]'
         brand: 'Generic_Android'
@@ -6810,6 +6813,9 @@ device_parsers:
         brand: 'Generic_Android'
         model: '$1'
       - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}(?:;.*)?; *(.+?) Build[ /]'
+        brand: 'Generic_Android'
+        model: '$1'
+      - regex: '; Adr \d+\.\d+\.\d+; [^;]*?; ([^)]*?)\)'
         brand: 'Generic_Android'
         model: '$1'
 

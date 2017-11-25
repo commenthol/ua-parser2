@@ -1,6 +1,8 @@
 # Changelog
 
+- ua: WEB.DE MailCheck
 - ua: stagefright
+- device: UC Browser Android
 - ua: Framabird
 - ua: Powermarks
 - ua: FossaMail
