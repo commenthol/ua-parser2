@@ -589,6 +589,7 @@ user_agent_parsers:
           Microsoft Outlook|\
           Outlook-Express|\
           Outlook-iOS-Android|\
+          Pocomail|\
           Postbox|\
           Slack_SSB|\
           Sparrow|\

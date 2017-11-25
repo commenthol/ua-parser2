@@ -1,6 +1,7 @@
 # Changelog
 
 **2017-11-??** v0.3.4
+- ua: Pocomail
 - ua: TinyBrowser, MxNitro, WhiteHat Aviator, Diglo, Superbird
 - ua: SeznamEmailProxy
 - ua: Mail Free
