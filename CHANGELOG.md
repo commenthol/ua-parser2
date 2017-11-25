@@ -1,5 +1,6 @@
 # Changelog
 
+- ua: Powermarks
 - ua: FossaMail
 - ua: Evolution
 - ua: InternetSeer.com, Photon, validator, Google-Site-Verification, MnoGoSearch, analyzer, FeedBlitz, FeedForAll, Alltop, Microsoft Office Mobile, Synapse, binlar, lbot, visionutils, WebThumb

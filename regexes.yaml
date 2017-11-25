@@ -102,6 +102,7 @@ user_agent_parsers:
       Pingdom|\
       Pinterest|\
       pompos|\
+      Powermarks|\
       probe|\
       proxy|\
       PRTG|\
@@ -336,6 +337,7 @@ user_agent_parsers:
           BingPreview|\
           ApacheBench|\
           Add Catalog|\
+          Powermarks|\
           Yandex\\w+|\
           YahooYSMcm|\
           TwitterBot|\
