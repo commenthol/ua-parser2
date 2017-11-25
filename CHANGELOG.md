@@ -1,5 +1,6 @@
 # Changelog
 
+- os: fix Series40, Series60 
 - ua: WEB.DE MailCheck
 - ua: stagefright
 - device: UC Browser Android
