@@ -240,6 +240,7 @@ user_agent_parsers:
           GigablastOpenSource|\
           facebookexternalhit|\
           Catchpoint(?: bot)?|\
+          CloudEndure Scanner|\
           shrinktheweb\\.com|\
           Shoppimon Analyzer|\
           PlantyNet_WebRobot|\

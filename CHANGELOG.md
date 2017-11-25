@@ -1,7 +1,8 @@
 # Changelog
 
 **2017-11-??** v0.3.4
-- ua: StumbleUpon
+- ua: Uptimebot, ZoomBot, CloudEndure Scanner bot
+- ua: StumbleUpon bot
 - ua: Pocomail
 - ua: TinyBrowser, MxNitro, WhiteHat Aviator, Diglo, Superbird
 - ua: SeznamEmailProxy
