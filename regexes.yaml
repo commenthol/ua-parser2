@@ -345,6 +345,7 @@ user_agent_parsers:
           BingPreview|\
           ApacheBench|\
           Add Catalog|\
+          LinkWalker|\
           Powermarks|\
           Yandex\\w+|\
           YahooYSMcm|\
@@ -607,6 +608,8 @@ user_agent_parsers:
       - regex: '(Thunderbird|Icedove)/__VERSION_MOZILLA__'
         family: 'Thunderbird'
         type: 'mail'
+      - regex: '(mobmail) android __VERSION__'
+        type: 'mail'
 
   # Feedreader
   - regex: "\\b(\
@@ -785,18 +788,19 @@ user_agent_parsers:
   # Apps wo Version
   - regex: "\\b(\
       AndroidDownloadManager|\
-      YJApp-ANDROID|\
-      Reddit|\
-      Evernote|\
-      Raptr|\
-      TubeTV|\
-      iBooks|\
-      Sandvox|\
+      bingipadclient|\
       Coda|\
+      David Client|\
+      Evernote|\
+      iBooks|\
       LibreOffice|\
       NewsFire|\
-      bingipadclient|\
+      Raptr|\
+      Reddit|\
+      Sandvox|\
+      TubeTV|\
       wkhtmltoimage|\
+      YJApp-ANDROID|\
       wkhtmltopdf\
       )\\b"
     type: 'app'
@@ -1121,6 +1125,7 @@ user_agent_parsers:
       Midori|\
       MiniBrowserMobile|\
       Minimo|\
+      mogimogi|\
       Net[Ff]ront|\
       NetFrontLifeBrowser|\
       NetPositive|\
@@ -1374,6 +1379,8 @@ user_agent_parsers:
       jupdate|\
       libcurl-agent|\
       libwww-perl|\
+      lua-resty-http|\
+      lwp-trivial|\
       Microsoft-CryptoAPI|\
       Microsoft SkyDriveSync|\
       node-superagent|\
