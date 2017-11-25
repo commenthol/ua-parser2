@@ -28,6 +28,7 @@ user_agent_parsers:
   - regex: "(\
       @|\
       Acoon|\
+      ai-agent|\
       adbeat|\
       AHC|\
       aggregator|\
@@ -145,7 +146,7 @@ user_agent_parsers:
       WhatWeb|\
       WinHTTP|\
       WordPress|\
-      www\\.|\
+      www[.-]|\
       Xenu|\
       zyborg\
       )"
@@ -279,6 +280,8 @@ user_agent_parsers:
           fast-webcrawler|\
           Cerberian Drtrs|\
           agentslug\\.com|\
+          Adsense-Snapshot-Google|\
+          Accoona-AI-Agent|\
           Amazon CloudFront|\
           8bo Crawler Bot|\
           WorldWideWeb-X|\
@@ -295,6 +298,7 @@ user_agent_parsers:
           dataparksearch|\
           ConveraCrawler|\
           Buscaplus Robi|\
+          WWW-Mechanize|\
           YottaaMonitor|\
           WDG_Validator|\
           voila(?:bot)?|\
@@ -643,6 +647,8 @@ user_agent_parsers:
     type: 'feedreader'
 
   # podcast
+  - regex: "(AppleCoreMedia)/__VERSION__"
+    type: 'app'
   - regex: "\\b(\
       AntennaPod|\
       BashPodder|\
@@ -730,8 +736,7 @@ user_agent_parsers:
       1Password|\
       AdobeAIR|\
       Alltop|\
-      baiduboxapp|\      
-      AppleCoreMedia|\
+      baiduboxapp|\
       BacaBerita App|\
       Coursera-Mobile|\
       Crowsnest|\
@@ -922,7 +927,7 @@ user_agent_parsers:
   - regex: '(YaBrowser)/__VERSION__'
     family: 'Yandex Browser'
 
-  - regex: (2345Explorer|2345chrome)(?:[ /]| v)__VERSION__
+  - regex: '(2345Explorer|2345chrome)(?:[ /]| v)__VERSION__'
     family: 2345Explorer
 
   - regex: '(Nintendo Switch.+? NF)(?:/__VERSION__)?'
@@ -1140,6 +1145,7 @@ user_agent_parsers:
       SailfishBrowser|\
       SeaMonkey|\
       SecondLife|\
+      Seznam\\.cz|\
       Shiira|\
       SkipStone|\
       Skyfire|\

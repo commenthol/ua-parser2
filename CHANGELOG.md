@@ -1,5 +1,6 @@
 # Changelog
 
+- ua: Adsense-Snapshot-Google, Accoona-AI-Agent, WWW-Mechanize, AppleCoreMedia, Seznam.cz
 - ua: Detect apps
 - ua: Dorado WAP-Browser
 - os: fix Series40, Series60 
