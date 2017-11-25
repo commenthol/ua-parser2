@@ -976,7 +976,22 @@ user_agent_parsers:
         type: 'headless'
       - regex: ' (Nichrome)/self/(\d+)'
       # Chrome Based Browsers
-      - regex: '\b(Chromium|Puffin|MobileIron|Crosswalk|OverwolfClient|Polarity|Qiyu|Tenta|Beamrise|Chedot)/__VERSION__'
+      - regex: "\\b(\
+          Beamrise|\
+          Chedot|\
+          Chromium|\
+          Crosswalk|\
+          Diglo|\
+          MobileIron|\
+          MxNitro|\
+          OverwolfClient|\
+          Polarity|\
+          Puffin|\
+          Qiyu|\
+          Superbird|\
+          Tenta|\
+          WhiteHat Aviator\
+          )/__VERSION__"
       # IE Mobile - strange MS ua contains Chrome
       - regex: '(IEMobile)/__VERSION__'
         family: 'IE Mobile'
@@ -1168,6 +1183,7 @@ user_agent_parsers:
       Sunrise|\
       SunriseBrowser|\
       ThunderBrowse|\
+      TinyBrowser|\
       TizenBrowser|\
       TungstenBrowser|\
       UP\\.Browser|\
