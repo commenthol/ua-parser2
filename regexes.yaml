@@ -3558,16 +3558,15 @@ device_parsers:
         brand: 'Google'
         model: '$1'
         type: glasses
-      - regex: '; *(Pixel \w+) Build'
+      - regex: '; *(Pixel C) Build'
         device: '$1'
         brand: 'Google'
         model: '$1'
         type: tablet
-      - regex: '; *(Pixel) Build'
+      - regex: '; *(Pixel|Pixel .*) Build'
         device: '$1'
         brand: 'Google'
         model: '$1'
-        type: smartphone
 
       #########
       # Gigabyte
