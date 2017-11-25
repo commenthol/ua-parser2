@@ -533,6 +533,9 @@ user_agent_parsers:
       [Mm]ail|\
       Barca|\
       \\bBat|\
+      DAV|\
+      ownCloud|\
+      Nextcloud|\
       Exchange|\
       Eudora|\
       Evolution|\
@@ -618,6 +621,19 @@ user_agent_parsers:
         type: 'mail'
       - regex: '(mobmail) android __VERSION__'
         type: 'mail'
+      # DAV
+      - regex: '(mirall)/__VERSION__.*Nextcloud'
+        family: 'Nextcloud'
+        type: 'app::webdav'
+      - regex: '(WEBDAV Client)'
+        type: 'app::webdav'
+      - regex: "\\b(\
+          RCM CardDAV plugin|\
+          DAVdroid|\
+          ownCloud-android|\
+          Microsoft-WebDAV-MiniRedir\
+          )/__VERSION__"
+        type: 'app::webdav'
 
   # Feedreader
   - regex: "\\b(\
