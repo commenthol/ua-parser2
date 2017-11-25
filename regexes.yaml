@@ -530,6 +530,7 @@ user_agent_parsers:
       Barca|\
       \\bBat|\
       Exchange|\
+      Eudora|\
       Evolution|\
       Framabird|\
       Icedove|\
@@ -573,6 +574,7 @@ user_agent_parsers:
       - regex: "(\
           Barca(?:Pro)?|\
           Evolution|\
+          Eudora|\
           ExchangeServicesClient|\
           ExchangeWebServices|\
           Framabird|\

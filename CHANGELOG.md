@@ -1,7 +1,8 @@
 # Changelog
 
 **2017-11-??** v0.3.4
-- ua: mobmial
+- ua: Eudora
+- ua: mobmail
 - ua: lwp-trivial, LinkWalker, David Client, Qwantify
 - fix ua: Tumblr is a bot
 - ua: Adsense-Snapshot-Google, Accoona-AI-Agent, WWW-Mechanize, AppleCoreMedia, Seznam.cz
