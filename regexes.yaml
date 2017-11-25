@@ -45,6 +45,7 @@ user_agent_parsers:
       \\bNG\\b|\
       bot|\
       boost|\
+      catalog|\
       Cerberian Drtrs|\
       charlotte|\
       checker|\
@@ -73,6 +74,7 @@ user_agent_parsers:
       httpunit|\
       indexer|\
       inspect|\
+      InternetSeer.com|\
       intraVnews|\
       ips-agent|\
       JetBrains|\
@@ -96,6 +98,7 @@ user_agent_parsers:
       NING|\
       \\boBot|\
       PayPal|\
+      Photon|\
       Pingdom|\
       Pinterest|\
       pompos|\
@@ -130,6 +133,7 @@ user_agent_parsers:
       teoma|\
       TLSProber|\
       Tumblr|\
+      validator|\
       vortex|\
       voyager|\
       web-capture.net|\
@@ -168,6 +172,9 @@ user_agent_parsers:
         family: 'SpeedCurve WebPage Test'
         type: 'bot'
 
+      - regex: '(NAVER)\(inapp; search(?:; \d+)?(?:; __VERSION_DIGITS__)?\)'
+        type: 'app'
+
       - regex: '^(PHP) '
         type: 'bot'
       - regex: 'aggregator:(\\w+)'
@@ -186,10 +193,13 @@ user_agent_parsers:
           AdsBot-Google(?:-[a-z]{1,20})?|\
           Automattic Analytics Crawler|\
           Google Page Speed Insights|\
+          SynapticSearch/AI Crawler|\
           msnbot(?:-media\\s{0,5})?|\
           IlTrovatore(?:-Setaccio)?|\
           XaxisSemanticsClassifier|\
+          www\\.WebSearch.com\\.au|\
           HubSpot Marketing Grader|\
+          Google-Site-Verification|\
           \\bYeti(?:-[a-z]{0,20})?|\
           Advanced Email Extractor|\
           Xenu(?:.s)? Link Sleuth|\
@@ -200,6 +210,7 @@ user_agent_parsers:
           Slackbot-LinkExpanding|\
           NetShelter ContentScan|\
           Free ScreenShotService|\
+          SEARCHALOT(?:\\.COM)?|\
           SafariBookmarkChecker|\
           Peeplo Screenshot Bot|\
           Microsoft URL Control|\
@@ -209,6 +220,7 @@ user_agent_parsers:
           \\b\\w*favicon\\w*\\b|\
           BrokenLinkCheck\\.com|\
           Y!J(?:-[A-Z]{1,30})?|\
+          Windows Phone Search|\
           websitepulse checker|\
           TrialPay URL checker|\
           Rackspace Monitoring|\
@@ -226,6 +238,7 @@ user_agent_parsers:
           shrinktheweb\\.com|\
           Shoppimon Analyzer|\
           PlantyNet_WebRobot|\
+          NetLyzer FastProbe|\
           mixed-content-scan|\
           Mail\\.RU(?:_Bot)?|\
           Innovazion Crawler|\
@@ -233,7 +246,6 @@ user_agent_parsers:
           Google Web Preview|\
           Comodo SSL Checker|\
           1470\\.net crawler|\
-          NetLyzer FastProbe|\
           Siteimprove\\.com|\
           seoscanners\\.net|\
           semanticdiscovery|\
@@ -241,9 +253,11 @@ user_agent_parsers:
           Microsoft .*? Bot|\
           IP2[a-z]{1,20}Bot|\
           CostaCider Search|\
+          sureseeker\\.com|\
           Offline Explorer|\
           ^Nutch[^/]{0,30}|\
           Newneon BlogBorg|\
+          InternetSeer.com|\
           HatenaScreenshot|\
           GoogleImageProxy|\
           ExaleadCloudview|\
@@ -251,6 +265,7 @@ user_agent_parsers:
           web-capture.net|\
           Thumbshots\\.ru|\
           SiteTruth\\.com|\
+          searchuk.comBot|\
           panscient\\.com|\
           Minstrel-Browse|\
           JemmaTheTourist|\
@@ -265,6 +280,7 @@ user_agent_parsers:
           WorldWideWeb-X|\
           trendictionbot|\
           Slack-ImgProxy|\
+          SearchIt\\.Bot|\
           RuxitSynthetic|\
           PaxleFramework|\
           PagesInventory|\
@@ -276,9 +292,11 @@ user_agent_parsers:
           ConveraCrawler|\
           Buscaplus Robi|\
           YottaaMonitor|\
+          WDG_Validator|\
           voila(?:bot)?|\
           ThumbShotsBot|\
           teoma(?!bar)?|\
+          socbot search|\
           ObjectsSearch|\
           http%20client|\
           GoogleToolbar|\
@@ -287,15 +305,20 @@ user_agent_parsers:
           BlogPulseLive|\
           YFSJ crawler|\
           Yahoo! Slurp|\
+          WeSEE:Search|\
           WASALive.Bot|\
           TheUsefulbot|\
           StackRambler|\
+          search:robot|\
           Read%20Later|\
           masidani_bot|\
+          Isara-Search|\
           HistoryHound|\
           BilgiBetaBot|\
           adbeat\\.com|\
           Webster Pro|\
+          Websearch4u|\
+          Taringa UGC|\
           searchsight|\
           SearchByUsa|\
           robotgenius|\
@@ -303,6 +326,7 @@ user_agent_parsers:
           netresearch|\
           MSIECrawler|\
           MovableType|\
+          MnoGoSearch|\
           MetaURI API|\
           LinkedInBot|\
           Linkchecker|\
@@ -311,8 +335,7 @@ user_agent_parsers:
           BoardReader|\
           BingPreview|\
           ApacheBench|\
-          MnoGoSearch|\
-          Taringa UGC|\
+          Add Catalog|\
           Yandex\\w+|\
           YahooYSMcm|\
           TwitterBot|\
@@ -334,7 +357,6 @@ user_agent_parsers:
           \\bKHTE\\b|\
           ^anonymous|\
           A6-Indexer|\
-          i?seekbot|\
           WordPress|\
           Votay bot|\
           TLSProber|\
@@ -348,6 +370,7 @@ user_agent_parsers:
           LinkAlarm|\
           LesnikBot|\
           JetBrains|\
+          i?seekbot|\
           ips-agent|\
           findlinks|\
           DareBoost|\
@@ -364,13 +387,16 @@ user_agent_parsers:
           OSSProxy|\
           Netvibes|\
           NerdyBot|\
+          MuckRack|\
           Moozilla|\
           mogimogi|\
           Lite Bot|\
+          IQSearch|\
           InfuzApp|\
           IconSurf|\
           Icarus6j|\
           httpunit|\
+          HooWWWer|\
           heritrix|\
           GTmetrix|\
           clumboot|\
@@ -379,29 +405,28 @@ user_agent_parsers:
           archiver|\
           adidxbot|\
           AcoonBot|\
-          MuckRack|\
           ZooShot|\
           WinHTTP|\
           WhatWeb|\
           ^vortex|\
           URL2PNG|\
+          ^Tumblr|\
           Spinn3r|\
           SiteCon|\
           Semager|\
           scrubby|\
-          Scooter|\
-          Scooter|\
           scooter|\
-          Riddler|\
           Riddler|\
           polybot|\
           Plukkie|\
+          ^Photon|\
           Orbiter|\
           openbot|\
           NetSurf|\
           masscan|\
           Lsearch|\
           jbot\\b|\
+          ^INGRID|\
           gigabot|\
           furlbot|\
           Filangy|\
@@ -423,6 +448,7 @@ user_agent_parsers:
           Scrapy|\
           Reaper|\
           pompos|\
+          ^Oblio|\
           msrbot|\
           mozDex|\
           m65bot|\
@@ -439,12 +465,12 @@ user_agent_parsers:
           \\b008|\
           Slurp|\
           Nutch|\
-          ^Tumblr|\
           ^NING|\
           lycos|\
           Llaut|\
           htdig|\
           Giant|\
+          Evaal|\
           ^ECCP|\
           DeuSu|\
           Argus|\
@@ -466,7 +492,7 @@ user_agent_parsers:
       - regex: "(\
           (?:[a-z\\.\\u0027]{1,30}[ _-]){0,4}[a-z_]{0,30}\
           (?:\
-          crawler|crawl|scraper|spider|indexer|webbot|\
+          crawler|crawl|scraper|spider|indexer|webbot|analyzer|\
           WhatsApp|robot\\b|\
           (?:(?!cubot)[\\w-]{2})bot\\b|\
           [\\w.]+ bot\\b| bot(?=@)\\b\
@@ -578,8 +604,10 @@ user_agent_parsers:
       Custom-Feed Reader|\
       Digg Feed Fetcher|\
       Feedbin |\
+      FeedBlitz|\
       FeedDa?emon|\
       Feeddler|\
+      FeedForAll|\
       Feedreader|\
       JetBrains Omea Reader|\
       Liferea|\
@@ -690,10 +718,12 @@ user_agent_parsers:
 
   # Apps
   - regex: "\\b(\
+      Alltop|\
       BacaBerita App|\
       Deezer|\
       Instagram|\
       Kurio|\
+      Microsoft Office Mobile|\
       MS FrontPage|\
       OpenOffice|\
       RedFlagDealsApp|\
@@ -1293,8 +1323,12 @@ user_agent_parsers:
   # Proxy
   - regex: '\b(Hatena-Mobile-Gateway|Privoxy)/__VERSION__'
     type: 'proxy'
+  - regex: '\b(Synapse)'
+    type: 'proxy'
 
   # generic catcher for bots
+  - regex: '(binlar|lbot|visionutils|WebThumb)[_/]__VERSION__'
+    type: 'bot'
   - regex: 'https?://((?:[\w\d-]+\.)?[\w\d-]+\.\w+)'
     type: 'bot'
   - regex: 'Mozilla/[45]\.0 \(compatible;?\)'
