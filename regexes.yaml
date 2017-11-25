@@ -51,6 +51,7 @@ user_agent_parsers:
       check|\
       checker|\
       Clarsentia|\
+      cloud|\
       crawl|\
       diagnostic|\
       \\bdig\\b|\
@@ -134,7 +135,6 @@ user_agent_parsers:
       synthetic|\
       teoma|\
       TLSProber|\
-      Tumblr|\
       validator|\
       vortex|\
       voyager|\
@@ -279,6 +279,7 @@ user_agent_parsers:
           fast-webcrawler|\
           Cerberian Drtrs|\
           agentslug\\.com|\
+          Amazon CloudFront|\
           8bo Crawler Bot|\
           WorldWideWeb-X|\
           trendictionbot|\
@@ -414,7 +415,6 @@ user_agent_parsers:
           WhatWeb|\
           ^vortex|\
           URL2PNG|\
-          ^Tumblr|\
           Spinn3r|\
           SiteCon|\
           Semager|\
@@ -689,6 +689,7 @@ user_agent_parsers:
       MediaMonkey|\
       Nightingale|\
       NSPlayer|\
+      RebelMouse|\
       Songbird|\
       spmc|\
       Spotify|\
@@ -726,18 +727,72 @@ user_agent_parsers:
 
   # Apps
   - regex: "\\b(\
+      1Password|\
+      AdobeAIR|\
       Alltop|\
+      baiduboxapp|\      
+      AppleCoreMedia|\
       BacaBerita App|\
+      Coursera-Mobile|\
+      Crowsnest|\
+      Cyberdog|\
+      Cyberduck|\
+      DDG-Android|\
+      ^Dalvik|\
       Deezer|\
+      Dreamweaver|\
       Instagram|\
+      iWeb|\
+      kioclient|\
       Kurio|\
+      Line|\
+      Tumblr|\
+      MicroMessenger|\
+      Microsoft Office|\
+      Microsoft Office Excel|\
       Microsoft Office Mobile|\
-      MS FrontPage|\
+      Microsoft Office OneNote|\
+      Microsoft Office PowerPoint|\
+      Microsoft Office SyncProc|\
+      Microsoft Office Upload Center|\
+      Microsoft Office Visio|\
+      Microsoft Office Word|\
+      Microsoft Office Word|\
+      MS ?FrontPage|\
+      NewsArticle|\
+      NewsFire|\
       OpenOffice|\
+      PowerPoint|\
+      Prince|\
       RedFlagDealsApp|\
+      RobloxStudio|\
+      Sandvox|\
       Snapchat|\
-      SohuNews\
-      )[ /]__VERSION__"
+      SohuNews|\
+      SoundCloud-Android|\
+      WebClip|\
+      Windows-Update-Agent|\
+      WindowsPowerShell\
+      )[ /-]__VERSION__"
+    type: 'app'
+
+  # Apps wo Version
+  - regex: "\\b(\
+      AndroidDownloadManager|\
+      YJApp-ANDROID|\
+      Reddit|\
+      Evernote|\
+      Raptr|\
+      TubeTV|\
+      iBooks|\
+      Sandvox|\
+      Coda|\
+      LibreOffice|\
+      NewsFire|\
+      bingipadclient|\
+      wkhtmltoimage|\
+      wkhtmltopdf\
+      )\\b"
     type: 'app'
 
   #### SPECIAL CASES TOP ####
@@ -997,7 +1052,6 @@ user_agent_parsers:
       1stBrowser|\
       7Star|\
       Abrowser|\
-      AdobeAIR|\
       amaya|\
       Amiga-AWeb|\
       AmigaVoyager|\
@@ -1020,6 +1074,7 @@ user_agent_parsers:
       Dillo|\
       Dolfin|\
       Dolphin http client|\
+      Dorado WAP-Browser|\
       Dragon|\
       Electron|\
       Epiphany|\
@@ -1325,7 +1380,6 @@ user_agent_parsers:
       urlgrabber|\
       (?:\\w+) APT-HTTP|\
       Wget|\
-      Windows-Update-Agent|\
       Zend_Http_Client\
       )\\b(?:[ /]__VERSION__)?"
     type: headless

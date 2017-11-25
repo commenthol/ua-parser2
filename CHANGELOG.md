@@ -1,5 +1,7 @@
 # Changelog
 
+- ua: Detect apps
+- ua: Dorado WAP-Browser
 - os: fix Series40, Series60 
 - ua: WEB.DE MailCheck
 - ua: stagefright
