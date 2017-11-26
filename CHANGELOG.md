@@ -2,6 +2,7 @@
 
 **2017-11-??** v0.3.4
 
+- device: Highscreen, Zifro, ZTE
 - device: BQ
 - device: Blu
 - device: Ritmix

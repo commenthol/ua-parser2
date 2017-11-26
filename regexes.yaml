@@ -3719,6 +3719,15 @@ device_parsers:
         model: '$1'
 
       #########
+      # Highscreen
+      # @ref:
+      #########
+      - regex: '; *(Alpha GTR?|Boost IIse|Explosion|Ice2|Prime S|Prime Mini SE|Zera[ _]F)(?: Build|\))'
+        device: '$1'
+        brand: 'Highscreen'
+        model: '$1'
+
+      #########
       # Hisense
       # @ref: http://www.hisense.com/
       #########
@@ -5854,6 +5863,15 @@ device_parsers:
         model: 'Andy $2'
 
       #########
+      # Zifro
+      # @ref:
+      #########
+      - regex: '; *(ZS-\d+)(?: Build|\))'
+        device: '$1'
+        brand: 'Zifro'
+        model: '$1'
+
+      #########
       # Zopo
       # @ref: http://www.zopomobiles.com/products.html
       #########
@@ -5879,7 +5897,7 @@ device_parsers:
       # ZTE
       # @ref: http://www.ztedevices.com/
       #########
-      - regex: '; *(ARIZONA|(?:ATLAS|Atlas) W|D930|Grand (?:[SX][^;]*|Era|Memo[^;]*)|JOE|(?:Kis|KIS)\b[^;]*|Libra|Light [^;]*|N8[056][01]|N850L|N8000|N9[15]\d{2}|N9810|NX501|Optik|(?:Vip )Racer[^;]*|RacerII|RACERII|San Francisco[^;]*|V9[AC]|V55|V881|Z[679][0-9]{2}[A-z]?|ZTE_BLADE_III) Build'
+      - regex: '; *(ARIZONA|(?:ATLAS|Atlas)[ _]W|D930|Grand (?:[SX].*?|Era|Memo.*?)|JOE|(?:Kis|KIS)\b.*?|Libra|Light.*?|N8[056][01]|N850L|N8000|N909|N9[15]\d{2}|N918St|N9810|NX402|NX501|Z818L|Z716BL|Optik|(?:Vip )Racer.*?|RacerII|RACERII|San Francisco.*?|V9[AC]|V55|V881|Z[679][0-9]{2}[A-z]?|ZTE_BLADE_III)(?: Build|\))'
         device: '$1'
         brand: 'ZTE'
         model: '$1'
@@ -5899,12 +5917,16 @@ device_parsers:
         device: 'ZTE Skate$1'
         brand: 'ZTE'
         model: 'Skate$1'
-      - regex: '; *(Orange |Optimus )(Monte Carlo|San Francisco) Build'
-        device: '$1$2'
+      - regex: '; *(Orange|Optimus)[ _](Boston|Monte Carlo|San Francisco) Build'
+        device: '$1 $2'
         brand: 'ZTE'
-        model: '$1$2'
-      - regex: '; *(?:ZXY-ZTE_|ZTE\-U |ZTE[\- ]|ZTE-C[_ ])([^;/]+) Build'
+        model: '$1 $2'
+      - regex: '; *(?:ZXY-ZTE_|ZTE-U |ZTE[-_ ]|ZTE-C[_ ])(.*?)(?: Build|\))'
         device: 'ZTE $1'
+        brand: 'ZTE'
+        model: '$1'
+      - regex: '; *(Beeline \w+)(?: Build|\))'
+        device: '$1'
         brand: 'ZTE'
         model: '$1'
       # operator specific
@@ -6259,7 +6281,7 @@ device_parsers:
         brand: 'Alcatel'
         model: 'One Touch $3'
         type: 'smartphone'
-      - regex: '\(Mobile; (?:ZTE([^;]+)|(OpenC)|(Open) (C)); rv:[^\)]+\) Gecko/[^\/]+ Firefox/'
+      - regex: '\(Mobile; (?:ZTE([^;]+)|(Open[C2])|(Open) (C)); rv:[^\)]+\) Gecko/[^\/]+ Firefox/'
         regex_flag: 'i'
         device: 'ZTE $1$2$3$4'
         brand: 'ZTE'
