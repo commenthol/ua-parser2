@@ -3032,8 +3032,12 @@ device_parsers:
         brand: 'Blu'
         model: '$2'
       # BMOBILE = operator branded device
-      - regex: '; *(?:BMOBILE )?(Blu|(?:DASH|ADVANCE|VIVO|TANK) \d\.\d[^;/]*|STUDIO[^;/]+) Build'
+      - regex: '; *(?:BMOBILE )?(Blu|(?:DASH|ADVANCE|VIVO|TANK) \d\.\d[^;/]*?) Build'
         regex_flag: 'i'
+        device: '$1'
+        brand: 'Blu'
+        model: '$1'
+      - regex: '; *(STUDIO[^;/)]+|Studio [^;/)]+|LIFE PLAY|R1 HD|VIVO IV)(?: Build|\))'
         device: '$1'
         brand: 'Blu'
         model: '$1'
