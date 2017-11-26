@@ -2,6 +2,7 @@
 
 **2017-11-??** v0.3.4
 
+- ua: NewRelicPinger bot
 - device: Gionee
 - ua: Box, BoxNotes, Box Sync app
 - ua: webdav clients

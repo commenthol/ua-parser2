@@ -112,6 +112,7 @@ user_agent_parsers:
       PTST|\
       QQDownload|\
       Reaper|\
+      NewRelicPinger|\
       Retreiver|\
       Robozilla|\
       scan|\
@@ -302,6 +303,7 @@ user_agent_parsers:
           dataparksearch|\
           ConveraCrawler|\
           Buscaplus Robi|\
+          NewRelicPinger|\
           WWW-Mechanize|\
           YottaaMonitor|\
           WDG_Validator|\
