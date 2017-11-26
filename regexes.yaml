@@ -5449,7 +5449,11 @@ device_parsers:
       # Texet
       # @ref: http://www.texet.ru/tablet/
       #########
-      - regex: '; *(T[BM]-\d{3}[^;/]+) Build/'
+      - regex: '; *((?:NaviPad )?T[BM]-\d{3}.*?|X-pad .*?|X Point)(?: Build/|\))'
+        device: '$1'
+        brand: 'Texet'
+        model: '$1'
+      - regex: '; *teXet[ _](.*?)(?: Build/|\))'
         device: '$1'
         brand: 'Texet'
         model: '$1'
