@@ -4554,7 +4554,7 @@ device_parsers:
         device: 'Motorola $1'
         brand: 'Motorola'
         model: '$1'
-      - regex: '; *(A555|A85[34][^;/]*|A95[356]|ME[58]\d{2}\+?|ME600|ME632|ME722|MB\d{3}\+?|MT680|MT710|MT870|MT887|MT917|WX435|WX453|WX44[25]|XT\d{3,4}[A-Z\+]*|CL[iI]Q|CL[iI]Q XT|Nexus 6) Build'
+      - regex: '; *(A555|A85[34].*?|A95[356]|ME[58]\d{2}\+?|ME600|ME632|ME722|MB\d{3}\+?|MT680|MT710|MT870|MT887|MT917|WX435|WX453|WX44[25]|XT\d{3,4}[A-Z\+]*|XT\d{3,4}-\d{2}|CL[iI]Q|CL[iI]Q XT|Nexus 6)(?: Build|\))'
         device: 'Motorola $1'
         brand: 'Motorola'
         model: '$1'
@@ -5801,6 +5801,15 @@ device_parsers:
         model: '$2'
 
       #########
+      # Yota Devices
+      # @ref:
+      #########
+      - regex: '; *(YD\d+)(?: Build/|\))'
+        device: '$1'
+        brand: 'Yota'
+        model: '$1'
+
+      #########
       # XiaoMi
       # @ref: http://www.xiaomi.com/event/buyphone
       # @ref: http://www.mi.com/en
@@ -6759,7 +6768,7 @@ device_parsers:
   - regex: 'mot[o-]'
     regex_flag: 'i'
     group:
-    - regex: 'Motorola\-([A-Za-z0-9]+)'
+    - regex: '[Mm]otorola[- ]([A-Za-z0-9]+)'
       device: 'Motorola $1'
       brand: 'Motorola'
       model: '$1'

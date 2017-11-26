@@ -2,6 +2,7 @@
 
 **2017-11-??** v0.3.4
 
+- device: Yota, Motorola
 - device: Highscreen, Zifro, ZTE
 - device: BQ
 - device: Blu
