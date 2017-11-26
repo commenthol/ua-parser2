@@ -2,6 +2,7 @@
 
 **2017-11-??** v0.3.4
 
+- device: Ritmix
 - device: DNS
 - ua: NewRelicPinger bot
 - device: Gionee

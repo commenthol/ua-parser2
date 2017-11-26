@@ -3358,7 +3358,7 @@ device_parsers:
       # DNS AirTab
       # @ref: http://www.dns-shop.ru/
       #########
-      - regex: '; *(?:DNS )?(AirTab)[ _\-]([^;/]+) Build'
+      - regex: '; *(?:DNS )?(AirTab)[ _\-]([^;/]+)(?: Build|[;)])'
         device: '$1 $2'
         brand: 'DNS'
         model: '$1 $2'
@@ -5092,6 +5092,15 @@ device_parsers:
       - regex: '; (RCT\w+) Build/'
         device: '$1'
         brand: 'RCA'
+        model: '$1'
+
+      #########
+      # Ritmix
+      # @ref:
+      #########
+      - regex: '; (RMD-\d+)(?: Build|[;)])'
+        device: '$1'
+        brand: 'Ritmix'
         model: '$1'
 
       #########
