@@ -2,6 +2,7 @@
 
 **2017-11-??** v0.3.4
 
+- device: DNS
 - ua: NewRelicPinger bot
 - device: Gionee
 - ua: Box, BoxNotes, Box Sync app

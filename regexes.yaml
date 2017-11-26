@@ -2158,7 +2158,7 @@ os_parsers:
         family: 'tvOS'
 
       - regex: '(Darwin)/__VERSION__'
-  
+
   - regex: '(CrKey)(?:[/]__VERSION__)?'
     family: 'Chromecast'
 
@@ -3358,10 +3358,21 @@ device_parsers:
       # DNS AirTab
       # @ref: http://www.dns-shop.ru/
       #########
-      - regex: '; *(AirTab)[ _\-]([^;/]+) Build'
+      - regex: '; *(?:DNS )?(AirTab)[ _\-]([^;/]+) Build'
         device: '$1 $2'
         brand: 'DNS'
         model: '$1 $2'
+      - regex: '; DNS[ _](.{4,6})(?: Build|[;)])'
+        device: '$1$2'
+        brand: 'DNS'
+        model: '$1$2'
+      - regex: '; *(S400\d|[sS]450\d|S470\d)([A-Z]?)(?: Build|[;)])'
+        device: '$1$2'
+        brand: 'DNS'
+        model: '$1$2'
+      - regex: '; (ES9701|MB40II1)(?: Build|[;)])'
+        device: '$1'
+        brand: 'DNS'
 
       #########
       # Docomo (Operator Branded Device)
