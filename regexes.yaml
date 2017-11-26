@@ -1003,6 +1003,7 @@ user_agent_parsers:
       # Chrome Based Browsers
       - regex: "\\b(\
           Beamrise|\
+          BlueBrowser|\
           Chedot|\
           Chromium|\
           Crosswalk|\
