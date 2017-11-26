@@ -2722,6 +2722,15 @@ device_parsers:
         model: '$1'
 
       #########
+      # Alps
+      # @ref: 
+      #########
+      - regex: '; *(baoxue|worldphone 4|Xenoon|XLD)(?: Build/|\))'
+        device: '$1'
+        brand: 'Alps'
+        model: '$1'
+
+      #########
       # Amaway
       # @ref: http://www.amaway.cn/
       #########

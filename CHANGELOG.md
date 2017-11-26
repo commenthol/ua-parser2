@@ -2,6 +2,7 @@
 
 **2017-11-??** v0.3.4
 
+- device: Alps
 - device: Texet
 - ua: BlueBrowser
 - device: Yota, Motorola
