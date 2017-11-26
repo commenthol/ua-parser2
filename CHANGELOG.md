@@ -1,6 +1,8 @@
 # Changelog
 
 **2017-11-??** v0.3.4
+
+- device: Gionee
 - ua: Box, BoxNotes, Box Sync app
 - ua: webdav clients
 - device: Google Pixel 2 XL
@@ -40,6 +42,7 @@
 - better bot detection
 
 **2017-09-18** v0.3.3
+
 - os: fix CFNetwork
 - ua: GomezAgent Bot added
 - ua: RuxitSynthetic bot
@@ -52,6 +55,7 @@
 - update benchmark with latest libs
 
 **2017-08-30** v0.3.2
+
 - ua: HeadlessChrome with Version, fix Chromium
 - ua: fix GSA, Flipboard, Listia, OPR, Beamrise
 - ua: 2345Explorer
@@ -80,6 +84,7 @@
 - device: Acer, Amazon, Kyocera
 
 **2017-07-07** v0.3.1
+
 - ua: 1stBrowser
 - ua: Kinza browser
 - ua: AOL browser
@@ -122,6 +127,7 @@
 - ua, engine: HeadlessChome
 
 **2017-03-14** v0.3.0
+
 - adding `preset: true` flag for better Android device.type detection
 - ua: Google Pixel
 - ua: masscan bot
@@ -131,6 +137,7 @@
 - ua: fix IEMobile which hides as Chrome
 
 **2017-03-11** v0.2.0
+
 - engine:
   - correct "Chrome" to "Blink" engine
   - move family type to "type", e.g. "Webkit::Apple" => family: "Webkit", type: "Apple"
@@ -138,6 +145,7 @@
 - device: New Oneplus, RCA
 
 **2017-02-03** v0.1.40
+
 - ua: New SohoNews app
 - device: New Google Pixel C
 - ua: fix Facebook app without version
@@ -150,6 +158,7 @@
 - os: Fix os for chrome on mac os
 
 **2016-12-27** v0.1.39
+
 - ua, os: Detection of Outlook-iOS-Android
 - ua: Fix detection of 008 bot
 - os: Fix iOS detection
@@ -165,6 +174,7 @@
 - ua: Pinterest app, bot
 
 **2016-12-02** v0.1.38
+
 - ua: distinguish Lightning from Thunderbird
 - ua: app Kurio, BacaBerita, Deezer
 - ua: MxBrowser is Maxthon
@@ -173,6 +183,7 @@
 - os: better iOS detection
 
 **2016-11-12** v0.1.37
+
 - regexes:
   - Detect Postbox mail client
   - Detect Kodi, XMBC, spmc media players
@@ -193,6 +204,7 @@
   - fix UC Browser detection
 
 **2016-09-28** v0.1.36
+
 - regexes:
   - user_agent_parsers
     - Detect Chrome Mobile based browsers, MobileIron, Crosswalks
@@ -210,6 +222,7 @@
     - snom
 
 **2016-05-14** v0.1.35
+
 - regexes:
   - user_agent_parsers
     - Adding NerdyBot
@@ -240,18 +253,22 @@
     - Fix device detection for Nokia rv:11 Windows Phone
 
 **2016-02-03** v0.1.34
+
 - regexes:
   - Correcting/Extending Mail User-Agents, Thunderbird, Shredder, Spicebird, Outlook, Windows Live Mail
 
 **2016-02-03** v0.1.33
+
 - regexes:
   - Adding support for Brave Browser https://brave.com
 
 **2016-01-11** v0.1.32
+
 - regexes:
   - fix YAMLException with duplicated mapping keys
 
 **2015-11-24** v0.1.31
+
 - regexes
   - user_agent_parsers
     - better detection of Opera Mini
@@ -260,11 +277,13 @@
     - adding tvOS
 
 **2015-10-18** v0.1.30
+
 - regexes
   - device
     - More XiaoMi Devices
 
 **2015-10-12** v0.1.29
+
 - regexes
   - user_agent_parsers
     - fix wrong mobile safari version
@@ -273,6 +292,7 @@
     - Adding support for Edge Mobile
 
 **2015-10-11** v0.1.28
+
 - regexes
   - user_agent_parsers
     - Adding support for qutebrowser
@@ -280,6 +300,7 @@
     - Mobile Safari UIWebView
 
 **2015-10-01** v0.1.27
+
 - regexes
   - device_parsers
     - Mac OS X-Devices
@@ -291,12 +312,14 @@
     - Mac OS X Version
 
 **2015-09-21** v0.1.26
+
 - regexes
   - os_parsers
     - CFNetwork Mac OS X 10.11 El Capitan
     - CFNetwork iOS 9.0
 
 **2015-09-19** v0.1.25
+
 - regexes
   - user_agent_parsers
     - SiteCon Bot
@@ -304,9 +327,11 @@
     - Spotify Desktop App
 
 **2015-09-13** v0.1.24
+
 - replacing yamlparser with js-yaml
 
 **2015-09-13** v0.1.23
+
 - regexes
   - user_agent_parsers
     - Firefox on iOS
@@ -314,6 +339,7 @@
     - Firefox OS Versions
 
 **2015-06-26** v0.1.22
+
 - benchmark comparison
 - reducing regexes with neg lookahead
 - regexes
@@ -321,12 +347,14 @@
     - Edge detected as Edge instead of IE
 
 **2015-05-17** v0.1.21
+
 - regexes
   - device_parsers
     - Karbonn, EverCoss, Toshiba, Blu, Alcatel, Gionee, Sharp, Aoc, Asus, Hisense, Lenovo, LG, ZTE, Amazon devices
     - new brand ADVAN, TWM, Yezz, Symphony, Vonino, NYX, Bangho
 
 **2015-05-14** v0.1.20
+
 - regexes
   - os_parsers
     - Mac OS X 10.10 Yosemite
@@ -337,9 +365,11 @@
     - Apple TV with Hardware Version
 
 **2015-05-08** v0.1.19
+
 - fix failing Mac OS X test
 
 **2015-05-01** v0.1.18
+
 - regexes
   - user_agent_parsers
     - MacAppStore
@@ -349,11 +379,13 @@
     - iTunes User-Agents
 
 **2015-05-01** v0.1.17
+
 - regexes
   - user_agent_parsers
     - Vivaldi (http://vivaldi.com/)
 
 **2015-04-15** v0.1.16
+
 - regexes
   - os_parsers:
     - Windows 10
@@ -364,6 +396,7 @@
     - HbbTV Thomson
 
 **2015-03-11** v0.1.15
+
 - regexes
   - user_agent_parsers
     - Firefox: Better version detection using rv:
@@ -395,6 +428,7 @@
 - update to contributing
 
 **2015-02-14** v0.1.14
+
 - parser
   - fix problem with node v0.12
 - regexes
@@ -448,6 +482,7 @@
     - Amazon: 4th Gen Devices
 
 **2014-12-17
+
 - regexes
   - ua: Opera Coast and Opera Mini
   - ua: escaped ' in bot regex solved
@@ -455,27 +490,32 @@
   - simplification with regex gen
 
 **2014-12-16**
+
 - tests
   - Change to [streamss](http://github.com/commenthol/streamss) for all test cases.
   - Tests now also run on Node v0.8.x
 
 **2014-11-13**
+
 - regexes
   - Better detection of ThL, Cubot, HTC One M*
   - New: Gigaset
   - New: IE Tech-Preview on Windows10
 
 **2014-11-05**
+
 - regexes
   - type bot::healthcheck introduced for Monitors/Loadbalancers
 
 **2014-10-30**
+
 - regexes
   - Puffin Browser added
   - Amazon Silk hidden by Chrome
   - Better detection of bots
 
 **2014-10-08**
+
 - regexes
   - Xenu and other Bots added
   - Fix: Version detection of Bots
