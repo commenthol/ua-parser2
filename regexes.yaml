@@ -2043,7 +2043,6 @@ os_parsers:
       # ios devices spoof (mac os x), so including intel/ppc prefixes
       - regex: '(?:PPC|Intel) (Mac OS X)'
 
-
       # IE on Mac doesn't specify version number
       - regex: 'Mac_PowerPC'
         family: 'Mac OS'
@@ -6945,6 +6944,24 @@ device_parsers:
         model: '$1$2$3$4'
         type: 'smartphone'
 
+  #########
+  # Jolla
+  # @ref:
+  #########
+  - regex: '\b(Jolla);'
+    brand: '$1'
+    model: '$1'
+    device: '$1'
+
+  #########
+  # Vertu
+  # @ref: http://www.vertu.com/
+  #########
+  - regex: '(Vertu)([A-Za-z]+)/'
+    device: '$1 $2'
+    brand: 'Vertu'
+    model: '$2'
+
   ##########
   # NOKIA
   # @note: NokiaN8-00 comes before iphone. Sometimes spoofs iphone
@@ -7238,8 +7255,6 @@ device_parsers:
     brand: '$1'
     model: '$2'
     type: tv
-
-
 
   ##########
   # FREE SAS
