@@ -2047,7 +2047,7 @@ os_parsers:
       - regex: 'Mac_PowerPC'
         family: 'Mac OS'
 
-      - regex: 'Macintosh'
+      - regex: '(Macintosh|Mac_68K)'
         family: 'Mac OS'
 
   ##########
@@ -2150,6 +2150,10 @@ os_parsers:
       # iOS Apps
       - regex: '\b(iOS[ /]|iOS; |iPhone(?:/| v|[ _]OS[/,]|; | OS : |\d,\d/|\d,\d; )|iPad/)(\d{1,2})[_\.](\d{1,2})(?:[_\.](\d+))?'
         family: 'iOS'
+
+      - regex: '\((iPad|iPod|iPhone); '
+        family: 'iOS'
+
       - regex: '\((iOS); '
 
       ##########
@@ -2159,6 +2163,8 @@ os_parsers:
         family: 'tvOS'
 
       - regex: '(Darwin)/__VERSION__'
+
+  - regex: '(Mac OS X)'
 
   - regex: '(CrKey)(?:[/]__VERSION__)?'
     family: 'Chromecast'
@@ -2214,7 +2220,7 @@ os_parsers:
         family: 'BlackBerry Tablet OS'
       - regex: '(Play[Bb]ook)'
         family: 'BlackBerry Tablet OS'
-      - regex: '(Black[Bb]erry)'
+      - regex: '(Black[Bb]erry|\(BB10;)'
         family: 'BlackBerry OS'
 
   ##########
@@ -2263,7 +2269,7 @@ os_parsers:
   ##########
   - regex: 'BREW|BMP|Brew'
     group:
-      - regex: '(BREW)[ /]__VERSION__'
+      - regex: '\b(BREW|Brew)[ /]__VERSION__'
       - regex: '(BREW);'
       - regex: '(Brew MP|BMP)[ /]__VERSION__'
         family: 'Brew MP'
