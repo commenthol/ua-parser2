@@ -1702,6 +1702,8 @@ os_parsers:
   ##########
   - regex: 'Android|Build|Linux'
     group:
+      - regex: '(Sailfish);'
+    
       - regex: '(Android)[ \-/](\d+)\.(\d+)(?:[.\-]([a-z0-9]+))?'
 
       - regex: '\((Linux); U; (\d+)\.(\d+)(?:[\.-](\d+|update1))?;'
