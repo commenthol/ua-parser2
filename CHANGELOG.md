@@ -1,6 +1,6 @@
 # Changelog
 
-**2017-11-??** v0.3.4
+**2017-12-02** v0.3.4
 
 - ua: bot: integrity
 - ua: Facebook Groups, Facebook Messenger, Facebook FBPageAdmin,
