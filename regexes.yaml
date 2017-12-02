@@ -78,6 +78,7 @@ user_agent_parsers:
       indexer|\
       inspect|\
       InternetSeer.com|\
+      ^integrity|\
       intraVnews|\
       ips-agent|\
       JetBrains|\
@@ -364,6 +365,7 @@ user_agent_parsers:
           PayPal IPN|\
           PagePeeker|\
           KiwiStatus|\
+          ^integrity|\
           intraVnews|\
           GuzzleHttp|\
           GomezAgent|\
@@ -752,6 +754,10 @@ user_agent_parsers:
   - regex: 'Pinterest|\[FB'
     group:
       # Facebook
+      - regex: '\[FB[^/]+?/(Groups|Messenger|FBPageAdmin)[^;]*?;FBAV/__VERSION__'
+        regex_flag: 'i'
+        family: 'Facebook $1'
+        type: 'app'
       - regex: '\[FB.*;(FB(?:AV|Version))/__VERSION__'
         family: 'Facebook'
         type: 'app'
@@ -765,6 +771,9 @@ user_agent_parsers:
         type: 'app'
 
   # Apps
+  - regex: '\b(MicroMessenger)/__VERSION__'
+    family: 'WeChat'
+    type: 'app'
   - regex: "\\b(\
       1Password|\
       AdobeAIR|\
@@ -787,7 +796,6 @@ user_agent_parsers:
       kioclient|\
       Kurio|\
       Line|\
-      MicroMessenger|\
       Microsoft Office|\
       Microsoft Office Excel|\
       Microsoft Office Mobile|\
@@ -847,6 +855,8 @@ user_agent_parsers:
   # Gecko group
   - regex: 'Gecko|Treco|FxiOS|Cheshire'
     group:
+      # Old Opera hides as Firefox
+      - regex: '(Opera) __VERSION__'
       # Browsers using Gecko; must go before Firefox
       - regex: "Mozilla.*\\b(\
           Beonex|\
@@ -1006,7 +1016,7 @@ user_agent_parsers:
   - regex: 'HbbTV'
     group:
       - regex: '(Web0S); Linux/SmartTV'
-        family: 'LG SmartTV'  
+        family: 'LG Browser'  
       - regex: '(Samsung;SmartTV)__VERSION__'
         family: 'Samsung SmartTV'
       - regex: '(Panasonic;VIERA )__VERSION__'
@@ -1014,10 +1024,22 @@ user_agent_parsers:
       - regex: 'Panasonic;(DIGA WebKit) M__VERSION__'
       - regex: '(Skykid)/__VERSION__'
         
+  # QQ Browsers
+  - regex: 'QQBrowser'
+    group:
+      - regex: '(MQQBrowser/Mini)(?:__VERSION__)?'
+        family: 'QQ Browser Mini'
+      - regex: '(MQQBrowser)(?:/__VERSION__)?'
+        family: 'QQ Browser Mobile'
+      - regex: '(QQBrowser)(?:/__VERSION__)?'
+        family: 'QQ Browser'
+
   # Partly Chrome Based Browsers
-  - regex: '\b(baidubrowser|BaiduHD|Focus|SamsungBrowser)/__VERSION__'
-  - regex: '\b(bdbrowser_i18n)/__VERSION__'
-    family: 'baidubrowser'
+  - regex: '\b(baidubrowser|BaiduHD|Focus|OculusBrowser|SamsungBrowser)/__VERSION__'
+  - regex: '\bbd(browser_i18n|browserhd_i18n|browser_mini)/__VERSION__'
+    family: 'baidu$1'
+  - regex: '(MAXTHON|Maxthon|MxBrowser)[ /]__VERSION__'
+    family: 'Maxthon'
 
   # Chrome Mobile - Chrome based
   - regex: 'CrMo|CriOS|Chrom|chromeframe'
@@ -1045,6 +1067,7 @@ user_agent_parsers:
           Puffin|\
           Qiyu|\
           SamsungBrowser/CrossApp|\
+          SogouMobileBrowser|\
           Superbird|\
           SurfBrowser|\
           Tenta|\
@@ -1096,16 +1119,6 @@ user_agent_parsers:
   - regex: '((?:BD)?Spark|BIDUBrowser)[ /]__VERSION__'
     family: 'Baidu Spark'
 
-  # QQ Browsers
-  - regex: 'QQBrowser'
-    group:
-      - regex: '(MQQBrowser/Mini)(?:__VERSION__)?'
-        family: 'QQ Browser Mini'
-      - regex: '(MQQBrowser)(?:/__VERSION__)?'
-        family: 'QQ Browser Mobile'
-      - regex: '(QQBrowser)(?:/__VERSION__)?'
-        family: 'QQ Browser'
-
   # AOL Browser
   - regex: '(AOL)[/ ](\d+)\.(\d+);? AOL(?:Build|BUILD)[ /]\d+'
   - regex: '(ADM)/'
@@ -1132,8 +1145,6 @@ user_agent_parsers:
 
   # @note: Phoenix needs separate regex as conflicts with device "Fly Phoenix 2"
   - regex: '(Phoenix)/__VERSION__'
-  - regex: '(MAXTHON|Maxthon|MxBrowser)[ /]__VERSION__'
-    family: 'Maxthon'
   - regex: '(ACHEETAHI)[ /]__VERSION__'
     family: 'CM Browser'
     
@@ -1214,6 +1225,7 @@ user_agent_parsers:
       NetPositive|\
       Netscape|\
       NetSurf|\
+      NTENTBrowser|\
       OmniWeb|\
       OneBrowser|\
       Opera|\
@@ -1231,6 +1243,7 @@ user_agent_parsers:
       QupZilla|\
       qutebrowser|\
       Raven for Mac|\
+      Roccat|\
       RockMelt|\
       SailfishBrowser|\
       SeaMonkey|\
@@ -1260,6 +1273,7 @@ user_agent_parsers:
       Viera|\
       Vivaldi|\
       WebPilot|\
+      WebPirate|\
       WebPositive|\
       Whale|\
       YoloBrowser|\
@@ -1448,7 +1462,7 @@ user_agent_parsers:
   - regex: '(OLPC)/Update()\.(\d+)'
     v1: '0'
 
-  - regex: '(SEMC\-Browser)/(\d+)\.(\d+)'
+  - regex: '(SEMC\-Browser)/(?:__VERSION__)?'
 
   - regex: 'Trident(.*)rv:(\d+)\.(\d+)'
     family: 'IE'

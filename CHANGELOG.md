@@ -2,6 +2,10 @@
 
 **2017-11-??** v0.3.4
 
+- ua: bot: integrity
+- ua: Facebook Groups, Facebook Messenger, Facebook FBPageAdmin,
+  NTENTBrowser, Roccat, WebPirate
+- ua: fix: BaiduBrowser, QQBrowser, Maxthon, SogouMobileBrowser, SEMC-Browser
 - ua: bot: Rival IQ
 - ua: app: bline, NAVER, Weibo, Mobicip, DaumApps
 - ua: fix Opera Mobile
