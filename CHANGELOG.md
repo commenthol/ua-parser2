@@ -2,6 +2,21 @@
 
 **2017-11-??** v0.3.4
 
+- ua: bot: Rival IQ
+- ua: app: bline, NAVER, Weibo, Mobicip, DaumApps
+- ua: fix Opera Mobile
+- ua: 115Browser, AirWatch Browser, AlohaBrowser, Baidu Explorer,
+  BaiduHD, SurfBrowser, Classilla, CM Browser, DiigoBrowser, Light,
+  Maxthon, MiuiBrowser, Navigator, QtWebkit,
+  SamsungBrowser/CrossApp, Shrook, SogouMobileBrowser,
+  Weibo, YoloBrowser
+- ua: fix HbbTV Browsers: ANTGalio, Samsung SmartTV, Skykid, SmartViera,
+  Viera, ToshibaTP, DIGA WebKit, hdplusinteraktiv, LG SmartTV
+- os: fix SailFish hiding as Android
+- ua: AppleBot, AppleNewsBot, AppleNews
+- os: fix Blackberry, iOS, Mac_68k
+- device: fix Vertu, Jolla
+- device: adding tons of new devices
 - device: Axgio, LG, iNew, Verico, TurboPad
 - device: Alps
 - device: Texet
@@ -27,7 +42,8 @@
 - ua: mobmail
 - ua: lwp-trivial, LinkWalker, David Client, Qwantify
 - fix ua: Tumblr is a bot
-- ua: Adsense-Snapshot-Google, Accoona-AI-Agent, WWW-Mechanize, AppleCoreMedia, Seznam.cz
+- ua: Adsense-Snapshot-Google, Accoona-AI-Agent, WWW-Mechanize,
+  AppleCoreMedia, Seznam.cz
 - ua: Detect apps
 - ua: Dorado WAP-Browser
 - os: fix Series40, Series60 
@@ -38,7 +54,9 @@
 - ua: Powermarks
 - ua: FossaMail
 - ua: Evolution
-- ua: InternetSeer.com, Photon, validator, Google-Site-Verification, MnoGoSearch, analyzer, FeedBlitz, FeedForAll, Alltop, Microsoft Office Mobile, Synapse, binlar, lbot, visionutils, WebThumb
+- ua: InternetSeer.com, Photon, validator, Google-Site-Verification,
+  MnoGoSearch, analyzer, FeedBlitz, FeedForAll, Alltop,
+  Microsoft Office Mobile, Synapse, binlar, lbot, visionutils, WebThumb
 - ua: Taringa UGC, MuckRack, BlackHawk, Sunrise
 - ua: BlackHawk
 - os: iOS special cases
@@ -105,7 +123,8 @@
 - ua: SpeedCurve WebPage Test bot
 - ua: Coc Coc browser fix
 - ua: fix notifyninja.com, XaxisSemanticsClassifier bot detection
-- ua: shrinktheweb, HubSpot Marketing Grader, crystalsemantics, collection@infegy.com bots ua: Contiki browser ua: better detection of bots
+- ua: shrinktheweb, HubSpot Marketing Grader, crystalsemantics,
+  collection@infegy.com bots ua: Contiki browser ua: better detection of bots
 - ua: Salam Browser
 - ua: Whale
 - ua: Slimjet

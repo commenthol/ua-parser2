@@ -14,7 +14,6 @@ pattern:
 
 #### Browser ####
 user_agent_parsers:
-
   ### iOS / OSX Applications
   - regex: '\b(CFNetwork|CaptiveNetworkSupport)'
     group:
@@ -115,6 +114,7 @@ user_agent_parsers:
       Reaper|\
       NewRelicPinger|\
       Retreiver|\
+      Rival IQ|\
       Robozilla|\
       scan|\
       Scooter|\
@@ -179,7 +179,7 @@ user_agent_parsers:
         family: 'SpeedCurve WebPage Test'
         type: 'bot'
 
-      - regex: '(NAVER)\(inapp; search(?:; \d+)?(?:; __VERSION_DIGITS__)?\)'
+      - regex: '(NAVER)\(inapp; search(?:; \d+)?(?:; __VERSION_DIGITS__)?[;)]'
         type: 'app'
 
       - regex: '^(PHP) '
@@ -401,6 +401,7 @@ user_agent_parsers:
           ^voyager|\
           ShopWiki|\
           ScoutJet|\
+          Rival IQ|\
           Qwantify|\
           OSSProxy|\
           Netvibes|\
@@ -797,6 +798,7 @@ user_agent_parsers:
       Microsoft Office Visio|\
       Microsoft Office Word|\
       Microsoft Office Word|\
+      Mobicip|\
       MS ?FrontPage|\
       NewsArticle|\
       NewsFire|\
@@ -835,6 +837,11 @@ user_agent_parsers:
       )\\b"
     type: 'app'
 
+  # Weibo
+  - regex: '_(weibo)_{1,2}__VERSION__'
+    family: 'Weibo'
+    type: 'app'
+  
   #### SPECIAL CASES TOP ####
 
   # Gecko group
@@ -853,8 +860,10 @@ user_agent_parsers:
           IceDragon|\
           K-Ninja|\
           KMLite|\
+          Light|\
           lolifox|\
           MultiZilla|\
+          Navigator|\
           [Pp]rism|\
           SailfishBrowser|\
           SeaMonkey|\
@@ -881,6 +890,9 @@ user_agent_parsers:
 
       # Waterfox
       - regex: '(Waterfox)/__VERSION__'
+
+      - regex: '(Firefox)/__VERSION_MOZILLA__ (Classilla)'
+        family: '$5'
 
       - regex: '(Firefox)/__VERSION_MOZILLA__'
 
@@ -912,7 +924,8 @@ user_agent_parsers:
       # Opera 14 for Android uses a WebKit render engine.
       - regex: '(?:Mobile Safari).*( OPR)/__VERSION__'
         family: 'Opera Mobile'
-
+      - regex: '(?:Android).*( OPR)/__VERSION__'
+        family: 'Opera Mobile'
       # Opera 15 for Desktop is similar to Chrome but includes an "OPR" Version string.
       - regex: '(?:Safari).*( OPR)/__VERSION__'
         family: 'Opera'
@@ -965,6 +978,8 @@ user_agent_parsers:
   - regex: '(2345Explorer|2345chrome)(?:[ /]| v)__VERSION__'
     family: 2345Explorer
 
+  - regex: '(NetFront NX) __VERSION__'
+    family: 'NetFront NX'
   - regex: '(Nintendo Switch.+? NF)(?:/__VERSION__)?'
     family: 'NetFront NF'
   # PlayStation Vita should go before Amazon Silk
@@ -987,14 +1002,26 @@ user_agent_parsers:
   - regex: '\b(GSA|Listia|Flipboard)/__VERSION__'
     type: app
 
+  # HbbTV Group
+  - regex: 'HbbTV'
+    group:
+      - regex: '(Web0S); Linux/SmartTV'
+        family: 'LG SmartTV'  
+      - regex: '(Samsung;SmartTV)__VERSION__'
+        family: 'Samsung SmartTV'
+      - regex: '(Panasonic;VIERA )__VERSION__'
+        family: 'SmartViera'
+      - regex: 'Panasonic;(DIGA WebKit) M__VERSION__'
+      - regex: '(Skykid)/__VERSION__'
+        
   # Partly Chrome Based Browsers
-  - regex: '\b(SamsungBrowser|baidubrowser|Focus)/__VERSION__'
+  - regex: '\b(baidubrowser|BaiduHD|Focus|SamsungBrowser)/__VERSION__'
+  - regex: '\b(bdbrowser_i18n)/__VERSION__'
+    family: 'baidubrowser'
 
   # Chrome Mobile - Chrome based
   - regex: 'CrMo|CriOS|Chrom|chromeframe'
     group:
-      - regex: '\b(bdbrowser_i18n)/__VERSION__'
-        family: 'baidubrowser'
       - regex: '\b(MiuiBrowser)/__VERSION__'
       # Headless Chrome
       # https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md
@@ -1003,19 +1030,23 @@ user_agent_parsers:
       - regex: ' (Nichrome)/self/(\d+)'
       # Chrome Based Browsers
       - regex: "\\b(\
+          AlohaBrowser|\
           Beamrise|\
           BlueBrowser|\
           Chedot|\
           Chromium|\
           Crosswalk|\
           Diglo|\
+          Maxthon|\
           MobileIron|\
           MxNitro|\
           OverwolfClient|\
           Polarity|\
           Puffin|\
           Qiyu|\
+          SamsungBrowser/CrossApp|\
           Superbird|\
+          SurfBrowser|\
           Tenta|\
           WhiteHat Aviator\
           )/__VERSION__"
@@ -1103,8 +1134,12 @@ user_agent_parsers:
   - regex: '(Phoenix)/__VERSION__'
   - regex: '(MAXTHON|Maxthon|MxBrowser)[ /]__VERSION__'
     family: 'Maxthon'
+  - regex: '(ACHEETAHI)[ /]__VERSION__'
+    family: 'CM Browser'
+    
   # Other browsers
   - regex: "(\
+      115Browser|\
       1stBrowser|\
       7Star|\
       Abrowser|\
@@ -1142,7 +1177,7 @@ user_agent_parsers:
       Fresco|\
       Galeon|\
       Google Earth(?: EC)?|\
-      HbbTV|\
+      hdplusinteraktiv|\
       HotJava|\
       IBrowse|\
       iCab|\
@@ -1171,6 +1206,8 @@ user_agent_parsers:
       Midori|\
       MiniBrowserMobile|\
       Minimo|\
+      MiuiBrowser|\
+      MobileIron|\
       mogimogi|\
       Net[Ff]ront|\
       NetFrontLifeBrowser|\
@@ -1188,6 +1225,7 @@ user_agent_parsers:
       Polaris|\
       Puffin|\
       PyAMF|\
+      QtWebkit|\
       Qt|\
       QuickLook|\
       QupZilla|\
@@ -1199,11 +1237,13 @@ user_agent_parsers:
       SecondLife|\
       Seznam\\.cz|\
       Shiira|\
+      Shrook|\
       SkipStone|\
       Skyfire|\
       Sleipnir|\
       Slimjet|\
       Snowshoe|\
+      SogouMobileBrowser|\
       Space Bison|\
       SputnikBrowser|\
       Stainless|\
@@ -1212,24 +1252,30 @@ user_agent_parsers:
       ThunderBrowse|\
       TinyBrowser|\
       TizenBrowser|\
+      ToshibaTP|\
       TungstenBrowser|\
       UP\\.Browser|\
       Valve (?:Client|Steam \\w+)|\
       Vienna|\
+      Viera|\
       Vivaldi|\
       WebPilot|\
       WebPositive|\
       Whale|\
+      YoloBrowser|\
       Xiino|\
       zdesktop\
       )[/ ]__VERSION_DIGITS__"
+
+  # VmWare Airwatch
+  - regex: '(AirWatch Browser) v__VERSION__'
 
   # Seznam.cz browser (based on WebKit)
   - regex: '(SznProhlizec)/(\d+)\.(\d+)(?:\.(\d+))?'
     family: 'Seznam.cz'
 
   # Browser without version
-  - regex: '(QIHU 360[SE]E|Sunrise)'
+  - regex: '(QIHU 360[SE]E|Sunrise|DiigoBrowser)'
 
   # Chrome needs to come after as it hides a lot of browsers from previous regex
   - regex: '(Chrome)[/ ]__VERSION__'
@@ -1365,9 +1411,17 @@ user_agent_parsers:
       # @ref http://stackoverflow.com/questions/2143763/
       - regex: '\b(GSA)/__VERSION__'
         family: 'Google App'
+      - regex: '\b(bline|DaumApps)/__VERSION__'
+        family: '$1'
+        type: 'app'
+      - regex: '(?:iPod|iPhone|iPad).+Version/.+(MXiOS)/__VERSION__'
+        family: 'Maxthon Mobile Safari'
       - regex: '(iPod|iPhone|iPad).+Version/__VERSION_2_DIGITS__.*[ +]Safari'
         family: 'Mobile Safari'
       - regex: '(?:iPod|iPhone|iPad).+?\b(AppleNews|News).+?Version/__VERSION_2_DIGITS__'
+        family: 'AppleNews'
+        type: 'app'
+      - regex: '(?:iPod|iPhone|iPad).+?\b(Mobicip).+?Version/__VERSION_2_DIGITS__'
         family: 'AppleNews'
         type: 'app'
       - regex: '(iPod|iPhone|iPad).+Version/__VERSION_2_DIGITS__'
@@ -1412,6 +1466,10 @@ user_agent_parsers:
   # Internet Explorer
   - regex: '(?:MS)?(IE)[ /](\d+)\.(\d+)'
 
+  # AppleWebKit / WebKit Nightly
+  - regex: '(AppleWebKit)/__VERSION__'
+    family: 'AppleWebKit'
+
   # headless agents
   - regex: '(Phantom)/V(\d+)\.(\d+)'
     family: 'Phantom Browser'
@@ -1439,6 +1497,7 @@ user_agent_parsers:
       PHP|\
       [Pp]ython-[^/]+|\
       PycURL|\
+      restify|\
       SophosAgent|\
       SophosUpdateManager|\
       urlgrabber|\
@@ -7810,9 +7869,3 @@ device_parsers:
     brand: 'Generic'
     model: 'Feature Phone'
     type: 'phone'
-
-models:
-  NEO:
-    1080P-N003: N003
-  Nokia:
-    genm14: XL2
