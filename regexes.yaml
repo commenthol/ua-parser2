@@ -849,7 +849,7 @@ user_agent_parsers:
   - regex: '_(weibo)_{1,2}__VERSION__'
     family: 'Weibo'
     type: 'app'
-  
+
   #### SPECIAL CASES TOP ####
 
   # Gecko group
@@ -1016,14 +1016,14 @@ user_agent_parsers:
   - regex: 'HbbTV'
     group:
       - regex: '(Web0S); Linux/SmartTV'
-        family: 'LG Browser'  
+        family: 'LG Browser'
       - regex: '(Samsung;SmartTV)__VERSION__'
         family: 'Samsung SmartTV'
       - regex: '(Panasonic;VIERA )__VERSION__'
         family: 'SmartViera'
       - regex: 'Panasonic;(DIGA WebKit) M__VERSION__'
       - regex: '(Skykid)/__VERSION__'
-        
+
   # QQ Browsers
   - regex: 'QQBrowser'
     group:
@@ -1147,7 +1147,7 @@ user_agent_parsers:
   - regex: '(Phoenix)/__VERSION__'
   - regex: '(ACHEETAHI)[ /]__VERSION__'
     family: 'CM Browser'
-    
+
   # Other browsers
   - regex: "(\
       115Browser|\
@@ -1776,7 +1776,7 @@ os_parsers:
   - regex: 'Android|Build|Linux'
     group:
       - regex: '(Sailfish);'
-    
+
       - regex: '(Android)[ \-/](\d+)\.(\d+)(?:[.\-]([a-z0-9]+))?'
 
       - regex: '\((Linux); U; (\d+)\.(\d+)(?:[\.-](\d+|update1))?;'
@@ -2010,19 +2010,58 @@ os_parsers:
     group:
       - regex: '((?:Mac[ +]?|; )OS[ +]X)[ /+](?:Version )?(?:__VERSION_OS_UNDERSCORE__|Mach-O)'
         family: 'Mac OS X'
-
-      # macOS Sierra
-      - regex: 'CFNetwork/807\.\d.* Darwin/16\.(\d)'
+      # macOS high Sierra https://en.wikipedia.org/wiki/MacOS_High_Sierra
+      - regex: 'CFNetwork/8.* Darwin/17\.4\.\d+.*\(x86_64\)'
+        family: 'macOS'
+        v1: '10'
+        v2: '13'
+        v3: '3'
+      - regex: 'CFNetwork/8.* Darwin/17\.3\.\d+.*\(x86_64\)'
+        family: 'macOS'
+        v1: '10'
+        v2: '13'
+        v3: '2'
+      - regex: 'CFNetwork/8.* Darwin/17\.2\.\d+.*\(x86_64\)'
+        family: 'macOS'
+        v1: '10'
+        v2: '13'
+        v3: '1'
+      - regex: 'CFNetwork/8.* Darwin/17\.\d.*\(x86_64\)'
+        family: 'macOS'
+        v1: '10'
+        v2: '13'
+      # macOS Sierra https://en.wikipedia.org/wiki/MacOS_Sierra
+      - regex: 'CFNetwork/8.* Darwin/16\.7\.\d+.*\(x86_64\)'
         family: 'macOS'
         v1: '10'
         v2: '12'
-        v3: '$1'
-      - regex: 'CFNetwork/807\.(\d)'
+        v3: '6'
+      - regex: 'CFNetwork/8.* Darwin/16\.6\.\d+.*\(x86_64\)'
         family: 'macOS'
         v1: '10'
         v2: '12'
-        v3: '$1'
-      - regex: ' Darwin/16\..*\((?:i386|x86_64)\)'
+        v3: '5'
+      - regex: 'CFNetwork/8.* Darwin/16\.5\.\d+.*\(x86_64\)'
+        family: 'macOS'
+        v1: '10'
+        v2: '12'
+        v3: '4'
+      - regex: 'CFNetwork/8.* Darwin/16\.4\.\d+.*\(x86_64\)'
+        family: 'macOS'
+        v1: '10'
+        v2: '12'
+        v3: '3'
+      - regex: 'CFNetwork/8.* Darwin/16\.3\.\d+.*\(x86_64\)'
+        family: 'macOS'
+        v1: '10'
+        v2: '12'
+        v3: '2'
+      - regex: 'CFNetwork/8.* Darwin/16\.1\.\d+.*\(x86_64\)'
+        family: 'macOS'
+        v1: '10'
+        v2: '12'
+        v3: '1'
+      - regex: 'CFNetwork/8.* Darwin/16\.\d.*\(x86_64\)'
         family: 'macOS'
         v1: '10'
         v2: '12'
@@ -2037,7 +2076,7 @@ os_parsers:
         v1: '10'
         v2: '11'
         v3: '$1'
-      - regex: ' Darwin/15\..*\((?:i386|x86_64)\)'
+      - regex: ' Darwin/15\..*\(x86_64\)'
         family: 'Mac OS X'
         v1: '10'
         v2: '11'
@@ -2161,10 +2200,39 @@ os_parsers:
       # @ref: https://en.wikipedia.org/wiki/Darwin_(operating_system)#Release_history
       # @ref: http://user-agents.me/cfnetwork-version-list
       ##########
-      - regex: 'CFNetwork/808\.(\d).* Darwin/16\.'
+      - regex: 'CFNetwork/8.* Darwin/17\.3\.\d+'
+        family: 'iOS'
+        v1: '11'
+        v2: '2'
+      - regex: 'CFNetwork/8.* Darwin/17\.2\.\d+'
+        family: 'iOS'
+        v1: '11'
+        v2: '1'
+      - regex: 'CFNetwork/8.* Darwin/17\.0\.\d+'
+        family: 'iOS'
+        v1: '11'
+        v2: '0'
+      - regex: 'CFNetwork/8.* Darwin/17\.(\d)'
+        family: 'iOS'
+        v1: '11'
+      - regex: 'CFNetwork/8.* Darwin/16\.7\.\d+'
         family: 'iOS'
         v1: '10'
-        v2: '$1'
+        v2: '3'
+        v3: '3'
+      - regex: 'CFNetwork/8.* Darwin/16\.6\.\d+'
+        family: 'iOS'
+        v1: '10'
+        v2: '3'
+        v3: '2'
+      - regex: 'CFNetwork/8.* Darwin/16\.5\.\d+'
+        family: 'iOS'
+        v1: '10'
+        v2: '3'
+      - regex: 'CFNetwork/8.* Darwin/16\.'
+        family: 'iOS'
+        v1: '10'
+        v2: '3'
       - regex: 'CFNetwork/(?:790\.\d).* Darwin/16\.'
         family: 'iOS'
         v1: '10'
