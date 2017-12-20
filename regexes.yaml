@@ -1034,6 +1034,10 @@ user_agent_parsers:
       - regex: '(QQBrowser)(?:/__VERSION__)?'
         family: 'QQ Browser'
 
+  # Edge
+  - regex: '\b(EdgA|EdgiOS)/__VERSION__'
+    family: 'Edge'
+
   # Partly Chrome Based Browsers
   - regex: '\b(baidubrowser|BaiduHD|Focus|OculusBrowser|SamsungBrowser)/__VERSION__'
   - regex: '\bbd(browser_i18n|browserhd_i18n|browser_mini)/__VERSION__'
@@ -1579,6 +1583,9 @@ engine_parsers:
 
   # Windows 10 IE version uses "Edge" and "Chrome"
   - regex: '\b(Edge)/(\d+)(?:\.(\d+))?'
+    family: 'EdgeHTML'
+  # Edge for Android / iOS
+  - regex: '\b(EdgA|EdgiOS)/__VERSION__'
     family: 'EdgeHTML'
 
   - regex: 'QtWebEngine/__VERSION__'
