@@ -1,5 +1,13 @@
 # Changelog
 
+**2018-08-11** v0.4.0
+
+- bump dependencies
+- ua: YahooMailProxy, insomnia bot, Mb2345Browser
+- os: KaiOS
+- device: Huawei NEM-L51, IRU M1003G, Lenovo S6000D, Sony PlayStation,
+  Apple Watch, Apple HomePod
+
 **2017-12-02** v0.3.4
 
 - ua: bot: integrity
@@ -50,7 +58,7 @@
   AppleCoreMedia, Seznam.cz
 - ua: Detect apps
 - ua: Dorado WAP-Browser
-- os: fix Series40, Series60 
+- os: fix Series40, Series60
 - ua: WEB.DE MailCheck
 - ua: stagefright
 - device: UC Browser Android

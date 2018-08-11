@@ -7,42 +7,31 @@
     "User-Agent",
     "ua-parser"
   ],
-  "license": "(MIT OR Apache-2.0)",
-  "contributors": [
-    {
-      "name": "Tobie Langel",
-      "email": "tobie.langel@gmail.com",
-      "web": "http://tobielangel.com"
-    },
-    {
-      "name": "Lindsey Simon",
-      "email": "lsimon@commoner.com",
-      "web": "http://www.idreamofuni.com"
-    },
-    {
-      "name": "Philip Tellis",
-      "email": "philip@bluesmoon.info",
-      "web": "http://bluesmoon.info"
-    },
-    {
-      "name": "Dave Olsen",
-      "email": "dmolsen@gmail.com",
-      "web": "http://dmolsen.com"
-    },
-    {
-      "name": "commenthol",
-      "email": "commenthol@gmail.com"
-    }
-  ],
-  "main": "./js/index",
+  "homepage": "https://github.com/commenthol/ua-parser2#readme",
+  "bugs": {
+    "url": "https://github.com/commenthol/ua-parser2/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "http://github.com/commenthol/ua-parser2.git"
+    "url": "git+ssh://git@github.com/commenthol/ua-parser2.git"
+  },
+  "license": "(MIT OR Apache-2.0)",
+  "author": "",
+  "contributors": [
+    "Tobie Langel <tobie.langel@gmail.com> (http://tobielangel.com)",
+    "Lindsey Simon <lsimon@commoner.com> (http://www.idreamofuni.com)",
+    "Philip Tellis <philip@bluesmoon.info> (http://bluesmoon.info)",
+    "Dave Olsen <dmolsen@gmail.com> (http://dmolsen.com)",
+    "commenthol <commenthol@gmail.com>"
+  ],
+  "main": "./js/index",
+  "directories": {
+    "doc": "doc"
   },
   "scripts": {
     "benchmark": "cd benchmark && npm i && node run.js",
+    "clean": "rimraf node_modules *.tgz",
     "lint": "eslint 'js/**/*.js'",
-    "prepublish": "js/bin/quick.js",
     "regen": "node ./js/bin/regen -c",
     "test": "cd js && mocha test/load/*.mocha.js && mocha",
     "update": "cp test_resources/new-tests.json test_resources/tests.json"
@@ -54,18 +43,18 @@
     }
   },
   "dependencies": {
-    "js-yaml": ">=3.8.4"
+    "js-yaml": ">=3.10.0"
   },
   "devDependencies": {
-    "commander": ">=2.11.0",
-    "eslint": "^4.1.1",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-node": "^5.1.0",
-    "eslint-plugin-promise": "^3.5.0",
+    "commander": ">=2.14.1",
+    "eslint": "^5.3.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "mocha": "*",
-    "shelljs": ">=0.7.8",
+    "shelljs": ">=0.8.1",
     "streamss": ">=0.2.5"
   },
   "engines": {
@@ -82,9 +71,6 @@
     }
   ],
   "maintainers": [
-    {
-      "name": "commenthol",
-      "email": "commenthol@gmail.com"
-    }
+    "commenthol <commenthol@gmail.com>"
   ]
 }

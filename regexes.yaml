@@ -40,6 +40,7 @@ user_agent_parsers:
       [A-Za-z]{3,30}\\.com|\
       Azureus|\
       BDFetch|\
+      BingWeb|\
       BingPreview|\
       blog|\
       BlogBridge|\
@@ -47,6 +48,7 @@ user_agent_parsers:
       bot|\
       boost|\
       catalog|\
+      insomnia|\
       Cerberian Drtrs|\
       charlotte|\
       check|\
@@ -76,6 +78,7 @@ user_agent_parsers:
       http[^:]*?://|\
       httpunit|\
       indexer|\
+      ^insomnia|\
       inspect|\
       InternetSeer.com|\
       ^integrity|\
@@ -390,6 +393,7 @@ user_agent_parsers:
           LinkAlarm|\
           LesnikBot|\
           JetBrains|\
+          ^insomnia|\
           i?seekbot|\
           ips-agent|\
           findlinks|\
@@ -452,6 +456,7 @@ user_agent_parsers:
           Filangy|\
           BotSeer|\
           \\boBot|\
+          BingWeb|\
           bingbot|\
           BDFetch|\
           Azureus|\
@@ -525,7 +530,6 @@ user_agent_parsers:
       - regex: 'MSIE \d+\..*?https?://((?:[\w\d-]+\.)?[\w\d-]+\.\w+)'
         type: 'bot'
 
-
   ### iOS / OSX Applications
   - regex: '\b(iPhone|iPad|iPod)'
     group:
@@ -555,6 +559,7 @@ user_agent_parsers:
       Sparrow|\
       Spicebird|\
       Thunderbird|\
+      YahooMailProxy|\
       YahooMobileMail|\
       (?:Macintosh.* AppleWebKit|MailBar|Postbox|HipChat)\
       )"
@@ -583,10 +588,14 @@ user_agent_parsers:
       - regex: 'Outlook-Express\/7\.0.*'
         family: 'Windows Live Mail'
         type: 'mail'
+      # Mail Agents with version
+      - regex: "(\
+          Evolution\
+          )/__VERSION__"
+        type: 'mail'
       # Other Mail Agents
       - regex: "(\
           Barca(?:Pro)?|\
-          Evolution|\
           Eudora|\
           ExchangeServicesClient|\
           ExchangeWebServices|\
@@ -606,6 +615,7 @@ user_agent_parsers:
           Slack_SSB|\
           Sparrow|\
           The Bat!(?: Voyager)?|\
+          YahooMailProxy|\
           YahooMobileMail\
           )(?:[/ ]__VERSION__)?"
         type: 'mail'
@@ -1010,7 +1020,7 @@ user_agent_parsers:
     family: 'Edge Mobile'
 
   - regex: '\b(GSA|Listia|Flipboard)/__VERSION__'
-    type: app
+    type: 'app'
 
   # HbbTV Group
   - regex: 'HbbTV'
@@ -1044,6 +1054,11 @@ user_agent_parsers:
     family: 'baidu$1'
   - regex: '(MAXTHON|Maxthon|MxBrowser)[ /]__VERSION__'
     family: 'Maxthon'
+  - regex: '(ACHEETAHI)[ /]__VERSION__'
+    family: 'CM Browser'
+  # Seznam.cz browser (based on WebKit)
+  - regex: '(SznProhlizec)/__VERSION__'
+    family: 'Seznam.cz'
 
   # Chrome Mobile - Chrome based
   - regex: 'CrMo|CriOS|Chrom|chromeframe'
@@ -1064,6 +1079,7 @@ user_agent_parsers:
           Crosswalk|\
           Diglo|\
           Maxthon|\
+          Mb2345Browser|\
           MobileIron|\
           MxNitro|\
           OverwolfClient|\
@@ -1149,8 +1165,6 @@ user_agent_parsers:
 
   # @note: Phoenix needs separate regex as conflicts with device "Fly Phoenix 2"
   - regex: '(Phoenix)/__VERSION__'
-  - regex: '(ACHEETAHI)[ /]__VERSION__'
-    family: 'CM Browser'
 
   # Other browsers
   - regex: "(\
@@ -1287,10 +1301,6 @@ user_agent_parsers:
 
   # VmWare Airwatch
   - regex: '(AirWatch Browser) v__VERSION__'
-
-  # Seznam.cz browser (based on WebKit)
-  - regex: '(SznProhlizec)/(\d+)\.(\d+)(?:\.(\d+))?'
-    family: 'Seznam.cz'
 
   # Browser without version
   - regex: '(QIHU 360[SE]E|Sunrise|DiigoBrowser)'
@@ -1523,7 +1533,7 @@ user_agent_parsers:
       Wget|\
       Zend_Http_Client\
       )\\b(?:[ /]__VERSION__)?"
-    type: headless
+    type: 'headless'
 
   # Proxy
   - regex: '\b(Hatena-Mobile-Gateway|Privoxy)/__VERSION__'
@@ -2207,6 +2217,31 @@ os_parsers:
       # @ref: https://en.wikipedia.org/wiki/Darwin_(operating_system)#Release_history
       # @ref: http://user-agents.me/cfnetwork-version-list
       ##########
+      - regex: 'CFNetwork/9.* Darwin/18\.0\.\d+'
+        family: 'iOS'
+        v1: '12'
+        v2: '0'
+      - regex: 'CFNetwork/9.* Darwin/(18)\.\d+'
+        family: 'iOS'
+        v1: '12'
+      - regex: 'CFNetwork/9.* Darwin/17\.7\.\d+'
+        family: 'iOS'
+        v1: '11'
+        v2: '4'
+        v3: '1'
+      - regex: 'CFNetwork/9.* Darwin/17\.6\.\d+'
+        family: 'iOS'
+        v1: '11'
+        v2: '4'
+      - regex: 'CFNetwork/8.* Darwin/17\.5\.\d+'
+        family: 'iOS'
+        v1: '11'
+        v2: '3'
+      - regex: 'CFNetwork/8.* Darwin/17\.4\.\d+'
+        family: 'iOS'
+        v1: '11'
+        v2: '2'
+        v3: '6'
       - regex: 'CFNetwork/8.* Darwin/17\.3\.\d+'
         family: 'iOS'
         v1: '11'
@@ -2240,10 +2275,30 @@ os_parsers:
         family: 'iOS'
         v1: '10'
         v2: '3'
+      - regex: 'CFNetwork/808\.3 Darwin/16\.3\.\d+'
+        family: 'iOS'
+        v1: '10'
+        v2: '2'
+        v3: '1'
       - regex: 'CFNetwork/(?:790\.\d).* Darwin/16\.'
         family: 'iOS'
         v1: '10'
         v2: '0'
+      - regex: 'CFNetwork/7.* Darwin/15\.6\.\d+'
+        family: 'iOS'
+        v1: '9'
+        v2: '3'
+        v3: '5'
+      - regex: 'CFNetwork/7.* Darwin/15\.5\.\d+'
+        family: 'iOS'
+        v1: '9'
+        v2: '3'
+        v3: '2'
+      - regex: 'CFNetwork/7.* Darwin/15\.4\.\d+'
+        family: 'iOS'
+        v1: '9'
+        v2: '3'
+        v3: '1'
       - regex: 'CFNetwork/758\.(\d)'
         family: 'iOS'
         v1: '9'
@@ -2377,11 +2432,12 @@ os_parsers:
         family: 'BlackBerry OS'
 
   ##########
-  # Firefox OS
+  # Firefox OS/ KaiOS
   # https://developer.mozilla.org/en-US/docs/Web/HTTP/Gecko_user_agent_string_reference
   ##########
 
-  - regex: '\((Mobile|Tablet);.+Firefox'
+  - regex: '(\((Mobile|Tablet);.+Firefox|KaiOS\/|Kai\/)'
+    regex_flag: 'i'
     group:
       - regex: '\((?:Mobile|Tablet);.+Gecko/18.0 Firefox/\d+\.\d+'
         family: 'Firefox OS'
@@ -2412,6 +2468,9 @@ os_parsers:
         family: 'Firefox OS'
         v1: '2'
         v2: '1'
+      # KaiOS
+      - regex: '(Kai|KaiOS|KAIOS)/__VERSION_2_DIGITS__'
+        family: 'KaiOS'
       # general matcher
       - regex: '\((Mobile|Tablet);.+Firefox/\d+\.\d+'
         family: 'Firefox OS'
@@ -2626,7 +2685,7 @@ device_parsers:
         device: 'Huawei $1'
         brand: 'Huawei'
         model: '$1'
-      - regex: '; *(Orange Daytona|Pulse|Pulse Mini|Vodafone 858|C8500|C8600|C8650|C8660|MEDIA PAD|Nexus 6P|CHC-U03|RBM2|H30-U10|P8)(?: Build|[;)])'
+      - regex: '; *(Orange Daytona|Pulse|Pulse Mini|Vodafone 858|C8500|C8600|C8650|C8660|MEDIA PAD|NEM-L51|Nexus 6P|CHC-U03|RBM2|H30-U10|P8)(?: Build|[;)])'
         device: 'Huawei $1'
         brand: 'Huawei'
         model: '$1'
@@ -2710,7 +2769,7 @@ device_parsers:
         device: '4Good $1'
         brand: '4Good'
         model: '$1'
-        type: tablet
+        type: 'tablet'
 
       #########
       # Acer
@@ -4008,12 +4067,12 @@ device_parsers:
         device: '$1'
         brand: 'Google'
         model: '$1'
-        type: glasses
+        type: 'glasses'
       - regex: '; *(Pixel C)__BUILD__'
         device: '$1'
         brand: 'Google'
         model: '$1'
-        type: tablet
+        type: 'tablet'
       - regex: '; *(Pixel|Pixel XL|Pixel 2|Pixel 2 XL)__BUILD__'
         device: '$1'
         brand: 'Google'
@@ -4455,7 +4514,7 @@ device_parsers:
       # IRU.ru
       # @ref: http://www.iru.ru/catalog/soho/planetable/
       #########
-      - regex: '; *(M702pro|M5301|M5302)(?: Build|[;)])'
+      - regex: '; *(M702pro|M5301|M5302|M1003G)(?: Build|[;)])'
         device: '$1'
         brand: 'Iru'
         model: '$1'
@@ -4860,7 +4919,7 @@ device_parsers:
         brand: 'Lenovo'
         model: '$1 $2 $3'
         type: 'tablet'
-      - regex: '; *(3GC101|3GW10[01]|A390|A3000|A680|A808|A850|A880|AT1010-T|K1)__BUILD__'
+      - regex: '; *(3GC101|3GW10[01]|A390|A3000|A680|A808|A850|A880|AT1010-T|K1|S6000D)__BUILD__'
         device: '$1'
         brand: 'Lenovo'
         model: '$1'
@@ -6620,7 +6679,7 @@ device_parsers:
       # @ref: http://www.xiaomi.com/event/buyphone
       # @ref: http://www.mi.com/en
       #########
-      - regex: '; *((?:MI|MI2|Mi|HM|MI-ONE|MiPad|Redmi|2013022|HM_1SW)[ _][^;/]*)(?:Build|MIUI|[;)])'
+      - regex: '; *((?:Mi|MI|MI2|Mi|HM|MI-ONE|MiPad|Redmi|2013022|HM_1SW)[ _][^;/]*)(?:Build|MIUI|[;)])'
         device: 'XiaoMi $1'
         brand: 'XiaoMi'
         model: '$1'
@@ -6879,6 +6938,10 @@ device_parsers:
         device: '$1 $2'
         brand: '$1'
         model: '$2'
+      - regex: '(GT-A7100)__BUILD__'
+        device: '$1'
+        brand: 'sprd'
+        model: '$1'
       # @ref: http://eshinechina.en.alibaba.com/
       - regex: '; *(H\d{2}00\+?) Build'
         device: '$1'
@@ -7231,7 +7294,7 @@ device_parsers:
     device: 'AppleTV'
     brand: 'Apple'
     model: 'AppleTV$1$2'
-    type: tv
+    type: 'tv'
 
   #########
   # Tesla Model S
@@ -7255,32 +7318,42 @@ device_parsers:
         device: '$1$3'
         brand: 'Apple'
         model: '$1$2$3'
-        type: tablet
+        type: 'tablet'
       - regex: '(iPd)(\d+,\d+)'
         device: 'iPod'
         brand: 'Apple'
         model: 'iPod$2'
-        type: player
+        type: 'player'
+      - regex: '(Apple Watch)(?:;| Simulator;)'
+        device: '$1'
+        brand: 'Apple'
+        model: '$1'
+        type: 'watch'
+      - regex: '(HomePod)(?:;| Simulator;)'
+        device: '$1'
+        brand: 'Apple'
+        model: '$1'
+        type: 'smartspeaker'
       - regex: '(iPod)(\d+,\d+).*(iPod touch)'
         device: '$3'
         brand: 'Apple'
         model: '$1$2'
-        type: player
+        type: 'player'
       - regex: '(iPod)(\d+,\d+)|(iPod|iPod touch)(?:;| Simulator;)'
         device: '$1$3'
         brand: 'Apple'
         model: '$1$2$3'
-        type: player
+        type: 'player'
       - regex: '(iPh)(\d+,\d+)'
         device: 'iPhone'
         brand: 'Apple'
         model: 'iPhone$2'
-        type: smartphone
+        type: 'smartphone'
       - regex: '(iPhone)(\d+,\d+)|(iPhone)(?:;| Simulator;)'
         device: '$1$3'
         brand: 'Apple'
         model: '$1$2$3'
-        type: smartphone
+        type: 'smartphone'
       # @note: desktop applications show device info
       - regex: 'CFNetwork/.* Darwin/\d.*\(((?:Mac|iMac|PowerMac|PowerBook)[^\d]*)(\d+)(?:,|%2C)(\d+)'
         device: '$1$2,$3'
@@ -7304,7 +7377,7 @@ device_parsers:
     device: 'Acer $1'
     brand: 'Acer'
     model: '$1'
-    type: phone
+    type: 'phone'
 
   ##########
   # Alcatel
@@ -7413,7 +7486,7 @@ device_parsers:
     device: '$1'
     brand: '$1'
     model: '$2'
-    type: tv
+    type: 'tv'
 
   ##########
   # FREE SAS
@@ -7620,7 +7693,7 @@ device_parsers:
         device: '$1'
         brand: 'Microsoft'
         model: '$1'
-        type: player
+        type: 'player'
 
   ##########
   # motorola
@@ -7752,9 +7825,14 @@ device_parsers:
   # @ref: http://playstation.com
   # The Vita spoofs the Kindle
   ##########
-  - regex: 'PlayStation'
+  - regex: 'PlayStation|\bPS[34]\b'
     regex_flag: 'i'
     group:
+      - regex: '\bPS([34])\b'
+        device: 'PlayStation $1'
+        brand: 'Sony'
+        model: 'PlayStation $1'
+        type: 'tv'
       - regex: 'PlayStation (\d+)'
         regex_flag: 'i'
         device: 'PlayStation $1'
@@ -7930,12 +8008,12 @@ device_parsers:
   # Spiders (this is a hack...)
   # Sort by length
   ##########
-  - regex: '(bot|zao|borg|khte|ktht|ktxn|oegp|silk|xenu|zeal|^ning|lycos|nutch|htdig|crawl|cibra|slurp|sogou|teoma|voila|yahoo|daumoa|genieo|ichiro|holmes|^jnlp/|^java/|larbin|pompos|reaper|scrapy|snappy|speedy|spider|vortex|favicon|monitor|riddler|scooter|scraper|scrubby|whatweb|winhttp|indexer|zooshot|archiver|^voyager|heritrix|icarus6j|mogimogi|netvibes|qwantify|retreiver|newsgator|findlinks|altavista|charlotte|synthetic|tlsprober|wordpress|wsr-agent|blogbridge|catchpoint|classifier|pagepeeker|gomezagent|squrl java|statuscake|bingpreview|netresearch|searchsight|webthumbnail|http%20client|python-urllib|dataparksearch|screaming frog|internetarchive|appengine-google|semanticdiscovery|google web preview|facebookexternalhit|iltrovatore-setaccio|google-http-java-client|google.*/\+/web/snippet)'
+  - regex: '(bot|insomia|zao|borg|khte|ktht|ktxn|oegp|silk|xenu|zeal|^ning|lycos|nutch|htdig|crawl|cibra|slurp|sogou|teoma|voila|yahoo|daumoa|genieo|ichiro|holmes|^jnlp/|^java/|larbin|pompos|reaper|scrapy|snappy|speedy|spider|vortex|favicon|monitor|riddler|scooter|scraper|scrubby|whatweb|winhttp|indexer|zooshot|archiver|^voyager|heritrix|icarus6j|mogimogi|netvibes|qwantify|retreiver|newsgator|findlinks|altavista|charlotte|synthetic|tlsprober|wordpress|wsr-agent|blogbridge|catchpoint|classifier|pagepeeker|gomezagent|squrl java|statuscake|bingpreview|netresearch|searchsight|webthumbnail|http%20client|python-urllib|dataparksearch|screaming frog|internetarchive|appengine-google|semanticdiscovery|google web preview|facebookexternalhit|iltrovatore-setaccio|google-http-java-client|google.*/\+/web/snippet)'
     regex_flag: 'i'
     device: 'Spider'
     brand: 'Spider'
     model: 'Desktop'
-    type: bot
+    type: 'bot'
 
   ##########
   # Generic Feature Phone
