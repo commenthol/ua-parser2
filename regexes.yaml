@@ -1,15 +1,14 @@
-version: '0.3.4'
 update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 
 # replacement pattern
 pattern:
-  __VERSION__: '(\d+)(?:\.(\d+))?(?:\.([a-z\d]+))?'
-  __VERSION_2_DIGITS__: '(\d+)\.(\d+)(?:\.(\d+))?'
-  __VERSION_DIGITS__: '(\d+)(?:\.(\d+))?(?:\.(\d+))?'
-  __VERSION_DIGITS_UNDERSCORE__: '(\d+)(?:[._](\d+))?(?:[._](\d+))?'
-  __VERSION_MOZILLA__: '(\d+)(?:\.(\d+))?(?:\.?([a-z\d]+))?'
-  __VERSION_OS__: '(\d+)(?:\.(\d+))?(?:\.(\d+))?(?:\.(\d+))?'
-  __VERSION_OS_UNDERSCORE__: '(\d+)(?:[._](\d+))?(?:[._](\d+))?'
+  __VERSION__: '(\d+)(?:\.(\d+)|)(?:\.([a-z\d]+)|)'
+  __VERSION_2_DIGITS__: '(\d+)\.(\d+)(?:\.(\d+)|)'
+  __VERSION_DIGITS__: '(\d+)(?:\.(\d+)|)(?:\.(\d+)|)'
+  __VERSION_DIGITS_UNDERSCORE__: '(\d+)(?:[._](\d+)|)(?:[._](\d+)|)'
+  __VERSION_MOZILLA__: '(\d+)(?:\.(\d+)|)(?:\.?([a-z\d]+)|)'
+  __VERSION_OS__: '(\d+)(?:\.(\d+)|)(?:\.(\d+)|)(?:\.(\d+)|)'
+  __VERSION_OS_UNDERSCORE__: '(\d+)(?:[._](\d+)|)(?:[._](\d+)|)'
   __BUILD__: '(?: Build|[;)])'
 
 #### Browser ####
@@ -17,7 +16,7 @@ user_agent_parsers:
   ### iOS / OSX Applications
   - regex: '\b(CFNetwork|CaptiveNetworkSupport)'
     group:
-    - regex: '^((?:(?! CFNetwork|/).)+)(?:/(\d+)(?:\.([a-z\d]+))*|.*)? CFNetwork/.*'
+    - regex: '^((?:(?! CFNetwork|/).)+)(?:/(\d+)(?:\.([a-z\d]+)|)(?:\.([a-z\d]+)|)(?:.+|)|) CFNetwork/'
       type: 'app'
     - regex: '(CFNetwork)(?:/__VERSION__|.|$)'
       type: 'app'
@@ -169,7 +168,7 @@ user_agent_parsers:
         family: 'GooglePlusBot'
         type: 'bot'
       # Pinterestbot
-      - regex: '(Pinterest(?:bot)?)\/(\d+)(?:\.(\d+)|[^\.]).*https?:\/\/'
+      - regex: '(Pinterest(?:bot|))\/(\d+)(?:\.(\d+)|[^\.]).*https?:\/\/'
         type: 'bot'
       # Add loadbalancer, monitoring, health-checks
       - regex: '(ELB-HealthChecker|SiteScope)(?:[/ ]__VERSION__|.|$)'
@@ -183,45 +182,50 @@ user_agent_parsers:
         family: 'SpeedCurve WebPage Test'
         type: 'bot'
 
-      - regex: '(NAVER)\(inapp; search(?:; \d+)?(?:; __VERSION_DIGITS__)?[;)]'
+      - regex: '(NAVER)\(inapp; search(?:; \d+|)(?:; __VERSION_DIGITS__|)[;)]'
         type: 'app'
 
       - regex: '^(PHP) '
         type: 'bot'
       - regex: 'aggregator:(\\w+)'
         type: 'bot'
+      - regex: '/(Nutch)-__VERSION_2_DIGITS__'
+        type: 'bot'
 
       # sort by length
+      # BAD REGEX
       - regex: "(\
-          (?:[a-z0-9]{1,30}[ ._-]){0,4}[a-z0-9]{3,30}/Nutch|\
-          (?:[a-z]{1,20}-)?Googlebot(?:-[a-z]{1,20})?|\
+          Ask ?Jeeves/Teoma|\
+          ^teoma|\
+          (?:[a-z]{1,20}-|)Googlebot(?:-[a-z]{1,20}|)|\
           Microsoft Windows Network Diagnostics|\
           Microsoft [A-Za-z ]{6,50} Discovery|\
           BoardReader Favicon Fetcher\\s{0,5}|\
+          BoardReader Blog Indexer|\
           baidu[a-z]{0,20}(?:spider|Mobaider)|\
           Netcraft (?:Web|SSL) Server Survey|\
           Sogou \\w{1,20} (?:Robot|Spider)|\
-          AdsBot-Google(?:-[a-z]{1,20})?|\
+          AdsBot-Google(?:-[a-z]{1,20}|)|\
           Automattic Analytics Crawler|\
           Google Page Speed Insights|\
           SynapticSearch/AI Crawler|\
-          msnbot(?:-media\\s{0,5})?|\
-          IlTrovatore(?:-Setaccio)?|\
+          msnbot(?:-media\\s{0,5}|)|\
+          IlTrovatore(?:-Setaccio|)|\
           XaxisSemanticsClassifier|\
           www\\.WebSearch.com\\.au|\
           HubSpot Marketing Grader|\
           Google-Site-Verification|\
-          \\bYeti(?:-[a-z]{0,20})?|\
+          \\bYeti(?:-[a-z]{0,20}|)|\
           Advanced Email Extractor|\
-          Xenu(?:.s)? Link Sleuth|\
+          Xenu(?:.s|) Link Sleuth|\
           Google-HTTP-Java-Client|\
-          Daumoa(?:-feedfetcher)?|\
+          Daumoa(?:-feedfetcher|)|\
           collection@infegy\\.com|\
           Yahoo[a-z]{0,20}Seeker|\
           Slackbot-LinkExpanding|\
           NetShelter ContentScan|\
           Free ScreenShotService|\
-          SEARCHALOT(?:\\.COM)?|\
+          SEARCHALOT(?:\\.COM|)|\
           SafariBookmarkChecker|\
           Peeplo Screenshot Bot|\
           Microsoft URL Control|\
@@ -230,14 +234,14 @@ user_agent_parsers:
           Flamingo_SearchEngine|\
           \\b\\w*favicon\\w*\\b|\
           BrokenLinkCheck\\.com|\
-          Y!J(?:-[A-Z]{1,30})?|\
+          Y!J(?:-[A-Z]{1,30}|)|\
           Windows Phone Search|\
           websitepulse checker|\
           TrialPay URL checker|\
           Rackspace Monitoring|\
           Mediapartners-Google|\
           Google-SearchByImage|\
-          archive.*?\\.org_bot|\
+          archive.{0,30}\\.org_bot|\
           ZeBot_www\\.ze\\.bz|\
           Yahoo! SearchMonkey|\
           www\\.alertra\\.com|\
@@ -245,16 +249,16 @@ user_agent_parsers:
           NetcraftSurveyAgent|\
           GigablastOpenSource|\
           facebookexternalhit|\
-          Catchpoint(?: bot)?|\
+          Catchpoint(?: bot|)|\
           CloudEndure Scanner|\
           shrinktheweb\\.com|\
           Shoppimon Analyzer|\
           PlantyNet_WebRobot|\
           NetLyzer FastProbe|\
           mixed-content-scan|\
-          Mail\\.RU(?:_Bot)?|\
+          Mail\\.RU(?:_Bot|)|\
           Innovazion Crawler|\
-          ichiro(?:/mobile)?|\
+          ichiro(?:/mobile|)|\
           Google Web Preview|\
           Comodo SSL Checker|\
           1470\\.net crawler|\
@@ -263,7 +267,7 @@ user_agent_parsers:
           seoscanners\\.net|\
           semanticdiscovery|\
           notifyninja\\.com|\
-          Microsoft .*? Bot|\
+          Microsoft .{0,30} Bot|\
           IP2[a-z]{1,20}Bot|\
           CostaCider Search|\
           SeznamEmailProxy|\
@@ -312,9 +316,8 @@ user_agent_parsers:
           WWW-Mechanize|\
           YottaaMonitor|\
           WDG_Validator|\
-          voila(?:bot)?|\
+          voila(?:bot|)|\
           ThumbShotsBot|\
-          teoma(?!bar)?|\
           socbot search|\
           ObjectsSearch|\
           http%20client|\
@@ -507,27 +510,29 @@ user_agent_parsers:
           JNLP|\
           ^FDM|\
           ^AHC\
-          )(?:[ /-]__VERSION__)?"
+          )(?:[ /-]__VERSION__|)"
         regex_flag: 'i'
         type: 'bot'
 
-      - regex: '^(bot)[^a-z](?:__VERSION__)?'
+      - regex: '^(bot)[^a-z](?:__VERSION__|)'
         regex_flag: 'i'
         type: 'bot'
 
+      # BAD regex
+          # (?:[a-z\\.\\u0027]{1,30}[ _-]){0,4}[a-z_]{0,30}\
       - regex: "(\
-          (?:[a-z\\.\\u0027]{1,30}[ _-]){0,4}[a-z_]{0,30}\
+          (?:[a-z][a-z. _-]{0,30} ?|)\
           (?:\
           crawler|crawl|scraper|spider|indexer|webbot|analyzer|\
           WhatsApp|robot\\b|\
           (?:(?!cubot)[\\w-]{2})bot\\b|\
           [\\w.]+ bot\\b| bot(?=@)\\b\
           )\
-          )(?:[ /-]__VERSION__)?"
+          )(?:[ /-]__VERSION__|)"
         regex_flag: 'i'
         type: 'bot'
 
-      - regex: 'MSIE \d+\..*?https?://((?:[\w\d-]+\.)?[\w\d-]+\.\w+)'
+      - regex: 'MSIE \d+\..*?https?://((?:[\w\d-]+\.|)[\w\d-]+\.\w+)'
         type: 'bot'
 
   ### iOS / OSX Applications
@@ -580,7 +585,7 @@ user_agent_parsers:
         v1: '2013'
         type: 'mail'
       # Outlook 2016
-      - regex: 'Microsoft Outlook (?:Mail )?16\.\d+\.\d+'
+      - regex: 'Microsoft Outlook (?:Mail |)16\.\d+\.\d+'
         family: 'Outlook'
         v1: '2016'
         type: 'mail'
@@ -595,7 +600,7 @@ user_agent_parsers:
         type: 'mail'
       # Other Mail Agents
       - regex: "(\
-          Barca(?:Pro)?|\
+          Barca(?:Pro|)|\
           Eudora|\
           ExchangeServicesClient|\
           ExchangeWebServices|\
@@ -614,10 +619,10 @@ user_agent_parsers:
           Postbox|\
           Slack_SSB|\
           Sparrow|\
-          The Bat!(?: Voyager)?|\
+          The Bat!(?: Voyager|)|\
           YahooMailProxy|\
           YahooMobileMail\
-          )(?:[/ ]__VERSION__)?"
+          )(?:[/ ]__VERSION__|)"
         type: 'mail'
       # Apple Air Mail
       - regex: '(Airmail) __VERSION__'
@@ -625,7 +630,7 @@ user_agent_parsers:
       - regex: '(Shredder|Spicebird)/__VERSION__'
         type: 'mail'
       # Apple Mail
-      - regex: '^Mozilla\/5\.0 \(.* Mac OS X.*\(KHTML, like Gecko\)(?: Mobile\/[\S]*)?$'
+      - regex: '^Mozilla\/5\.0 \(.* Mac OS X.*\(KHTML, like Gecko\)(?: Mobile\/[\S]*|)$'
         family: 'Apple Mail'
         type: 'mail'
       # Lightning (for Thunderbird) http://www.mozilla.org/projects/calendar/lightning/
@@ -688,7 +693,7 @@ user_agent_parsers:
       UniversalFeedParser|\
       Windows-RSS-Platform|\
       Wizz RSS News Reader\
-      )(?:[ /]__VERSION__)?"
+      )(?:[ /]__VERSION__|)"
     type: 'feedreader'
 
   # podcast
@@ -718,10 +723,10 @@ user_agent_parsers:
       PodCruncher|\
       PocketTunes|\
       Podcasts|\
-      Podkicker(?: Classic| Pro)?|\
+      Podkicker(?: Classic| Pro|)|\
       podracer|\
       RSS_?Radio\
-      )\\b(?:(?: v ?|[ /])__VERSION__)?"
+      )\\b(?:(?: v ?|[ /])__VERSION__|)"
     type: 'podcast'
 
   # mediaplayers
@@ -734,7 +739,7 @@ user_agent_parsers:
       foobar2000|\
       HTC Streaming Player|\
       Instacast|\
-      iTunes(?:-iP\\w+(?:-\\w+)?)?|\
+      iTunes(?:-iP\\w+(?:-\\w+|)|)|\
       Kodi|\
       LG Player|\
       MediaMonkey|\
@@ -748,16 +753,16 @@ user_agent_parsers:
       vlc|\
       VLC|\
       VOX Music Player|\
-      Windows-Media-Player(?:-\\w+)?|\
+      Windows-Media-Player(?:-\\w+|)|\
       WMPlayer|\
       XBMC|\
       Zune\
-      )\\b(?:[ /](\\d+)(?:\\.(\\d+)(?:\\.(\\d+))?(-[A-Z\\d]+)?)?)?"
+      )\\b(?:[ /](\\d+)(?:\\.(\\d+)(?:\\.(\\d+)|)(-[A-Z\\d]+|)|)|)"
     v3: '$4$5'
     type: 'mediaplayer'
   - regex: '(Lavf|Miro)/?__VERSION__'
     type: 'mediaplayer'
-  - regex: '(QuickTime)(?:(?:(?:.+qtver=)|(?:(?: E-)?[\./]))__VERSION__)?'
+  - regex: '(QuickTime)(?:(?:(?:.+qtver=)|(?:(?: E-|)[\./]))__VERSION__|)'
     type: 'mediaplayer'
 
   # social networks
@@ -777,7 +782,7 @@ user_agent_parsers:
       # Pinterest
       - regex: '\[(Pinterest)/[^\]]+\]'
         type: 'app'
-      - regex: '(Pinterest)(?: for Android(?: Tablet)?)?/__VERSION__'
+      - regex: '(Pinterest)(?: for Android(?: Tablet|)|)/__VERSION__'
         type: 'app'
 
   # Apps
@@ -874,7 +879,7 @@ user_agent_parsers:
           Cheshire|\
           Chimera|\
           CometBird|\
-          Firebird(?: Browser)?|\
+          Firebird(?: Browser|)|\
           Fireweb Navigator|\
           Flock|\
           IceDragon|\
@@ -929,7 +934,7 @@ user_agent_parsers:
       # Opera will stop at 9.80 and hide the real version in the Version string.
       # see: http://dev.opera.com/articles/view/opera-ua-string-changes/
       - regex: '(Opera Tablet).*Version/__VERSION_DIGITS__'
-      - regex: '(Opera Mini)(?:/att)?/__VERSION_DIGITS__'
+      - regex: '(Opera Mini)(?:/att|)/__VERSION_DIGITS__'
       - regex: '(Opera Mini)'
       - regex: '(Opera)/.+Opera Mobi.+Version/__VERSION_DIGITS__'
         family: 'Opera Mobile'
@@ -972,7 +977,7 @@ user_agent_parsers:
     family: 'LuaKit'
 
   # Rekonq
-  - regex: '(rekonq)(?:/__VERSION__ Safari)?'
+  - regex: '(rekonq)(?:/__VERSION__ Safari|)'
     family: 'Rekonq'
 
   # Conkeror lowercase/uppercase
@@ -1000,19 +1005,19 @@ user_agent_parsers:
 
   - regex: '(NetFront NX) __VERSION__'
     family: 'NetFront NX'
-  - regex: '(Nintendo Switch.+? NF)(?:/__VERSION__)?'
+  - regex: '(Nintendo Switch.+? NF)(?:/__VERSION__|)'
     family: 'NetFront NF'
   # PlayStation Vita should go before Amazon Silk
-  - regex: '(PLAYSTATION 3.+WebKit|Nintendo 3DS|PlayStation Vita|AppleWebKit.+ NX)(?:/__VERSION__)?'
+  - regex: '(PLAYSTATION 3.+WebKit|Nintendo 3DS|PlayStation Vita|AppleWebKit.+ NX)(?:/__VERSION__|)'
     family: 'NetFront NX'
   - regex: '(PlayStation 4) __VERSION__'
     family: 'PlayStation Browser'
   # Amazon Silk, should go before Chrome Mobile and Safari
-  - regex: '(Silk)/(\d+)\.(\d+)(?:\.([0-9\-]+))?'
+  - regex: '(Silk)/(\d+)\.(\d+)(?:\.([0-9\-]+)|)'
     family: 'Amazon Silk'
 
   # Coc Coc browser, based on Chrome (used in Vietnam)
-  - regex: '(coc_coc_browser|CoRom)/(\d+)\.(\d+)(?:\.(\d+))?'
+  - regex: '(coc_coc_browser|CoRom)/(\d+)\.(\d+)(?:\.(\d+)|)'
     family: 'Coc Coc'
 
   # Edge Mobile
@@ -1037,11 +1042,11 @@ user_agent_parsers:
   # QQ Browsers
   - regex: 'QQBrowser'
     group:
-      - regex: '(MQQBrowser/Mini)(?:__VERSION__)?'
+      - regex: '(MQQBrowser/Mini)(?:__VERSION__|)'
         family: 'QQ Browser Mini'
-      - regex: '(MQQBrowser)(?:/__VERSION__)?'
+      - regex: '(MQQBrowser)(?:/__VERSION__|)'
         family: 'QQ Browser Mobile'
-      - regex: '(QQBrowser)(?:/__VERSION__)?'
+      - regex: '(QQBrowser)(?:/__VERSION__|)'
         family: 'QQ Browser'
 
   # Edge
@@ -1066,7 +1071,7 @@ user_agent_parsers:
       - regex: '\b(MiuiBrowser)/__VERSION__'
       # Headless Chrome
       # https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md
-      - regex: '(HeadlessChrome)(?:/(\d+)\.(\d+)\.?(\d+)?)?'
+      - regex: '(HeadlessChrome)(?:/(\d+)\.(\d+)\.?(\d+|)|)'
         type: 'headless'
       - regex: ' (Nichrome)/self/(\d+)'
       # Chrome Based Browsers
@@ -1136,7 +1141,7 @@ user_agent_parsers:
     family: 'Baidu Explorer'
 
   # Baidu Spark
-  - regex: '((?:BD)?Spark|BIDUBrowser)[ /]__VERSION__'
+  - regex: '((?:BD|)Spark|BIDUBrowser)[ /]__VERSION__'
     family: 'Baidu Spark'
 
   # AOL Browser
@@ -1148,11 +1153,11 @@ user_agent_parsers:
   - regex: '(OmniWeb)/v?__VERSION__'
 
   # Netscape
-  - regex: '\b(Navigator|Netscape6)/(\d+)(?:\.(\d+)(?:\.?([ab]?\d+[a-z]*))?)?'
+  - regex: '\b(Navigator|Netscape6)/(\d+)(?:\.(\d+)(?:\.?([ab]?\d+[a-z]*)|)|)'
     family: 'Netscape'
 
   # Windows 10 IE version uses "Edge" and "Chrome"
-  - regex: '\b(Edge)/(\d+)(?:\.(\d+))?'
+  - regex: '\b(Edge)/(\d+)(?:\.(\d+)|)'
     family: 'Edge'
 
   # iOS Versions of Browsers
@@ -1205,7 +1210,7 @@ user_agent_parsers:
       Fluid|\
       Fresco|\
       Galeon|\
-      Google Earth(?: EC)?|\
+      Google Earth(?: EC|)|\
       hdplusinteraktiv|\
       HotJava|\
       IBrowse|\
@@ -1308,9 +1313,9 @@ user_agent_parsers:
   # Chrome needs to come after as it hides a lot of browsers from previous regex
   - regex: '(Chrome)[/ ]__VERSION__'
 
-  - regex: '(Galeon|UP\.Browser)(?:[ /]__VERSION__)?'
+  - regex: '(Galeon|UP\.Browser)(?:[ /]__VERSION__|)'
 
-  - regex: '(Openwave)(?:/__VERSION__)?'
+  - regex: '(Openwave)(?:/__VERSION__|)'
     family: 'UP.Browser'
 
   # Dolphin Browser
@@ -1320,7 +1325,7 @@ user_agent_parsers:
   # @note: NexPlayer needs to come after "Dolfin" as part of Samsung Bada UAs
   - regex: '\b(stagefright)/__VERSION_DIGITS__'
     type: 'mediaplayer'
-  - regex: '\b(NexPlayer)(?:[ /]?__VERSION__)?'
+  - regex: '\b(NexPlayer)(?:[ /]?__VERSION__|)'
     type: 'mediaplayer'
 
   # IE Xbox
@@ -1338,7 +1343,7 @@ user_agent_parsers:
   #### END MAIN CASES ####
 
   #### SPECIAL CASES ####
-  - regex: '(Obigo|OBIGO|Teleca)(?:InternetBrowser|\-?Browser)?(?:[^\d]*0*(\d+)(?:.(\d+))?)?'
+  - regex: '(Obigo|OBIGO|Teleca)(?:InternetBrowser|\-?Browser|)(?:[^\d]*0*(\d+)(?:.(\d+)|)|)'
     family: 'Obigo'
 
   - regex: '(Maxthon|MyIE2|Uzbl|Shiira)'
@@ -1349,13 +1354,13 @@ user_agent_parsers:
 
   - regex: '(XBMC)/(\d+)\.(\d+)[-\w\s]+(r\d+)'
 
-  - regex: '(ABrowse) (\d+)(?:\.(\d+))?'
+  - regex: '(ABrowse) (\d+)(?:\.(\d+)|)'
 
-  - regex: '(Acoo Browser)(?: __VERSION__)?'
+  - regex: '(Acoo Browser)(?: __VERSION__|)'
 
   - regex: '(BrowseX) \(__VERSION__'
 
-  - regex: '(NCSA[ _]Mosaic)(?:/(\d+)[\.-](\d+)(?:[\.-]?([a-z]?\d+))?)?'
+  - regex: '(NCSA[ _]Mosaic)(?:/(\d+)[\.-](\d+)(?:[\.-]?([a-z]?\d+)|)|)'
     family: 'NCSA Mosaic'
 
   # Polaris/d.d is above
@@ -1377,7 +1382,7 @@ user_agent_parsers:
       - regex: '^(iBrowser/Mini)(\d+)\.(\d+)'
         family: 'iBrowser Mini'
       - regex: '^(iBrowser|iRAPP)/(\d+)\.(\d+)'
-      - regex: '\b(IBrowse)(?:[ /](\d+)\.(\d+))?'
+      - regex: '\b(IBrowse)(?:[ /](\d+)\.(\d+)|)'
 
   # nokia browsers
   # based on: http://www.developer.nokia.com/Community/Wiki/User-Agent_headers_for_Nokia_devices
@@ -1389,7 +1394,7 @@ user_agent_parsers:
         family: 'Nokia Browser'
         v1: '7'
         v2: '0'
-      - regex: '(S40OviBrowser)/__VERSION__(?:\.(\d+))?'
+      - regex: '(S40OviBrowser)/__VERSION__(?:\.(\d+)|)'
         family: 'Ovi Browser'
       - regex: '(Series60)/(\d+)\.(\d+).*AppleWebKit'
         family: 'Nokia OSS Browser'
@@ -1409,7 +1414,7 @@ user_agent_parsers:
     family: 'BlackBerry'
 
   # Palm
-  - regex: 'Palm.*\b(Pre|Blazer|WebPro)\b(?:[ /](\d+)(?:\.(\d+)(?:\.(\d+[a-z]*))?)?)?'
+  - regex: 'Palm.*\b(Pre|Blazer|WebPro)\b(?:[ /](\d+)(?:\.(\d+)(?:\.(\d+[a-z]*)|)|)|)'
     family: 'Palm $1'
 
   # Links/ Elinks
@@ -1422,7 +1427,7 @@ user_agent_parsers:
     type: 'headless'
 
   # AppleWebKit / WebKit Nightly
-  - regex: '(AppleWebKit)/(\d+)\.?(\d+)?\+ .* Safari'
+  - regex: '(AppleWebKit)/(\d+)\.?(\d+|)\+ .* Safari'
     family: 'AppleWebKit'
 
   - regex: '(Callpod Keeper) for Android __VERSION__'
@@ -1476,7 +1481,7 @@ user_agent_parsers:
   - regex: '(OLPC)/Update()\.(\d+)'
     v1: '0'
 
-  - regex: '(SEMC\-Browser)/(?:__VERSION__)?'
+  - regex: '(SEMC\-Browser)/(?:__VERSION__|)'
 
   - regex: 'Trident(.*)rv:(\d+)\.(\d+)'
     family: 'IE'
@@ -1489,10 +1494,11 @@ user_agent_parsers:
     v1: '$1'
     v2: '$2'
     v3: ''
-  - regex: '(Firefox)/(\d+)(?:\.(\d+)(?:\.?(pre|[ab]?\d+[a-z]*))?)?'
+  - regex: '(Firefox)/(\d+)(?:\.(\d+)(?:\.?(pre|[ab]?\d+[a-z]*)|)|)'
 
   # Internet Explorer
-  - regex: '(?:MS)?(IE)[ /](\d+)\.(\d+)'
+  - regex: '(TeomaBar) (\d+)\.0?(\d+)'
+  - regex: '(?:MS|)(IE)[ /](\d+)\.(\d+)'
 
   # AppleWebKit / WebKit Nightly
   - regex: '(AppleWebKit)/__VERSION__'
@@ -1502,10 +1508,10 @@ user_agent_parsers:
   - regex: '(Phantom)/V(\d+)\.(\d+)'
     family: 'Phantom Browser'
     type: 'headless'
-  - regex: '(?:^|^Mozilla/\d+\.\d+ (?:\([^\)]+\) )?)(Java)[ /]?__VERSION__'
+  - regex: '(?:^|^Mozilla/\d+\.\d+ (?:\([^\)]+\) |))(Java)[ /]?__VERSION__'
     type: 'headless'
   - regex: "\\b(\
-      Apache-Http(?:Async)?Client|\
+      Apache-Http(?:Async|)Client|\
       BitTorrent|\
       curl|\
       Go-http-client|\
@@ -1532,7 +1538,7 @@ user_agent_parsers:
       (?:\\w+) APT-HTTP|\
       Wget|\
       Zend_Http_Client\
-      )\\b(?:[ /]__VERSION__)?"
+      )\\b(?:[ /]__VERSION__|)"
     type: 'headless'
 
   # Proxy
@@ -1544,7 +1550,7 @@ user_agent_parsers:
   # generic catcher for bots
   - regex: '(binlar|lbot|visionutils|WebThumb)[_/]__VERSION__'
     type: 'bot'
-  - regex: 'https?://((?:[\w\d-]+\.)?[\w\d-]+\.\w+)'
+  - regex: 'https?://((?:[\w\d-]+\.|)[\w\d-]+\.\w+)'
     type: 'bot'
   - regex: 'Mozilla/[45]\.0 \(compatible;?\)'
     family: compatible
@@ -1558,28 +1564,28 @@ engine_parsers:
   - regex: 'Trident'
     group:
       # MSIE 8 !== Trident/4
-      - regex: 'MSIE ([^8])\.\d.* (Trident)[ /](4)\.(\d+)(?:\.(\d+))?'
+      - regex: 'MSIE ([^8])\.\d.* (Trident)[ /](4)\.(\d+)(?:\.(\d+)|)'
         family: '$2'
         v1: '$3'
         v2: '$4'
         v3: '$5'
         type: 'mode::MSIE $1'
       # MSIE 9 !== Trident/5
-      - regex: 'MSIE ([^9])\.\d.* (Trident)[ /](5)\.(\d+)(?:\.(\d+))?'
+      - regex: 'MSIE ([^9])\.\d.* (Trident)[ /](5)\.(\d+)(?:\.(\d+)|)'
         family: '$2'
         v1: '$3'
         v2: '$4'
         v3: '$5'
         type: 'mode::MSIE $1'
       # MSIE 10 !== Trident/6
-      - regex: 'MSIE ((?:(?!10)\d)+)\.\d.* (Trident)[ /](6)\.(\d+)(?:\.(\d+))?'
+      - regex: 'MSIE ((?:(?!10)\d)+)\.\d.* (Trident)[ /](6)\.(\d+)(?:\.(\d+)|)'
         family: '$2'
         v1: '$3'
         v2: '$4'
         v3: '$5'
         type: 'mode::MSIE $1'
       # MSIE 11 !== Trident/7
-      - regex: 'MSIE ((?:(?!11)\d)+)\.\d.* (Trident)[ /](7)\.(\d+)(?:\.(\d+))?'
+      - regex: 'MSIE ((?:(?!11)\d)+)\.\d.* (Trident)[ /](7)\.(\d+)(?:\.(\d+)|)'
         family: '$2'
         v1: '$3'
         v2: '$4'
@@ -1592,7 +1598,7 @@ engine_parsers:
     family: 'Presto'
 
   # Windows 10 IE version uses "Edge" and "Chrome"
-  - regex: '\b(Edge)/(\d+)(?:\.(\d+))?'
+  - regex: '\b(Edge)/(\d+)(?:\.(\d+)|)'
     family: 'EdgeHTML'
   # Edge for Android / iOS
   - regex: '\b(EdgA|EdgiOS)/__VERSION__'
@@ -1615,7 +1621,7 @@ engine_parsers:
     type: 'Silk'
 
   # https://developer.chrome.com/multidevice/user-agent
-  - regex: '(?:; wv\) )?AppleWeb[Kk]it/.*Version/.*(Chrome)[/]__VERSION__'
+  - regex: '(?:; wv\) |)AppleWeb[Kk]it/.*Version/.*(Chrome)[/]__VERSION__'
     family: 'Blink'
     type: 'WebView'
 
@@ -1661,7 +1667,7 @@ engine_parsers:
 
   - regex: '(Goanna)/.*PaleMoon/__VERSION__'
 
-  - regex: '(rv:)(\d+)\.(\d+[ab]?)\.?([ab]?\d+[a-z]*)?\.?(\d+[a-z]*)?[;\)].* Gecko(?:[ /]|$)'
+  - regex: '(rv:)(\d+)\.(\d+[ab]?)\.?([ab]?\d+[a-z]*|)\.?(\d+[a-z]*|)[;\)].* Gecko(?:[ /]|$)'
     family: 'Gecko'
 
   - regex: '(Gecko)/20\d{6}'
@@ -1684,14 +1690,14 @@ os_parsers:
   - regex: 'UCWEB|JUC'
     group:
       # UCWEB
-      - regex: '^UCWEB.*; (Adr) (\d+)\.(\d+)(?:[.\-]([a-z0-9]+))?;'
+      - regex: '^UCWEB.*; (Adr) (\d+)\.(\d+)(?:[.\-]([a-z0-9]+)|);'
         family: 'Android'
       - regex: '^UCWEB.*; (iPa?d|iPh) OS __VERSION_OS_UNDERSCORE__;'
         family: 'iOS'
       - regex: '^UCWEB.*; (wds) __VERSION__;'
         family: 'Windows Phone'
       # JUC
-      - regex: '^(JUC).*; ?U; ?(?:Android)?(\d+)\.(\d+)(?:[\.\-]([a-z0-9]+))?'
+      - regex: '^(JUC).*; ?U; ?(?:Android|)(\d+)\.(\d+)(?:[\.\-]([a-z0-9]+)|)'
         family: 'Android'
 
   ##########
@@ -1713,7 +1719,7 @@ os_parsers:
         family: 'Windows Phone'
 
       # @note: These need to come before Windows NT 6.1
-      - regex: '(Windows Phone) (?:OS[ /])?(\d+)\.(\d+)'
+      - regex: '(Windows Phone) (?:OS[ /]|)(\d+)\.(\d+)'
       - regex: '(Windows ?Mobile)'
         family: 'Windows Mobile'
 
@@ -1767,14 +1773,14 @@ os_parsers:
 
       - regex: '(Windows)(?:(?!CFNetwork).)*$'
 
-  - regex: '(?:Ali)?(YunOS|RemixOS)'
+  - regex: '(?:Ali|)(YunOS|RemixOS)'
     regex_flag: 'i'
     group:
       # YunOS spoofs Android
-      - regex: '(Android) __VERSION_OS__.*(?:Ali)?(YunOS)-'
+      - regex: '(Android) __VERSION_OS__.*(?:Ali|)(YunOS)-'
         regex_flag: 'i'
         family: 'YunOS'
-      - regex: '(?:Ali)?(YunOS)[ /\-]__VERSION_OS__'
+      - regex: '(?:Ali|)(YunOS)[ /\-]__VERSION_OS__'
         regex_flag: 'i'
         family: 'YunOS'
       - regex: '(RemixOS) __VERSION_OS__'
@@ -1782,7 +1788,7 @@ os_parsers:
   - regex: Outlook-iOS-Android
     group:
       # Again a MS-special one
-      - regex: '(CPU[ +]OS|[iI]Phone[ +]OS|CPU[ +]iPhone)[ +]+(\d+)[_\.](\d+)(?:[_\.](\d+))?.*Outlook-iOS-Android'
+      - regex: '(CPU[ +]OS|[iI]Phone[ +]OS|CPU[ +]iPhone)[ +]+(\d+)[_\.](\d+)(?:[_\.](\d+)|).*Outlook-iOS-Android'
         family: 'iOS'
       - regex: '^Outlook-iOS-Android'
         family: ''
@@ -1794,9 +1800,9 @@ os_parsers:
     group:
       - regex: '(Sailfish);'
 
-      - regex: '(Android)[ \-/](\d+)\.(\d+)(?:[.\-]([a-z0-9]+))?'
+      - regex: '(Android)[ \-/](\d+)\.(\d+)(?:[.\-]([a-z0-9]+)|)'
 
-      - regex: '\((Linux); U; (\d+)\.(\d+)(?:[\.-](\d+|update1))?;'
+      - regex: '\((Linux); U; (\d+)\.(\d+)(?:[\.-](\d+|update1)|);'
         family: 'Android'
 
       - regex: '(Android) Donut'
@@ -1981,7 +1987,7 @@ os_parsers:
         v2: '5'
 
   # Raspbian
-  - regex: '(Raspbian)[ \-/](\d+)\.(\d+)(?:[.-]([a-z0-9]+))?'
+  - regex: '(Raspbian)[ \-/](\d+)\.(\d+)(?:[.-]([a-z0-9]+)|)'
 
   ##########
   # Kindle Android
@@ -1990,13 +1996,13 @@ os_parsers:
     family: 'Android'
 
   # AmigaOS
-  - regex: '(AmigaO[Ss]|AmigaVoyager|Amiga-AWeb)(?: ?__VERSION__)?'
+  - regex: '(AmigaO[Ss]|AmigaVoyager|Amiga-AWeb)(?: ?__VERSION__|)'
     family: 'AmigaOS'
 
   ##########
   # Tizen OS from Samsung
   ##########
-  - regex: '\b(Tizen)(?:[ /]__VERSION__)?'
+  - regex: '\b(Tizen)(?:[ /]__VERSION__|)'
 
   ##########
   # webOS
@@ -2025,7 +2031,7 @@ os_parsers:
   ##########
   - regex: 'Mac|Darwin|CFNetwork'
     group:
-      - regex: '((?:Mac[ +]?|; )OS[ +]X)[ /+](?:Version )?(?:__VERSION_OS_UNDERSCORE__|Mach-O)'
+      - regex: '((?:Mac[ +]?|; )OS[ +]X)[ /+](?:Version |)(?:__VERSION_OS_UNDERSCORE__|Mach-O)'
         family: 'Mac OS X'
       # macOS high Sierra https://en.wikipedia.org/wiki/MacOS_High_Sierra
       - regex: 'CFNetwork/8.* Darwin/17\.4\.\d+.*\(x86_64\)'
@@ -2191,13 +2197,13 @@ os_parsers:
   - regex: 'CPU OS|iPhone|iPad|iPod|iOS|Apple\s?TV|CFNetwork|tvOS|Darwin'
     group:
       # Apple TV
-      - regex: '(Apple\s?TV).* CPU OS (\d+)[_\.](\d+)(?:[_\.](\d+))?'
+      - regex: '(Apple\s?TV).* CPU OS (\d+)[_\.](\d+)(?:[_\.](\d+)|)'
         family: 'ATV OS X'
-      - regex: '(Apple\s?TV)[\d,]*(?:/__VERSION__)?'
+      - regex: '(Apple\s?TV)[\d,]*(?:/__VERSION__|)'
         family: 'ATV OS X'
 
       # General iOS
-      - regex: '(CPU[ +]OS|[iI]Phone[ +]OS|CPU[ +]iPhone)[ +]+(\d+)[_\.](\d+)(?:[_\.](\d+))?'
+      - regex: '(CPU[ +]OS|[iI]Phone[ +]OS|CPU[ +]iPhone)[ +]+(\d+)[_\.](\d+)(?:[_\.](\d+)|)'
         family: 'iOS'
 
       # Special Cases - CPU iPhone OS 811
@@ -2356,7 +2362,7 @@ os_parsers:
         v1: '1'
 
       # iOS Apps
-      - regex: '\b(iOS[ /]|iOS; |iPhone(?:/| v|[ _]OS[/,]|; | OS : |\d,\d/|\d,\d; )|iPad/)(\d{1,2})[_\.](\d{1,2})(?:[_\.](\d+))?'
+      - regex: '\b(iOS[ /]|iOS; |iPhone(?:/| v|[ _]OS[/,]|; | OS : |\d,\d/|\d,\d; )|iPad/)(\d{1,2})[_\.](\d{1,2})(?:[_\.](\d+)|)'
         family: 'iOS'
 
       - regex: '\((iPad|iPod|iPhone); '
@@ -2374,7 +2380,7 @@ os_parsers:
 
   - regex: '(Mac OS X)'
 
-  - regex: '(CrKey)(?:[/]__VERSION__)?'
+  - regex: '(CrKey)(?:[/]__VERSION__|)'
     family: 'Chromecast'
 
   ##########
@@ -2500,7 +2506,7 @@ os_parsers:
   ##########
   - regex: '(Palm ?OS)'
     family: 'PalmOS'
-  - regex: 'Xiino(?:.*v\. (\d+[\.\d]+))?'
+  - regex: 'Xiino(?:.*v\. (\d+[\.\d]+)|)'
     family: 'PalmOS'
   - regex: '(VRE);'
 
@@ -2540,7 +2546,7 @@ os_parsers:
   - regex: '\b(Sailfish|Haiku|BeOS)\b'
 
   # RISC OS
-  - regex: '(RISC OS)(?:-NC)?(?:[ /]__VERSION__)?'
+  - regex: '(RISC OS)(?:-NC|)(?:[ /]__VERSION__|)'
 
   # Gaming Console
   - regex: '(Nintendo Wii)'
@@ -2560,9 +2566,9 @@ os_parsers:
   ##########
   # Linux distros and others
   ##########
-  - regex: '(Fedora|Ubuntu|Red Hat|(?:Free|Open|Net|\b)BSD|[KLX]?ubuntu|Arch ?Linux|Bada|CentOS|Debian|Fedora|Gentoo|HopenOS|Kindle|Knoppix|Mageia|Mandriva|Mint|openSUSE|PCLinuxOS|Puppy|Sabayon|Slackware|SUSE|BackTrack|SunOS|Solaris|AIX|HP-UX|DragonFly|Syllable|IRIX)\b(?:(?: Enterprise)? Linux)?(?:[ /\-]__VERSION_OS__)?'
+  - regex: '(Fedora|Ubuntu|Red Hat|(?:Free|Open|Net|\b)BSD|[KLX]?ubuntu|Arch ?Linux|Bada|CentOS|Debian|Fedora|Gentoo|HopenOS|Kindle|Knoppix|Mageia|Mandriva|Mint|openSUSE|PCLinuxOS|Puppy|Sabayon|Slackware|SUSE|BackTrack|SunOS|Solaris|AIX|HP-UX|DragonFly|Syllable|IRIX)\b(?:(?: Enterprise|) Linux|)(?:[ /\-]__VERSION_OS__|)'
 
-  - regex: 'OSF1(?:[/ ]?v?__VERSION__)?'
+  - regex: 'OSF1(?:[/ ]?v?__VERSION__|)'
     family: 'OSF1'
 
   # just os
@@ -2573,7 +2579,7 @@ os_parsers:
     family: 'Gentoo'
 
   # Linux + Kernel Version
-  - regex: '(Linux)(?:[ /]__VERSION__)?'
+  - regex: '(Linux)(?:[ /]__VERSION__|)'
   - regex: 'redhat-linux-gnu'
     family: 'Red Hat'
   - regex: '(X11;|linux-gnu)'
@@ -2610,7 +2616,7 @@ device_parsers:
       # Android Application
       - regex: 'Android Application'
         group:
-          - regex: 'Android Application[^\-]+ - (Sony) ?(Ericsson)? (.+) \w+ - '
+          - regex: 'Android Application[^\-]+ - (Sony) ?(Ericsson|) (.+) \w+ - '
             device: '$1 $2'
             brand: '$1$2'
             model: '$3'
@@ -2632,11 +2638,11 @@ device_parsers:
       - regex: 'huawei|[uc]\d{4}|ideos|ascend|honor|m8\d{2}|s7|H60-L'
         regex_flag: 'i'
         group:
-          - regex: '; *(HONOR )?([^;]+) Build/(Honor|HONOR)'
+          - regex: '; *(HONOR |)([^;]+) Build/(Honor|HONOR)'
             device: '$1$2'
             brand: 'Huawei'
             model: '$2'
-          - regex: '; *(HUAWEI |Huawei-)?([UY][^;/]+) Build/(?:Huawei|HUAWEI)([UY][^\);]+)\)'
+          - regex: '; *(HUAWEI |Huawei-|)([UY][^;/]+) Build/(?:Huawei|HUAWEI)([UY][^\);]+)\)'
             device: '$1$2'
             brand: 'Huawei'
             model: '$2'
@@ -2652,7 +2658,7 @@ device_parsers:
             device: '$1$2'
             brand: 'Huawei'
             model: '$2'
-          - regex: '; *((?:HUAWEI[ _]?|Huawei[ _])?Ascend[ _])([^;/]+) Build'
+          - regex: '; *((?:HUAWEI[ _]?|Huawei[ _]|)Ascend[ _])([^;/]+) Build'
             device: '$1$2'
             brand: 'Huawei'
             model: '$2'
@@ -2697,11 +2703,11 @@ device_parsers:
       - regex: 'samsung|behold|ek-|galaxy|gt-|nexus|sch-|scl|sgh-|shv-|shw-|sm-|sph-|yp-'
         regex_flag: 'i'
         group:
-          - regex: '; *(SAMSUNG |Samsung )?((?:Galaxy (?:Note II|S\d)|GT-I9082|GT-I9205|GT-N7\d{3}|SM-N9005)[^;/]*)\/?[^;/]* Build/'
+          - regex: '; *(SAMSUNG |Samsung |)((?:Galaxy (?:Note II|S\d)|GT-I9082|GT-I9205|GT-N7\d{3}|SM-N9005)[^;/]*)\/?[^;/]* Build/'
             device: '$1$2'
             brand: 'Samsung'
             model: '$2'
-          - regex: '; *(Google )?(Nexus [Ss](?: 4G)?) Build/'
+          - regex: '; *(Google |)(Nexus [Ss](?: 4G|)) Build/'
             device: '$1$2'
             brand: 'Samsung'
             model: '$2'
@@ -2709,15 +2715,15 @@ device_parsers:
             device: '$1$2'
             brand: 'Samsung'
             model: '$2'
-          - regex: '; *(Galaxy(?: Ace| Nexus| ACE| S ?II+|Nexus S| with MCR 1.2| Mini Plus 4G)?) Build/'
+          - regex: '; *(Galaxy(?: Ace| Nexus| ACE| S ?II+|Nexus S| with MCR 1.2| Mini Plus 4G|)) Build/'
             device: '$1'
             brand: 'Samsung'
             model: '$1'
-          - regex: '; *(SAMSUNG[ _\-] *)+([^;/]+) Build'
+          - regex: '; *(?:SAMSUNG |)(?:SAMSUNG |)(?:SAMSUNG[ _\-]|)(SAMSUNG[ _\-])([^;/]+) Build'
             device: '$1$2'
             brand: 'Samsung'
             model: '$2'
-          - regex: '; *(SAMSUNG-)?(GT\-[BINPS]\d{4}[^\/]*)(\/[^ ]*) Build'
+          - regex: '; *(SAMSUNG-|)(GT\-[BINPS]\d{4}[^\/]*)(\/[^ ]*) Build'
             device: '$1$2$3'
             brand: 'Samsung'
             model: '$2'
@@ -2729,11 +2735,11 @@ device_parsers:
             device: '$1$2'
             brand: 'Samsung'
             model: '$2'
-          - regex: '; *((?:SCH|SGH|SHV|SHW|SPH|SC|SM)\-[A-Za-z0-9 ]+)(/?[^ ]*)? Build'
+          - regex: '; *((?:SCH|SGH|SHV|SHW|SPH|SC|SM)\-[A-Za-z0-9 ]+)(/?[^ ]*|) Build'
             device: '$1'
             brand: 'Samsung'
             model: '$1'
-          - regex: ' ((?:SCH)\-[A-Za-z0-9 ]+)(/?[^ ]*)? Build'
+          - regex: ' ((?:SCH)\-[A-Za-z0-9 ]+)(/?[^ ]*|) Build'
             device: '$1'
             brand: 'Samsung'
             model: '$1'
@@ -2778,7 +2784,7 @@ device_parsers:
       - regex: 'acer|[abesvwz]\d{2,3}|a1-|b1-|liquid|slider'
         regex_flag: 'i'
         group:
-          - regex: 'Android [34].*; *(A100|A101|A110|A200|A210|A211|A500|A501|A510|A511|A700(?: Lite| 3G)?|A701|B1-A71|A1-\d{3}(?:F?HD)?|A3-A\d{2}(?:F?HD)?|[bB]1-\d{3}(?:F?HD)?) Build'
+          - regex: 'Android [34].*; *(A100|A101|A110|A200|A210|A211|A500|A501|A510|A511|A700(?: Lite| 3G|)|A701|B1-A71|A1-\d{3}(?:F?HD|)|A3-A\d{2}(?:F?HD|)|[bB]1-\d{3}(?:F?HD|)) Build'
             device: '$1'
             brand: 'Acer'
             model: '$1'
@@ -2791,7 +2797,7 @@ device_parsers:
             device: '$1'
             brand: 'Acer'
             model: '$1'
-          - regex: '(Acer)(?:[ _-]|\/acer; )?([^;\)]+)(?: Build|;)'
+          - regex: '(Acer)(?:[ _-]|\/acer; |)([^;\)]+)(?: Build|;)'
             device: '$1 $2'
             brand: 'Acer'
             model: '$2'
@@ -2851,7 +2857,7 @@ device_parsers:
       # @note: VegaBean and VegaComb (names derived from jellybean, honeycomb) are
       #   custom ROM builds for Vega
       #########
-      - regex: '; *(Advent )?(Vega(?:Bean|Comb)?).* Build'
+      - regex: '; *(Advent |)(Vega(?:Bean|Comb|)).* Build'
         device: '$1$2'
         brand: 'Advent'
         model: '$2'
@@ -2860,7 +2866,7 @@ device_parsers:
       # Ainol
       # @ref: http://www.ainol.com/plugin.php?identifier=ainol&module=product
       #########
-      - regex: '; *(Ainol )?((?:NOVO|[Nn]ovo)[^;/]+) Build'
+      - regex: '; *(Ainol |)((?:NOVO|[Nn]ovo)[^;/]+) Build'
         device: '$1$2'
         brand: 'Ainol'
         model: '$2'
@@ -2901,7 +2907,7 @@ device_parsers:
         device: 'Alcatel One Touch $2'
         brand: 'Alcatel'
         model: 'One Touch $2'
-      - regex: '; *(?:USCC[_\-]ALCATEL[_\-]|alcatel[ _])?(?:(?:one[ _\-]?touch[ _\-])|ot[ _\-])([^;/]+);?(?: Build|\))'
+      - regex: '; *(?:USCC[_\-]ALCATEL[_\-]|alcatel[ _]|)(?:(?:one[ _\-]?touch[ _\-])|ot[ _\-])([^;/]+);?(?: Build|\))'
         regex_flag: 'i'
         device: 'Alcatel One Touch $1'
         brand: 'Alcatel'
@@ -2917,7 +2923,7 @@ device_parsers:
         brand: '$1'
         model: '$2'
       # operator specific models
-      - regex: '; *(Vodafone[ _]Smart[ _]II|Optimus_Madrid|Orange (?:Infinity 8008X|Hiro|Yomi)|Telenor[_ ](?:Smart|One_?Touch)([_ ].*?)?|move 2|BS471|I213|Mobile Sosh|MTC975|smart_a17|7040[NRT]|9005X|A621BL|A571VL) Build'
+      - regex: '; *(Vodafone[ _]Smart[ _]II|Optimus_Madrid|Orange (?:Infinity 8008X|Hiro|Yomi)|Telenor[_ ](?:Smart|One_?Touch)([_ ].*?|)|move 2|BS471|I213|Mobile Sosh|MTC975|smart_a17|7040[NRT]|9005X|A621BL|A571VL) Build'
         device: 'Alcatel $1'
         brand: 'Alcatel'
         model: '$1'
@@ -2956,7 +2962,7 @@ device_parsers:
         device: '$1$2'
         brand: 'Allview'
         model: '$2'
-      - regex: '; *(ALLVIEW[ _]?|Allview[ _]?)?(A4DUO|A5_Quad|AX1_Shine|AX2_Frenzy|AX4Nano|X\d_Soul|X\d_mini_Soul|X2_Twin|V\d_Viper[^;/]|E2_Living|A5Smiley|P5|P5_Quad|P6_Quad|P6Life) Build'
+      - regex: '; *(ALLVIEW[ _]?|Allview[ _]?|)(A4DUO|A5_Quad|AX1_Shine|AX2_Frenzy|AX4Nano|X\d_Soul|X\d_mini_Soul|X2_Twin|V\d_Viper[^;/]|E2_Living|A5Smiley|P5|P5_Quad|P6_Quad|P6Life) Build'
         device: '$1$2'
         brand: 'Allview'
         model: '$2'
@@ -3047,7 +3053,7 @@ device_parsers:
       # @ref: http://www.luckystar.com.cn/en/mobiletel.aspx?page=1
       # @note: brand owned by luckystar
       #########
-      - regex: '; *(G7|M1013|M1015G|M11[CG]?|M-?12[B]?|M15|M19[G]?|M30[ACQ]?|M31[GQ]|M32|M33[GQ]|M36|M37|M38|M701T|M710|M712B|M713|M715G|M716G|M71(?:G|GS|T)?|M72[T]?|M73[T]?|M75[GT]?|M77G|M79T|M7L|M7LN|M81|M810|M81T|M82|M92|M92KS|M92S|M717G|M721|M722G|M723|M725G|M739|M785|M791|M92SK|M93D)(?: Build|\))'
+      - regex: '; *(G7|M1013|M1015G|M11[CG]?|M-?12[B]?|M15|M19[G]?|M30[ACQ]?|M31[GQ]|M32|M33[GQ]|M36|M37|M38|M701T|M710|M712B|M713|M715G|M716G|M71(?:G|GS|T|)|M72[T]?|M73[T]?|M75[GT]?|M77G|M79T|M7L|M7LN|M81|M810|M81T|M82|M92|M92KS|M92S|M717G|M721|M722G|M723|M725G|M739|M785|M791|M92SK|M93D)(?: Build|\))'
         device: 'Aoson $1'
         brand: 'Aoson'
         model: '$1'
@@ -3142,7 +3148,7 @@ device_parsers:
       # Assistant
       # @ref: http://www.assistant.ua
       #########
-      - regex: '; *(?:ASSISTANT )?(AP)-?([1789]\d{2}[A-Z]{0,2}|80104) Build'
+      - regex: '; *(?:ASSISTANT |)(AP)-?([1789]\d{2}[A-Z]{0,2}|80104) Build'
         device: 'Assistant $1-$2'
         brand: 'Assistant'
         model: '$1-$2'
@@ -3151,7 +3157,7 @@ device_parsers:
       # Asus
       # @ref: http://www.asus.com/uk/Tablets_Mobile/
       #########
-      - regex: '; *(A500CG|AST21|ME(?:[13]\d{2})[^;/]+|K0[01][A-Z0-9]|Nexus 10|Nexus 7(?: 2013| LTE)?|Nexus HDX 7|PadFone[^;/]*|P01T_1|Transformer[^;/]*|TF\d{3}[^;/]*|TX201LA|eeepc|TouchPad|Nexus Player) Build'
+      - regex: '; *(A500CG|AST21|ME(?:[13]\d{2})[^;/]+|K0[01][A-Z0-9]|Nexus 10|Nexus 7(?: 2013| LTE|)|Nexus HDX 7|PadFone[^;/]*|P01T_1|Transformer[^;/]*|TF\d{3}[^;/]*|TX201LA|eeepc|TouchPad|Nexus Player) Build'
         device: 'Asus $1'
         brand: 'Asus'
         model: '$1'
@@ -3377,7 +3383,7 @@ device_parsers:
         brand: 'Blu'
         model: '$2'
       # BMOBILE = operator branded device
-      - regex: '; *(?:BMOBILE )?(Blu|(?:DASH|ADVANCE|VIVO|TANK) \d\.\d[^;/]*?) Build'
+      - regex: '; *(?:BMOBILE |)(Blu|(?:DASH|ADVANCE|VIVO|TANK) \d\.\d[^;/]*?) Build'
         regex_flag: 'i'
         device: '$1'
         brand: 'Blu'
@@ -3403,7 +3409,7 @@ device_parsers:
       # @note: Might collide with Maxx as AX is used also there.
       #########
       # smartphone
-      - regex: '; *(?:Bmobile[ _]+)?(AX[56]\d{2}|AX[78][^0]\d) Build'
+      - regex: '; *(?:Bmobile[ _]+|)(AX[56]\d{2}|AX[78][^0]\d) Build'
         device: 'Bmobile $1'
         brand: 'Bmobile'
         model: '$1'
@@ -3413,7 +3419,7 @@ device_parsers:
       # bq
       # @ref: http://bqreaders.com
       #########
-      - regex: '; *([Bb]q)? ?(Aquaris[^;/]*);? Build'
+      - regex: '; *([Bb]q|) ?(Aquaris[^;/]*);? Build'
         device: '$1 $2'
         brand: 'bq'
         model: '$2'
@@ -3464,7 +3470,7 @@ device_parsers:
       # Brondi
       # @ref: https://www.brondi.it/smartphone.html
       #########
-      - regex: '; *(Caesar|CENTURION(?:[ -]\d)?|CENTVRION2|GLADIATOR(?:[ -]\d)?|GLORY(?:[ -]\d)?|LUXURY(?:[ -]\d)?|SENSUELLE|VICTORY) Build'
+      - regex: '; *(Caesar|CENTURION(?:[ -]\d|)|CENTVRION2|GLADIATOR(?:[ -]\d|)|GLORY(?:[ -]\d|)|LUXURY(?:[ -]\d|)|SENSUELLE|VICTORY) Build'
         regex_flag: 'i'
         device: 'Brondi $1'
         brand: 'Brondi'
@@ -3602,7 +3608,7 @@ device_parsers:
       # @ref: http://cobykyros.com
       # @note: Be careful with MID\d{3} from MpMan or Manta
       #########
-      - regex: '; *(?:CFW-|Kyros )?(MID[0-9]{4}(?:[ABC]|SR|TV)?)(\(3G\)-4G| GB 8K| 3G| 8K| GB)? *(?:Build|[;\)])'
+      - regex: '; *(?:CFW-|Kyros |)(MID[0-9]{4}(?:[ABC]|SR|TV|))(\(3G\)-4G| GB 8K| 3G| 8K| GB|) *(?:Build|[;\)])'
         device: 'CobyKyros $1$2'
         brand: 'CobyKyros'
         model: '$1$2'
@@ -3633,7 +3639,7 @@ device_parsers:
       # Cube
       # @ref: http://www.cube-tablet.com/buy-products.html
       #########
-      - regex: '; *(CUBE[ _])?([KU][0-9]+ ?GT.*|A5300|Mytab-U55GT) Build'
+      - regex: '; *(CUBE[ _]|)([KU][0-9]+ ?GT.*|A5300|Mytab-U55GT) Build'
         regex_flag: 'i'
         device: '$1$2'
         brand: 'Cube'
@@ -3719,7 +3725,7 @@ device_parsers:
       # Denver
       # @ref: http://www.denver-electronics.com/tablets1/
       #########
-      - regex: '; *(?:PO#\d{4} )?(TA[CDQ]-\d+[^;/]*) Build'
+      - regex: '; *(?:PO#\d{4} |)(TA[CDQ]-\d+[^;/]*) Build'
         device: '$1'
         brand: 'Denver'
         model: '$1'
@@ -3729,7 +3735,7 @@ device_parsers:
       # Dex
       # @ref: http://dex.ua/
       #########
-      - regex: '; *(iP[789]\d{2}(?:-3G)?|IP10\d{2}(?:-8GB)?) Build'
+      - regex: '; *(iP[789]\d{2}(?:-3G|)|IP10\d{2}(?:-8GB|)) Build'
         device: '$1'
         brand: 'Dex'
         model: '$1'
@@ -3756,7 +3762,7 @@ device_parsers:
       # Digma
       # @ref:
       #########
-      - regex: '; *(?:Digma |DIGMA )?(Optima .*?|Plane .*?|HIT .*?|iD[jnsx]D\d+.*?|TT7022MG.*?|LINX 6.0 PS604M)(?: Build|[;)])'
+      - regex: '; *(?:Digma |DIGMA |)(Optima .*?|Plane .*?|HIT .*?|iD[jnsx]D\d+.*?|TT7022MG.*?|LINX 6.0 PS604M)(?: Build|[;)])'
         device: '$1'
         brand: 'Digma'
         model: '$1'
@@ -3765,7 +3771,7 @@ device_parsers:
       # DNS AirTab
       # @ref: http://www.dns-shop.ru/
       #########
-      - regex: '; *(?:DNS )?(AirTab)[ _\-]([^;/]+)(?: Build|[;)])'
+      - regex: '; *(?:DNS |)(AirTab)[ _\-]([^;/]+)(?: Build|[;)])'
         device: '$1 $2'
         brand: 'DNS'
         model: '$1 $2'
@@ -4018,7 +4024,7 @@ device_parsers:
       # Gionee
       # @ref: http://www.gionee.com/
       #########
-      - regex: '; *(Gionee)[ _\-]([^;/]+)(?:/[^;/]+)? Build'
+      - regex: '; *(Gionee)[ _\-]([^;/]+)(?:/[^;/]+|) Build'
         regex_flag: 'i'
         device: '$1 $2'
         brand: 'Gionee'
@@ -4247,7 +4253,7 @@ device_parsers:
       # HP
       # @ref: http://www.hp.com/
       #########
-      - regex: '; *(PlayBook|Slate \d+(?: Pro)?) Build'
+      - regex: '; *(PlayBook|Slate \d+(?: Pro|)) Build'
         device: 'HP $1'
         brand: 'HP'
         model: '$1'
@@ -4274,12 +4280,12 @@ device_parsers:
       # Android HTC with Version Number matcher
       # ; HTC_0P3Z11/1.12.161.3 Build
       # ;HTC_A3335 V2.38.841.1 Build
-      - regex: '; *(?:HTC)(?:[ _/]((?:(?![ _/;\(\)]|Build|MIUI).)+))(?:[ _/]((?:(?![ _/;\(\)]|HTC|Build|MIUI).)+))?(?:[ _/]((?:(?![ _/;\(\)]|Build|MIUI).)+))?(?:[ _/]((?:(?![/;\)]|Build|MIUI).)+))?(?:[/\\]1\.0 | V|/| +)\d+\.\d[\d\.]+'
+      - regex: '; *(?:HTC)(?:[ _/]((?:(?![ _/;\(\)]|Build|MIUI).)+))(?:[ _/]((?:(?![ _/;\(\)]|HTC|Build|MIUI).)+)|)(?:[ _/]((?:(?![ _/;\(\)]|Build|MIUI).)+)|)(?:[ _/]((?:(?![/;\)]|Build|MIUI).)+)|)(?:[/\\]1\.0 | V|/| +)\d+\.\d[\d\.]+'
         device: 'HTC $1 $2 $3 $4'
         brand: 'HTC'
         model: '$1 $2 $3 $4'
       # Android HTC without Version Number matcher
-      - regex: '; *(?:HTC[ ;])?(?:HTC(?:_blocked)*)(?:(?:[ _/]|; *)((?:(?![ _/;\(\)\\]|USCCHTC|HTC|Build|MIUI).)+))(?:[ _/]((?:(?![ _/;\(\)\\]|Build|MIUI|1\.0).)+))?(?:[ _/]((?:(?![ _/;\(\)\\]|Build|MIUI|1\.0).)+))?(?:[ _/]((?:(?![/;\)]|Build|MIUI|1\.0).)+))?'
+      - regex: '; *(?:HTC[ ;]|)(?:HTC(?:_blocked)*)(?:(?:[ _/]|; *)((?:(?![ _/;\(\)\\]|USCCHTC|HTC|Build|MIUI).)+))(?:[ _/]((?:(?![ _/;\(\)\\]|Build|MIUI|1\.0).)+)|)(?:[ _/]((?:(?![ _/;\(\)\\]|Build|MIUI|1\.0).)+)|)(?:[ _/]((?:(?![/;\)]|Build|MIUI|1\.0).)+)|)'
         regex_flag: 'i'
         device: 'HTC $1 $2 $3 $4'
         brand: 'HTC'
@@ -4290,7 +4296,7 @@ device_parsers:
         brand: 'HTC'
         model: '$1'
       # general matcher for anything else
-      - regex: '(?:[;,] *|^)(?:htccn_chs-)?HTC[ _-]?([^;]+?)(?: *Build|clay|Android|-?Mozilla| Opera| Profile| UNTRUSTED|[;/\(\)]|$)'
+      - regex: '(?:[;,] *|^)(?:htccn_chs-|)HTC[ _-]?([^;]+?)(?: *Build|clay|Android|-?Mozilla| Opera| Profile| UNTRUSTED|[;/\(\)]|$)'
         regex_flag: 'i'
         device: 'HTC $1'
         brand: 'HTC'
@@ -4338,7 +4344,7 @@ device_parsers:
       # iBall
       # @ref: http://www.iball.co.in/Category/Mobiles/22
       #########
-      - regex: '; *(?:iBall[ _\-])?(Andi)[ _]?([^;/]*|Uddaan)__BUILD__'
+      - regex: '; *(?:iBall[ _\-]|)(Andi)[ _]?([^;/]*|Uddaan)__BUILD__'
         regex_flag: 'i'
         device: '$1 $2'
         brand: 'iBall'
@@ -4357,7 +4363,7 @@ device_parsers:
       # IconBIT
       # @ref: http://www.iconbit.com/catalog/tablets/
       #########
-      - regex: '; *(NT-\d+[^ ;/]*|Net[Tt]AB [^;/]+|Mercury [A-Z]+|iconBIT)(?: S/N:[^;/]+)? Build'
+      - regex: '; *(NT-\d+[^ ;/]*|Net[Tt]AB [^;/]+|Mercury [A-Z]+|iconBIT)(?: S/N:[^;/]+|) Build'
         device: '$1'
         brand: 'IconBIT'
         model: '$1'
@@ -4457,7 +4463,7 @@ device_parsers:
       # @note: Zync also offers a "Cloud Z5" device
       #########
       # smartphones
-      - regex: '; *(?:Intex[ _])?(AQUA|Aqua)([ _\.\-])([^;/]+) *(?:Build|;)'
+      - regex: '; *(?:Intex[ _]|)(AQUA|Aqua)([ _\.\-])([^;/]+) *(?:Build|;)'
         device: '$1$2$3'
         brand: 'Intex'
         model: '$1 $3'
@@ -4467,12 +4473,12 @@ device_parsers:
         model: '$1 $3'
 
       # matches "INTEX CLOUD X1"
-      - regex: '; *(?:INTEX|Intex)(?:[_ ]([^\ _;/]+))(?:[_ ]([^\ _;/]+))? *(?:Build|;)'
+      - regex: '; *(?:INTEX|Intex)(?:[_ ]([^\ _;/]+))(?:[_ ]([^\ _;/]+)|) *(?:Build|;)'
         device: '$1 $2'
         brand: 'Intex'
         model: '$1 $2'
       # tablets
-      - regex: '; *([iI]Buddy)[ _]?(Connect)(?:_|\?_| )?([^;/]*) *(?:Build|;)'
+      - regex: '; *([iI]Buddy)[ _]?(Connect)(?:_|\?_| |)([^;/]*) *(?:Build|;)'
         device: '$1 $2 $3'
         brand: 'Intex'
         model: 'iBuddy $2 $3'
@@ -4495,7 +4501,7 @@ device_parsers:
       # i.onik
       # @ref: http://www.i-onik.de/
       #########
-      - regex: '; *(TP\d+(?:\.\d+)?\-\d[^;/]+|TU-\d{4}A) Build'
+      - regex: '; *(TP\d+(?:\.\d+|)\-\d[^;/]+|TU-\d{4}A) Build'
         device: 'ionik $1'
         brand: 'ionik'
         model: '$1'
@@ -4555,7 +4561,7 @@ device_parsers:
       # Jaytech
       # @ref: http://www.jay-tech.de/jaytech/servlet/frontend/
       #########
-      - regex: '; *(TPC[-_](?:PA|PX)?[\d\.]+[A-Z]?|JAY-TECH) Build'
+      - regex: '; *(TPC[-_](?:PA|PX|)[\d\.]+[A-Z]?|JAY-TECH) Build'
         device: '$1'
         brand: 'Jaytech'
         model: '$1'
@@ -4846,7 +4852,7 @@ device_parsers:
       # Lava
       # @ref: http://www.lavamobiles.com/
       #########
-      - regex: '; *(?:LAVA[ _])?IRIS[ _\-]?([^/;\)]+) *(?:;|\)|Build)'
+      - regex: '; *(?:LAVA[ _]|)IRIS[ _\-]?([^/;\)]+) *(?:;|\)|Build)'
         regex_flag: 'i'
         device: 'Iris $1'
         brand: 'Lava'
@@ -4910,11 +4916,11 @@ device_parsers:
         brand: 'Lenovo'
         model: '$1 $2'
         type: 'tablet'
-      - regex: '; *(?:LNV-)?(?:=?[Ll]enovo[ _\-]?|LENOVO[ _])+(.+?)(?:Build|[;/\)])'
+      - regex: '; *(?:LNV-|)(?:Lenovo Lenovo |=?[Ll]enovo[ _\-]?|LENOVO[ _])(.+?)(?:Build|[;/\)])'
         device: 'Lenovo $1'
         brand: 'Lenovo'
         model: '$1'
-      - regex: '[;,] (?:Vodafone )?(SmartTab) ?(II) ?(\d+) Build/'
+      - regex: '[;,] (?:Vodafone |)(SmartTab) ?(II) ?(\d+) Build/'
         device: 'Lenovo $1 $2 $3'
         brand: 'Lenovo'
         model: '$1 $2 $3'
@@ -4941,11 +4947,11 @@ device_parsers:
       # LG
       # @ref: http://www.lg.com/uk/mobile
       #########
-      - regex: '; *(Ally|AS\d{3}(?: 4G)?|E[34][0-9]{2}|GS-500|LS[6-8][0-9]{2}|VK810 4G|VS[6-9][0-9]+[^;/]+|VS425PP|Nexus [45]|Nexus 5X|GT540f?|TI320-DU|Optimus (?:2X|G|4X HD)|OptimusX4HD) *(?:Build|;)'
+      - regex: '; *(Ally|AS\d{3}(?: 4G|)|E[34][0-9]{2}|GS-500|LS[6-8][0-9]{2}|VK810 4G|VS[6-9][0-9]+[^;/]+|VS425PP|Nexus [45]|Nexus 5X|GT540f?|TI320-DU|Optimus (?:2X|G|4X HD)|OptimusX4HD) *(?:Build|;)'
         device: '$1'
         brand: 'LG'
         model: '$1'
-      - regex: '[;:] *(L-\d+[A-Z]|LGL\d+[A-Z]?)(?:/V\d+)? *(?:Build|[;\)])'
+      - regex: '[;:] *(L-\d+[A-Z]|LGL\d+[A-Z]?)(?:/V\d+|) *(?:Build|[;\)])'
         device: '$1'
         brand: 'LG'
         model: '$1'
@@ -5047,7 +5053,7 @@ device_parsers:
       #   Maxx MT150, Maxx MQ601, Maxx M2020, Maxx Sleek MX463neo, Maxx MX525, Maxx MX192-Tune, Maxx Genx Droid 7 AX353,
       # @note: Need more User-Agents!!!
       #########
-      - regex: '; *(GenxDroid7|MSD7.*|AX\d{1,2}(?:[A-Z][A-z]*)?|Tab 701|Tab 722) Build/'
+      - regex: '; *(GenxDroid7|MSD7.*|AX\d{1,2}(?:[A-Z][A-z]*|)|Tab 701|Tab 722) Build/'
         device: 'Maxx $1'
         brand: 'Maxx'
         model: '$1'
@@ -5069,7 +5075,7 @@ device_parsers:
       # Medion
       # @ref: http://www.medion.com/en/
       #########
-      - regex: '; *(?:MD_)?LIFETAB[ _]([^;/]+) Build'
+      - regex: '; *(?:MD_|)LIFETAB[ _]([^;/]+) Build'
         regex_flag: 'i'
         device: 'Medion Lifetab $1'
         brand: 'Medion'
@@ -5109,12 +5115,12 @@ device_parsers:
       # Micromax
       # @ref: http://www.micromaxinfo.com
       #########
-      - regex: '\b(?:Micromax[ _\-]?)+(P[A-Za-z0-9]+)'
+      - regex: '\b(?:Micromax[ _\-]?)(P[A-Za-z0-9]+)'
         regex_flag: 'i'
         device: 'Micromax $1'
         brand: 'Micromax'
         model: '$1'
-      - regex: '\b(?:Micromax[ _\-]?)+([A-Za-z0-9]+)'
+      - regex: '\b(?:Micromax[ _\-])+([A-Za-z0-9]+)'
         regex_flag: 'i'
         device: 'Micromax $1'
         brand: 'Micromax'
@@ -5125,7 +5131,7 @@ device_parsers:
         device: 'Micromax $1'
         brand: 'Micromax'
         model: '$1'
-      - regex: '; *(P\d{3}|P\d{3})(?:\(Funbook\))? Build'
+      - regex: '; *(P\d{3}|P\d{3})(?:\(Funbook\)|) Build'
         regex_flag: 'i'
         device: 'Micromax $1'
         brand: 'Micromax'
@@ -5164,7 +5170,7 @@ device_parsers:
       # Modecom
       # @ref: http://www.modecom.eu/tablets/portal/
       #########
-      - regex: '; *(MODECOM )?(FreeTab) ?([^;/]+) Build'
+      - regex: '; *(MODECOM |)(FreeTab) ?([^;/]+) Build'
         regex_flag: 'i'
         device: '$1$2 $3'
         brand: 'Modecom'
@@ -5222,7 +5228,7 @@ device_parsers:
       # MSI
       # @ref: http://www.msi.com/product/windpad/
       #########
-      - regex: '; *(?:MSI[ _])?(Primo\d+|Enjoy[ _\-][^;/]+) Build'
+      - regex: '; *(?:MSI[ _]|)(Primo\d+|Enjoy[ _\-][^;/]+) Build'
         regex_flag: 'i'
         device: '$1'
         brand: 'Msi'
@@ -5417,7 +5423,7 @@ device_parsers:
         device: '$1$2'
         brand: 'Nook'
         model: '$2'
-      - regex: '; *(NOOK )?(BN[TR]V\d+A?|LogicPD Zoom2) Build'
+      - regex: '; *(NOOK |)(BN[TR]V\d+A?|LogicPD Zoom2) Build'
         device: '$1$2'
         brand: 'Nook'
         model: '$2'
@@ -5448,7 +5454,7 @@ device_parsers:
       # NYX
       # @ref: http://www.nyxmobilemexico.com/
       #########
-      - regex: '; *(NYX)_([^;/_]+)(?:_([^;/_]+))? Build'
+      - regex: '; *(NYX)_([^;/_]+)(?:_([^;/_]+)|) Build'
         device: '$1 $2 $3'
         brand: 'NYX'
         model: '$2 $3'
@@ -5490,7 +5496,7 @@ device_parsers:
       # Oneplus
       # @ref: https://oneplus.net/de
       #########
-      - regex: '; *(?:(?:One )?A0001|ONEPLUS One) Build'
+      - regex: '; *(?:(?:One |)A0001|ONEPLUS One) Build'
         device: 'Oneplus One'
         brand: 'Oneplus'
         model: 'One'
@@ -5628,11 +5634,11 @@ device_parsers:
       # @href: http://www.pantech.co.kr/en/prod/prodList.do?gbrand=VEGA
       # @models: ADR8995, ADR910L, ADR930VW, C790, CDM8992, CDM8999, IS06, IS11PT, P2000, P2020, P2030, P4100, P5000, P6010, P6020, P6030, P7000, P7040, P8000, P8010, P9020, P9050, P9060, P9070, P9090, PT001, PT002, PT003, TXT8040, TXT8045, VEGA PTL21
       #########
-      - regex: '; *(SKY[ _])?(IM\-[AT]\d{3}[^;/]+).* Build/'
+      - regex: '; *(SKY[ _]|)(IM\-[AT]\d{3}[^;/]+).* Build/'
         device: 'Pantech $1$2'
         brand: 'Pantech'
         model: '$1$2'
-      - regex: '; *((?:ADR8995|ADR910L|ADR930L|ADR930VW|PTL21|P8000)(?: 4G)?) Build/'
+      - regex: '; *((?:ADR8995|ADR910L|ADR930L|ADR930VW|PTL21|P8000)(?: 4G|)) Build/'
         device: '$1'
         brand: 'Pantech'
         model: '$1'
@@ -5655,7 +5661,7 @@ device_parsers:
       # Pearl
       # @ref: http://www.pearl.de/c-1540.shtml
       #########
-      - regex: '; *(?:Touchlet )?(X10\.[^;/]+) Build/'
+      - regex: '; *(?:Touchlet |)(X10\.[^;/]+) Build/'
         device: 'Pearl $1'
         brand: 'Pearl'
         model: '$1'
@@ -5725,7 +5731,7 @@ device_parsers:
       # Pipo
       # @ref: http://www.pipo.cn/En/
       #########
-      - regex: 'Android 4\..*; *(M[12356789]|U[12368]|S[123])\ ?(pro)? Build'
+      - regex: 'Android 4\..*; *(M[12356789]|U[12368]|S[123])\ ?(pro|) Build'
         device: 'Pipo $1$2'
         brand: 'Pipo'
         model: '$1$2'
@@ -5756,7 +5762,7 @@ device_parsers:
       # Polaroid/ Acho
       # @ref: http://polaroidstore.com/store/start.asp?category_id=382&category_id2=0&order=title&filter1=&filter2=&filter3=&view=all
       #########
-      - regex: '; *(?:Polaroid[ _])?((?:MIDC\d{3,}|PMID\d{2,}|PTAB\d{3,})[^;/]*)(\/[^;/]*)? Build/'
+      - regex: '; *(?:Polaroid[ _]|)((?:MIDC\d{3,}|PMID\d{2,}|PTAB\d{3,})[^;/]*)(\/[^;/]*|) Build/'
         device: '$1'
         brand: 'Polaroid'
         model: '$1'
@@ -5782,7 +5788,7 @@ device_parsers:
         device: '$1'
         brand: 'Positivo'
         model: '$1'
-      - regex: '; *(?:Positivo )?((?:YPY|Ypy)[^;/]+) Build/'
+      - regex: '; *(?:Positivo |)((?:YPY|Ypy)[^;/]+) Build/'
         device: '$1'
         brand: 'Positivo'
         model: '$1'
@@ -5810,7 +5816,7 @@ device_parsers:
       # @ref: http://www.prestigio.com/catalogue/MultiPhones
       # @ref: http://www.prestigio.com/catalogue/MultiPads
       #########
-      - regex: '; *(?:Prestigio )?((?:PAP|PSP|PMP|PMT)\d.*?)__BUILD__'
+      - regex: '; *(?:Prestigio |)((?:PAP|PSP|PMP|PMT)\d.*?)__BUILD__'
         device: 'Prestigio $1'
         brand: 'Prestigio'
         model: '$1'
@@ -5828,7 +5834,7 @@ device_parsers:
       # QMobile
       # @ref: http://www.qmobile.com.pk/
       #########
-      - regex: '; *(A2|A5|A8i?|A900i?|A950)_?(Classic)? Build'
+      - regex: '; *(A2|A5|A8i?|A900i?|A950)_?(Classic|) Build'
         device: '$1 $2'
         brand: 'Qmobile'
         model: '$1 $2'
@@ -6043,7 +6049,7 @@ device_parsers:
         device: 'Trekstor $1'
         brand: 'Trekstor'
         model: '$1'
-      - regex: '; *(?:TrekStor )?(ST\d{4}.*?|VT10416-\d|SurfTab ST\d{4}.*?|SurfTab (?:breeze|xiron) .+?|SurfTab_7.0|breeze .+?|Xintroni.+?)__BUILD__'
+      - regex: '; *(?:TrekStor |)(ST\d{4}.*?|VT10416-\d|SurfTab ST\d{4}.*?|SurfTab (?:breeze|xiron) .+?|SurfTab_7.0|breeze .+?|Xintroni.+?)__BUILD__'
         device: 'Trekstor $1'
         brand: 'Trekstor'
         model: '$1'
@@ -6069,7 +6075,7 @@ device_parsers:
         device: '$1$2'
         brand: 'SonyEricsson'
         model: '$2'
-      - regex: '; *((?:SK|ST|LT|MK|MT|WT)\d{2}[a-z0-9]*(?:-o)?|E\d{2,3}[a-z]?|R800[ai]|U20i|X(?:10|15)(?:[a-z]?|mini|minipro)) Build'
+      - regex: '; *((?:SK|ST|LT|MK|MT|WT)\d{2}[a-z0-9]*(?:-o|)|E\d{2,3}[a-z]?|R800[ai]|U20i|X(?:10|15)(?:[a-z]?|mini|minipro)) Build'
         device: '$1'
         brand: 'SonyEricsson'
         model: '$1'
@@ -6119,7 +6125,7 @@ device_parsers:
       # Spice
       # @ref: http://www.spicemobilephones.co.in/
       #########
-      - regex: '; *((?:CSL_Spice|Spice|SPICE|CSL)[ _\-]?)?([Mm][Ii])([ _\-])?(\d{3}[^;/]*) Build/'
+      - regex: '; *((?:CSL_Spice|Spice|SPICE|CSL)[ _\-]?|)([Mm][Ii])([ _\-]|)(\d{3}[^;/]*) Build/'
         device: '$1$2$3$4'
         brand: 'Spice'
         model: 'Mi$4'
@@ -6278,7 +6284,7 @@ device_parsers:
       # Texet
       # @ref: http://www.texet.ru/tablet/
       #########
-      - regex: '; *((?:NaviPad )?T[BM]-\d{3}.*?|X-pad .*?|X Point)(?: Build/|\))'
+      - regex: '; *((?:NaviPad |)T[BM]-\d{3}.*?|X-pad .*?|X Point)(?: Build/|\))'
         device: '$1'
         brand: 'Texet'
         model: '$1'
@@ -6315,7 +6321,7 @@ device_parsers:
       # @ref: http://en.thl.com.cn/Mobile
       # @ref: http://thlmobilestore.com
       #########
-      - regex: '; *(?:CJ[ -])?(ThL|THL|thl)[ _\-]{1,2}([^;/]+) Build/'
+      - regex: '; *(?:CJ[ -]|)(ThL|THL|thl)[ _\-]{1,2}([^;/]+) Build/'
         device: '$1 $2'
         brand: 'Thl'
         model: '$2'
@@ -6353,7 +6359,7 @@ device_parsers:
         device: '$1'
         brand: 'HTC'
         model: 'Dream'
-      - regex: '\b(T-Mobile ?)?(myTouch)[ _]?([34]G)[ _]?([^\/]*) (?:Mozilla|Build)'
+      - regex: '\b(T-Mobile ?|)(myTouch)[ _]?([34]G)[ _]?([^\/]*) (?:Mozilla|Build)'
         device: '$1$2 $3 $4'
         brand: 'HTC'
         model: '$2 $3 $4'
@@ -6398,7 +6404,7 @@ device_parsers:
         device: '$1'
         brand: 'Toshiba'
         model: 'Folio 100'
-      - regex: '; *(AT[0-9]{2,3}(?:\-A|LE\-A|PE\-A|SE|a)?|AT7-[ABC]|AT1S0|Hikari-iFrame/WDPF-[^;/]+|THRiVE|Thrive) Build/'
+      - regex: '; *(AT[0-9]{2,3}(?:\-A|LE\-A|PE\-A|SE|a|)|AT7-[ABC]|AT1S0|Hikari-iFrame/WDPF-[^;/]+|THRiVE|Thrive) Build/'
         device: 'Toshiba $1'
         brand: 'Toshiba'
         model: '$1'
@@ -6567,7 +6573,7 @@ device_parsers:
         device: '$1'
         brand: 'Vonino'
         model: '$1'
-      - regex: '; (Argus[ _](QS|S)|Epic[ _]E7|Emerald[ _]78E|Diamond[ _]79HD|JetStar(?:[ _][^;/]+)?|Luna[ _]70C|Magnet_M9|(?:Onyx|Orin|Otis)[ _](?:QS|XS|S|Z|HD)|Primus (?:94HD.*|QS)|Sirius_(?:QS|Evo_QS)|SpeedStar S Pro|Spirit (QS|S)|Vario.*) Build'
+      - regex: '; (Argus[ _](QS|S)|Epic[ _]E7|Emerald[ _]78E|Diamond[ _]79HD|JetStar(?:[ _][^;/]+|)|Luna[ _]70C|Magnet_M9|(?:Onyx|Orin|Otis)[ _](?:QS|XS|S|Z|HD)|Primus (?:94HD.*|QS)|Sirius_(?:QS|Evo_QS)|SpeedStar S Pro|Spirit (QS|S)|Vario.*) Build'
         type: 'tablet'
         device: '$1'
         brand: 'Vonino'
@@ -6577,7 +6583,7 @@ device_parsers:
       # Walton
       # @ref: http://www.waltonbd.com/
       #########
-      - regex: '; *(?:Walton[ _\-])?(Primo[ _\-][^;/]+) Build'
+      - regex: '; *(?:Walton[ _\-]|)(Primo[ _\-][^;/]+) Build'
         regex_flag: 'i'
         device: 'Walton $1'
         brand: 'Walton'
@@ -6587,7 +6593,7 @@ device_parsers:
       # Wiko
       # @ref: http://fr.wikomobile.com/collection.php?s=Smartphones
       #########
-      - regex: '; *(?:WIKO[ \-])?(CINK\+?|CINK [^;/]+|BARRY|BIRDY|BLOOM|DARKFULL|DARKMOON|DARKNIGHT|DARKSIDE|FIZZ|GETAWAY|GOA|HIGHWAY(?: PURE| SIGNS| STAR)?|IGGY|JIMMY|KITE|LENNY(?:2)?|OZZY|RAINBOW(?: JAM| LITE| UP)?|RIDGE(?: FAB)?|SLIDE|STAIRWAY|SUBLIM|SUNSET(?:2)?|WAX)( 4G)? Build/'
+      - regex: '; *(?:WIKO[ \-]|)(CINK\+?|CINK [^;/]+|BARRY|BIRDY|BLOOM|DARKFULL|DARKMOON|DARKNIGHT|DARKSIDE|FIZZ|GETAWAY|GOA|HIGHWAY(?: PURE| SIGNS| STAR|)|IGGY|JIMMY|KITE|LENNY(?:2|)|OZZY|RAINBOW(?: JAM| LITE| UP|)|RIDGE(?: FAB|)|SLIDE|STAIRWAY|SUBLIM|SUNSET(?:2|)|WAX)( 4G|) Build/'
         regex_flag: 'i'
         device: 'Wiko $1$2'
         brand: 'Wiko'
@@ -6646,7 +6652,7 @@ device_parsers:
       # Yarvik Zania
       # @ref: http://yarvik.com
       #########
-      - regex: '; *(?:Xenta |Luna )?(TAB[234][0-9]{2}|TAB0[78]-\d{3}|TAB0?9-\d{3}|TAB1[03]-\d{3}|SMP\d{2}-\d{3}) Build/'
+      - regex: '; *(?:Xenta |Luna |)(TAB[234][0-9]{2}|TAB0[78]-\d{3}|TAB0?9-\d{3}|TAB1[03]-\d{3}|SMP\d{2}-\d{3}) Build/'
         device: 'Yarvik $1'
         brand: 'Yarvik'
         model: '$1'
@@ -6698,7 +6704,7 @@ device_parsers:
         device: 'Xolo $1'
         brand: 'Xolo'
         model: '$1'
-      - regex: '; *(q\d0{2,3}[a-z]?|8x-1000|A(?:500|550|1000)s(?:[ _]Lite|[ _]IPS)?|A500 Club|A500L|A600) Build'
+      - regex: '; *(q\d0{2,3}[a-z]?|8x-1000|A(?:500|550|1000)s(?:[ _]Lite|[ _]IPS|)|A500 Club|A500L|A600) Build'
         regex_flag: 'i'
         device: 'Xolo $1'
         brand: 'Xolo'
@@ -6730,7 +6736,7 @@ device_parsers:
       # Yezz
       # @ref:
       #########
-      - regex: '\b(Andy|yezz(?:[ -]andy)?)[ _-]([^;/]+) Build'
+      - regex: '\b(Andy|yezz(?:[ -]andy|))[ _-]([^;/]+) Build'
         regex_flag: 'i'
         device: 'Yezz Andy $2'
         brand: 'Yezz'
@@ -6909,7 +6915,7 @@ device_parsers:
         device: 'Kindle'
         brand: 'Amazon'
         model: 'Kindle'
-      - regex: '; ?(Silk)/(\d+)\.(\d+)(?:\.([0-9\-]+))? Build\b'
+      - regex: '; ?(Silk)/(\d+)\.(\d+)(?:\.([0-9\-]+)|) Build\b'
         device: 'Kindle Fire'
         brand: 'Amazon'
         model: 'Kindle Fire$2'
@@ -6979,7 +6985,7 @@ device_parsers:
       #########
       # Alcatel Windows Phones
       #########
-      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?)?(?:ALCATEL)[^;]*; *([^;,\)]+)'
+      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?|)(?:ALCATEL)[^;]*; *([^;,\)]+)'
         device: 'Alcatel $1'
         brand: 'Alcatel'
         model: '$1'
@@ -6988,7 +6994,7 @@ device_parsers:
       #########
       # Asus Windows Phones
       #########
-      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?|WpsLondonTest; ?)?(?:ASUS|Asus)[^;]*; *([^;,\)]+)'
+      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?|WpsLondonTest; ?|)(?:ASUS|Asus)[^;]*; *([^;,\)]+)'
         device: 'Asus $1'
         brand: 'Asus'
         model: '$1'
@@ -6997,7 +7003,7 @@ device_parsers:
       #########
       # Dell Windows Phones
       #########
-      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?)?(?:DELL|Dell)[^;]*; *([^;,\)]+)'
+      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?|)(?:DELL|Dell)[^;]*; *([^;,\)]+)'
         device: 'Dell $1'
         brand: 'Dell'
         model: '$1'
@@ -7006,7 +7012,7 @@ device_parsers:
       #########
       # HTC Windows Phones
       #########
-      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?|WpsLondonTest; ?)?(?:HTC|Htc|HTC_blocked[^;]*)[^;]*; *(?:HTC)?([^;,\)]+)'
+      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?|WpsLondonTest; ?|)(?:HTC|Htc|HTC_blocked[^;]*)[^;]*; *(?:HTC|)([^;,\)]+)'
         device: 'HTC $1'
         brand: 'HTC'
         model: '$1'
@@ -7025,7 +7031,7 @@ device_parsers:
       #########
       # Huawei Windows Phones
       #########
-      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?)?(?:HUAWEI)[^;]*; *(?:HUAWEI )?([^;,\)]+)'
+      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?|)(?:HUAWEI)[^;]*; *(?:HUAWEI |)([^;,\)]+)'
         device: 'Huawei $1'
         brand: 'Huawei'
         model: '$1'
@@ -7039,7 +7045,7 @@ device_parsers:
       #########
       # LG Windows Phones
       #########
-      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?)?(?:LG|Lg)[^;]*; *(?:LG[ \-])?([^;,\)]+)'
+      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?|)(?:LG|Lg)[^;]*; *(?:LG[ \-]|)([^;,\)]+)'
         device: 'LG $1'
         brand: 'LG'
         model: '$1'
@@ -7053,12 +7059,12 @@ device_parsers:
         brand: 'Nokia'
         model: 'Lumia $1'
         type: 'tablet'
-      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?)?(?:NOKIA|Nokia)[^;]*; *(?:NOKIA ?|Nokia ?|LUMIA ?|[Ll]umia ?)*(\d{3,}[^;\)]*)'
+      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?|)(?:NOKIA|Nokia)[^;]*; *(?:NOKIA Lumia ?|NOKIA ?|Nokia ?|LUMIA ?|[Ll]umia ?|)(\d{3,10}[^;\)]*)'
         device: 'Lumia $1'
         brand: 'Nokia'
         model: 'Lumia $1'
         type: 'smartphone'
-      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?)?(?:NOKIA|Nokia)[^;]*; *(RM-\d{3,})'
+      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?|)(?:NOKIA|Nokia)[^;]*; *(RM-\d{3,})'
         device: 'Nokia $1'
         brand: 'Nokia'
         model: '$1'
@@ -7068,12 +7074,12 @@ device_parsers:
         brand: 'Nokia'
         model: '$1'
         type: 'smartphone'
-      - regex: 'WPDesktop;(?: NOKIA; Nokia| NOKIA;| Nokia)? (\d+[^;\)]+)'
+      - regex: 'WPDesktop;(?: NOKIA; Nokia| NOKIA;| Nokia|) (\d+[^;\)]+)'
         device: 'Nokia Lumia $1'
         brand: 'Nokia'
         model: 'Lumia $1'
         type: 'smartphone'
-      - regex: 'Windows Phone Search.*NOKIA;(?:Nokia )?(\d+[^;\)]+)'
+      - regex: 'Windows Phone Search.*NOKIA;(?:Nokia |)(\d+[^;\)]+)'
         device: 'Nokia Lumia $1'
         brand: 'Nokia'
         model: 'Lumia $1'
@@ -7082,11 +7088,11 @@ device_parsers:
       #########
       # Microsoft Windows Phones
       #########
-      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?)?(?:Microsoft(?: Corporation)?)[^;]*; *([^;,\)]+)'
+      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?|)(?:Microsoft(?: Corporation|))[^;]*; *([^;,\)]+)'
         device: 'Microsoft $1'
         brand: 'Microsoft'
         model: '$1'
-      - regex: '(?:Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)]|WPDesktop;) ?(?:ARM; ?Touch; ?|Touch; ?)? *((?:LUMIA ?|[Ll]umia ?)[^;\)]+)'
+      - regex: '(?:Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)]|WPDesktop;) ?(?:ARM; ?Touch; ?|Touch; ?|) *((?:LUMIA ?|[Ll]umia ?)[^;\)]+)'
         device: 'Microsoft $1'
         brand: 'Microsoft'
         model: '$1'
@@ -7094,7 +7100,7 @@ device_parsers:
       #########
       # Prestigio Windows Phones
       #########
-      - regex: 'WPDesktop; *(?:PRESTIGIO;)? (PSP[^;\)]+)'
+      - regex: 'WPDesktop; *(?:PRESTIGIO;|) (PSP[^;\)]+)'
         device: 'Prestigio $1'
         brand: 'Prestigio'
         model: '$1'
@@ -7102,11 +7108,11 @@ device_parsers:
       #########
       # Samsung Windows Phones
       #########
-      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?|WpsLondonTest; ?)?(?:SAMSUNG)[^;]*; *(?:SAMSUNG )?([^;,\.\)]+)'
+      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?|WpsLondonTest; ?|)(?:SAMSUNG)[^;]*; *(?:SAMSUNG |)([^;,\.\)]+)'
         device: 'Samsung $1'
         brand: 'Samsung'
         model: '$1'
-      - regex: 'WPDesktop; *(?:SAMSUNG;)? ((?:GT-|SGH-)[^;\)]+)'
+      - regex: 'WPDesktop; *(?:SAMSUNG;|) ((?:GT-|SGH-)[^;\)]+)'
         device: 'Samsung $1'
         brand: 'Samsung'
         model: '$1'
@@ -7114,7 +7120,7 @@ device_parsers:
       #########
       # Toshiba Windows Phones
       #########
-      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?|WpsLondonTest; ?)?(?:TOSHIBA|FujitsuToshibaMobileCommun)[^;]*; *([^;,\)]+)'
+      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?|Touch; ?|WpsLondonTest; ?|)(?:TOSHIBA|FujitsuToshibaMobileCommun)[^;]*; *([^;,\)]+)'
         device: 'Toshiba $1'
         brand: 'Toshiba'
         model: '$1'
@@ -7122,8 +7128,8 @@ device_parsers:
       #########
       # Generic Windows Phones
       #########
-      ## - regex: '\(compatible; MSIE [^;]+; Windows Phone [^;]+; Trident/[^;]+; ?(?:ARM; Touch; ?)?IEMobile/[^;]+; ?(?:ARM; ?Touch; ?|Touch; ?|WpsLondonTest; ?)?([^;]+); *([^;,\)]+)'
-      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?(?:rv:\d+; )?|Touch; ?|WpsLondonTest; ?)?([^;]+); *([^;,\)]+)'
+      ## - regex: '\(compatible; MSIE [^;]+; Windows Phone [^;]+; Trident/[^;]+; ?(?:ARM; Touch; ?|)IEMobile/[^;]+; ?(?:ARM; ?Touch; ?|Touch; ?|WpsLondonTest; ?|)([^;]+); *([^;,\)]+)'
+      - regex: 'Windows Phone [^;]+; .*?IEMobile/[^;\)]+[;\)] ?(?:ARM; ?Touch; ?(?:rv:\d+; |)|Touch; ?|WpsLondonTest; ?|)([^;]+); *([^;,\)]+)'
         device: '$1 $2'
         brand: '$1'
         model: '$2'
@@ -7154,7 +7160,7 @@ device_parsers:
   #########
   - regex: Firefox
     group:
-      - regex: '\(Mobile; ALCATEL ?(One|ONE) ?(Touch|TOUCH) ?([^;/]+)(?:/[^;]+)?; rv:[^\)]+\) Gecko/[^\/]+ Firefox/'
+      - regex: '\(Mobile; ALCATEL ?(One|ONE) ?(Touch|TOUCH) ?([^;/]+)(?:/[^;]+|); rv:[^\)]+\) Gecko/[^\/]+ Firefox/'
         device: 'Alcatel $1 $2 $3'
         brand: 'Alcatel'
         model: 'One Touch $3'
@@ -7209,7 +7215,7 @@ device_parsers:
         brand: '$1'
         model: '$2'
       # Nokia Symbian
-      - regex: '\(Symbian(?:/3)?; U; ([^;]+);'
+      - regex: '\(Symbian(?:/3|); U; ([^;]+);'
         device: 'Nokia $1'
         brand: 'Nokia'
         model: '$1'
@@ -7266,7 +7272,7 @@ device_parsers:
         device: 'Palm Treo $1'
         brand: 'Palm'
         model: 'Treo $1'
-      - regex: 'webOS.*(P160U(?:NA)?)/(\d+).(\d+)'
+      - regex: 'webOS.*(P160U(?:NA|))/(\d+).(\d+)'
         device: 'HP Veer'
         brand: 'HP'
         model: 'Veer'
@@ -7290,7 +7296,7 @@ device_parsers:
   # No built in browser that I can tell
   # Stack Overflow indicated iTunes-AppleTV/4.1 as a known UA for app available and I'm seeing it in live traffic
   ##########
-  - regex: 'Apple\s?TV(\d,\d)?(?:.* \((\d)[;\)])?'
+  - regex: 'Apple\s?TV(\d,\d|)(?:.* \((\d)[;\)]|)'
     device: 'AppleTV'
     brand: 'Apple'
     model: 'AppleTV$1$2'
@@ -7423,7 +7429,7 @@ device_parsers:
         device: 'Asus $1'
         brand: 'Asus'
         model: '$1'
-      - regex: '(?:asus.*?ASUS|Asus|ASUS|asus)[\- ;]*((?:Transformer (?:Pad|Prime) |Transformer |Padfone |Nexus[ _])?[A-Za-z0-9]+)'
+      - regex: '(?:asus.*?ASUS|Asus|ASUS|asus)[\- ;]*((?:Transformer (?:Pad|Prime) |Transformer |Padfone |Nexus[ _]|)[A-Za-z0-9]+)'
         device: 'Asus $1'
         brand: 'Asus'
         model: '$1'
@@ -7507,7 +7513,7 @@ device_parsers:
   ##########
   # htc
   ##########
-  - regex: '\b(?:HTC/|HTC/[a-z0-9]+/)?HTC[ _\-;]? *(.*?)(?:-?Mozilla|fingerPrint|[;/\(\)]|$)'
+  - regex: '\b(?:HTC/|HTC/[a-z0-9]+/|)HTC[ _\-;]? *(.*?)(?:-?Mozilla|fingerPrint|[;/\(\)]|$)'
     regex_flag: 'i'
     device: 'HTC $1'
     brand: 'HTC'
@@ -7573,12 +7579,12 @@ device_parsers:
         brand: '$2'
         model: '$3'
         type: 'tv'
-      - regex: '(HbbTV)/1\.1\.1.*CE-HTML/1\.\d;Vendor/([^;]+);(?:.*SW-Version/.*(LF[^;]+);)?'
+      - regex: '(HbbTV)/1\.1\.1.*CE-HTML/1\.\d;Vendor/([^;]+);(?:.*SW-Version/.*(LF[^;]+);|)'
         device: '$1'
         brand: '$2'
         model: '$3'
         type: 'tv'
-      - regex: '(HbbTV)(?:/1\.1\.1)?(?: ?\(;;;;;\))?; *CE-HTML(?:/1\.\d)?; *([^ ]+) ([^;]+);'
+      - regex: '(HbbTV)(?:/1\.1\.1|)(?: ?\(;;;;;\)|); *CE-HTML(?:/1\.\d|); *([^ ]+) ([^;]+);'
         device: '$1'
         brand: '$2'
         model: '$3'
@@ -7601,7 +7607,7 @@ device_parsers:
   ##########
   - regex: 'NetCast'
     group:
-      - regex: 'LGE; (?:Media\/)?([^;]*);[^;]*;[^;]*;?\); "?LG NetCast(\.TV|\.Media|)-\d+'
+      - regex: 'LGE; (?:Media\/|)([^;]*);[^;]*;[^;]*;?\); "?LG NetCast(\.TV|\.Media|)-\d+'
         device: 'NetCast$2'
         brand: 'LG'
         model: '$1'
@@ -7655,7 +7661,7 @@ device_parsers:
         device: '$1$2'
         brand: 'LG'
         model: '$2'
-      - regex: '\b(?:LGE[ \-]LG\-(?:AX)?|LGE |LGE?-LG|LGE?[ \-]|LG[ /\-]|lg[\-])([A-Za-z0-9]+)\b'
+      - regex: '\b(?:LGE[ \-]LG\-(?:AX|)|LGE |LGE?-LG|LGE?[ \-]|LG[ /\-]|lg[\-])([A-Za-z0-9]+)\b'
         device: 'LG $1'
         brand: 'LG'
         model: '$1'
@@ -7911,25 +7917,25 @@ device_parsers:
       - regex: 'Android[\- ][\d]+\.[\d]+\-update1; [A-Za-z]{2}\-[A-Za-z]{0,2} *; *(.+?) Build[ /]'
         brand: 'Generic_Android'
         model: '$1'
-      - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[A-Za-z]{2}[_\-][A-Za-z]{0,2}\-? *; *(.+?) Build[ /]'
+      - regex: 'Android[\- ][\d]+(?:\.[\d]+)(?:\.[\d]+|); *[A-Za-z]{2}[_\-][A-Za-z]{0,2}\-? *; *(.+?) Build[ /]'
         brand: 'Generic_Android'
         model: '$1'
-      - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[A-Za-z]{0,2}\- *; *(.+?) Build[ /]'
+      - regex: 'Android[\- ][\d]+(?:\.[\d]+)(?:\.[\d]+|); *[A-Za-z]{0,2}\- *; *(.+?) Build[ /]'
         brand: 'Generic_Android'
         model: '$1'
       # No build info at all - "Build" follows locale immediately
-      - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[a-z]{0,2}[_\-]?[A-Za-z]{0,2};? Build[ /].* Mobile Safari'
+      - regex: 'Android[\- ][\d]+(?:\.[\d]+)(?:\.[\d]+|); *[a-z]{0,2}[_\-]?[A-Za-z]{0,2};? Build[ /].* Mobile Safari'
         device: 'Generic Smartphone'
         brand: 'Generic'
         model: 'Smartphone'
-      - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *[a-z]{0,2}[_\-]?[A-Za-z]{0,2};? Build[ /]'
+      - regex: 'Android[\- ][\d]+(?:\.[\d]+)(?:\.[\d]+|); *[a-z]{0,2}[_\-]?[A-Za-z]{0,2};? Build[ /]'
         device: 'Generic Tablet'
         brand: 'Generic'
         model: 'Tablet'
-      - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}; *\-?[A-Za-z]{2}; *(.+?) Build[ /]'
+      - regex: 'Android[\- ][\d]+(?:\.[\d]+)(?:\.[\d]+|); *\-?[A-Za-z]{2}; *(.+?) Build[ /]'
         brand: 'Generic_Android'
         model: '$1'
-      - regex: 'Android[\- ][\d]+(?:\.[\d]+){1,2}(?:;.*)?; *(.+?) Build[ /]'
+      - regex: 'Android[\- ][\d]+(?:\.[\d]+)(?:\.[\d]+|)(?:;.*|); *(.+?) Build[ /]'
         brand: 'Generic_Android'
         model: '$1'
       - regex: '; Adr \d+\.\d+\.\d+; [^;]*?; ([^)]*?)\)'
