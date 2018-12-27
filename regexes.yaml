@@ -518,8 +518,6 @@ user_agent_parsers:
         regex_flag: 'i'
         type: 'bot'
 
-      # BAD regex
-          # (?:[a-z\\.\\u0027]{1,30}[ _-]){0,4}[a-z_]{0,30}\
       - regex: "(\
           (?:[a-z][a-z. _-]{0,30} ?|)\
           (?:\

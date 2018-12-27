@@ -50,7 +50,7 @@ function main (add) {
   var cnt = 0
   var hasDebugInfo = false
 
-  if (/^\s*debug:\s*'[^']*'/m.test(data)) {
+  if (/^[ \t]*- debug:\s*'[^']*'/m.test(data)) {
     hasDebugInfo = true
   }
 
@@ -63,12 +63,12 @@ function main (add) {
   fs.writeFileSync(regexes + '.bak', data, 'utf8')
 
   // delete all debug lines
-  data = data.replace(/^\s*debug:\s*'[^']*'[ \t]*\n/mg, '')
+  data = data.replace(/^([ \t]*- )debug:\s*'[^']*'[ \t]*\n[ \t]*/mg, '$1')
 
   // add debug info
   if (!hasDebugInfo) {
-    data = data.replace(/(^[ \t]*)(- regex:\s*'[^']*'[ \t]*)/mg, function (m, m1, m2) {
-      return m1 + m2 + '\n' + m1 + "  debug: '#" + addZeros(++cnt, 4) + "'"
+    data = data.replace(/(^[ \t]*)- (regex:)/mg, function (m, m1, m2) {
+      return m1 + "- debug: '#" + addZeros(++cnt, 4) + "'\n" + m1 + '  ' + m2 
     })
     console.log('\n    debug info added to regexes.yaml\n')
   } else {
