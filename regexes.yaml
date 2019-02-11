@@ -1703,6 +1703,20 @@ os_parsers:
         family: 'Android'
 
   ##########
+  # Chrome OS
+  # if version 0.0.0, probably this stuff:
+  # http://code.google.com/p/chromium-os/issues/detail?id=11573
+  # http://code.google.com/p/chromium-os/issues/detail?id=13790
+  ##########
+  - regex: 'CrOS|CitrixChromeApp'
+    group:
+    - regex: '(CrOS) [a-z0-9_]+ __VERSION__'
+      family: 'Chrome OS'
+    # Citrix Chrome App on Chrome OS
+    - regex: '(x86_64|aarch64) __VERSION_DIGITS__.*Chrome.*(?:CitrixChromeApp)$'
+      family: 'Chrome OS'
+
+  ##########
   # Windows
   # http://en.wikipedia.org/wiki/Windows_NT#Releases
   # possibility of false positive when different marketing names share same NT kernel
@@ -2388,15 +2402,6 @@ os_parsers:
 
   - regex: '(CrKey)(?:[/]__VERSION__|)'
     family: 'Chromecast'
-
-  ##########
-  # Chrome OS
-  # if version 0.0.0, probably this stuff:
-  # http://code.google.com/p/chromium-os/issues/detail?id=11573
-  # http://code.google.com/p/chromium-os/issues/detail?id=13790
-  ##########
-  - regex: '(CrOS) [a-z0-9_]+ __VERSION__'
-    family: 'Chrome OS'
 
   ##########
   # Symbian + Symbian OS
