@@ -1076,7 +1076,7 @@ user_agent_parsers:
   # Chrome Mobile - Chrome based
   - regex: 'CrMo|CriOS|Chrom|chromeframe'
     group:
-      - regex: '\b(MiuiBrowser)/__VERSION__'
+      - regex: '\b(MiuiBrowser|Mint Browser)/__VERSION__'
       # Headless Chrome
       # https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md
       - regex: '(HeadlessChrome)(?:/(\d+)\.(\d+)\.?(\d+|)|)'
