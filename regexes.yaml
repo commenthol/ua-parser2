@@ -567,6 +567,7 @@ user_agent_parsers:
       Lightning|\
       Lotus-Notes|\
       MSOffice|\
+      Microsoft Office|\
       Outlook|\
       Shredder|\
       Sparrow|\
@@ -663,6 +664,9 @@ user_agent_parsers:
           Microsoft-WebDAV-MiniRedir\
           )/__VERSION__"
         type: 'app::webdav'
+      - regex: '(Microsoft Office) \(Word\) (2014)'
+        family: 'Microsoft Office Word'
+        type: 'app'
 
   # Feedreader
   - regex: "\\b(\
