@@ -1512,6 +1512,11 @@ user_agent_parsers:
   - regex: '(AppleWebKit)/__VERSION__'
     family: 'AppleWebKit'
 
+  # ViaFree streaming app https://www.viafree.{dk|se|no}
+  - regex: '^(ViaFree|Viafree)-(?:tvOS-|)[A-Z]{2}/__VERSION_DIGITS__'
+    family: 'ViaFree'
+    type: app
+
   # headless agents
   - regex: '(Phantom)/V(\d+)\.(\d+)'
     family: 'Phantom Browser'
@@ -2400,7 +2405,7 @@ os_parsers:
       ##########
       # Apple TV
       ##########
-      - regex: '(tvOS)/__VERSION__'
+      - regex: '(tvOS)[/ ]__VERSION__'
         family: 'tvOS'
 
       - regex: '(Darwin)/__VERSION__'
@@ -7995,6 +8000,11 @@ device_parsers:
     brand: 'Apple'
     model: 'iOS-Device'
     device: 'iOS-Device'
+  - regex: '\b(tvOS)\b'
+    brand: 'Apple'
+    model: 'tvOS-Device'
+    device: 'tvOS-Device'
+    type: tv
 
   - regex: '(Mac OS X)'
     brand: 'Apple'
