@@ -55,6 +55,7 @@ user_agent_parsers:
       Clarsentia|\
       cloud|\
       crawl|\
+      Datanyze|\
       diagnostic|\
       \\bdig\\b|\
       discovery|\
@@ -411,6 +412,7 @@ user_agent_parsers:
           BuiltWith|\
           Altresium|\
           altavista|\
+          Datanyze|\
           WebThumb|\
           ^voyager|\
           ShopWiki|\
