@@ -530,6 +530,9 @@ user_agent_parsers:
         regex_flag: 'i'
         type: 'bot'
 
+      - regex: "; (Daum)/__VERSION__"
+        type: 'bot'
+
       - regex: 'MSIE \d+\..*?https?://((?:[\w\d-]+\.|)[\w\d-]+\.\w+)'
         type: 'bot'
 
@@ -8012,7 +8015,7 @@ device_parsers:
   # Spiders (this is a hack...)
   # Sort by length
   ##########
-  - regex: '(bot|insomia|zao|borg|khte|ktht|ktxn|oegp|silk|xenu|zeal|^ning|lycos|nutch|htdig|crawl|cibra|slurp|sogou|teoma|voila|yahoo|daumoa|genieo|ichiro|holmes|^jnlp/|^java/|larbin|pompos|reaper|scrapy|snappy|speedy|spider|vortex|favicon|monitor|riddler|scooter|scraper|scrubby|whatweb|winhttp|indexer|zooshot|archiver|^voyager|heritrix|icarus6j|mogimogi|netvibes|qwantify|retreiver|newsgator|findlinks|altavista|charlotte|synthetic|tlsprober|wordpress|wsr-agent|blogbridge|catchpoint|classifier|pagepeeker|gomezagent|squrl java|statuscake|bingpreview|netresearch|searchsight|webthumbnail|http%20client|python-urllib|dataparksearch|screaming frog|internetarchive|appengine-google|semanticdiscovery|google web preview|facebookexternalhit|iltrovatore-setaccio|google-http-java-client|google.*/\+/web/snippet)'
+  - regex: '(bot|insomia|zao|borg|khte|ktht|ktxn|oegp|silk|xenu|zeal|^ning|lycos|nutch|htdig|crawl|cibra|slurp|sogou|teoma|voila|yahoo|daumoa|genieo|ichiro|holmes|^jnlp/|^java/|larbin|pompos|reaper|scrapy|snappy|speedy|spider|vortex|favicon|monitor|riddler|scooter|scraper|scrubby|whatweb|winhttp|indexer|zooshot|archiver|^voyager|heritrix|icarus6j|mogimogi|netvibes|qwantify|retreiver|newsgator|findlinks|altavista|charlotte|synthetic|tlsprober|wordpress|wsr-agent|blogbridge|catchpoint|classifier|pagepeeker|gomezagent|squrl java|statuscake|bingpreview|netresearch|searchsight|webthumbnail|http%20client|python-urllib|dataparksearch|screaming frog|internetarchive|appengine-google|semanticdiscovery|google web preview|facebookexternalhit|iltrovatore-setaccio|google-http-java-client|google.*/\+/web/snippet|yeti|daum)'
     regex_flag: 'i'
     device: 'Spider'
     brand: 'Spider'
