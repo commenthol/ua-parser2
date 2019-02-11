@@ -1519,6 +1519,9 @@ user_agent_parsers:
     family: 'ViaFree'
     type: app
 
+  - regex: '(OC)/__VERSION__\.\d+ \(Skype for Business\)'
+    family: 'Skype'
+
   # headless agents
   - regex: '(Phantom)/V(\d+)\.(\d+)'
     family: 'Phantom Browser'
