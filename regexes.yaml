@@ -1801,7 +1801,7 @@ os_parsers:
     group:
       - regex: '(Sailfish);'
 
-      - regex: '(Android)[ \-/](\d+)\.(\d+)(?:[.\-]([a-z0-9]+)|)'
+      - regex: '(Android)[ \-/](\d+)(?:\.(\d+)|)(?:[.\-]([a-z0-9]+)|)'
 
       - regex: '\((Linux); U; (\d+)\.(\d+)(?:[\.-](\d+|update1)|);'
         family: 'Android'
