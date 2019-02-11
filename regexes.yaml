@@ -1271,6 +1271,7 @@ user_agent_parsers:
       Roccat|\
       RockMelt|\
       SailfishBrowser|\
+      SalesforceMobileSDK|\
       SeaMonkey|\
       SecondLife|\
       Seznam\\.cz|\
@@ -1558,7 +1559,6 @@ user_agent_parsers:
     family: compatible
     type: 'bot'
 
-
 #### Engine ####
 engine_parsers:
 
@@ -1798,7 +1798,7 @@ os_parsers:
   ##########
   # Android
   ##########
-  - regex: 'Android|Build|Linux'
+  - regex: '[Aa]ndroid|Build|Linux'
     group:
       - regex: '(Sailfish);'
 
@@ -1987,6 +1987,10 @@ os_parsers:
         family: 'Android'
         v1: '1'
         v2: '5'
+
+      # Salesforce
+      - regex: '(android)\s(?:mobile\/)(\d+)(?:\.?(\d+)|)(?:\.?(\d+)|)'
+        family: 'Android'
 
   # Raspbian
   - regex: '(Raspbian)[ \-/](\d+)\.(\d+)(?:[.-]([a-z0-9]+)|)'
