@@ -103,6 +103,7 @@ user_agent_parsers:
       Neustar WPM|\
       NING|\
       \\boBot|\
+      PAN GlobalProtect|\
       PayPal|\
       Photon|\
       Pingdom|\
@@ -174,7 +175,11 @@ user_agent_parsers:
       - regex: '(ELB-HealthChecker|SiteScope)(?:[/ ]__VERSION__|.|$)'
         regex_flag: 'i'
         type: 'bot::healthcheck'
-      - regex: '(PRTG Network Monitor|PingdomTMS)(?:[/ ]__VERSION__|.|$)'
+      - regex: "(\
+          PRTG Network Monitor|\
+          PAN GlobalProtect|\
+          PingdomTMS\
+          )(?:[/ ]__VERSION__|.|$)"
         regex_flag: 'i'
         type: 'bot::monitor'
 
@@ -1786,6 +1791,8 @@ os_parsers:
 
       - regex: '(Win16|Win ?3.\1|Windows 3\.1)'
         family: 'Windows 3.1'
+
+      - regex: '(Windows) (10)'
 
       - regex: '(Windows)(?:(?!CFNetwork).)*$'
 
