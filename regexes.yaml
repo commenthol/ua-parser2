@@ -161,7 +161,7 @@ user_agent_parsers:
     regex_flag: 'i'
     group:
       # Pingdom
-      - regex: '(Pingdom.com_bot_version_)(\d+)\.(\d+)'
+      - regex: '(Pingdom\.com_bot_version_)(\d+)\.(\d+)'
         family: 'PingdomBot'
         type: 'bot'
       # Google Plus
@@ -950,7 +950,7 @@ user_agent_parsers:
         family: 'Opera Mobile'
       - regex: 'Opera Mobi'
         family: 'Opera Mobile'
-      - regex: '(Opera)/9.80.*Version/__VERSION_DIGITS__'
+      - regex: '(Opera)/9\.80.*Version/__VERSION_DIGITS__'
 
       # Opera 14 for Android uses a WebKit render engine.
       - regex: '(?:Mobile Safari).*( OPR)/__VERSION__'
@@ -1000,7 +1000,7 @@ user_agent_parsers:
   - regex: '(Comodo[ _]Dragon)/__VERSION__'
     family: 'Comodo Dragon'
 
-  - regex: '(Symphony) (\d+).(\d+)'
+  - regex: '(Symphony) (\d+)\.(\d+)'
 
   # Yandex Browser
   - regex: '(YaBrowser)/__VERSION__'
@@ -1368,14 +1368,14 @@ user_agent_parsers:
 
   - regex: '(BrowseX) \(__VERSION__'
 
-  - regex: '(NCSA[ _]Mosaic)(?:/(\d+)[\.-](\d+)(?:[\.-]?([a-z]?\d+)|)|)'
+  - regex: '(NCSA[ _]Mosaic)(?:/(\d+)[.-](\d+)(?:[.-]?([a-z]?\d+)|)|)'
     family: 'NCSA Mosaic'
 
   # Polaris/d.d is above
   - regex: '(POLARIS|Embider)/(\d+)\.(\d+)'
     family: 'Polaris'
 
-  - regex: '(AvantGo) (\d+).(\d+)'
+  - regex: '(AvantGo) (\d+)\.(\d+)'
 
   - regex: '(Avant)'
     v1: '1'
@@ -1759,7 +1759,7 @@ os_parsers:
 
       - regex: '(Windows NT 6\.3; ARM;)'
         family: 'Windows RT 8.1'
-      - regex: '(Windows NT 6\.3|CYGWIN_NT-6\.3|Windows 8.1)'
+      - regex: '(Windows NT 6\.3|CYGWIN_NT-6\.3|Windows 8\.1)'
         family: 'Windows 8.1'
 
       - regex: '(Windows NT 6\.2; ARM;)'
@@ -1794,7 +1794,7 @@ os_parsers:
       - regex: '(Win32|Win ?95|CYGWIN_95-4\.0|Windows[ _]95)'
         family: 'Windows 95'
 
-      - regex: '(Win16|Win ?3.\1|Windows 3\.1)'
+      - regex: '(Win16|Win ?3\.1|Windows 3\.1)'
         family: 'Windows 3.1'
 
       - regex: '(Windows) (10)'
@@ -2468,32 +2468,32 @@ os_parsers:
   - regex: '(\((Mobile|Tablet);.+Firefox|KaiOS\/|Kai\/)'
     regex_flag: 'i'
     group:
-      - regex: '\((?:Mobile|Tablet);.+Gecko/18.0 Firefox/\d+\.\d+'
+      - regex: '\((?:Mobile|Tablet);.+Gecko/18\.0 Firefox/\d+\.\d+'
         family: 'Firefox OS'
         v1: '1'
         v2: '0'
         v3: '1'
-      - regex: '\((?:Mobile|Tablet);.+Gecko/18.1 Firefox/\d+\.\d+'
+      - regex: '\((?:Mobile|Tablet);.+Gecko/18\.1 Firefox/\d+\.\d+'
         family: 'Firefox OS'
         v1: '1'
         v2: '1'
-      - regex: '\((?:Mobile|Tablet);.+Gecko/26.0 Firefox/\d+\.\d+'
+      - regex: '\((?:Mobile|Tablet);.+Gecko/26\.0 Firefox/\d+\.\d+'
         family: 'Firefox OS'
         v1: '1'
         v2: '2'
-      - regex: '\((?:Mobile|Tablet);.+Gecko/28.0 Firefox/\d+\.\d+'
+      - regex: '\((?:Mobile|Tablet);.+Gecko/28\.0 Firefox/\d+\.\d+'
         family: 'Firefox OS'
         v1: '1'
         v2: '3'
-      - regex: '\((?:Mobile|Tablet);.+Gecko/30.0 Firefox/\d+\.\d+'
+      - regex: '\((?:Mobile|Tablet);.+Gecko/30\.0 Firefox/\d+\.\d+'
         family: 'Firefox OS'
         v1: '1'
         v2: '4'
-      - regex: '\((?:Mobile|Tablet);.+Gecko/32.0 Firefox/\d+\.\d+'
+      - regex: '\((?:Mobile|Tablet);.+Gecko/32\.0 Firefox/\d+\.\d+'
         family: 'Firefox OS'
         v1: '2'
         v2: '0'
-      - regex: '\((?:Mobile|Tablet);.+Gecko/34.0 Firefox/\d+\.\d+'
+      - regex: '\((?:Mobile|Tablet);.+Gecko/34\.0 Firefox/\d+\.\d+'
         family: 'Firefox OS'
         v1: '2'
         v2: '1'
@@ -2522,7 +2522,7 @@ os_parsers:
   ##########
   - regex: '(GoogleTV)(?: __VERSION__|/[\da-z]+)'
 
-  - regex: '(WebTV)/(\d+).(\d+)'
+  - regex: '(WebTV)/(\d+)\.(\d+)'
 
   ##########
   # Misc mobile
@@ -2538,25 +2538,25 @@ os_parsers:
   ##########
   - regex: 'HbbTV'
     group:
-      - regex: 'HbbTV/\d+\.\d+\.\d+ \( ;(LG)E ;NetCast 4.0'
+      - regex: 'HbbTV/\d+\.\d+\.\d+ \( ;(LG)E ;NetCast 4\.0'
         v1: '2013'
-      - regex: 'HbbTV/\d+\.\d+\.\d+ \( ;(LG)E ;NetCast 3.0'
+      - regex: 'HbbTV/\d+\.\d+\.\d+ \( ;(LG)E ;NetCast 3\.0'
         v1: '2012'
-      - regex: 'HbbTV/1.1.1 \(;;;;;\) Maple_2011'
+      - regex: 'HbbTV/1\.1\.1 \(;;;;;\) Maple_2011'
         family: 'Samsung'
         v1: '2011'
       - regex: 'HbbTV/\d+\.\d+\.\d+ \(;(Samsung);SmartTV([0-9]{4});.*FXPDEUC'
         v2: 'UE40F7000'
       - regex: 'HbbTV/\d+\.\d+\.\d+ \(;(Samsung);SmartTV([0-9]{4});.*MST12DEUC'
         v2: 'UE32F4500'
-      - regex: 'HbbTV/1.1.1 \(; (Philips);.*NETTV/4'
+      - regex: 'HbbTV/1\.1\.1 \(; (Philips);.*NETTV/4'
         v1: '2013'
-      - regex: 'HbbTV/1.1.1 \(; (Philips);.*NETTV/3'
+      - regex: 'HbbTV/1\.1\.1 \(; (Philips);.*NETTV/3'
         v1: '2012'
-      - regex: 'HbbTV/1.1.1 \(; (Philips);.*NETTV/2'
+      - regex: 'HbbTV/1\.1\.1 \(; (Philips);.*NETTV/2'
         v1: '2011'
       # the HbbTV emulator developers use HbbTV/1.1.1 (;;;;;) firetv-firefox-plugin 1.1.20
-      - regex: 'HbbTV/\d+\.\d+\.\d+.*(firetv)-firefox-plugin (\d+).(\d+).(\d+)'
+      - regex: 'HbbTV/\d+\.\d+\.\d+.*(firetv)-firefox-plugin (\d+)\.(\d+)\.(\d+)'
         family: 'FireHbbTV'
       # generic HbbTV, hoping to catch manufacturer name (always after 2nd comma) and the first string that looks like a 2011-2019 year
       - regex: 'HbbTV/\d+\.\d+\.\d+ \(.*; ?([a-zA-Z]+) ?;.*(201[1-9]).*\)'
@@ -2738,7 +2738,7 @@ device_parsers:
             device: '$1$2'
             brand: 'Samsung'
             model: '$2'
-          - regex: '; *(Galaxy(?: Ace| Nexus| ACE| S ?II+|Nexus S| with MCR 1.2| Mini Plus 4G|)) Build/'
+          - regex: '; *(Galaxy(?: Ace| Nexus| ACE| S ?II+|Nexus S| with MCR 1\.2| Mini Plus 4G|)) Build/'
             device: '$1'
             brand: 'Samsung'
             model: '$1'
@@ -3785,7 +3785,7 @@ device_parsers:
       # Digma
       # @ref:
       #########
-      - regex: '; *(?:Digma |DIGMA |)(Optima .*?|Plane .*?|HIT .*?|iD[jnsx]D\d+.*?|TT7022MG.*?|LINX 6.0 PS604M)(?: Build|[;)])'
+      - regex: '; *(?:Digma |DIGMA |)(Optima .*?|Plane .*?|HIT .*?|iD[jnsx]D\d+.*?|TT7022MG.*?|LINX 6\.0 PS604M)(?: Build|[;)])'
         device: '$1'
         brand: 'Digma'
         model: '$1'
@@ -3947,7 +3947,7 @@ device_parsers:
         device: '$1'
         brand: 'Explay'
         model: '$1'
-      - regex: '; *(Art 3G|CinemaTV[ _]3G|Infinityll|informer 921|M1_Plus|sQuad 7.82 3G|Surfer 8.31 3G|X-tremer)__BUILD__'
+      - regex: '; *(Art 3G|CinemaTV[ _]3G|Infinityll|informer 921|M1_Plus|sQuad 7\.82 3G|Surfer 8\.31 3G|X-tremer)__BUILD__'
         device: '$1'
         brand: 'Explay'
         model: '$1'
@@ -6072,7 +6072,7 @@ device_parsers:
         device: 'Trekstor $1'
         brand: 'Trekstor'
         model: '$1'
-      - regex: '; *(?:TrekStor |)(ST\d{4}.*?|VT10416-\d|SurfTab ST\d{4}.*?|SurfTab (?:breeze|xiron) .+?|SurfTab_7.0|breeze .+?|Xintroni.+?)__BUILD__'
+      - regex: '; *(?:TrekStor |)(ST\d{4}.*?|VT10416-\d|SurfTab ST\d{4}.*?|SurfTab (?:breeze|xiron) .+?|SurfTab_7\.0|breeze .+?|Xintroni.+?)__BUILD__'
         device: 'Trekstor $1'
         brand: 'Trekstor'
         model: '$1'
@@ -7305,7 +7305,7 @@ device_parsers:
         brand: 'HP'
         model: 'TouchPad'
         type: 'tablet'
-      - regex: 'HPiPAQ([A-Za-z0-9]+)/\d+.\d+'
+      - regex: 'HPiPAQ([A-Za-z0-9]+)/\d+\.\d+'
         device: 'HP iPAQ $1'
         brand: 'HP'
         model: 'iPAQ $1'
@@ -7976,7 +7976,7 @@ device_parsers:
   ##########
   # WebTV
   ##########
-  - regex: '(WebTV)/\d+.\d+'
+  - regex: '(WebTV)/\d+\.\d+'
     brand: 'Generic_Inettv'
     model: '$1'
     type: 'tv'
@@ -8053,7 +8053,7 @@ device_parsers:
   # Generic Feature Phone
   # take care to do case insensitive matching
   ##########
-  - regex: '^(1207|3gso|4thp|501i|502i|503i|504i|505i|506i|6310|6590|770s|802s|a wa|acer|acs\-|airn|alav|asus|attw|au\-m|aur |aus |abac|acoo|aiko|alco|alca|amoi|anex|anny|anyw|aptu|arch|argo|bmobile|bell|bird|bw\-n|bw\-u|beck|benq|bilb|blac|c55/|cdm\-|chtm|capi|comp|cond|dall|dbte|dc\-s|dica|ds\-d|ds12|dait|devi|dmob|doco|dopo|dorado|el(?:38|39|48|49|50|55|58|68)|el[3456]\d{2}dual|erk0|esl8|ex300|ez40|ez60|ez70|ezos|ezze|elai|emul|eric|ezwa|fake|fly\-|fly_|g\-mo|g1 u|g560|gf\-5|grun|gene|go.w|good|grad|hcit|hd\-m|hd\-p|hd\-t|hei\-|hp i|hpip|hs\-c|htc |htc\-|htca|htcg|htcp|htcs|htct|htc_|haie|hita|huaw|hutc|i\-20|i\-go|i\-ma|i\-mobile|i230|iac|iac\-|iac/|ig01|im1k|inno|iris|jata|kddi|kgt|kgt/|kpt |kwc\-|klon|lexi|lg g|lg\-a|lg\-b|lg\-c|lg\-d|lg\-f|lg\-g|lg\-k|lg\-l|lg\-m|lg\-o|lg\-p|lg\-s|lg\-t|lg\-u|lg\-w|lg/k|lg/l|lg/u|lg50|lg54|lge\-|lge/|leno|m1\-w|m3ga|m50/|maui|mc01|mc21|mcca|medi|meri|mio8|mioa|mo01|mo02|mode|modo|mot |mot\-|mt50|mtp1|mtv |mate|maxo|merc|mits|mobi|motv|mozz|n100|n101|n102|n202|n203|n300|n302|n500|n502|n505|n700|n701|n710|nec\-|nem\-|newg|neon|netf|noki|nzph|o2 x|o2\-x|opwv|owg1|opti|oran|ot\-s|p800|pand|pg\-1|pg\-2|pg\-3|pg\-6|pg\-8|pg\-c|pg13|phil|pn\-2|pt\-g|palm|pana|pire|pock|pose|psio|qa\-a|qc\-2|qc\-3|qc\-5|qc\-7|qc07|qc12|qc21|qc32|qc60|qci\-|qwap|qtek|r380|r600|raks|rim9|rove|s55/|sage|sams|sc01|sch\-|scp\-|sdk/|se47|sec\-|sec0|sec1|semc|sgh\-|shar|sie\-|sk\-0|sl45|slid|smb3|smt5|sp01|sph\-|spv |spv\-|sy01|samm|sany|sava|scoo|send|siem|smar|smit|soft|sony|t\-mo|t218|t250|t600|t610|t618|tcl\-|tdg\-|telm|tim\-|ts70|tsm\-|tsm3|tsm5|tx\-9|tagt|talk|teli|topl|tosh|up.b|upg1|utst|v400|v750|veri|vk\-v|vk40|vk50|vk52|vk53|vm40|vx98|virg|vertu|vite|voda|vulc|w3c |w3c\-|wapj|wapp|wapu|wapm|wig |wapi|wapr|wapv|wapy|wapa|waps|wapt|winc|winw|wonu|x700|xda2|xdag|yas\-|your|zte\-|zeto|aste|audi|avan|blaz|brew|brvw|bumb|ccwa|cell|cldc|cmd\-|dang|eml2|fetc|hipt|http|ibro|idea|ikom|ipaq|jbro|jemu|jigs|keji|kyoc|kyok|m\-cr|midp|mmef|moto|mwbp|mywa|newt|nok6|o2im|pant|pdxg|play|pluc|port|prox|rozo|sama|seri|smal|symb|treo|upsi|vx52|vx53|vx60|vx61|vx70|vx80|vx81|vx83|vx85|wap\-|webc|whit|wmlb|xda\-|xda_)'
+  - regex: '^(1207|3gso|4thp|501i|502i|503i|504i|505i|506i|6310|6590|770s|802s|a wa|acer|acs\-|airn|alav|asus|attw|au\-m|aur |aus |abac|acoo|aiko|alco|alca|amoi|anex|anny|anyw|aptu|arch|argo|bmobile|bell|bird|bw\-n|bw\-u|beck|benq|bilb|blac|c55/|cdm\-|chtm|capi|comp|cond|dall|dbte|dc\-s|dica|ds\-d|ds12|dait|devi|dmob|doco|dopo|dorado|el(?:38|39|48|49|50|55|58|68)|el[3456]\d{2}dual|erk0|esl8|ex300|ez40|ez60|ez70|ezos|ezze|elai|emul|eric|ezwa|fake|fly\-|fly_|g\-mo|g1 u|g560|gf\-5|grun|gene|go\.w|good|grad|hcit|hd\-m|hd\-p|hd\-t|hei\-|hp i|hpip|hs\-c|htc |htc\-|htca|htcg|htcp|htcs|htct|htc_|haie|hita|huaw|hutc|i\-20|i\-go|i\-ma|i\-mobile|i230|iac|iac\-|iac/|ig01|im1k|inno|iris|jata|kddi|kgt|kgt/|kpt |kwc\-|klon|lexi|lg g|lg\-a|lg\-b|lg\-c|lg\-d|lg\-f|lg\-g|lg\-k|lg\-l|lg\-m|lg\-o|lg\-p|lg\-s|lg\-t|lg\-u|lg\-w|lg/k|lg/l|lg/u|lg50|lg54|lge\-|lge/|leno|m1\-w|m3ga|m50/|maui|mc01|mc21|mcca|medi|meri|mio8|mioa|mo01|mo02|mode|modo|mot |mot\-|mt50|mtp1|mtv |mate|maxo|merc|mits|mobi|motv|mozz|n100|n101|n102|n202|n203|n300|n302|n500|n502|n505|n700|n701|n710|nec\-|nem\-|newg|neon|netf|noki|nzph|o2 x|o2\-x|opwv|owg1|opti|oran|ot\-s|p800|pand|pg\-1|pg\-2|pg\-3|pg\-6|pg\-8|pg\-c|pg13|phil|pn\-2|pt\-g|palm|pana|pire|pock|pose|psio|qa\-a|qc\-2|qc\-3|qc\-5|qc\-7|qc07|qc12|qc21|qc32|qc60|qci\-|qwap|qtek|r380|r600|raks|rim9|rove|s55/|sage|sams|sc01|sch\-|scp\-|sdk/|se47|sec\-|sec0|sec1|semc|sgh\-|shar|sie\-|sk\-0|sl45|slid|smb3|smt5|sp01|sph\-|spv |spv\-|sy01|samm|sany|sava|scoo|send|siem|smar|smit|soft|sony|t\-mo|t218|t250|t600|t610|t618|tcl\-|tdg\-|telm|tim\-|ts70|tsm\-|tsm3|tsm5|tx\-9|tagt|talk|teli|topl|tosh|up\.b|upg1|utst|v400|v750|veri|vk\-v|vk40|vk50|vk52|vk53|vm40|vx98|virg|vertu|vite|voda|vulc|w3c |w3c\-|wapj|wapp|wapu|wapm|wig |wapi|wapr|wapv|wapy|wapa|waps|wapt|winc|winw|wonu|x700|xda2|xdag|yas\-|your|zte\-|zeto|aste|audi|avan|blaz|brew|brvw|bumb|ccwa|cell|cldc|cmd\-|dang|eml2|fetc|hipt|http|ibro|idea|ikom|ipaq|jbro|jemu|jigs|keji|kyoc|kyok|m\-cr|midp|mmef|moto|mwbp|mywa|newt|nok6|o2im|pant|pdxg|play|pluc|port|prox|rozo|sama|seri|smal|symb|treo|upsi|vx52|vx53|vx60|vx61|vx70|vx80|vx81|vx83|vx85|wap\-|webc|whit|wmlb|xda\-|xda_)'
     regex_flag: 'i'
     device: 'Generic Feature Phone'
     brand: 'Generic'
