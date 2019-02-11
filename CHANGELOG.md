@@ -1,5 +1,32 @@
 # Changelog
 
+**v0.4.2**
+
+- ua: Microsoft Office Word
+- ua: Skype
+- ua: Mint Browser
+- ua: Datanyze bot
+- test: Zendesk for iPhone
+- test: SpeedCurve WebPage Test
+- fix: dots in regexes
+- ua,os,device: ViaFree app and tvOS
+- test: Line browser
+- os: improve Windows 10 detection
+- os: Citrix Chrome App on Chrome OS
+- test: Facebook messenger
+- test: Facebook app
+- ua,os: SalesforceMobileSDK
+- test: add Pixel Snapchat useragents
+- ua: Whale browser
+- os: single digit android version
+- ua: Naver Yeti and Daum bots
+- update: debuginfo
+
+**v0.4.1**
+
+- build: add node 10
+- fix: safe regexes
+
 **2018-08-11** v0.4.0
 
 - bump dependencies
