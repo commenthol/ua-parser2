@@ -1536,6 +1536,7 @@ user_agent_parsers:
       Apache-Http(?:Async|)Client|\
       BitTorrent|\
       curl|\
+      Ghost|\
       Go-http-client|\
       HTMLParser|\
       HTTrack|\
