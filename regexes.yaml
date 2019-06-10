@@ -1453,7 +1453,7 @@ user_agent_parsers:
   - regex: '(Odyssey Web Browser); rv:__VERSION__'
 
   # iOS
-  - regex: '(iPod|iPhone|iPad)'
+  - regex: '(iPod|iPhone|iPad|watchOS)'
     group:
       # @ref http://stackoverflow.com/questions/2143763/
       - regex: '\b(GSA)/__VERSION__'
@@ -1483,6 +1483,9 @@ user_agent_parsers:
         family: 'Mobile Safari'
       - regex: '(iPod|iPhone|iPad)'
         family: 'Mobile Safari UI/WKWebView'
+        type: 'app'
+      - regex: 'watchOS.*(Watch)(\d+),(\d+)'
+        family: 'Apple $1 App'
         type: 'app'
 
   # Safari
@@ -2236,7 +2239,7 @@ os_parsers:
   # iOS
   # http://en.wikipedia.org/wiki/IOS_version_history
   ##########
-  - regex: 'CPU OS|iPhone|iPad|iPod|iOS|Apple\s?TV|CFNetwork|tvOS|Darwin'
+  - regex: 'CPU OS|iPhone|iPad|iPod|iOS|Apple\s?TV|CFNetwork|tvOS|Darwin|watchOS'
     group:
       # Apple TV
       - regex: '(Apple\s?TV).* CPU OS (\d+)[_\.](\d+)(?:[_\.](\d+)|)'
@@ -2259,7 +2262,9 @@ os_parsers:
       # few more stragglers
       - regex: '(iPhone|iPad|iPod).*Mac OS X.*Version/__VERSION__'
         family: 'iOS'
-
+      # Apple Watch
+      - regex: '(watchOS)/__VERSION_OS__'
+        family: 'watchOS'
       ##########
       # CFNetwork/Darwin - The specific CFNetwork or Darwin version determines whether the os maps to Mac OS, or iOS, or just Darwin.
       # @ref: https://en.wikipedia.org/wiki/Darwin_(operating_system)#Release_history
@@ -7350,7 +7355,7 @@ device_parsers:
   #   ipad and ipod must be parsed before iphone
   #   cannot determine specific device type from ua string. (3g, 3gs, 4, etc)
   ##########
-  - regex: 'iPhone|iPad|iPod|CFNetwork|Darwin|iPh|iPd'
+  - regex: 'iPhone|iPad|iPod|CFNetwork|Darwin|iPh|iPd|watchOS'
     group:
       # @note: iPad needs to be before iPhone
       - regex: '(iPad)(\d+,\d+)|(iPad)(?:;| Simulator;)'
@@ -7393,6 +7398,11 @@ device_parsers:
         brand: 'Apple'
         model: '$1$2$3'
         type: 'smartphone'
+      - regex: '(watchOS).*model/(Watch)(\d+,\d+)'
+        device: '$2$3'
+        brand: 'Apple'
+        model: '$1 $2$3'
+        type: 'watch'
       # @note: desktop applications show device info
       - regex: 'CFNetwork/.* Darwin/\d.*\(((?:Mac|iMac|PowerMac|PowerBook)[^\d]*)(\d+)(?:,|%2C)(\d+)'
         device: '$1$2,$3'
