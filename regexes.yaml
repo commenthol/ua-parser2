@@ -10,6 +10,7 @@ pattern:
   __VERSION_OS__: '(\d+)(?:\.(\d+)|)(?:\.(\d+)|)(?:\.(\d+)|)'
   __VERSION_OS_UNDERSCORE__: '(\d+)(?:[._](\d+)|)(?:[._](\d+)|)'
   __BUILD__: '(?: Build|[;)])'
+  __LOCALE__: '[A-Za-z]{2}[_\-][A-Za-z]{0,2}'
 
 #### Browser ####
 user_agent_parsers:
@@ -2633,7 +2634,6 @@ device_parsers:
   ######################################################################
   - regex: '[Aa]ndroid| Build| Adr |JUC|\bHTC|Linux|Archos'
     group:
-
       - regex: ' Safari'
         preset: true
         type: 'tablet'
@@ -7954,7 +7954,7 @@ device_parsers:
   #########
   - regex: 'Android| Adr '
     group:
-      - regex: 'Android[\- ][\d]+\.[\d]+; [A-Za-z]{2}\-[A-Za-z]{0,2}; WOWMobile (.+) Build[ /]'
+      - regex: 'Android[\- ][\d]+\.[\d]+; [A-Za-z]{2}\-[A-Za-z]{0,2}; WOWMobile (.+?) Build[ /]'
         brand: 'Generic_Android'
         model: '$1'
       - regex: 'Android[\- ][\d]+\.[\d]+\-update1; [A-Za-z]{2}\-[A-Za-z]{0,2} *; *(.+?) Build[ /]'
@@ -7967,13 +7967,13 @@ device_parsers:
         brand: 'Generic_Android'
         model: '$1'
       # No build info at all - "Build" follows locale immediately
-      - regex: 'Android[\- ][\d]+(?:\.[\d]+)(?:\.[\d]+|); *[a-z]{0,2}[_\-]?[A-Za-z]{0,2};? Build[ /].* Mobile Safari'
+      - regex: 'Android[\- ][\d]+(?:\.[\d]+)(?:\.[\d]+|); *__LOCALE__;?([)]| Build[ /]).* Mobile'
         device: 'Generic Smartphone'
-        brand: 'Generic'
+        brand: 'Generic_Android'
         model: 'Smartphone'
-      - regex: 'Android[\- ][\d]+(?:\.[\d]+)(?:\.[\d]+|); *[a-z]{0,2}[_\-]?[A-Za-z]{0,2};? Build[ /]'
+      - regex: 'Android[\- ][\d]+(?:\.[\d]+)(?:\.[\d]+|); *__LOCALE__;?([)]| Build[ /])'
         device: 'Generic Tablet'
-        brand: 'Generic'
+        brand: 'Generic_Android'
         model: 'Tablet'
       - regex: 'Android[\- ][\d]+(?:\.[\d]+)(?:\.[\d]+|); *\-?[A-Za-z]{2}; *(.+?) Build[ /]'
         brand: 'Generic_Android'
@@ -7982,6 +7982,27 @@ device_parsers:
         brand: 'Generic_Android'
         model: '$1'
       - regex: '; Adr \d+\.\d+\.\d+; [^;]*?; ([^)]*?)\)'
+        brand: 'Generic_Android'
+        model: '$1'
+      - regex: '(Opera Mobi|Mobile;)'
+        brand: 'Generic_Android'
+        model: 'Smartphone'
+        device: 'Generic Smartphone'
+      - regex: '(Opera Tablet|Tablet;|Android.*(?:Tab|Pad))'
+        regex_flag: 'i'
+        brand: 'Generic_Android'
+        model: 'Tablet'
+        device: 'Generic Tablet'
+        type: 'tablet'
+      - regex: 'Android[\- ]__VERSION_OS__; *__LOCALE__; *([^;]+); Android.*Mobile'
+        brand: 'Generic_Android'
+        model: '$5'
+        device: 'Generic Smartphone'
+      - regex: 'Android[\- ]__VERSION_OS__; *__LOCALE__; *([^;]+); Android'
+        brand: 'Generic_Android'
+        model: '$5'
+        device: 'Generic Tablet'
+      - regex: 'Android[\- ][\d]+(?:\.[\d]+)(?:\.[\d]+|)(?:;.*|); *([^)]+)'
         brand: 'Generic_Android'
         model: '$1'
 
