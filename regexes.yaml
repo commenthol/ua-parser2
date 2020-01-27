@@ -573,6 +573,7 @@ user_agent_parsers:
       Shredder|\
       Sparrow|\
       Spicebird|\
+      Superhuman|\
       Thunderbird|\
       YahooMailProxy|\
       YahooMobileMail|\
@@ -629,6 +630,7 @@ user_agent_parsers:
           Postbox|\
           Slack_SSB|\
           Sparrow|\
+          Superhuman|\
           The Bat!(?: Voyager|)|\
           YahooMailProxy|\
           YahooMobileMail\
