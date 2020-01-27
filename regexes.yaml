@@ -1576,6 +1576,16 @@ user_agent_parsers:
       )\\b(?:[ /]__VERSION__|)"
     type: 'headless'
 
+  # Storage Clients
+  - regex: "\\b(\
+      ibm-cos-sdk-(?:core|java|js|python)|\
+      S3 Browser|\
+      S3Gof3r|\
+      rusoto|\
+      rclone\
+      )\\b(?:[ /]__VERSION__|)"
+    type: 'storage'
+
   # Proxy
   - regex: '\b(Hatena-Mobile-Gateway|Privoxy)/__VERSION__'
     type: 'proxy'
