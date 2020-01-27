@@ -596,7 +596,7 @@ user_agent_parsers:
         v1: '2013'
         type: 'mail'
       # Outlook 2016
-      - regex: 'Microsoft Outlook (?:Mail |)16\.\d+\.\d+'
+      - regex: 'Microsoft Outlook (?:Mail |)16\.\d+\.\d+|MSOffice 16'
         family: 'Outlook'
         v1: '2016'
         type: 'mail'
