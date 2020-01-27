@@ -1539,10 +1539,15 @@ user_agent_parsers:
   - regex: '(?:^|^Mozilla/\d+\.\d+ (?:\([^\)]+\) |))(Java)[ /]?__VERSION__'
     type: 'headless'
   - regex: "\\b(\
+      akka-http|\
+      axios|\
+      aiohttp|\
       Apache-Http(?:Async|)Client|\
       BitTorrent|\
       curl|\
+      fetch libfetch|\
       Ghost|\
+      got|\
       Go-http-client|\
       HTMLParser|\
       HTTrack|\
@@ -1564,6 +1569,7 @@ user_agent_parsers:
       SophosAgent|\
       SophosUpdateManager|\
       urlgrabber|\
+      unirest-(?:java|python|ruby|nodejs|php|net)|\
       (?:\\w+) APT-HTTP|\
       Wget|\
       Zend_Http_Client\
