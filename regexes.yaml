@@ -4,6 +4,7 @@ update_url: 'https://raw.github.com/commenthol/ua-parser2/master/regexes.yaml'
 pattern:
   __VERSION__: '(\d{1,10})(?:\.(\d{1,10})|)(?:\.([a-z\d]{1,20})|)'
   __VERSION_2_DIGITS__: '(\d{1,10})\.(\d{1,10})(?:\.(\d{1,10})|)'
+  __VERSION_3_DIGITS__: '(\d{1,10})\.(\d{1,10})\.(\d{1,10})'
   __VERSION_DIGITS__: '(\d{1,10})(?:\.(\d{1,10})|)(?:\.(\d{1,10})|)'
   __VERSION_DIGITS_UNDERSCORE__: '(\d{1,10})(?:[._](\d{1,10})|)(?:[._](\d{1,10})|)'
   __VERSION_MOZILLA__: '(\d{1,10})(?:\.(\d{1,10})|)(?:\.?([a-z\d]+)|)'
@@ -1193,6 +1194,44 @@ user_agent_parsers:
 
   # @note: Phoenix needs separate regex as conflicts with device "Fly Phoenix 2"
   - regex: '(Phoenix)/__VERSION__'
+
+  # @note ArcGis
+  - regex: 'ArcGIS|QGIS|JOSM|GeoEvent Server|FME'
+    group:
+      # ESRI Server products
+      - regex: '(GeoEvent Server) (\d+)(?:\.(\d+)(?:\.(\d+)|)|)'
+      # ESRI ArcGIS Desktop Products
+      - regex: '(ArcGIS Pro)(?: (\d+)\.(\d+)\.([^ ]+)|)'
+      - regex: 'ArcGIS Client Using WinInet'
+        family: 'ArcMap'
+      - regex: '(OperationsDashboard)-(?:Windows)-__VERSION_3_DIGITS__'
+        family: 'Operations Dashboard for ArcGIS'
+      - regex: '(arcgisearth)/__VERSION_2_DIGITS__'
+        family: 'ArcGIS Earth'
+      - regex: 'com.esri.(earth).phone/__VERSION_2_DIGITS__'
+        family: 'ArcGIS Earth'
+      # ESRI ArcGIS Mobile Products
+      - regex: '(arcgis-explorer)/__VERSION_3_DIGITS__'
+        family: 'Explorer for ArcGIS'
+      - regex: 'arcgis-(collector|aurora)/__VERSION_3_DIGITS__'
+        family: 'Collector for ArcGIS'
+      - regex: '(arcgis-workforce)/__VERSION_3_DIGITS__'
+        family: 'Workforce for ArcGIS'
+      - regex: '(Collector|Explorer|Workforce)-(?:Android|iOS)-__VERSION_2_DIGITS__'
+        family: '$1 for ArcGIS'
+      # ESRI ArcGIS Runtimes
+      - regex: 'ArcGISRuntime-(Android|iOS|NET|Qt)/__VERSION_2_DIGITS__'
+        family: 'ArcGIS Runtime SDK for $1'
+      - regex: 'ArcGIS\.?(iOS|Android|NET|Qt)(?:-|\.)__VERSION_2_DIGITS__'
+        family: 'ArcGIS Runtime SDK for $1'
+      - regex: 'ArcGIS\.Runtime\.(Qt)\.__VERSION_2_DIGITS__'
+        family: 'ArcGIS Runtime SDK for $1'
+      # SAFE FME
+      - regex: '(FME)\/(\d+\.\d+)\.(\d+)\.(\d+)'
+      # QGIS
+      - regex: '(QGIS)\/(\d)\.?0?(\d{1,2})\.?0?(\d{1,2})'
+      # JOSM
+      - regex: '(JOSM)/(\d+)\.(\d+)'
 
   # Other browsers
   - regex: "(\
