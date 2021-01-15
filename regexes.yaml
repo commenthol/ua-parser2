@@ -8016,6 +8016,12 @@ device_parsers:
   #########
   - regex: 'Android| Adr '
     group:
+      - regex: 'Mozilla/5.0 \(Linux; Android [\d.]{1,10}; ([^)]{1,30})\) AppleWebKit/'
+        brand: 'Generic_Android'
+        model: '$1'
+      - regex: 'Mozilla/5.0 \(Linux; Android [\d.]{1,10}; (.{1,30}) Build'
+        brand: 'Generic_Android'
+        model: '$1'
       - regex: 'Android[\- ][\d]+\.[\d]+; [A-Za-z]{2}\-[A-Za-z]{0,2}; WOWMobile (.{1,300}?) Build[ /]'
         brand: 'Generic_Android'
         model: '$1'
