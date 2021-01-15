@@ -147,6 +147,7 @@ user_agent_parsers:
       StumbleUpon|\
       survey|\
       synthetic|\
+      Tableau|\
       teoma|\
       TLSProber|\
       Tumblr|\
@@ -449,6 +450,7 @@ user_agent_parsers:
           archiver|\
           adidxbot|\
           AcoonBot|\
+          Tableau|\
           ZooShot|\
           WinHTTP|\
           WhatWeb|\
