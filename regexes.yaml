@@ -5622,11 +5622,29 @@ device_parsers:
       # Oppo
       # @ref: http://en.oppo.com/products/
       #########
-      - regex: '; {0,2}(Find ?(?:5|7a)|R8[012]\d{1,2}|T703\d{0,1}|U70\d{1,2}T?|X90\d{1,2}|A1601|1107|R831|x909)__BUILD__'
+      - regex: "; {0,5}(\
+          1107|\
+          A1601|\
+          A33[fw]|\
+          A51[fw]|\
+          CPH2035|\
+          F1[fsw]|\
+          Find ?(?:5|7a)|\
+          PADM00|\
+          PCAM10|\
+          R7[ks]f|\
+          R8[012]\\d{1,2}|\
+          R831|\
+          RMX1811|\
+          T703\\d{0,1}|\
+          U70\\d{1,2}T?|\
+          X90\\d{1,2}|\
+          x909\
+          )__BUILD__"
         device: 'Oppo $1'
         brand: 'Oppo'
         model: '$1'
-      - regex: '; {0,5}OPPO ?([^;/]+) Build/'
+      - regex: '; {0,2}OPPO ?([^;/]{1,30})__BUILD__'
         device: 'Oppo $1'
         brand: 'Oppo'
         model: '$1'
