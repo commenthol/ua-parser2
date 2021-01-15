@@ -3195,7 +3195,6 @@ device_parsers:
         brand: 'Archos'
         model: '$1'
 
-
       #########
       # Artel
       # @ref:
@@ -5500,7 +5499,7 @@ device_parsers:
         device: '$1$2$3'
         brand: 'Nokia'
         model: '$3'
-      - regex: '; {0,5}(genm14)__BUILD__'
+      - regex: '; {0,5}(genm14|TA-10\d{2})__BUILD__'
         device: '$1'
         brand: 'Nokia'
         model: '$1'
