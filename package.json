@@ -17,6 +17,9 @@
   },
   "license": "(MIT OR Apache-2.0)",
   "author": "",
+  "maintainers": [
+    "commenthol <commenthol@gmail.com>"
+  ],
   "contributors": [
     "Tobie Langel <tobie.langel@gmail.com> (http://tobielangel.com)",
     "Lindsey Simon <lsimon@commoner.com> (http://www.idreamofuni.com)",
@@ -29,6 +32,7 @@
     "doc": "doc"
   },
   "scripts": {
+    "all": "npm run lint && npm t",
     "benchmark": "cd benchmark && npm i && node run.js",
     "clean": "rimraf node_modules *.tgz",
     "lint": "eslint 'js/**/*.js'",
@@ -42,24 +46,27 @@
       "one-var": 0
     }
   },
+  "mocha": {
+    "reporter": "min"
+  },
   "dependencies": {
-    "js-yaml": "^3.13.1"
+    "js-yaml": "^4.0.0"
   },
   "devDependencies": {
-    "commander": "^2.20.0",
-    "eslint": "^5.16.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-node": "^9.1.0",
-    "eslint-plugin-promise": "^4.1.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "mocha": "^6.1.4",
-    "safe-regex": "^2.0.2",
-    "shelljs": "^0.8.3",
-    "streamss": "^1.0.1"
+    "commander": "^6.2.1",
+    "eslint": "^7.18.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^5.0.0",
+    "mocha": "^8.2.1",
+    "safe-regex": "^2.1.1",
+    "shelljs": "^0.8.4",
+    "streamss": "^2.0.0"
   },
   "engines": {
-    "node": ">=0.8.0"
+    "node": ">=12.0.0"
   },
   "licenses": [
     {
@@ -70,8 +77,5 @@
       "type": "Apache-2.0",
       "url": "https://raw.github.com/commenthol/ua-parser2/master/js/LICENSE"
     }
-  ],
-  "maintainers": [
-    "commenthol <commenthol@gmail.com>"
   ]
 }

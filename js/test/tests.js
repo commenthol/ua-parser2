@@ -1,18 +1,16 @@
 'use strict'
 
 /* global describe, it */
+const assert = require('assert')
+const fs = require('fs')
+const path = require('path')
+const SplitLine = require('streamss').SplitLine
+const jsonArray = require('streamss').JsonArray
+const throughObj = require('streamss').throughObj
+const helper = require('./lib/helper')
+const parser = require('../')()
 
-var
-  assert = require('assert'),
-  fs = require('fs'),
-  path = require('path'),
-  splitLine = require('streamss').SplitLine,
-  jsonArray = require('streamss').JsonArray,
-  through = require('streamss').Through,
-  helper = require('./lib/helper'),
-  parser = require('../')()
-
-var
+const
   config = {
     tests: path.resolve(__dirname, '../../test_resources/tests.json'),
     fasttests: path.resolve(__dirname, '../../test_resources/quick-tests.json')
@@ -26,11 +24,8 @@ function msg (name, actual, expected, string) {
 }
 
 function test (obj, encoding, done) {
-  var
-    res,
-    exp
-
-  exp = helper.compact.unstrip(obj)
+  let res
+  const exp = helper.compact.unstrip(obj)
 
   describe('', function () {
     it(exp.string, function () {
@@ -57,9 +52,9 @@ describe('tests', function () {
 
   it('exec', function (testDone) {
     fs.createReadStream(config.tests)
-      .pipe(splitLine({chomp: true}))
+      .pipe(new SplitLine({ chomp: true }))
       .pipe(jsonArray.parse())
-      .pipe(through.obj(test, function () {
+      .pipe(throughObj(test, function () {
         testDone()
       })
       )

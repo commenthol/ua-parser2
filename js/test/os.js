@@ -2,17 +2,17 @@
 
 /* global describe, it */
 
-var assert = require('assert'),
+const assert = require('assert'),
   OS = require('../lib/ua'),
   makeParser = require('../lib/parser')
 
-var options = {
+const options = {
   usePatchMinor: true
 }
 
 describe('os object', function () {
   it('OS constructor with no arguments', function () {
-    var os = new OS()
+    const os = new OS()
     assert.strictEqual(os.family, 'Other')
     assert.strictEqual(os.major, null)
     assert.strictEqual(os.minor, null)
@@ -20,7 +20,7 @@ describe('os object', function () {
   })
 
   it('OS constructor with valid arguments', function () {
-    var os = new OS('Bar', '4', '3', '2', '1')
+    const os = new OS('Bar', '4', '3', '2', '1')
     assert.strictEqual(os.family, 'Bar')
     assert.strictEqual(os.major, '4')
     assert.strictEqual(os.minor, '3')
@@ -56,7 +56,7 @@ describe('OS parser', function () {
   })
 
   it('Unexpected args don\'t throw', function () {
-    var parse = makeParser([], options).parse
+    const parse = makeParser([], options).parse
     assert.doesNotThrow(function () { parse('Foo') })
     assert.doesNotThrow(function () { parse('') })
     assert.doesNotThrow(function () { parse() })
@@ -66,22 +66,22 @@ describe('OS parser', function () {
   })
 
   it('Parser returns an instance of OS when unsuccessful at parsing', function () {
-    var parse = makeParser([], options).parse
+    const parse = makeParser([], options).parse
     assert.ok(parse('foo') instanceof OS)
   })
 
   it('Parser returns an instance of OS when sucessful', function () {
-    var parse = makeParser([{regex: 'foo'}], options).parse
+    const parse = makeParser([{ regex: 'foo' }], options).parse
     assert.ok(parse('foo') instanceof OS)
   })
 
   it('Parser correctly identifies OS name', function () {
-    var parse = makeParser([{regex: '(foo)'}], options).parse
+    const parse = makeParser([{ regex: '(foo)' }], options).parse
     assert.strictEqual(parse('foo').family, 'foo')
   })
 
   it('Parser correctly identifies version numbers', function () {
-    var parse = makeParser([{regex: '(foo) (\\d)\\.(\\d).(\\d)\\.(\\d)'}], options).parse,
+    const parse = makeParser([{ regex: '(foo) (\\d)\\.(\\d).(\\d)\\.(\\d)' }], options).parse,
       os = parse('foo 1.2.3.4')
     assert.strictEqual(os.family, 'foo')
     assert.strictEqual(os.major, '1')
@@ -91,7 +91,7 @@ describe('OS parser', function () {
   })
 
   it('Parser correctly processes replacements', function () {
-    var parse = makeParser([{
+    const parse = makeParser([{
       regex: '(foo) (\\d)\\.(\\d)\\.(\\d)\\.(\\d)',
       family: '$1bar',
       v1: 'a',
@@ -100,7 +100,7 @@ describe('OS parser', function () {
       v4: 'd'
     }], options).parse
 
-    var os = parse('foo 1.2.3.4')
+    const os = parse('foo 1.2.3.4')
     assert.strictEqual(os.family, 'foobar')
     assert.strictEqual(os.major, 'a')
     assert.strictEqual(os.minor, 'b')

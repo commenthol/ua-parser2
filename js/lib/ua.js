@@ -1,7 +1,6 @@
 'use strict'
 
-var
-  startsWithDigit = require('./helpers').startsWithDigit
+const startsWithDigit = require('./helpers').startsWithDigit
 
 function UA (family, major, minor, patch, patchMinor, type, debug) {
   if (family && typeof family === 'object') {
@@ -23,7 +22,7 @@ function UA (family, major, minor, patch, patchMinor, type, debug) {
 }
 
 UA.prototype.toVersionString = function () {
-  var output = ''
+  let output = ''
   if (this.major !== null) {
     output += this.major
     if (this.minor !== null) {
@@ -42,7 +41,7 @@ UA.prototype.toVersionString = function () {
 }
 
 UA.prototype.toString = function () {
-  var suffix = this.toVersionString()
+  let suffix = this.toVersionString()
   if (suffix) { suffix = ' ' + suffix }
   return this.family + suffix
 }

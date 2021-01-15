@@ -1,6 +1,6 @@
 'use strict'
 
-var DIGITS = /^\d/
+const DIGITS = /^\d/
 
 exports.startsWithDigit = startsWithDigit
 

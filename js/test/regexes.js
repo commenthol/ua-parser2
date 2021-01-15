@@ -2,25 +2,25 @@
 
 /* global describe, it */
 
-var assert = require('assert')
-var safe = require('safe-regex')
-var path = require('path')
-var fs = require('fs')
-var yaml = require('js-yaml')
+const assert = require('assert')
+const safe = require('safe-regex')
+const path = require('path')
+const fs = require('fs')
+const yaml = require('js-yaml')
 
 function load (filename) {
-  var contents = fs.readFileSync(filename, 'utf8')
-  return yaml.safeLoad(contents)
+  const contents = fs.readFileSync(filename, 'utf8')
+  return yaml.load(contents)
 }
 
 function getRegexes (type, regexes) {
-  var arr = []
-  var options = {
+  const arr = []
+  const options = {
     pattern: regexes.pattern
   }
 
   function _replacePattern (regex) {
-    var pattern = options.pattern || {}
+    const pattern = options.pattern || {}
     Object.keys(pattern).forEach(function (p) {
       if (regex.indexOf(p) !== -1) {
         regex = regex.replace(p, pattern[p])
@@ -30,7 +30,7 @@ function getRegexes (type, regexes) {
   }
 
   function _regexp (obj) {
-    var regex = _replacePattern(obj.regex)
+    const regex = _replacePattern(obj.regex)
     arr.push({
       regex: regex,
       debug: obj.debug
@@ -54,8 +54,8 @@ function getRegexes (type, regexes) {
 }
 
 describe('regexes', function () {
-  var filename = path.resolve(__dirname, '..', '..', 'regexes.yaml')
-  var regexes = load(filename)
+  const filename = path.resolve(__dirname, '..', '..', 'regexes.yaml')
+  const regexes = load(filename)
 
   ;[
     'user_agent_parsers',
@@ -66,13 +66,13 @@ describe('regexes', function () {
 
   function describeType (type) {
     describe(type, function () {
-      var arr = getRegexes(type, regexes)
+      const arr = getRegexes(type, regexes)
       arr.forEach(testRegex)
     })
   }
 
   function testRegex (obj) {
-    var regex = obj.regex
+    const regex = obj.regex
     it(regex, function () {
       assert.ok(safe(regex), obj.debug)
     })

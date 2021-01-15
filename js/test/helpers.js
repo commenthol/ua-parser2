@@ -2,7 +2,7 @@
 
 /* global describe, it */
 
-var assert = require('assert'),
+const assert = require('assert'),
   helpers = require('../lib/helpers')
 
 describe('Helpers', function () {

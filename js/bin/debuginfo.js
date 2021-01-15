@@ -12,14 +12,13 @@
 /**
  * Module dependencies
  */
-var
-  fs = require('fs'),
-  path = require('path')
+const fs = require('fs')
+const path = require('path')
 
 /**
  * Module variables
  */
-var regexes = path.resolve(__dirname, '../../regexes.yaml')
+const regexes = path.resolve(__dirname, '../../regexes.yaml')
 
 /**
  * add leading zeros
@@ -30,8 +29,8 @@ var regexes = path.resolve(__dirname, '../../regexes.yaml')
  *                   leading zeros
  */
 function addZeros (n, length) {
-  var str = '' + n
-  var z = '00000000'
+  const str = '' + n
+  const z = '00000000'
   if (str.length >= length) {
     return str
   }
@@ -46,9 +45,9 @@ function addZeros (n, length) {
  * @return {Boolean} true: file changed, false: file remains unchanged
  */
 function main (add) {
-  var data = fs.readFileSync(regexes, 'utf8')
-  var cnt = 0
-  var hasDebugInfo = false
+  let data = fs.readFileSync(regexes, 'utf8')
+  let cnt = 0
+  let hasDebugInfo = false
 
   if (/^[ \t]*- debug:\s*'[^']*'/m.test(data)) {
     hasDebugInfo = true
@@ -68,7 +67,7 @@ function main (add) {
   // add debug info
   if (!hasDebugInfo) {
     data = data.replace(/(^[ \t]*)- (regex:)/mg, function (m, m1, m2) {
-      return m1 + "- debug: '#" + addZeros(++cnt, 4) + "'\n" + m1 + '  ' + m2 
+      return m1 + "- debug: '#" + addZeros(++cnt, 4) + "'\n" + m1 + '  ' + m2
     })
     console.log('\n    debug info added to regexes.yaml\n')
   } else {

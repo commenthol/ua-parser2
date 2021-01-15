@@ -1,9 +1,9 @@
 'use strict'
 
-var path = require('path'),
-  fs = require('fs'),
-  yaml = require('js-yaml'),
-  assign = Object.assign || require('util')._extend // eslint-disable-line
+const path = require('path')
+const fs = require('fs')
+const yaml = require('js-yaml')
+const  assign = Object.assign || require('util')._extend // eslint-disable-line
 
 /**
  * ua-parser
@@ -12,17 +12,16 @@ var path = require('path'),
  * @property {string} options.file - filename used as regexes file.
  */
 module.exports = function (options) {
-  var
-    uaParser = {},
-    dummy = function () {}, // prevent exception if parsers are not yet fully loaded
-    parseUA = dummy,
-    parseEngine = dummy,
-    parseOS = dummy,
-    parseDevice = dummy,
-    config = {
-      async: false,
-      file: path.join(__dirname, '..', 'regexes.yaml')
-    }
+  const uaParser = {}
+  const dummy = function () {} // prevent exception if parsers are not yet fully loaded
+  let parseUA = dummy
+  let parseEngine = dummy
+  let parseOS = dummy
+  let parseDevice = dummy
+  const config = {
+    async: false,
+    file: path.join(__dirname, '..', 'regexes.yaml')
+  }
 
   /**
    * Parse the User-Agent string `str` for User-Agent
@@ -71,7 +70,7 @@ module.exports = function (options) {
    * @return {Object} - { family:, brand:, model: }
    */
   uaParser.parse = function (str) {
-    var
+    const
       ua = uaParser.parseUA(str),
       engine = uaParser.parseEngine(str),
       os = uaParser.parseOS(str),
@@ -92,18 +91,18 @@ module.exports = function (options) {
    * @param {Object} regexes - The regexes pattern objects
    */
   function createParsers (regexes) {
-    var error = null
+    let error = null
 
     if (regexes) {
-      var pattern = regexes.pattern
+      const pattern = regexes.pattern
       parseUA = require('./lib/parser')(
-        regexes.user_agent_parsers, {pattern: pattern}).parse || dummy
+        regexes.user_agent_parsers, { pattern: pattern }).parse || dummy
       parseEngine = require('./lib/parser')(
-        regexes.engine_parsers, {pattern: pattern}).parse || dummy
+        regexes.engine_parsers, { pattern: pattern }).parse || dummy
       parseOS = require('./lib/parser')(
-        regexes.os_parsers, {pattern: pattern, usePatchMinor: true}).parse || dummy
+        regexes.os_parsers, { pattern: pattern, usePatchMinor: true }).parse || dummy
       parseDevice = require('./lib/parser')(
-        regexes.device_parsers, {pattern: pattern, device: true}).parse || dummy
+        regexes.device_parsers, { pattern: pattern, device: true }).parse || dummy
     } else {
       error = new Error('bad regexes')
     }
@@ -117,7 +116,7 @@ module.exports = function (options) {
    * @param {Object} options
    */
   function setOptions (options) {
-    var i
+    let i
 
     options = assign(config, options)
 
@@ -139,7 +138,7 @@ module.exports = function (options) {
    * @return {Boolean} true if file was loaded otherwise false.
    */
   uaParser.loadSync = function (options) {
-    var
+    let
       regexes,
       contents,
       error = null
@@ -155,7 +154,7 @@ module.exports = function (options) {
 
       if (contents) {
         try {
-          regexes = yaml.safeLoad(contents)
+          regexes = yaml.load(contents)
           error = createParsers(regexes)
         } catch (e) {
           error = e
@@ -191,7 +190,7 @@ module.exports = function (options) {
     fs.readFile(options.file, 'utf8', function (error, contents) {
       if (!error && contents) {
         try {
-          var regexes = yaml.safeLoad(contents)
+          const regexes = yaml.load(contents)
           error = createParsers(regexes)
         } catch (e) {
           error = e
@@ -231,7 +230,7 @@ module.exports = function (options) {
 
   options = setOptions(options)
   if (!config.async) {
-    var err = uaParser.loadSync(options)
+    const err = uaParser.loadSync(options)
     if (err) {
       console.error(err)
     }

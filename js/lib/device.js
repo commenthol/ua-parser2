@@ -16,7 +16,7 @@ function Device (family, brand, model, type, debug) {
 }
 
 Device.prototype.toString = function () {
-  var output = ''
+  let output = ''
   if (this.brand !== null) {
     output += this.brand
     if (this.model !== null) {

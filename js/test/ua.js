@@ -2,7 +2,7 @@
 
 /* global describe, it */
 
-var
+const
   assert = require('assert'),
   path = require('path'),
   fs = require('fs'),
@@ -12,7 +12,7 @@ var
 
 describe('UA object', function () {
   it('UA constructor with no arguments', function () {
-    var ua = new UA()
+    const ua = new UA()
     assert.strictEqual(ua.family, 'Other')
     assert.strictEqual(ua.major, null)
     assert.strictEqual(ua.minor, null)
@@ -20,7 +20,7 @@ describe('UA object', function () {
   })
 
   it('UA constructor with valid arguments', function () {
-    var ua = new UA('Firefox', '16', '3', 'beta')
+    const ua = new UA('Firefox', '16', '3', 'beta')
     assert.strictEqual(ua.family, 'Firefox')
     assert.strictEqual(ua.major, '16')
     assert.strictEqual(ua.minor, '3')
@@ -30,7 +30,7 @@ describe('UA object', function () {
   })
 
   it('UA constructor with valid arguments and type', function () {
-    var ua = new UA('Firefox', '16', '3', 'beta', '', 'browser')
+    const ua = new UA('Firefox', '16', '3', 'beta', '', 'browser')
     assert.strictEqual(ua.family, 'Firefox')
     assert.strictEqual(ua.major, '16')
     assert.strictEqual(ua.minor, '3')
@@ -61,7 +61,7 @@ describe('UA parser', function () {
   })
 
   it('Unexpected args don\'t throw', function () {
-    var parse = makeParser([]).parse
+    const parse = makeParser([]).parse
     assert.doesNotThrow(function () { parse('Foo') })
     assert.doesNotThrow(function () { parse('') })
     assert.doesNotThrow(function () { parse() })
@@ -75,17 +75,17 @@ describe('UA parser', function () {
   })
 
   it('Parser returns an instance of UA when sucessful', function () {
-    var parse = makeParser([{regex: 'foo'}]).parse
+    const parse = makeParser([{ regex: 'foo' }]).parse
     assert.ok(parse('foo') instanceof UA)
   })
 
   it('Parser correctly identifies UA name', function () {
-    var parse = makeParser([{regex: '(foo)'}]).parse
+    const parse = makeParser([{ regex: '(foo)' }]).parse
     assert.strictEqual(parse('foo').family, 'foo')
   })
 
   it('Parser correctly identifies version numbers', function () {
-    var parse = makeParser([{regex: '(foo) (\\d)\\.(\\d)\\.(\\d)'}]).parse,
+    const parse = makeParser([{ regex: '(foo) (\\d)\\.(\\d)\\.(\\d)' }]).parse,
       ua = parse('foo 1.2.3')
     assert.strictEqual(ua.family, 'foo')
     assert.strictEqual(ua.major, '1')
@@ -94,7 +94,7 @@ describe('UA parser', function () {
   })
 
   it('Parser correctly processes replacements', function () {
-    var parse = makeParser([{
+    const parse = makeParser([{
       regex: '(foo) (\\d)\\.(\\d).(\\d)',
       family: '$1bar',
       v1: 'a',
@@ -102,7 +102,7 @@ describe('UA parser', function () {
       v3: 'c'
     }]).parse
 
-    var ua = parse('foo 1.2.3')
+    const ua = parse('foo 1.2.3')
     assert.strictEqual(ua.family, 'foobar')
     assert.strictEqual(ua.major, 'a')
     assert.strictEqual(ua.minor, 'b')
@@ -110,7 +110,7 @@ describe('UA parser', function () {
   })
 
   it('Parser correctly processes replacements with curly brackets', function () {
-    var parse = makeParser([{
+    const parse = makeParser([{
       regex: '(foo) (\\d)\\.(\\d).(\\d) (?:(a)|(b)|(c)|(d)|(e)|(f)|(g)|(h)|(i)|(j)|(k)|(l)|(m)|(n)|(o)|(p)|(q)|(r)|(s)|(t)|(u)|(v)|(w)|(x)|(y)|(z))',
       family: '$1bar',
       v1: '$1$2$3$4$5$6$7$8$9$10$11$12$13$14$15$16$17$18$19$20$21$22$23$24$25$26$27$28$29$30',
@@ -119,7 +119,7 @@ describe('UA parser', function () {
       // match $1
     }]).parse
 
-    var ua = parse('foo 1.2.3 z')
+    const ua = parse('foo 1.2.3 z')
     assert.strictEqual(ua.family, 'foobar')
     assert.strictEqual(ua.major, 'foo123z')
     assert.strictEqual(ua.minor, 'a')
@@ -128,14 +128,14 @@ describe('UA parser', function () {
 })
 
 describe('UA parser groups', function () {
-  var
+  const
     contents = fs.readFileSync(path.join(__dirname, 'group.yaml'), 'utf8'),
-    regexes = yaml.safeLoad(contents),
+    regexes = yaml.load(contents),
     pattern = regexes.pattern,
-    parse = makeParser(regexes.rules, {pattern: pattern}).parse
+    parse = makeParser(regexes.rules, { pattern: pattern }).parse
 
   it('Parser correctly processes groups matching "foo"', function () {
-    var ua = parse('foo 1.2.3')
+    const ua = parse('foo 1.2.3')
     assert.strictEqual(ua.family, 'foobar')
     assert.strictEqual(ua.major, 'a')
     assert.strictEqual(ua.minor, 'b')
@@ -143,7 +143,7 @@ describe('UA parser groups', function () {
   })
 
   it('Parser correctly processes groups matching "FOO"', function () {
-    var ua = parse('FOO 1.2.3')
+    const ua = parse('FOO 1.2.3')
     assert.strictEqual(ua.family, 'FOObar')
     assert.strictEqual(ua.major, 'a')
     assert.strictEqual(ua.minor, 'b')
@@ -151,7 +151,7 @@ describe('UA parser groups', function () {
   })
 
   it('Parser correctly processes groups matching "Fooooo"', function () {
-    var ua = parse('Fooooo 1.2.3')
+    const ua = parse('Fooooo 1.2.3')
     assert.strictEqual(ua.family, 'Fooooobar')
     assert.strictEqual(ua.major, 'a3')
     assert.strictEqual(ua.minor, 'b2')
@@ -159,7 +159,7 @@ describe('UA parser groups', function () {
   })
 
   it('Parser correctly processes groups not matching "foo browser" within group "foo"', function () {
-    var ua = parse('foo browser 1.2.3')
+    const ua = parse('foo browser 1.2.3')
     assert.strictEqual(ua.family, 'browser')
     assert.strictEqual(ua.major, 'foo 1')
     assert.strictEqual(ua.minor, 'foo 2')
@@ -167,7 +167,7 @@ describe('UA parser groups', function () {
   })
 
   it('Parser correctly processes groups matching "bbar" within group "bar"', function () {
-    var ua = parse('bbar 1.2.3')
+    const ua = parse('bbar 1.2.3')
     assert.strictEqual(ua.family, 'foobar')
     assert.strictEqual(ua.major, 'bar12a')
     assert.strictEqual(ua.minor, 'bar12b')
@@ -175,7 +175,7 @@ describe('UA parser groups', function () {
   })
 
   it('Parser correctly processes groups matching "bbar" within group "bar"', function () {
-    var ua = parse('bbar 1.2.3')
+    const ua = parse('bbar 1.2.3')
     assert.strictEqual(ua.family, 'foobar')
     assert.strictEqual(ua.major, 'bar12a')
     assert.strictEqual(ua.minor, 'bar12b')
@@ -183,7 +183,7 @@ describe('UA parser groups', function () {
   })
 
   it('Parser correctly processes groups not matching "Bar"', function () {
-    var ua = parse('Bar 1.2.3')
+    const ua = parse('Bar 1.2.3')
     assert.strictEqual(ua.family, 'Other')
     assert.strictEqual(ua.major, null)
     assert.strictEqual(ua.minor, null)
@@ -191,7 +191,7 @@ describe('UA parser groups', function () {
   })
 
   it('Parser correctly processes groups matching "other browser" outside groups', function () {
-    var ua = parse('other browser 1.2.3')
+    const ua = parse('other browser 1.2.3')
     assert.strictEqual(ua.family, 'browser')
     assert.strictEqual(ua.major, 'a other 1')
     assert.strictEqual(ua.minor, 'b other 2')
@@ -199,7 +199,7 @@ describe('UA parser groups', function () {
   })
 
   it('Parser correctly processes preset', function () {
-    var ua = parse('kitti foo 4.5.6')
-    assert.deepEqual(ua, {family: 'foobar', major: 'a', minor: 'b', patch: 'c', type: 'app::kitti'})
+    const ua = parse('kitti foo 4.5.6')
+    assert.deepEqual(ua, { family: 'foobar', major: 'a', minor: 'b', patch: 'c', type: 'app::kitti' })
   })
 })

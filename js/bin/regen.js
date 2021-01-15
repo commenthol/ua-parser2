@@ -6,31 +6,27 @@
 
 'use strict'
 
-var
-  fs = require('fs'),
-  path = require('path'),
-  cmd = require('commander'),
-  sh = require('shelljs'),
-  splitLine = require('streamss').SplitLine,
-  jsonArray = require('streamss').JsonArray,
-  through = require('streamss').Through,
-  helper = require('../test/lib/helper'),
-  parser = require('../')()
+const fs = require('fs')
+const path = require('path')
+const cmd = require('commander')
+const sh = require('shelljs')
+const { SplitLine, JsonArray, throughObj } = require('streamss')
+const helper = require('../test/lib/helper')
+const parser = require('../')()
 
-var
-  pwd = sh.pwd(),
-  badAgents = [],
-  agents = {},
-  basedir = path.resolve(__dirname, '../../test_resources'), // params to print on console
-  start = Date.now(),
-  count = 0,
-  config = {
-    version: '0.0.2',
-    params: [ 'ua', 'engine', 'os', 'device' ],
-    testsFile: path.resolve(basedir, 'tests.json'), // default tests file
-    outFile: path.resolve(basedir, 'new-tests.json'), // new generated tests file
-    badFile: path.resolve(basedir, 'bad-tests.json') // file containing bad matches
-  }
+const pwd = sh.pwd()
+const badAgents = []
+const agents = {}
+const basedir = path.resolve(__dirname, '../../test_resources') // params to print on console
+const start = Date.now()
+const config = {
+  version: '0.0.2',
+  params: ['ua', 'engine', 'os', 'device'],
+  testsFile: path.resolve(basedir, 'tests.json'), // default tests file
+  outFile: path.resolve(basedir, 'new-tests.json'), // new generated tests file
+  badFile: path.resolve(basedir, 'bad-tests.json') // file containing bad matches
+}
+let count = 0
 
 // / the program
 cmd
@@ -66,7 +62,7 @@ if (cmd.badtests) {
  * paring finished
  */
 function parseDone () {
-  var time = (Date.now() - start)
+  const time = (Date.now() - start)
   console.error(
     '\n' +
     '    Processing took: ' + (time / 1000 | 0) + ' s\n' +
@@ -84,12 +80,12 @@ function parseDone () {
  * parse a single user-agent and write the result to the stream
  */
 function parse (obj, encoding, done) {
-  var
-    i,
-    out = [],
-    dbg = {},
-    exp, act,
-    res, resStr
+  const out = []
+  const dbg = {}
+  let i
+  let exp
+  let act
+  let res
 
   count += 1
 
@@ -114,7 +110,7 @@ function parse (obj, encoding, done) {
   agents[obj.string] = 1
 
   exp = JSON.stringify(obj)
-  resStr = JSON.stringify(res)
+  const resStr = JSON.stringify(res)
 
   if (exp !== resStr) {
     badAgents.push(exp)
@@ -142,7 +138,7 @@ function parse (obj, encoding, done) {
  * the pipe - appending new parse results to the tests output
  */
 fs.createReadStream(config.testsFile, { encoding: 'utf8' })
-  .pipe(splitLine({chomp: true}))
-  .pipe(jsonArray.parse())
-  .pipe(through.obj(parse, parseDone))
+  .pipe(new SplitLine({ chomp: true }))
+  .pipe(JsonArray.parse())
+  .pipe(throughObj(parse, parseDone))
   .pipe(fs.createWriteStream(config.outFile, { flags: 'w', encoding: 'utf8' }))

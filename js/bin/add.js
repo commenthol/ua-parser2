@@ -10,20 +10,18 @@
 
 'use strict'
 
-var
-  fs = require('fs'),
-  path = require('path'),
-  cmd = require('commander'),
-  splitLine = require('streamss').SplitLine,
-  through = require('streamss').Through,
-  helper = require('../test/lib/helper'),
-  parser = require('../')()
+const fs = require('fs')
+const path = require('path')
+const cmd = require('commander')
+const { SplitLine, through } = require('streamss')
+const helper = require('../test/lib/helper')
+const parser = require('../')()
 
-var
+const
   pwd = process.cwd(),
   config = {
     version: '0.0.2',
-    params: [ 'ua', 'engine', 'os', 'device' ], // / params to print on console
+    params: ['ua', 'engine', 'os', 'device'], // / params to print on console
     testsFile: path.resolve(__dirname, '../../test_resources/tests.json') // / default tests file
   }
 
@@ -57,9 +55,8 @@ config.uaFile = path.resolve(pwd, cmd.useragents)
  * parse a single user-agent and write the result to the stream
  */
 function parse (txt, encoding, done) {
-  var
-    out = [],
-    res
+  let res
+  const out = []
 
   res = parser.parse(txt.toString())
   res = helper.compact.strip(res)
@@ -84,6 +81,6 @@ function parse (txt, encoding, done) {
  * the pipe - appending new parse results to the tests output
  */
 fs.createReadStream(config.uaFile, { encoding: 'utf8' })
-  .pipe(splitLine({chomp: true}))
+  .pipe(new SplitLine({ chomp: true }))
   .pipe(through(parse))
   .pipe(fs.createWriteStream(config.testsFile, { flags: 'a', encoding: 'utf8' }))
