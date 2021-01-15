@@ -9,6 +9,26 @@ function replaceMatches (str, m) {
   }).trim()
 }
 
+// debug fn to measure regex match delay
+function measureRegex (regex) { // eslint-disable-line no-unused-vars
+  const _regex = {}
+
+  const max = process.env.DIFF || 50
+
+  const fn = (name) => (...args) => {
+    const start = Date.now()
+    const m = regex[name](...args)
+    const diff = Date.now() - start
+    if (diff > max) console.log(diff, regex)
+    return m
+  }
+
+  _regex.match = fn('match')
+  _regex.exec = fn('exec')
+
+  return _regex
+}
+
 function parser (regexes, options) {
   const self = {}
 
@@ -25,9 +45,9 @@ function parser (regexes, options) {
   }
 
   function _regexp (obj) {
-    let regex = _replacePattern(obj.regex)
-    regex = new RegExp(regex, obj.regex_flag)
+    const regex = new RegExp(_replacePattern(obj.regex), obj.regex_flag)
     // if (!require('safe-regex')(regex)) console.log(regex)
+    // return measureRegex(regex) // DEBUG
     return regex
   }
 
