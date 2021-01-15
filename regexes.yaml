@@ -815,6 +815,7 @@ user_agent_parsers:
     family: 'WeChat'
     type: 'app'
   - regex: "\\b(\
+      ^Dalvik|\
       1Password|\
       AdobeAIR|\
       Alltop|\
@@ -828,9 +829,9 @@ user_agent_parsers:
       Cyberdog|\
       Cyberduck|\
       DDG-Android|\
-      ^Dalvik|\
       Deezer|\
       Dreamweaver|\
+      DuckDuckGo|\
       Instagram|\
       iWeb|\
       kioclient|\
