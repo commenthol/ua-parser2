@@ -1,5 +1,27 @@
 # Changelog
 
+**v0.5.0**
+
+- 9d02b06 feat(ua): New app Adobe CreativeCloud
+- 2b70a2b feat(ua): New app DuckDuckGo
+- 33329f4 feat(ua): New bot Tableau
+- 193bf22 feat(device): New Oppo devices
+- 3631c71 feat(device): Itel devices
+- 09906ae feat(device): Nokia TA-1032 TA-1053
+- 8aacccf fix(device): generic android model parser
+- 1922bbb feat: ArcGIS/GIS products
+- 52244b9 fix: redos
+- 3f73107 chore: bump deps
+- e1c7fc6 (origin/next) feat: add AWS S3 clients
+- 987c6dc feat: storage clients ibm-cos, rusoto, S3, rclone
+- 8d10bb1 feat: axios, unirest, akka-http, got, aiohttp, libfetch headless browsers
+- b2fd8e5 feat: Outlook 2016 mail client
+- a44736a feat: Superhuman mail client
+- bfe1d64 device: generic android matcher
+- 951c0ff test: new ua Facebook OrangeBotswana
+- 6c66d80 ua,os,device: Apple watchOS
+- 64e1b47 ua: Ghost
+
 **v0.4.2**
 
 - ua: Microsoft Office Word
