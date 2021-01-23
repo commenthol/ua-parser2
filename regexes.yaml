@@ -776,6 +776,7 @@ user_agent_parsers:
       SubStream|\
       vlc|\
       VLC|\
+      amarok|\
       VOX Music Player|\
       Windows-Media-Player(?:-\\w{1,111}|)|\
       WMPlayer|\
