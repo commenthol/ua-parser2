@@ -45,7 +45,9 @@ function parser (regexes, options) {
   }
 
   function _regexp (obj) {
-    const regex = new RegExp(_replacePattern(obj.regex), obj.regex_flag)
+    const pattern = _replacePattern(obj.regex)
+    const patternLc = obj.regex_flag === 'i' ? pattern.toLowerCase() : pattern
+    const regex = new RegExp(patternLc, obj.regex_flag)
     // if (!require('safe-regex')(regex)) console.log(regex)
     // return measureRegex(regex) // DEBUG
     return regex
